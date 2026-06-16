@@ -1,0 +1,23 @@
+Failed to load resource: the server responded with a status of 406 ()Understand this error
+bkdgdfwotlyvojnrenet.supabase.co/rest/v1/user_profiles?select=role%2Cfull_name&user_id=eq.b6bfdd74-d5a2-4250-bc84-6e0ebd7d0a4a:1  Failed to load resource: the server responded with a status of 404 ()Understand this error
+layout-0aa68738cf4f33ee.js:1 No role found for user, defaulting to 'user'
+bkdgdfwotlyvojnrenet.supabase.co/rest/v1/renewals?select=id&expiration_date=lte.2026-01-15T06%3A54%3A52.905Z&expiration_date=gte.2025-10-17T05%3A54%3A52.905Z&archived=eq.false:1  Failed to load resource: the server responded with a status of 400 ()Understand this error
+bkdgdfwotlyvojnrenet.supabase.co/rest/v1/inspections?select=id&status=eq.pending:1  Failed to load resource: the server responded with a status of 404 ()Understand this error
+bkdgdfwotlyvojnrenet.supabase.co/rest/v1/submissions?select=id&has_missing_documents=eq.true:1  Failed to load resource: the server responded with a status of 400 ()Understand this error
+bkdgdfwotlyvojnrenet.supabase.co/rest/v1/submissions?select=id%2Cclient_name%2Cpolicy_type%2Ccreated_at&order=created_at.desc&limit=5:1  Failed to load resource: the server responded with a status of 400 ()Understand this error
+bkdgdfwotlyvojnrenet.supabase.co/rest/v1/incoming_calls?select=id%2Ccontact_name%2Cnamed_insured%2Ccategory%2Ccreated_at&order=created_at.desc&limit=5:1  Failed to load resource: the server responded with a status of 400 ()Understand this error
+page-c6ba9256afef258d.js:1 Fetched 0 total clients (0 from QQCatalyst, 0 manual)
+page-c6ba9256afef258d.js:1 Loaded 0 clients from database
+/admin/orders?_rsc=98avr:1  Failed to load resource: the server responded with a status of 404 ()Understand this error
+/admin/products?_rsc=98avr:1  Failed to load resource: the server responded with a status of 404 ()Understand this error
+page-436b78bfd633e68f.js:1 🔍 Checking imported data...
+page-436b78bfd633e68f.js:1 Contacts in DB: Object
+page-436b78bfd633e68f.js:1 Policies in DB: Object
+page-436b78bfd633e68f.js:1 🔍 Checking imported data...
+page-436b78bfd633e68f.js:1 Contacts in DB: Object
+page-436b78bfd633e68f.js:1 Policies in DB: Object
+/admin/orders?_rsc=98avr:1  Failed to load resource: the server responded with a status of 404 ()Understand this error
+/admin/products?_rsc=98avr:1  Failed to load resource: the server responded with a status of 404 ()Understand this error
+page-436b78bfd633e68f.js:1 🔍 Checking imported data...
+page-436b78bfd633e68f.js:1 Contacts in DB: Object
+page-436b78bfd633e68f.js:1 Policies in DB: Object

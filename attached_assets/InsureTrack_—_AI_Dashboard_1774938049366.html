@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)file:///C:/Users/wael/Downloads/insuretrack-dark.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InsureTrack — AI Dashboard</title>
+<link href="./InsureTrack — AI Dashboard_files/css2" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  --bg:       #0A0A0B;
+  --bg1:      #0F0F11;
+  --bg2:      #141416;
+  --bg3:      #1A1A1E;
+  --bg4:      #202026;
+  --border:   rgba(255,255,255,0.06);
+  --border2:  rgba(255,255,255,0.10);
+  --border3:  rgba(255,255,255,0.16);
+  --text:     #F0F0F2;
+  --text2:    #8A8A96;
+  --text3:    #52525E;
+  --text4:    #35353F;
+
+  --green:    #22C55E;
+  --green-bg: rgba(34,197,94,0.08);
+  --green-bd: rgba(34,197,94,0.18);
+  --amber:    #F59E0B;
+  --amber-bg: rgba(245,158,11,0.08);
+  --amber-bd: rgba(245,158,11,0.18);
+  --red:      #EF4444;
+  --red-bg:   rgba(239,68,68,0.08);
+  --red-bd:   rgba(239,68,68,0.18);
+  --blue:     #3B82F6;
+  --blue-bg:  rgba(59,130,246,0.08);
+  --blue-bd:  rgba(59,130,246,0.18);
+  --purple:   #A855F7;
+  --purple-bg:rgba(168,85,247,0.08);
+  --purple-bd:rgba(168,85,247,0.18);
+
+  --r:  8px;
+  --rl: 12px;
+  --font: 'Inter', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--text);font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:4px}
+
+.app{display:flex;height:100vh;overflow:hidden}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+
+/* ── SIDEBAR ── */
+.sidebar{width:210px;min-width:210px;background:var(--bg1);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+.sidebar-logo{padding:18px 14px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:9px}
+.logo-icon{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#3B82F6,#A855F7);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px}
+.logo-name{font-size:14px;font-weight:600;letter-spacing:-0.3px;color:var(--text)}
+.logo-sub{font-size:9.5px;color:var(--text3);margin-top:1px;letter-spacing:0.3px}
+.nav-body{flex:1;overflow-y:auto;padding:8px}
+.nav-section{font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text4);padding:10px 6px 4px;margin-top:2px}
+.nav-item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:var(--r);cursor:pointer;font-size:12px;color:var(--text2);transition:background 0.1s,color 0.1s;text-decoration:none;position:relative}
+.nav-item:hover{background:var(--bg3);color:var(--text)}
+.nav-item.active{background:var(--bg3);color:var(--text);font-weight:500}
+.nav-item.active::before{content:'';position:absolute;left:0;top:20%;bottom:20%;width:2px;border-radius:2px;background:var(--blue)}
+.nav-icon{width:15px;text-align:center;font-size:13px;flex-shrink:0;opacity:0.7}
+.nav-item.active .nav-icon{opacity:1}
+.nbadge{margin-left:auto;font-size:9.5px;font-weight:600;padding:1px 5px;border-radius:20px;flex-shrink:0}
+.nbadge.red{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
+.nbadge.amber{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-bd)}
+.nbadge.green{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
+.sidebar-footer{padding:10px 8px;border-top:1px solid var(--border)}
+.user-row{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:var(--r);cursor:pointer;transition:background 0.1s}
+.user-row:hover{background:var(--bg3)}
+.avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#3B82F6,#A855F7);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0}
+.user-name{font-size:11.5px;font-weight:500;color:var(--text)}
+.user-role{font-size:9.5px;color:var(--text3)}
+
+/* ── TOPBAR ── */
+.topbar{height:52px;background:var(--bg1);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;padding:0 20px;flex-shrink:0}
+.page-title{font-size:14px;font-weight:600;letter-spacing:-0.3px;color:var(--text)}
+.topbar-date{font-size:11px;color:var(--text3);font-family:var(--mono)}
+.ai-pill{display:flex;align-items:center;gap:6px;padding:4px 10px;border-radius:20px;background:var(--blue-bg);border:1px solid var(--blue-bd);font-size:10.5px;font-weight:500;color:var(--blue);cursor:pointer;transition:all 0.15s}
+.ai-pill:hover{background:rgba(59,130,246,0.14)}
+.ai-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s ease infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.search-wrap{flex:1;max-width:420px;position:relative}
+.search-box{display:flex;align-items:center;gap:7px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r);padding:0 11px;height:32px;cursor:text;transition:border-color 0.15s,box-shadow 0.15s}
+.search-box:focus-within{border-color:rgba(59,130,246,0.4);box-shadow:0 0 0 3px rgba(59,130,246,0.08)}
+.search-input{flex:1;border:none;background:transparent;font-family:var(--font);font-size:12px;color:var(--text);outline:none}
+.search-input::placeholder{color:var(--text3)}
+.search-key{font-size:9.5px;font-family:var(--mono);background:var(--bg3);color:var(--text3);padding:1px 4px;border-radius:3px;border:1px solid var(--border2);flex-shrink:0}
+.search-results{position:absolute;top:calc(100% + 5px);left:0;right:0;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--rl);box-shadow:0 16px 40px rgba(0,0,0,0.5);z-index:100;display:none;overflow:hidden;animation:dropIn 0.15s ease}
+.search-results.open{display:block}
+@keyframes dropIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.sr-empty{padding:28px 16px;text-align:center;color:var(--text3);font-size:12px}
+.sr-empty-icon{font-size:22px;margin-bottom:8px;opacity:0.3}
+.sr-footer{padding:7px 12px;border-top:1px solid var(--border);display:flex;gap:10px}
+.sr-hint{font-size:9.5px;color:var(--text3);display:flex;align-items:center;gap:3px}
+.sr-hint kbd{background:var(--bg3);border:1px solid var(--border2);border-radius:3px;padding:1px 4px;font-family:var(--mono);font-size:8.5px}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:6px}
+.icon-btn{width:30px;height:30px;border-radius:var(--r);border:1px solid var(--border2);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative;transition:background 0.1s;color:var(--text2);font-size:14px}
+.icon-btn:hover{background:var(--bg3)}
+.notif-pip{position:absolute;top:6px;right:6px;width:6px;height:6px;border-radius:50%;background:var(--red);border:1.5px solid var(--bg1)}
+.new-btn{display:flex;align-items:center;gap:5px;padding:0 12px;height:30px;background:var(--blue);color:#fff;border:none;border-radius:var(--r);font-family:var(--font);font-size:11.5px;font-weight:500;cursor:pointer;transition:opacity 0.1s;white-space:nowrap;box-shadow:0 0 16px rgba(59,130,246,0.3)}
+.new-btn:hover{opacity:0.88}
+
+/* ── CONTENT ── */
+.content{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:14px}
+
+/* ── AI STRIP ── */
+.ai-strip{background:var(--bg2);border:1px solid var(--blue-bd);border-radius:var(--r);padding:10px 14px;display:flex;align-items:center;gap:12px;font-size:11.5px;color:var(--text2);position:relative;overflow:hidden}
+.ai-strip::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--blue),var(--purple))}
+.ai-strip-label{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:600;color:var(--blue);letter-spacing:0.5px;text-transform:uppercase;flex-shrink:0}
+.ai-insights-row{display:flex;gap:16px;flex-wrap:wrap;flex:1}
+.ai-insight-empty{font-size:11px;color:var(--text3);font-style:italic}
+
+/* ── STAT CARDS ── */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:14px 16px;cursor:pointer;position:relative;overflow:hidden;transition:border-color 0.15s,transform 0.15s}
+.stat-card:hover{transform:translateY(-1px)}
+.stat-card.red{border-color:rgba(239,68,68,0.2)}
+.stat-card.red:hover{border-color:rgba(239,68,68,0.4)}
+.stat-card.amber{border-color:rgba(245,158,11,0.2)}
+.stat-card.amber:hover{border-color:rgba(245,158,11,0.4)}
+.stat-card.blue{border-color:rgba(59,130,246,0.2)}
+.stat-card.blue:hover{border-color:rgba(59,130,246,0.4)}
+.stat-card.green{border-color:rgba(34,197,94,0.2)}
+.stat-card.green:hover{border-color:rgba(34,197,94,0.4)}
+.stat-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px}
+.stat-card.red::after{background:linear-gradient(90deg,var(--red),transparent)}
+.stat-card.amber::after{background:linear-gradient(90deg,var(--amber),transparent)}
+.stat-card.blue::after{background:linear-gradient(90deg,var(--blue),transparent)}
+.stat-card.green::after{background:linear-gradient(90deg,var(--green),transparent)}
+.stat-label{font-size:10px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;color:var(--text3);margin-bottom:10px}
+.stat-num{font-size:38px;font-weight:300;letter-spacing:-2px;line-height:1;margin-bottom:6px;font-family:var(--mono);color:var(--text3)}
+.stat-num.has-data.red{color:var(--red)}
+.stat-num.has-data.amber{color:var(--amber)}
+.stat-num.has-data.blue{color:var(--blue)}
+.stat-num.has-data.green{color:var(--green)}
+.stat-sub{font-size:11px;color:var(--text3)}
+.stat-glow{position:absolute;right:-20px;bottom:-20px;width:80px;height:80px;border-radius:50%;opacity:0.06;filter:blur(20px)}
+.stat-card.red .stat-glow{background:var(--red)}
+.stat-card.amber .stat-glow{background:var(--amber)}
+.stat-card.blue .stat-glow{background:var(--blue)}
+.stat-card.green .stat-glow{background:var(--green)}
+
+/* ── MAIN GRID ── */
+.main-grid{display:grid;grid-template-columns:1fr 300px;gap:12px}
+.left-stack{display:flex;flex-direction:column;gap:12px;min-width:0}
+.right-stack{display:flex;flex-direction:column;gap:12px}
+
+/* ── CARD SHELL ── */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden}
+.card:hover{border-color:rgba(255,255,255,0.10)}
+.card-head{display:flex;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border);gap:8px}
+.card-title{font-size:12.5px;font-weight:600;color:var(--text);letter-spacing:-0.2px}
+.card-count{font-size:10px;font-weight:500;background:var(--bg3);color:var(--text3);padding:1px 6px;border-radius:20px;border:1px solid var(--border)}
+.card-actions{margin-left:auto;display:flex;align-items:center;gap:5px}
+.pill-tabs{display:flex;background:var(--bg3);border-radius:6px;padding:2px;gap:1px;border:1px solid var(--border)}
+.pill-tab{padding:3px 8px;font-size:10.5px;font-weight:500;border-radius:4px;border:none;background:transparent;cursor:pointer;color:var(--text3);font-family:var(--font);transition:background 0.1s,color 0.1s}
+.pill-tab.active{background:var(--bg4);color:var(--text);border:1px solid var(--border2)}
+.link-btn{font-size:11px;color:var(--blue);cursor:pointer;padding:3px 7px;border-radius:5px;font-weight:500;transition:background 0.1s}
+.link-btn:hover{background:var(--blue-bg)}
+
+/* ── EMPTY STATE ── */
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;gap:10px;text-align:center}
+.empty-icon{font-size:28px;opacity:0.2;margin-bottom:4px}
+.empty-title{font-size:12.5px;font-weight:500;color:var(--text2)}
+.empty-sub{font-size:11px;color:var(--text3);max-width:220px;line-height:1.6}
+.empty-action{margin-top:4px;padding:6px 14px;border-radius:var(--r);border:1px solid var(--border2);background:transparent;font-family:var(--font);font-size:11px;color:var(--text2);cursor:pointer;transition:background 0.1s,color 0.1s}
+.empty-action:hover{background:var(--bg3);color:var(--text)}
+
+/* ── RENEWALS TABLE ── */
+.renew-head{display:grid;grid-template-columns:1fr 110px 88px 100px 30px;padding:7px 16px;background:var(--bg3);font-size:9.5px;font-weight:600;letter-spacing:0.6px;text-transform:uppercase;color:var(--text3);border-bottom:1px solid var(--border)}
+
+/* ── PIPELINE ── */
+.pipeline-wrap{padding:12px 14px;display:flex;gap:8px}
+.p-col{flex:1;min-width:0;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.p-head{padding:7px 10px;background:var(--bg3);display:flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;color:var(--text2);border-bottom:1px solid var(--border)}
+.p-count{margin-left:auto;font-size:9.5px;background:var(--bg4);color:var(--text3);padding:1px 5px;border-radius:8px}
+.p-items{padding:5px;display:flex;flex-direction:column;gap:4px;min-height:60px}
+
+/* ── ACTIVITY ── */
+.act-list{display:flex;flex-direction:column}
+
+/* ── TASKS ── */
+.task-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;padding:9px 12px;border-bottom:1px solid var(--border)}
+.tms{text-align:center;padding:7px 4px;border-radius:var(--r);cursor:pointer;transition:background 0.1s;border:1px solid transparent}
+.tms:hover{background:var(--bg3)}
+.tms.active{background:var(--bg3);border-color:var(--border2)}
+.tms-num{font-size:18px;font-weight:500;line-height:1;font-family:var(--mono);color:var(--text3)}
+.tms-label{font-size:9px;color:var(--text3);margin-top:2px;font-weight:500}
+.task-list{display:flex;flex-direction:column}
+.add-task-row{display:flex;align-items:center;gap:7px;padding:9px 12px;cursor:pointer;color:var(--text3);font-size:11.5px;border-top:1px solid var(--border);transition:background 0.1s,color 0.1s}
+.add-task-row:hover{background:var(--bg3);color:var(--text2)}
+
+/* ── MINI PAIR ── */
+.mini-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mini-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:12px 14px}
+.mini-label{font-size:9.5px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--text3);margin-bottom:5px}
+.mini-num{font-size:24px;font-weight:300;font-family:var(--mono);letter-spacing:-1px;color:var(--text3)}
+.mini-sub{font-size:10px;color:var(--text3);margin-top:2px}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;z-index:200;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex;animation:fadeIn 0.15s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--rl);width:420px;max-width:95vw;box-shadow:0 24px 60px rgba(0,0,0,0.7);animation:scaleIn 0.18s ease;overflow:hidden}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.96)}to{opacity:1;transform:none}}
+.modal-head{padding:16px 18px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.modal-title{font-size:14px;font-weight:600;letter-spacing:-0.3px}
+.modal-x{width:26px;height:26px;border-radius:6px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-size:15px;color:var(--text3);display:flex;align-items:center;justify-content:center;transition:background 0.1s}
+.modal-x:hover{background:var(--bg3)}
+.modal-body{padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.fg{display:flex;flex-direction:column;gap:4px}
+.fl{font-size:11px;font-weight:500;color:var(--text2)}
+.fi{border:1px solid var(--border2);border-radius:var(--r);padding:7px 10px;font-family:var(--font);font-size:12px;color:var(--text);background:var(--bg3);outline:none;width:100%;transition:border-color 0.15s,box-shadow 0.15s;appearance:none}
+.fi:focus{border-color:rgba(59,130,246,0.5);box-shadow:0 0 0 3px rgba(59,130,246,0.08)}
+.fi::placeholder{color:var(--text3)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.modal-foot{padding:12px 18px;border-top:1px solid var(--border);display:flex;gap:7px;justify-content:flex-end}
+.btn-sec{padding:0 12px;height:30px;border-radius:var(--r);border:1px solid var(--border2);background:transparent;font-family:var(--font);font-size:11.5px;color:var(--text2);cursor:pointer;transition:background 0.1s}
+.btn-sec:hover{background:var(--bg3)}
+.btn-pri{padding:0 14px;height:30px;border-radius:var(--r);border:none;background:var(--blue);color:#fff;font-family:var(--font);font-size:11.5px;font-weight:500;cursor:pointer;transition:opacity 0.1s;box-shadow:0 0 16px rgba(59,130,246,0.3)}
+.btn-pri:hover{opacity:0.88}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:20px;right:20px;background:var(--bg3);color:var(--text);border:1px solid var(--border2);padding:10px 16px;border-radius:var(--r);font-size:12px;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,0.5);display:none;align-items:center;gap:7px;z-index:300;animation:slideUp 0.2s ease}
+.toast.show{display:flex}
+@keyframes slideUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.toast-dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0}
+
+.stat-card{animation:fadeUp 0.3s ease both}
+.stat-card:nth-child(1){animation-delay:.05s}
+.stat-card:nth-child(2){animation-delay:.1s}
+.stat-card:nth-child(3){animation-delay:.15s}
+.stat-card:nth-child(4){animation-delay:.2s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- ═══ SIDEBAR ═══ -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">⟡</div>
+    <div>
+      <div class="logo-name">InsureTrack</div>
+      <div class="logo-sub">AI-Powered Portal</div>
+    </div>
+  </div>
+
+  <nav class="nav-body">
+    <div class="nav-section">Overview</div>
+    <div class="nav-item"><span class="nav-icon">⊞</span> Dashboard</div>
+    <div class="nav-item"><span class="nav-icon">✓</span> My Tasks</div>
+    <div class="nav-item"><span class="nav-icon">◈</span> Reports</div>
+
+    <div class="nav-section">Insurance</div>
+    <div class="nav-item active"><span class="nav-icon">↻</span> Renewals</div>
+    <div class="nav-item"><span class="nav-icon">◻</span> Submissions</div>
+    <div class="nav-item"><span class="nav-icon">$</span> Quotes</div>
+    <div class="nav-item"><span class="nav-icon">⬡</span> Market Submissions</div>
+
+    <div class="nav-section">Clients</div>
+    <div class="nav-item"><span class="nav-icon">◉</span> Clients</div>
+    <div class="nav-item"><span class="nav-icon">◎</span> Leads</div>
+    <div class="nav-item"><span class="nav-icon">◌</span> Call Log</div>
+
+    <div class="nav-section">Operations</div>
+    <div class="nav-item"><span class="nav-icon">⚙</span> Service Requests</div>
+    <div class="nav-item"><span class="nav-icon">◈</span> Inspections</div>
+    <div class="nav-item"><span class="nav-icon">◧</span> Documents</div>
+    <div class="nav-item"><span class="nav-icon">⬣</span> Carrier Contacts</div>
+
+    <div class="nav-section">Sync &amp; API</div>
+    <div class="nav-item"><span class="nav-icon">⟳</span> QQCatalyst Sync</div>
+    <div class="nav-item"><span class="nav-icon">◈</span> Settings</div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="user-row">
+      <div class="avatar">–</div>
+      <div>
+        <div class="user-name">Your Name</div>
+        <div class="user-role">Agent</div>
+      </div>
+      <span style="margin-left:auto;color:var(--text3);font-size:11px">⌄</span>
+    </div>
+  </div>
+</aside>
+
+<!-- ═══ MAIN ═══ -->
+<div class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:8px">
+      <div class="page-title">Dashboard</div>
+      <div class="topbar-date" id="dateStr">Mon, Mar 30, 2026</div>
+    </div>
+
+    <div class="search-wrap">
+      <div class="search-box">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+        <input id="searchInput" class="search-input" placeholder="Search clients, policies, renewals…" autocomplete="off">
+        <span class="search-key">/</span>
+      </div>
+      <div class="search-results" id="searchDropdown">
+        <div class="sr-empty">
+          <div class="sr-empty-icon">🔍</div>
+          No data yet — import your clients and policies to enable search
+        </div>
+        <div class="sr-footer">
+          <span class="sr-hint"><kbd>↑↓</kbd> navigate</span>
+          <span class="sr-hint"><kbd>↵</kbd> open</span>
+          <span class="sr-hint"><kbd>Esc</kbd> close</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <div class="ai-pill">
+        <span class="ai-dot"></span> AI Copilot
+      </div>
+      <div class="icon-btn" title="Notifications">
+        🔔<span class="notif-pip" style="display:none"></span>
+      </div>
+      <div class="icon-btn" title="Refresh" onclick="showToast(&#39;Data refreshed ✓&#39;)">⟳</div>
+      <button class="new-btn" onclick="openModal()">+ New Submission</button>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- AI STRIP -->
+    <div class="ai-strip">
+      <div class="ai-strip-label">
+        <span class="ai-dot"></span> AI Insights
+      </div>
+      <div class="ai-insights-row">
+        <span class="ai-insight-empty">Insights will appear once your data is imported</span>
+      </div>
+    </div>
+
+    <!-- STAT CARDS -->
+    <div class="stats-row">
+      <div class="stat-card amber">
+        <div class="stat-label">Pending Tasks</div>
+        <div class="stat-num amber" id="statTasks">—</div>
+        <div class="stat-sub">No data yet</div>
+        <div class="stat-glow"></div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-label">Upcoming Renewals</div>
+        <div class="stat-num red" id="statRenewals">—</div>
+        <div class="stat-sub">No data yet</div>
+        <div class="stat-glow"></div>
+      </div>
+      <div class="stat-card blue">
+        <div class="stat-label">Active Quotes</div>
+        <div class="stat-num blue" id="statQuotes">—</div>
+        <div class="stat-sub">No data yet</div>
+        <div class="stat-glow"></div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">Active Clients</div>
+        <div class="stat-num green" id="statClients">—</div>
+        <div class="stat-sub">No data yet</div>
+        <div class="stat-glow"></div>
+      </div>
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="main-grid">
+
+      <!-- LEFT STACK -->
+      <div class="left-stack">
+
+        <!-- RENEWALS -->
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title">Upcoming Renewals</div>
+            <span class="card-count" id="renewalCount">0 total</span>
+            <div class="card-actions">
+              <div class="pill-tabs">
+                <button class="pill-tab active">All</button>
+                <button class="pill-tab">Urgent</button>
+                <button class="pill-tab">Pending</button>
+                <button class="pill-tab">Quoted</button>
+              </div>
+              <span class="link-btn">View all →</span>
+            </div>
+          </div>
+          <div class="renew-head">
+            <span>Client</span><span>Policy ID</span><span>Expires</span><span>Status</span><span></span>
+          </div>
+          <div id="renewalRows">
+            <div class="empty-state">
+              <div class="empty-icon">↻</div>
+              <div class="empty-title">No renewals yet</div>
+              <div class="empty-sub">Import your policies from QQCatalyst or add renewals manually to get started</div>
+              <button class="empty-action" onclick="showToast(&#39;Opening QQCatalyst Sync…&#39;)">Import from QQCatalyst</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- QUOTES PIPELINE -->
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title">Quotes Pipeline</div>
+            <span class="card-count" id="quoteCount">0 active</span>
+            <div class="card-actions">
+              <span class="link-btn">View all →</span>
+            </div>
+          </div>
+          <div class="pipeline-wrap">
+            <div class="p-col">
+              <div class="p-head"><span style="color:var(--blue)">●</span> Pending <span class="p-count">0</span></div>
+              <div class="p-items">
+                <div class="empty-state" style="padding:20px 10px">
+                  <div class="empty-icon" style="font-size:18px">$</div>
+                  <div class="empty-sub" style="font-size:10px">No pending quotes</div>
+                </div>
+              </div>
+            </div>
+            <div class="p-col">
+              <div class="p-head"><span style="color:var(--amber)">●</span> Submitted <span class="p-count">0</span></div>
+              <div class="p-items">
+                <div class="empty-state" style="padding:20px 10px">
+                  <div class="empty-icon" style="font-size:18px">📤</div>
+                  <div class="empty-sub" style="font-size:10px">No submitted quotes</div>
+                </div>
+              </div>
+            </div>
+            <div class="p-col">
+              <div class="p-head"><span style="color:var(--green)">●</span> Bound <span class="p-count">0</span></div>
+              <div class="p-items">
+                <div class="empty-state" style="padding:20px 10px">
+                  <div class="empty-icon" style="font-size:18px">✓</div>
+                  <div class="empty-sub" style="font-size:10px">No bound quotes</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTIVITY FEED -->
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title">Recent Activity</div>
+            <div class="card-actions">
+              <div class="pill-tabs">
+                <button class="pill-tab active">All</button>
+                <button class="pill-tab">Tasks</button>
+                <button class="pill-tab">Renewals</button>
+                <button class="pill-tab">Calls</button>
+              </div>
+            </div>
+          </div>
+          <div class="act-list">
+            <div class="empty-state">
+              <div class="empty-icon">◈</div>
+              <div class="empty-title">No activity yet</div>
+              <div class="empty-sub">Activity will appear here as you add clients, tasks, and renewals</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT STACK -->
+      <div class="right-stack">
+
+        <!-- MINI PAIR -->
+        <div class="mini-pair">
+          <div class="mini-card">
+            <div class="mini-label">Overdue</div>
+            <div class="mini-num">—</div>
+            <div class="mini-sub">tasks past due</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-label">Done</div>
+            <div class="mini-num">—</div>
+            <div class="mini-sub">tasks completed</div>
+          </div>
+        </div>
+
+        <!-- TASKS -->
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title">My Tasks</div>
+            <div class="card-actions">
+              <button class="new-btn" style="height:26px;font-size:10.5px;padding:0 9px" onclick="openModal()">+ New</button>
+            </div>
+          </div>
+          <div class="task-mini">
+            <div class="tms active">
+              <div class="tms-num">0</div>
+              <div class="tms-label">All</div>
+            </div>
+            <div class="tms">
+              <div class="tms-num">0</div>
+              <div class="tms-label">Overdue</div>
+            </div>
+            <div class="tms">
+              <div class="tms-num">0</div>
+              <div class="tms-label">Pending</div>
+            </div>
+            <div class="tms">
+              <div class="tms-num">0</div>
+              <div class="tms-label">Done</div>
+            </div>
+          </div>
+          <div class="task-list" id="taskList">
+            <div class="empty-state">
+              <div class="empty-icon">✓</div>
+              <div class="empty-title">No tasks yet</div>
+              <div class="empty-sub">Create your first task or import from QQCatalyst</div>
+              <button class="empty-action" onclick="openModal()">+ Create task</button>
+            </div>
+          </div>
+          <div class="add-task-row" onclick="openModal()">
+            <span style="font-size:14px">+</span> Add new task
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══ MODAL ═══ -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title">New Submission / Task</div>
+      <button class="modal-x" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="fg"><label class="fl">Type</label>
+        <select class="fi">
+          <option>Submission</option><option>Task</option>
+          <option>Quote Request</option><option>Renewal Follow-up</option>
+        </select>
+      </div>
+      <div class="fg"><label class="fl">Client Name</label>
+        <input type="text" class="fi" placeholder="Search or enter client name…" id="cname">
+      </div>
+      <div class="fg"><label class="fl">Description</label>
+        <input type="text" class="fi" placeholder="Brief description…">
+      </div>
+      <div class="form-row">
+        <div class="fg"><label class="fl">Due Date</label><input type="date" class="fi"></div>
+        <div class="fg"><label class="fl">Priority</label>
+          <select class="fi"><option>Medium</option><option>High</option><option>Low</option></select>
+        </div>
+      </div>
+      <div class="fg"><label class="fl">Policy Type</label>
+        <select class="fi">
+          <option>General Liability</option><option>Commercial Property</option>
+          <option>Commercial Auto</option><option>Dwelling Fire</option>
+          <option>Workers Comp</option><option>Commercial Umbrella</option><option>BOP</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-sec" onclick="closeModal()">Cancel</button>
+      <button class="btn-pri" onclick="submitForm()">Create</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toastEl"><span class="toast-dot"></span><span id="toastMsg"></span></div>
+
+<script>
+  // Date
+  document.getElementById('dateStr').textContent =
+    new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'});
+
+  // Search open/close
+  const si = document.getElementById('searchInput');
+  const sd = document.getElementById('searchDropdown');
+  si.addEventListener('focus', () => sd.classList.add('open'));
+  si.addEventListener('blur', () => setTimeout(() => sd.classList.remove('open'), 160));
+  document.addEventListener('keydown', e => {
+    if (e.key === '/' && document.activeElement !== si) { e.preventDefault(); si.focus(); }
+    if (e.key === 'Escape') { si.blur(); closeModal(); }
+  });
+
+  // Nav active
+  document.querySelectorAll('.nav-item').forEach(el => {
+    el.addEventListener('click', function(){
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Pill tabs
+  document.querySelectorAll('.pill-tabs').forEach(tabs => {
+    tabs.querySelectorAll('.pill-tab').forEach(btn => {
+      btn.addEventListener('click', function(){
+        tabs.querySelectorAll('.pill-tab').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  });
+
+  // Task mini tabs
+  document.querySelectorAll('.tms').forEach(el => {
+    el.addEventListener('click', function(){
+      this.closest('.task-mini').querySelectorAll('.tms').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Modal
+  function openModal(){
+    document.getElementById('modal').classList.add('open');
+    setTimeout(() => document.getElementById('cname').focus(), 80);
+  }
+  function closeModal(){ document.getElementById('modal').classList.remove('open'); }
+  function submitForm(){
+    const c = document.getElementById('cname').value.trim();
+    if (!c){ document.getElementById('cname').focus(); return; }
+    closeModal();
+    showToast('Created successfully for ' + c);
+    document.getElementById('cname').value = '';
+  }
+
+  // Toast
+  let tt;
+  function showToast(msg){
+    document.getElementById('toastMsg').textContent = msg;
+    const el = document.getElementById('toastEl');
+    el.classList.add('show');
+    clearTimeout(tt);
+    tt = setTimeout(() => el.classList.remove('show'), 2600);
+  }
+</script>
+
+
+</body></html>

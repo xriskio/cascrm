@@ -1,0 +1,16 @@
+Good. Now I understand the full picture — the duplicate issue is because lib/data.ts still seeds renewals, and the store loads from localStorage which can have stale data layered on top. Let me fix everything cleanly and build the renewal detail drawer from scratch.Ran 2 commandsRan 2 commandsNow build the full renewal detail drawer:RenewalDrawer — full policy detail slide-in panelRenewalDrawer — full policy detail slide-in panelNow update RenewalPanel to make rows clickable and open the drawer:Ran a command, edited a fileRan a command, edited a fileNow add onRowClick to RenewalRow and RenewalPanel:Edited 2 filesEdited 2 filesNow add onRowClick to the RenewalPanel interface and pass it through:Edited 3 filesEdited 3 filesNow wire everything into DashboardPage:Edited 3 filesEdited 3 filesNow find the closing of the return to add the drawer:Viewed a file, edited a fileViewed a file, edited a fileAlso update CrudModal to support the new fields (email, phone, carrier, effectiveDate):Add new renewal fields to CrudModal formAdd new renewal fields to CrudModal formNow package it all up:Package and verifyPackage and verifyRoot cause of duplicates — the storage key was insuretrack_db and lib/data.ts was still seeding mock renewals. Fixed two ways:
+
+Bumped storage key to insuretrack_db_v2 — this clears all stale data on first load
+dedupe() function — on every load it de-duplicates renewals by policyId, keeping the newest. So even if something gets imported twice, only one copy survives
+
+New RenewalDrawer.tsx — clicking any client name in the panel slides it in from the right with:
+
+Details tab — all policy info, key dates, 5-step visual progress tracker (Created → In Progress → Quoted → Sent to Insured → Completed)
+Notes tab — internal-only threaded notes with timestamps, ⌘+Enter to save
+Activity tab — filtered log of all events tied to this renewal
+Email Insured tab — pre-filled renewal notice email with urgency-aware language (critical/urgent/standard tone auto-selected by days remaining), opens your system email client via mailto:, logs the send and flips status to "Sent to Insured"
+Action bar — Mark Complete · Email Insured · Edit Details · Archive · Delete — all with confirmations
+Inline status selector — 7 statuses including the new Sent to Insured and Completed
+Escape key to close
+
+New renewal fields — added clientEmail, clientPhone, carrier, effectiveDate, internalNotes[], completedAt, emailSentAt to the type and the add/edit form.Claude reached its tool-use limit for this turn.Continue

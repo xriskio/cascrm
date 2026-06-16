@@ -1,0 +1,152 @@
+'use client';
+
+import { useState, useCallback } from 'react';
+import Sidebar from '@/components/dashboard/Sidebar';
+import Topbar from '@/components/dashboard/Topbar';
+import StatCards from '@/components/dashboard/StatCards';
+import RenewalTable from '@/components/dashboard/RenewalTable';
+import QuotesPipeline from '@/components/dashboard/QuotesPipeline';
+import ActivityFeed from '@/components/dashboard/ActivityFeed';
+import TaskPanel from '@/components/dashboard/TaskPanel';
+import NewSubmissionModal from '@/components/dashboard/NewSubmissionModal';
+import type { SubmissionData } from '@/components/dashboard/NewSubmissionModal';
+
+const BG    = '#0A0A0B';
+const BG1   = '#0F0F11';
+const BG2   = '#141416';
+const BD    = 'rgba(255,255,255,0.06)';
+const BLUE  = '#3B82F6';
+const BLUE_BG = 'rgba(59,130,246,0.10)';
+const T3    = '#52525E';
+const T2    = '#8A8A96';
+const TEXT  = '#F0F0F2';
+const RED   = '#EF4444';
+const GREEN = '#22C55E';
+const FONT  = 'Inter, DM Sans, system-ui, sans-serif';
+const MONO  = '"JetBrains Mono", "DM Mono", monospace';
+
+// ── AI INSIGHTS STRIP ──────────────────────────────────────────────────────────
+function AiInsightsStrip() {
+  return (
+    <div style={{
+      background: BG2, border: `1px solid ${BD}`, borderLeft: `2px solid ${BLUE}`,
+      borderRadius: 8, padding: '9px 14px',
+      display: 'flex', alignItems: 'center', gap: 10,
+    }}>
+      <span style={{
+        width: 6, height: 6, borderRadius: '50%', background: BLUE,
+        display: 'inline-block', flexShrink: 0,
+        animation: 'aiPulse 2s ease infinite',
+      }} />
+      <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.6px', textTransform: 'uppercase', color: T3, fontFamily: FONT }}>
+        4 AI Insights
+      </span>
+      <span style={{ fontSize: 10, color: T3 }}>·</span>
+      <span style={{ fontSize: 11, color: T3, fontFamily: FONT }}>
+        Add data or items to insights
+      </span>
+    </div>
+  );
+}
+
+// ── MINI CARD ──────────────────────────────────────────────────────────────────
+function MiniCard({ label, value, color, sub }: {
+  label: string; value: number; color: string; sub: string;
+}) {
+  return (
+    <div style={{
+      background: BG2, border: `1px solid ${BD}`,
+      borderRadius: 12, padding: '12px 14px',
+    }}>
+      <div style={{ fontSize: 9.5, fontWeight: 600, letterSpacing: '0.5px', textTransform: 'uppercase', color: T3, marginBottom: 5, fontFamily: FONT }}>
+        {label}
+      </div>
+      <div style={{ fontSize: 24, fontWeight: 300, fontFamily: MONO, letterSpacing: '-1px', color }}>
+        {value}
+      </div>
+      <div style={{ fontSize: 10, color: T3, marginTop: 2, fontFamily: FONT }}>{sub}</div>
+    </div>
+  );
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────────────
+function Toast({ message, visible }: { message: string; visible: boolean }) {
+  if (!visible) return null;
+  return (
+    <div style={{
+      position: 'fixed', bottom: 20, right: 20,
+      background: '#1A1A1E', color: TEXT,
+      border: '1px solid rgba(255,255,255,0.10)',
+      padding: '10px 16px', borderRadius: 8, fontSize: 12, fontWeight: 500,
+      boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+      display: 'flex', alignItems: 'center', gap: 7,
+      zIndex: 400, fontFamily: FONT,
+    }}>
+      <span style={{ width: 7, height: 7, borderRadius: '50%', background: GREEN, flexShrink: 0 }} />
+      {message}
+    </div>
+  );
+}
+
+// ── MAIN PAGE ──────────────────────────────────────────────────────────────────
+export default function DashboardPage() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [toast, setToast] = useState({ visible: false, msg: '' });
+
+  const showToast = useCallback((msg: string) => {
+    setToast({ visible: true, msg });
+    setTimeout(() => setToast(p => ({ ...p, visible: false })), 2800);
+  }, []);
+
+  const handleSubmit = useCallback((data: SubmissionData) => {
+    showToast(`Created: ${data.description || data.type} for ${data.clientName}`);
+  }, [showToast]);
+
+  return (
+    <>
+      <div style={{
+        display: 'flex', height: '100vh', overflow: 'hidden',
+        background: BG, fontFamily: FONT, fontSize: 13, lineHeight: 1.5,
+        WebkitFontSmoothing: 'antialiased', colorScheme: 'dark',
+      }}>
+        <Sidebar />
+
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', minWidth: 0, background: BG }}>
+          <Topbar onNewSubmission={() => setModalOpen(true)} />
+
+          <div style={{
+            flex: 1, overflowY: 'auto', padding: 18,
+            display: 'flex', flexDirection: 'column', gap: 14,
+            background: BG,
+          }}>
+            <AiInsightsStrip />
+            <StatCards />
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 296px', gap: 14, alignItems: 'start' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 14, minWidth: 0 }}>
+                <RenewalTable />
+                <QuotesPipeline />
+                <ActivityFeed />
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                  <MiniCard label="Overdue" value={0} color={RED}   sub="tasks past due"  />
+                  <MiniCard label="Done"    value={0} color={GREEN} sub="completed today" />
+                </div>
+                <TaskPanel onNewTask={() => setModalOpen(true)} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <NewSubmissionModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        onSubmit={handleSubmit}
+      />
+      <Toast message={toast.msg} visible={toast.visible} />
+    </>
+  );
+}

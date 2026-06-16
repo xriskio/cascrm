@@ -1,0 +1,170 @@
+Here’s how to fix each class of error with drop-in patterns you can copy.
+
+1) cookies() used outside request scope (in /api/clients/import/route.ts and /api/qqcatalyst/renewals/import/route.ts)
+
+Why it breaks: In App Router, cookies() (from next/headers) must be called inside a request handler (or a Server Component render), not at module top-level.
+
+Fix pattern (move it inside the handler + force dynamic):
+
+// app/api/clients/import/route.ts (or renewals/import/route.ts)
+import { cookies, headers } from 'next/headers';
+
+export const dynamic = 'force-dynamic';        // avoid static optimization
+export const revalidate = 0;                   // ensure no caching
+
+export async function POST(req: Request) {
+  const cookieStore = cookies();               // ✅ now inside handler
+  const auth = cookieStore.get('auth');        // read cookies safely
+  const h = headers();                         // if you need request headers
+
+  // ...your logic...
+
+  return Response.json({ ok: true });
+}
+
+
+Common places to check & remove:
+
+Any const store = cookies() declared outside the exported GET/POST functions.
+
+Any helpers that call cookies() at import time. Convert them to accept cookieStore: ReturnType<typeof cookies> as a param, or call them from inside the handler.
+
+2) API routes trying to statically render dynamic content using request.url / nextUrl.searchParams
+
+Why it breaks: If a route (or page) reads the incoming URL/search params but Next.js thinks it’s static, it will attempt static optimization and fail.
+
+Fix options (use one):
+
+Add one of:
+
+export const dynamic = 'force-dynamic';
+// or:
+export const revalidate = 0;
+// (Edge runtime also disables static optimization, if you prefer)
+// export const runtime = 'edge';
+
+
+And use the right request type:
+
+For Route Handlers in app/api/.../route.ts:
+
+import type { NextRequest } from 'next/server';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
+export async function GET(req: NextRequest) {
+  const search = req.nextUrl.searchParams;      // ✅ supported in NextRequest
+  const foo = search.get('foo');
+
+  // or, using the Web URL:
+  // const url = new URL(req.url);
+  // const foo = url.searchParams.get('foo');
+
+  return Response.json({ foo });
+}
+
+
+Also check you’re not using deprecated config:
+If you still have export const config = { runtime: 'edge' } or similar in App Router route files, replace with:
+
+export const runtime = 'edge';   // if you want edge
+// and keep dynamic/revalidate as above if needed
+
+3) window used during SSR/build in /qqcatalyst/oauth/page.js
+
+Why it breaks: Files in /app are Server Components by default. Referencing window at the top level executes during the build/SSR phase.
+
+Two safe patterns (choose one):
+
+A) Make it a Client Component and use hooks
+
+// app/qqcatalyst/oauth/page.tsx
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+
+export default function OAuthPage() {
+  const searchParams = useSearchParams();
+  const [code, setCode] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Never read window at top-level; only inside effects in client
+    setCode(searchParams.get('code'));
+    // If you MUST read window:
+    // const origin = window.location.origin;
+  }, [searchParams]);
+
+  return <div>OAuth code: {code ?? 'none'}</div>;
+}
+
+
+B) Keep it Server (no window), pass data via URL/searchParams prop
+If this page was only reading window.location.search to get ?code=:
+
+Convert to client and use useSearchParams() (recommended), or
+
+Move URL parsing to a Route Handler and redirect/persist to cookies/session, then render a pure server page.
+
+Absolutely avoid:
+
+// ❌ This will still break at build time
+const code = new URLSearchParams(window.location.search).get('code');
+
+Quick audit checklist you can run through your repo
+
+ No cookies() at module scope or in imported modules that run on import.
+
+ All API routes that read request URL/search params export one of:
+
+export const dynamic = 'force-dynamic' or export const revalidate = 0 (and optionally export const runtime = 'edge').
+
+ Route handler signatures use the right types:
+
+(req: NextRequest) when using req.nextUrl.searchParams
+
+(req: Request) if you only use standard new URL(req.url).
+
+ No window, document, localStorage, etc. outside components marked with 'use client'.
+
+ Any window access happens inside useEffect.
+
+ Removed any export const config = ... in App Router files; use dynamic, revalidate, runtime instead.
+
+Example: fixing both offending API files
+
+app/api/clients/import/route.ts
+
+import { cookies } from 'next/headers';
+import type { NextRequest } from 'next/server';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
+export async function POST(req: NextRequest) {
+  const cookieStore = cookies();
+  const session = cookieStore.get('session')?.value;
+
+  const foo = req.nextUrl.searchParams.get('foo'); // if you need query
+
+  // ... your import logic ...
+
+  return Response.json({ ok: true });
+}
+
+
+app/api/qqcatalyst/renewals/import/route.ts
+
+import type { NextRequest } from 'next/server';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
+export async function GET(req: NextRequest) {
+  const tenant = req.nextUrl.searchParams.get('tenant');
+  // fetch with no-store if needed:
+  // const res = await fetch(url, { cache: 'no-store' });
+
+  return Response.json({ tenant });
+}

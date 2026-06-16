@@ -1,0 +1,297 @@
+{
+	"info": {
+		"_postman_id": "9c8ca92e-1729-44a4-a813-abdf85b2e381",
+		"name": "3rdParty API DEV",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31229185"
+	},
+	"item": [
+		{
+			"name": "Token Request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "78cfedec-57ad-4218-83a2-49a49d75a902",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "fdc3c5d6-4bd4-40c0-b681-d2ad2f5db414",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://logindev.qqcatalyst.com/oauth/token",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://logindev.qqcatalyst.com/oauth/authorize",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://logindev.qqcatalyst.com/winformcallback/completed.htm",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "refreshRequestParams",
+							"value": [],
+							"type": "any"
+						},
+						{
+							"key": "tokenRequestParams",
+							"value": [],
+							"type": "any"
+						},
+						{
+							"key": "authRequestParams",
+							"value": [],
+							"type": "any"
+						},
+						{
+							"key": "challengeAlgorithm",
+							"value": "S256",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"clientId\": \"QQ-SERVICE-ACCOUNT\",\r\n    \"secret\": \"QQ-SERVICE-ACCOUNT-QA.v4!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://apidev.qqcatalyst.com/v1/Locations/UserLocationsV2",
+					"protocol": "http",
+					"host": [
+						"apidev",
+						"qqcatalyst",
+						"com"
+					],
+					"path": [
+						"v1",
+						"Locations",
+						"UserLocationsV2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UserLocationsV2",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "gAAAAHnXNQZLIpW1mZr5bZjJ5NgTzsDWfaurOEcmR2dK3KldaaUbqb9GUbdRthaADBZwkMDZHsNrxRGNLWjD6hAiyl30ynAq624T9leRigj6FxGBJCWdn9NyWphypw94vWx6Jtj5UVmZs5zxywqkCF8paOqCLjrOdsQ549Y1ozwW9KSFhAMAAIAAAACzWFRootkLV8wW7npuKRMpkRtBZKW84XlHTf-4VO_QJwGnxWOtLBWK_Aog7D_O2I-EeMT1hc9kTz9pIb4gferVMsYlKQ45hyc2_7b4TkD8KhqapUH7Ps_GO4HTPSGG9OFgwNSsU0mh6jANEVLFsOmXYwR_y8121GkYQ4t-DUpx8GEBFvuKm9CK3D5KgnyCeUL5QZx_JBvDujpC9KJLd94ICS6wRNJeaGHnLAZgtvL7zmncBgkWlGbyiU-_jpgJhBlXb9h-GjzRZHd1DRxN6RUbDLmlFZeGkzGZHGSKARw9SVPohF9h1oCnsfI5Nw-gF_sFgX_JuUwNh3ttBR3FB2XYVElWlWgB3ECxW-zL9-L1Tt0ZiE5AYJaT6jMigd_i-L_QwPxH47MMj0-CpZ0ynmC1z9OJvjBot3PwGs0M1imGU-rhiNDasBfbdp6Sq9u4YMxvBv-w_HYpHIRANfR0wEd-YSuceaynvJC0H2JRjC8oZGKnMbNWr0oW2shhKxEjLb0lEejg-mpgYS7HO6ceHbeBjI6sufzE2Ck-5PASVSWptV7rzxUEq5saL1FX78m_KJ_5i84RHu4-AgEXRYuK-ESq8GCwBsJ1eSgLxTVLtvYJuk3R6nq6T9e96Wy4Gh229zerctjvw_O7-EP2TgK1fLEQ813bRGg3iiqK8xhkIiCmMU51hVycTjB76y3M7QJIDKKVklchQRRm4rMEvpbrIgCP1esq-kiJ_C2536kO5IamnZ_QYcc2gozRVu-gwqUbgyLEna5stCYJaA2bmcgMtDVUMn4XgRf3skTtjKJ84Kom-ZVrSDh2kisViXIAH4TnFNnDuh_adylU9FJHiL21pSlTqkswBSc7phoLHljCMrc_i8T0SCxANKFFL95aEDl6yJ-v59lJB5LIr8NW8m3XPTsm653E4IBvCEv5KWpLqsJ09slmlsunN1qxyH3_90XTBV5adxbmybCkC9gkw3Y7jN0cjvFPFA9cvmkLnjY3266GaIeBePIBIF5ASLo8g-OoHWdoFWzSovvA-D1gq57TJOnRe8tY8cLpGddo_IjaZjKAK8EIwmnrHtXKbdkGPlPJRdxr6gzz5feyMCZswts_MlhizB8-Z-ocau6jYWZ450TzrzmjGXpCCZbLyMTDtQ65iqzHUowCF1HA0HmZeWs3PYtY5kf50hcVUus12wc4CYLY1Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://apidev.qqcatalyst.com/v1/Locations/UserLocationsV2",
+					"protocol": "http",
+					"host": [
+						"apidev",
+						"qqcatalyst",
+						"com"
+					],
+					"path": [
+						"v1",
+						"Locations",
+						"UserLocationsV2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "v1/Locations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://apidev.qqcatalyst.com/v1/Locations/1084",
+					"protocol": "http",
+					"host": [
+						"apidev",
+						"qqcatalyst",
+						"com"
+					],
+					"path": [
+						"v1",
+						"Locations",
+						"1084"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PolicyInfo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "gAAAAHnXNQZLIpW1mZr5bZjJ5NgTzsDWfaurOEcmR2dK3KldaaUbqb9GUbdRthaADBZwkMDZHsNrxRGNLWjD6hAiyl30ynAq624T9leRigj6FxGBJCWdn9NyWphypw94vWx6Jtj5UVmZs5zxywqkCF8paOqCLjrOdsQ549Y1ozwW9KSFhAMAAIAAAACzWFRootkLV8wW7npuKRMpkRtBZKW84XlHTf-4VO_QJwGnxWOtLBWK_Aog7D_O2I-EeMT1hc9kTz9pIb4gferVMsYlKQ45hyc2_7b4TkD8KhqapUH7Ps_GO4HTPSGG9OFgwNSsU0mh6jANEVLFsOmXYwR_y8121GkYQ4t-DUpx8GEBFvuKm9CK3D5KgnyCeUL5QZx_JBvDujpC9KJLd94ICS6wRNJeaGHnLAZgtvL7zmncBgkWlGbyiU-_jpgJhBlXb9h-GjzRZHd1DRxN6RUbDLmlFZeGkzGZHGSKARw9SVPohF9h1oCnsfI5Nw-gF_sFgX_JuUwNh3ttBR3FB2XYVElWlWgB3ECxW-zL9-L1Tt0ZiE5AYJaT6jMigd_i-L_QwPxH47MMj0-CpZ0ynmC1z9OJvjBot3PwGs0M1imGU-rhiNDasBfbdp6Sq9u4YMxvBv-w_HYpHIRANfR0wEd-YSuceaynvJC0H2JRjC8oZGKnMbNWr0oW2shhKxEjLb0lEejg-mpgYS7HO6ceHbeBjI6sufzE2Ck-5PASVSWptV7rzxUEq5saL1FX78m_KJ_5i84RHu4-AgEXRYuK-ESq8GCwBsJ1eSgLxTVLtvYJuk3R6nq6T9e96Wy4Gh229zerctjvw_O7-EP2TgK1fLEQ813bRGg3iiqK8xhkIiCmMU51hVycTjB76y3M7QJIDKKVklchQRRm4rMEvpbrIgCP1esq-kiJ_C2536kO5IamnZ_QYcc2gozRVu-gwqUbgyLEna5stCYJaA2bmcgMtDVUMn4XgRf3skTtjKJ84Kom-ZVrSDh2kisViXIAH4TnFNnDuh_adylU9FJHiL21pSlTqkswBSc7phoLHljCMrc_i8T0SCxANKFFL95aEDl6yJ-v59lJB5LIr8NW8m3XPTsm653E4IBvCEv5KWpLqsJ09slmlsunN1qxyH3_90XTBV5adxbmybCkC9gkw3Y7jN0cjvFPFA9cvmkLnjY3266GaIeBePIBIF5ASLo8g-OoHWdoFWzSovvA-D1gq57TJOnRe8tY8cLpGddo_IjaZjKAK8EIwmnrHtXKbdkGPlPJRdxr6gzz5feyMCZswts_MlhizB8-Z-ocau6jYWZ450TzrzmjGXpCCZbLyMTDtQ65iqzHUowCF1HA0HmZeWs3PYtY5kf50hcVUus12wc4CYLY1Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://apidev.qqcatalyst.com/v1/Policies/1003/PolicyInfo",
+					"protocol": "http",
+					"host": [
+						"apidev",
+						"qqcatalyst",
+						"com"
+					],
+					"path": [
+						"v1",
+						"Policies",
+						"1003",
+						"PolicyInfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "v1/Contacts",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"TrimExceptions\": null,\r\n    \"XDate\": null,\r\n    \"XDateDescription\": null,\r\n    \"XDateLineAcordCode\": null,\r\n    \"XDateLineInternalCode\": null,\r\n    \"AdditionalActivityNote\": \"Postman Test collection\",\r\n    \"XDatePeriod\": null,\r\n    \"CustomerNo\": null,\r\n    \"ContactSubType\": \"C\",\r\n    \"FirstName\": \"PostMan\",\r\n    \"MiddleName\": null,\r\n    \"LastName\": \"DEVPostman\",\r\n    \"Phone\": \"7203166062\",\r\n    \"Email\": \"abc@qqcatalyst.com\",\r\n    \"Line1\": \"200 suite\",\r\n    \"Line2\": \"19th lane\",\r\n    \"City\": \"Denver\",\r\n    \"State\": \"CO\",\r\n    \"County\": \"US\",\r\n    \"Zip\": \"80072\",\r\n    \"Country\": \"USA\",\r\n    \"LocationID\": 1084,\r\n    \"Status\": \"A\",\r\n    \"ContactType\": \"C\",\r\n    \"BusinessName\": \"TitanImport1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://apidev.qqcatalyst.com/v1/Contacts",
+					"protocol": "http",
+					"host": [
+						"apidev",
+						"qqcatalyst",
+						"com"
+					],
+					"path": [
+						"v1",
+						"Contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Contacts/AddressInfo",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"TrimExceptions\": null,\r\n    \"XDate\": null,\r\n    \"XDateDescription\": null,\r\n    \"XDateLineAcordCode\": null,\r\n    \"XDateLineInternalCode\": null,\r\n    \"AdditionalActivityNote\": \"Postman Test collection\",\r\n    \"XDatePeriod\": null,\r\n    \"CustomerNo\": null,\r\n    \"ContactSubType\": \"C\",\r\n    \"FirstName\": \"PostMan\",\r\n    \"MiddleName\": null,\r\n    \"LastName\": \"DEVPostman\",\r\n    \"Phone\": \"7203166062\",\r\n    \"Email\": \"abc@qqcatalyst.com\",\r\n    \"Line1\": \"200 suite\",\r\n    \"Line2\": \"19th lane\",\r\n    \"City\": \"Denver\",\r\n    \"State\": \"CO\",\r\n    \"County\": \"US\",\r\n    \"Zip\": \"80072\",\r\n    \"Country\": \"USA\",\r\n    \"LocationID\": 1084,\r\n    \"Status\": \"A\",\r\n    \"ContactType\": \"C\",\r\n    \"BusinessName\": \"TitanImport1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://apidev.qqcatalyst.com/v1/Locations/1084/Contacts/AddressInfo",
+					"protocol": "http",
+					"host": [
+						"apidev",
+						"qqcatalyst",
+						"com"
+					],
+					"path": [
+						"v1",
+						"Locations",
+						"1084",
+						"Contacts",
+						"AddressInfo"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "gAAAAHnXNQZLIpW1mZr5bZjJ5NgTzsDWfaurOEcmR2dK3KldaaUbqb9GUbdRthaADBZwkMDZHsNrxRGNLWjD6hAiyl30ynAq624T9leRigj6FxGBJCWdn9NyWphypw94vWx6Jtj5UVmZs5zxywqkCF8paOqCLjrOdsQ549Y1ozwW9KSFhAMAAIAAAACzWFRootkLV8wW7npuKRMpkRtBZKW84XlHTf-4VO_QJwGnxWOtLBWK_Aog7D_O2I-EeMT1hc9kTz9pIb4gferVMsYlKQ45hyc2_7b4TkD8KhqapUH7Ps_GO4HTPSGG9OFgwNSsU0mh6jANEVLFsOmXYwR_y8121GkYQ4t-DUpx8GEBFvuKm9CK3D5KgnyCeUL5QZx_JBvDujpC9KJLd94ICS6wRNJeaGHnLAZgtvL7zmncBgkWlGbyiU-_jpgJhBlXb9h-GjzRZHd1DRxN6RUbDLmlFZeGkzGZHGSKARw9SVPohF9h1oCnsfI5Nw-gF_sFgX_JuUwNh3ttBR3FB2XYVElWlWgB3ECxW-zL9-L1Tt0ZiE5AYJaT6jMigd_i-L_QwPxH47MMj0-CpZ0ynmC1z9OJvjBot3PwGs0M1imGU-rhiNDasBfbdp6Sq9u4YMxvBv-w_HYpHIRANfR0wEd-YSuceaynvJC0H2JRjC8oZGKnMbNWr0oW2shhKxEjLb0lEejg-mpgYS7HO6ceHbeBjI6sufzE2Ck-5PASVSWptV7rzxUEq5saL1FX78m_KJ_5i84RHu4-AgEXRYuK-ESq8GCwBsJ1eSgLxTVLtvYJuk3R6nq6T9e96Wy4Gh229zerctjvw_O7-EP2TgK1fLEQ813bRGg3iiqK8xhkIiCmMU51hVycTjB76y3M7QJIDKKVklchQRRm4rMEvpbrIgCP1esq-kiJ_C2536kO5IamnZ_QYcc2gozRVu-gwqUbgyLEna5stCYJaA2bmcgMtDVUMn4XgRf3skTtjKJ84Kom-ZVrSDh2kisViXIAH4TnFNnDuh_adylU9FJHiL21pSlTqkswBSc7phoLHljCMrc_i8T0SCxANKFFL95aEDl6yJ-v59lJB5LIr8NW8m3XPTsm653E4IBvCEv5KWpLqsJ09slmlsunN1qxyH3_90XTBV5adxbmybCkC9gkw3Y7jN0cjvFPFA9cvmkLnjY3266GaIeBePIBIF5ASLo8g-OoHWdoFWzSovvA-D1gq57TJOnRe8tY8cLpGddo_IjaZjKAK8EIwmnrHtXKbdkGPlPJRdxr6gzz5feyMCZswts_MlhizB8-Z-ocau6jYWZ450TzrzmjGXpCCZbLyMTDtQ65iqzHUowCF1HA0HmZeWs3PYtY5kf50hcVUus12wc4CYLY1Q",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

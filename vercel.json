@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "app/api/qq-import/route.ts": {
+      "maxDuration": 300
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/qq-import",
+      "schedule": "0 2 * * *"
+    }
+  ]
+}

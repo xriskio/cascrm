@@ -1,0 +1,18 @@
+⨯ SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at loadManifest (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/load-manifest.js:36:25)
+    at DevServer.getNextFontManifest (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/next-server.js:744:47)
+    at DevServer.findPageComponents (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/dev/next-dev-server.js:571:43)
+    at async DevServer.renderPageComponent (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/base-server.js:1894:24)
+    at async DevServer.renderToResponseImpl (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/base-server.js:1946:32)
+    at async DevServer.pipeImpl (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/base-server.js:921:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/base-server.js:817:17)
+    at async /home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/lib/start-server.js:141:13) {
+  page: '/dashboard'

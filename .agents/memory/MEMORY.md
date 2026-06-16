@@ -1,0 +1,2 @@
+- [QQCatalyst OAuth + API](qqcatalyst-auth.md) — use password grant (not client_credentials) for policy endpoints; correct path is Policies/LastModifiedCreated
+- [Next.js client/server type imports](nextjs-type-imports.md) — never import types from API routes into client components; extract to types/ instead

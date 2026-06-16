@@ -1,0 +1,157 @@
+Response Formats
+application/json, text/json
+Sample:
+{
+  "Data": [
+    {
+      "CreatedOn": "sample string 1",
+      "DateLastModified": "sample string 2",
+      "HasBeenModified": true,
+      "Term": "sample string 3",
+      "PolicyType": "sample string 4",
+      "PackageType": "sample string 5",
+      "IsDeleted": true,
+      "LOBList": [
+        {
+          "AcordCode": "sample string 1",
+          "InternalCode": "sample string 2",
+          "HasDetails": true,
+          "IsPackage": true,
+          "LOBDetailsGroup": "sample string 5",
+          "ID": 6,
+          "Name": "sample string 7",
+          "Code": "sample string 8"
+        },
+        {
+          "AcordCode": "sample string 1",
+          "InternalCode": "sample string 2",
+          "HasDetails": true,
+          "IsPackage": true,
+          "LOBDetailsGroup": "sample string 5",
+          "ID": 6,
+          "Name": "sample string 7",
+          "Code": "sample string 8"
+        }
+      ],
+      "ProducerIDs": [
+        1,
+        2
+      ],
+      "PriorPolicyID": 1,
+      "PolicyAgencyFees": [
+        {
+          "AgencyFeeName": "sample string 1",
+          "Amount": 2.0,
+          "AmountIsPercent": "sample string 3",
+          "CalculatedAmount": 4.0
+        },
+        {
+          "AgencyFeeName": "sample string 1",
+          "Amount": 2.0,
+          "AmountIsPercent": "sample string 3",
+          "CalculatedAmount": 4.0
+        }
+      ],
+      "AgentName": "sample string 7",
+      "MGA": "sample string 8",
+      "WritingCarrier": "sample string 9",
+      "LOB": "sample string 10",
+      "CustomerName": "sample string 11",
+      "PolicyId": 1,
+      "CustomerId": 12,
+      "PolicyNumber": "sample string 13",
+      "EffectiveDate": "sample string 14",
+      "ExpirationDate": "sample string 15",
+      "Status": "sample string 16",
+      "TotalPremium": 17.0,
+      "Description": "sample string 18",
+      "LOBId": 19,
+      "MGAId": 1,
+      "CarrierId": 1
+    },
+    {
+      "CreatedOn": "sample string 1",
+      "DateLastModified": "sample string 2",
+      "HasBeenModified": true,
+      "Term": "sample string 3",
+      "PolicyType": "sample string 4",
+      "PackageType": "sample string 5",
+      "IsDeleted": true,
+      "LOBList": [
+        {
+          "AcordCode": "sample string 1",
+          "InternalCode": "sample string 2",
+          "HasDetails": true,
+          "IsPackage": true,
+          "LOBDetailsGroup": "sample string 5",
+          "ID": 6,
+          "Name": "sample string 7",
+          "Code": "sample string 8"
+        },
+        {
+          "AcordCode": "sample string 1",
+          "InternalCode": "sample string 2",
+          "HasDetails": true,
+          "IsPackage": true,
+          "LOBDetailsGroup": "sample string 5",
+          "ID": 6,
+          "Name": "sample string 7",
+          "Code": "sample string 8"
+        }
+      ],
+      "ProducerIDs": [
+        1,
+        2
+      ],
+      "PriorPolicyID": 1,
+      "PolicyAgencyFees": [
+        {
+          "AgencyFeeName": "sample string 1",
+          "Amount": 2.0,
+          "AmountIsPercent": "sample string 3",
+          "CalculatedAmount": 4.0
+        },
+        {
+          "AgencyFeeName": "sample string 1",
+          "Amount": 2.0,
+          "AmountIsPercent": "sample string 3",
+          "CalculatedAmount": 4.0
+        }
+      ],
+      "AgentName": "sample string 7",
+      "MGA": "sample string 8",
+      "WritingCarrier": "sample string 9",
+      "LOB": "sample string 10",
+      "CustomerName": "sample string 11",
+      "PolicyId": 1,
+      "CustomerId": 12,
+      "PolicyNumber": "sample string 13",
+      "EffectiveDate": "sample string 14",
+      "ExpirationDate": "sample string 15",
+      "Status": "sample string 16",
+      "TotalPremium": 17.0,
+      "Description": "sample string 18",
+      "LOBId": 19,
+      "MGAId": 1,
+      "CarrierId": 1
+    }
+  ],
+  "PageNumber": 1,
+  "PagesTotal": 2,
+  "TotalItems": 3,
+  "IsSuccess": true,
+  "ErrorCode": "sample string 5",
+  "ErrorMessage": "sample string 6",
+  "DisplayMessage": "sample string 7",
+  "Links": [
+    {
+      "Rel": "sample string 1",
+      "Href": "sample string 2"
+    },
+    {
+      "Rel": "sample string 1",
+      "Href": "sample string 2"
+    }
+  ],
+  "Href": "sample string 8"
+}

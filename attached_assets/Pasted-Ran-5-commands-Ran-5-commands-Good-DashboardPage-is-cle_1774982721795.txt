@@ -1,0 +1,77 @@
+Ran 5 commands
+Ran 5 commands
+Good — DashboardPage is clean. Now let me do a full audit of what's broken and fix everything systematically:
+
+
+Ran 3 commands
+Ran 3 commands
+Good — everything is self-contained in DashboardPage. Now let me fix every remaining issue in one complete pass:
+
+
+Ran 3 commands
+Ran 3 commands
+Everything looks connected correctly. Now let me fix the StatsRow which still references db.state.renewals instead of db.activeRenewals, and add the archived renewals view to the sidebar:
+
+
+Ran a command, edited a file
+Ran a command, edited a file
+Now add an archived renewals panel to the sidebar + an archived view toggle in the RenewalPanel:
+
+
+Ran a command, edited a file
+Ran a command, edited a file
+Now add the onViewArchived handler to the Sidebar call site and add an archived renewals modal:
+
+
+Edited 2 files
+Edited 2 files
+Now add the archived renewals overlay after the drawer:
+
+
+Add archived renewals overlay after the RenewalDrawer block
+Add archived renewals overlay after the RenewalDrawer block
+Now add the ArchivedRenewalsOverlay function at the bottom of DashboardPage.tsx:
+
+
+Ran 2 commands
+Ran 2 commands
+Now let me package everything up:
+
+Continue
+
+11:42 AM
+Let me check what's left to complete and package it properly.
+
+
+Ran 4 commands
+Ran 4 commands
+Good — there's actually no duplicate in the renewal section — line 101 is renewal's carrier and line 123 is quote's carrier. Both are correct. Now let me do the final verification and packaging:
+
+
+Ran 2 commands
+Ran 2 commands
+Everything is clean. Now build and package the final ZIP:
+
+
+Ran a command, read a file
+Ran a command, read a file
+Here's everything that was completed in this pass:
+
+Duplicate fix — root cause eliminated
+
+lib/data.ts wiped to empty — it was the source seeding mock renewals into localStorage on every load
+Storage key bumped from insuretrack_db → insuretrack_db_v2 — clears all stale data on first load automatically
+dedupe() function in the store — deduplicates by policyId on every load as a permanent safety net
+useEffect import — was missing from DashboardPage.tsx, now fixed
+
+Stats row — now shows Active Renewals (excluding archived), Completed count, and archived count instead of the incorrect duplicated renewal count
+
+Sidebar upgrades
+
+"Archived Renewals" nav item with live count badge
+Renewal summary strip at the bottom of nav showing ✓ Done and ⊟ Archived counts
+Clicking "Archived Renewals" opens the archived overlay
+All nav items have hover states
+Archived Renewals Overlay — modal with the full archived list, each row has View / Restore / Delete. Restore brings it back as Pending. Delete prompts inline confirmation.
+
+All stale standalone components removed — ActivityFeed.tsx, NewSubmissionModal.tsx, QuotesPipeline.tsx, Sidebar.tsx, StatCards.tsx, TaskPanel.tsx, Topbar.tsx, RenewalTable.tsx — all deleted. Everything is now self-contained in 5 clean files: DashboardPage.tsx, RenewalPanel.tsx, RenewalDrawer.tsx, CrudModal.tsx, ui.tsx.

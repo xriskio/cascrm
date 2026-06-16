@@ -1,0 +1,19 @@
+favicon.ico:1  Failed to load resource: the server responded with a status of 404 ()Understand this error
+bkdgdfwotlyvojnrenet.supabase.co/rest/v1/users?select=role%2Cname&id=eq.9634aaa8-a01c-4b33-b2be-6a9ce61c2c2b:1  Failed to load resource: the server responded with a status of 400 ()Understand this error
+layout-0aa68738cf4f33ee.js:1 RLS or table error, using default role
+bkdgdfwotlyvojnrenet.supabase.co/rest/v1/renewals?select=id&expiration_date=lte.2026-01-13T02%3A56%3A48.705Z&expiration_date=gte.2025-10-15T01%3A56%3A48.705Z&archived=eq.false:1  Failed to load resource: the server responded with a status of 400 ()Understand this error
+bkdgdfwotlyvojnrenet.supabase.co/rest/v1/inspections?select=id&status=eq.pending:1  Failed to load resource: the server responded with a status of 404 ()Understand this error
+bkdgdfwotlyvojnrenet.supabase.co/rest/v1/submissions?select=id&has_missing_documents=eq.true:1  Failed to load resource: the server responded with a status of 400 ()Understand this error
+bkdgdfwotlyvojnrenet.supabase.co/rest/v1/submissions?select=id%2Cclient_name%2Cpolicy_type%2Ccreated_at&order=created_at.desc&limit=5:1  Failed to load resource: the server responded with a status of 400 ()Understand this error
+bkdgdfwotlyvojnrenet.supabase.co/rest/v1/incoming_calls?select=id%2Ccontact_name%2Cnamed_insured%2Ccategory%2Ccreated_at&order=created_at.desc&limit=5:1  Failed to load resource: the server responded with a status of 400 ()Understand this error
+bkdgdfwotlyvojnrenet.supabase.co/rest/v1/renewals?select=id%2Cclient_name%2Cpolicy_type%2Cstatus%2Ccreated_at&order=created_at.desc&limit=5:1  Failed to load resource: the server responded with a status of 400 ()Understand this error
+page-05da720ae17f2374.js:1 Fetching calls with sort: Object
+page-05da720ae17f2374.js:1 Fetched calls: Array(0)
+page-05da720ae17f2374.js:1 Submitting call data: Object
+page-05da720ae17f2374.js:1 Formatted data for Supabase: Object
+bkdgdfwotlyvojnrenet.supabase.co/rest/v1/incoming_calls?columns=%22call_number%22%2C%22call_date%22%2C%22call_time%22%2C%22named_insured%22%2C%22contact_name%22%2C%22phone%22%2C%22email%22%2C%22reason%22%2C%22category%22%2C%22status%22%2C%22call_back_date%22%2C%22call_back_time%22%2C%22notes%22%2C%22created_at%22%2C%22updated_at%22&select=*:1  Failed to load resource: the server responded with a status of 400 ()Understand this error
+hook.js:608 Supabase error: Object
+overrideMethod @ hook.js:608Understand this error
+hook.js:608 Error saving call: Error: Failed to save call: Could not find the 'call_back_date' column of 'incoming_calls' in the schema cache
+    at v (page-05da720ae17f2374.js:1:2744)
+    at async 426-d3ff1e29e1a10aad.js:1:25610

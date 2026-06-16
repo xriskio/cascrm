@@ -1,0 +1,142 @@
+2025-10-14 16:19:32.84
+ff30a262
+User
+⚠️ Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+2025-10-14 16:19:32.86
+ff30a262
+User
+Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+2025-10-14 16:19:33.04
+ff30a262
+User
+Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+2025-10-14 16:24:10.69
+566a3862
+System
+starting up user application
+2025-10-14 16:24:10.69
+566a3862
+System
+forwarding local port 5000 to external port 80 (mapped as 1104)
+2025-10-14 16:24:11.95
+566a3862
+User
+> insurance-portal@0.1.0 start /home/runner/workspace
+2025-10-14 16:24:11.95
+566a3862
+User
+> next start -p 5000 -H 0.0.0.0
+2025-10-14 16:24:13.62
+566a3862
+User
+▲ Next.js 14.2.16
+2025-10-14 16:24:13.62
+566a3862
+User
+- Local: http://localhost:5000
+2025-10-14 16:24:13.62
+566a3862
+User
+- Network: http://0.0.0.0:5000
+2025-10-14 16:24:13.62
+566a3862
+User
+2025-10-14 16:24:13.62
+566a3862
+User
+✓ Starting...
+2025-10-14 16:24:14.00
+566a3862
+User
+✓ Ready in 915ms
+2025-10-14 16:25:22.17
+ff30a262
+System
+system: received signal terminated
+2025-10-14 16:25:22.20
+ff30a262
+User
+ ELIFECYCLE  Command failed.
+2025-10-14 16:36:26.51
+566a3862
+User
+⚠️ Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+2025-10-14 16:36:26.99
+566a3862
+User
+⚠️ Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+2025-10-14 16:36:27.01
+566a3862
+User
+Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+2025-10-14 16:36:27.20
+566a3862
+User
+Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+2025-10-14 16:37:19.83
+566a3862
+User
+Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+2025-10-14 16:37:20.16
+566a3862
+User
+Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+2025-10-14 16:39:21.85
+566a3862
+User
+Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+2025-10-14 16:39:22.50
+566a3862
+User
+Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+2025-10-14 16:39:49.31
+566a3862
+User
+Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+2025-10-14 16:39:52.97
+566a3862
+User
+Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+2025-10-14 16:49:42.97
+e15ac132
+System
+starting up user application
+2025-10-14 16:49:42.97
+e15ac132
+System
+forwarding local port 5000 to external port 80 (mapped as 1104)
+2025-10-14 16:49:45.40
+e15ac132
+User
+> insurance-portal@0.1.0 start /home/runner/workspace
+2025-10-14 16:49:45.40
+e15ac132
+User
+> next start -p 5000 -H 0.0.0.0
+2025-10-14 16:49:48.41
+e15ac132
+User
+▲ Next.js 14.2.16
+2025-10-14 16:49:48.41
+e15ac132
+User
+- Local: http://localhost:5000
+2025-10-14 16:49:48.41
+e15ac132
+User
+- Network: http://0.0.0.0:5000
+2025-10-14 16:49:48.41
+e15ac132
+User
+2025-10-14 16:49:48.41
+e15ac132
+User
+✓ Starting...
+2025-10-14 16:49:49.15
+e15ac132
+User
+✓ Ready in 1826ms
+2025-10-14 16:51:00.63
+566a3862
+System
+system: received signal terminated

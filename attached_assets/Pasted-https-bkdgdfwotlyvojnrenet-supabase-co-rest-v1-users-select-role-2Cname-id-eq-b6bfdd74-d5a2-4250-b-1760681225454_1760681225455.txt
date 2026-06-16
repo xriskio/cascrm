@@ -1,0 +1,53 @@
+https://bkdgdfwotlyvojnrenet.supabase.co/rest/v1/users?select=role%2Cname&id=eq.b6bfdd74-d5a2-4250-bc84-6e0ebd7d0a4a 406 (Not Acceptable)
+(anonymous) @ 5453-baadf442bbbe1fae.js:21
+h @ 5453-baadf442bbbe1fae.js:21
+s @ 5453-baadf442bbbe1fae.js:21
+Promise.then
+i @ 5453-baadf442bbbe1fae.js:21
+(anonymous) @ 5453-baadf442bbbe1fae.js:21
+(anonymous) @ 5453-baadf442bbbe1fae.js:21
+then @ 5453-baadf442bbbe1fae.js:1Understand this error
+5453-baadf442bbbe1fae.js:21  GET https://bkdgdfwotlyvojnrenet.supabase.co/rest/v1/user_profiles?select=role%2Cfull_name&user_id=eq.b6bfdd74-d5a2-4250-bc84-6e0ebd7d0a4a 404 (Not Found)
+(anonymous) @ 5453-baadf442bbbe1fae.js:21
+h @ 5453-baadf442bbbe1fae.js:21
+s @ 5453-baadf442bbbe1fae.js:21
+Promise.then
+i @ 5453-baadf442bbbe1fae.js:21
+(anonymous) @ 5453-baadf442bbbe1fae.js:21
+(anonymous) @ 5453-baadf442bbbe1fae.js:21
+then @ 5453-baadf442bbbe1fae.js:1Understand this error
+layout-0aa68738cf4f33ee.js:1 No role found for user, defaulting to 'user'
+page-c6ba9256afef258d.js:1 Fetched 0 total clients (0 from QQCatalyst, 0 manual)
+page-c6ba9256afef258d.js:1 Loaded 0 clients from database
+page-c6ba9256afef258d.js:1 🚀 Starting QQ clients import...
+page-c6ba9256afef258d.js:1  GET https://csrr.casurance.net/api/qqcatalyst/clients/import 500 (Internal Server Error)
+em @ page-c6ba9256afef258d.js:1
+a_ @ 39b39b47-d3094e38acf90361.js:1
+aR @ 39b39b47-d3094e38acf90361.js:1
+(anonymous) @ 39b39b47-d3094e38acf90361.js:1
+sF @ 39b39b47-d3094e38acf90361.js:1
+sM @ 39b39b47-d3094e38acf90361.js:1
+(anonymous) @ 39b39b47-d3094e38acf90361.js:1
+o4 @ 39b39b47-d3094e38acf90361.js:1
+iV @ 39b39b47-d3094e38acf90361.js:1
+sU @ 39b39b47-d3094e38acf90361.js:1
+uR @ 39b39b47-d3094e38acf90361.js:1
+uM @ 39b39b47-d3094e38acf90361.js:1Understand this error
+page-c6ba9256afef258d.js:1 📡 Response status: 500
+8923-9e9cb2f1afc9dd3f.js:1 ❌ Error importing from QQ: Error: HTTP error! status: 500
+    at em (page-c6ba9256afef258d.js:1:3996)
+push.79270.window.console.error @ 8923-9e9cb2f1afc9dd3f.js:1
+overrideMethod @ hook.js:608
+em @ page-c6ba9256afef258d.js:1
+await in em
+a_ @ 39b39b47-d3094e38acf90361.js:1
+aR @ 39b39b47-d3094e38acf90361.js:1
+(anonymous) @ 39b39b47-d3094e38acf90361.js:1
+sF @ 39b39b47-d3094e38acf90361.js:1
+sM @ 39b39b47-d3094e38acf90361.js:1
+(anonymous) @ 39b39b47-d3094e38acf90361.js:1
+o4 @ 39b39b47-d3094e38acf90361.js:1
+iV @ 39b39b47-d3094e38acf90361.js:1
+sU @ 39b39b47-d3094e38acf90361.js:1
+uR @ 39b39b47-d3094e38acf90361.js:1
+uM @ 39b39b47-d3094e38acf90361.js:1Understand this error

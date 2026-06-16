@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InsureTrack — AI Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A0A0B;--bg1:#0F0F11;--bg2:#141416;--bg3:#1A1A1E;--bg4:#202026;
+  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.10);--border3:rgba(255,255,255,0.16);
+  --text:#F0F0F2;--text2:#8A8A96;--text3:#52525E;--text4:#35353F;
+  --green:#22C55E;--green-bg:rgba(34,197,94,0.08);--green-bd:rgba(34,197,94,0.18);
+  --amber:#F59E0B;--amber-bg:rgba(245,158,11,0.08);--amber-bd:rgba(245,158,11,0.18);
+  --red:#EF4444;--red-bg:rgba(239,68,68,0.08);--red-bd:rgba(239,68,68,0.18);
+  --blue:#3B82F6;--blue-bg:rgba(59,130,246,0.08);--blue-bd:rgba(59,130,246,0.18);
+  --purple:#A855F7;--purple-bg:rgba(168,85,247,0.08);--purple-bd:rgba(168,85,247,0.18);
+  --r:8px;--rl:12px;--font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;
+}
+html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--text);font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:4px}
+
+/* ── LAYOUT ── */
+.app{display:flex;height:100vh;overflow:hidden}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+
+/* ── SIDEBAR ── */
+.sidebar{width:210px;min-width:210px;background:var(--bg1);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+.sidebar-logo{padding:18px 14px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:9px}
+.logo-icon{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#3B82F6,#A855F7);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;font-weight:700;color:#fff}
+.logo-name{font-size:14px;font-weight:600;letter-spacing:-0.3px}
+.logo-sub{font-size:9.5px;color:var(--text3);margin-top:1px}
+.nav-body{flex:1;overflow-y:auto;padding:8px}
+.nav-section{font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text4);padding:10px 6px 4px;margin-top:2px}
+.nav-item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:var(--r);cursor:pointer;font-size:12px;color:var(--text2);transition:background 0.1s,color 0.1s;position:relative}
+.nav-item:hover{background:var(--bg3);color:var(--text)}
+.nav-item.active{background:var(--bg3);color:var(--text);font-weight:500}
+.nav-item.active::before{content:'';position:absolute;left:0;top:20%;bottom:20%;width:2px;border-radius:2px;background:var(--blue)}
+.nav-icon{width:15px;text-align:center;flex-shrink:0;opacity:0.7}
+.nav-item.active .nav-icon,.nav-item:hover .nav-icon{opacity:1}
+.nbadge{margin-left:auto;font-size:9.5px;font-weight:600;padding:1px 5px;border-radius:20px;flex-shrink:0}
+.nbadge.red{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
+.nbadge.amber{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-bd)}
+.nbadge.green{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
+.sidebar-footer{padding:10px 8px;border-top:1px solid var(--border)}
+.user-row{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:var(--r);cursor:pointer;transition:background 0.1s}
+.user-row:hover{background:var(--bg3)}
+.avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#3B82F6,#A855F7);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0}
+.user-name{font-size:11.5px;font-weight:500}
+.user-role{font-size:9.5px;color:var(--text3)}
+
+/* ── TOPBAR ── */
+.topbar{height:52px;background:var(--bg1);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;padding:0 20px;flex-shrink:0}
+.page-title{font-size:14px;font-weight:600;letter-spacing:-0.3px}
+.topbar-date{font-size:11px;color:var(--text3);font-family:var(--mono)}
+.ai-pill{display:flex;align-items:center;gap:6px;padding:4px 10px;border-radius:20px;background:var(--blue-bg);border:1px solid var(--blue-bd);font-size:10.5px;font-weight:500;color:var(--blue);cursor:pointer}
+.ai-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s ease infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.search-wrap{flex:1;max-width:420px;position:relative}
+.search-box{display:flex;align-items:center;gap:7px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r);padding:0 11px;height:32px;cursor:text;transition:border-color 0.15s,box-shadow 0.15s}
+.search-box:focus-within{border-color:rgba(59,130,246,0.4);box-shadow:0 0 0 3px rgba(59,130,246,0.08)}
+.search-input{flex:1;border:none;background:transparent;font-family:var(--font);font-size:12px;color:var(--text);outline:none}
+.search-input::placeholder{color:var(--text3)}
+.search-key{font-size:9.5px;font-family:var(--mono);background:var(--bg3);color:var(--text3);padding:1px 4px;border-radius:3px;border:1px solid var(--border2);flex-shrink:0}
+.search-results{position:absolute;top:calc(100% + 5px);left:0;right:0;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--rl);box-shadow:0 16px 40px rgba(0,0,0,0.6);z-index:200;display:none;overflow:hidden;max-height:360px;overflow-y:auto}
+.search-results.open{display:block;animation:dropIn 0.15s ease}
+@keyframes dropIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.sr-cat{font-size:9.5px;font-weight:600;letter-spacing:0.7px;text-transform:uppercase;color:var(--text3);padding:10px 12px 4px;position:sticky;top:0;background:var(--bg2)}
+.sr-item{display:flex;align-items:center;gap:9px;padding:8px 12px;cursor:pointer;transition:background 0.1s}
+.sr-item:hover{background:var(--bg3)}
+.sr-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0}
+.sr-icon.c{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
+.sr-icon.r{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-bd)}
+.sr-icon.t{background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple-bd)}
+.sr-icon.q{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-bd)}
+.sr-name{font-size:12px;font-weight:500}
+.sr-sub{font-size:10px;color:var(--text3);margin-top:1px}
+.sr-arrow{margin-left:auto;color:var(--text3);opacity:0;transition:opacity 0.1s}
+.sr-item:hover .sr-arrow{opacity:1}
+.sr-footer{padding:7px 12px;border-top:1px solid var(--border);display:flex;gap:10px}
+.sr-hint{font-size:9.5px;color:var(--text3);display:flex;align-items:center;gap:3px}
+.sr-hint kbd{background:var(--bg3);border:1px solid var(--border2);border-radius:3px;padding:1px 4px;font-family:var(--mono);font-size:8.5px}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:6px}
+.icon-btn{width:30px;height:30px;border-radius:var(--r);border:1px solid var(--border2);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative;transition:background 0.1s;color:var(--text2);font-size:14px}
+.icon-btn:hover{background:var(--bg3)}
+.notif-pip{position:absolute;top:6px;right:6px;width:6px;height:6px;border-radius:50%;background:var(--red);border:1.5px solid var(--bg1)}
+.new-btn{display:flex;align-items:center;gap:5px;padding:0 12px;height:30px;background:var(--blue);color:#fff;border:none;border-radius:var(--r);font-family:var(--font);font-size:11.5px;font-weight:500;cursor:pointer;transition:opacity 0.1s;white-space:nowrap;box-shadow:0 0 16px rgba(59,130,246,0.25)}
+.new-btn:hover{opacity:0.88}
+
+/* ── CONTENT ── */
+.content{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:14px}
+
+/* ── AI STRIP ── */
+.ai-strip{background:var(--bg2);border:1px solid var(--blue-bd);border-radius:var(--r);padding:10px 14px;display:flex;align-items:center;gap:12px;position:relative;overflow:hidden}
+.ai-strip::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--blue),var(--purple))}
+.ai-strip-label{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:600;color:var(--blue);letter-spacing:0.5px;text-transform:uppercase;flex-shrink:0}
+.ai-insights-row{display:flex;gap:14px;flex-wrap:wrap;flex:1;font-size:11px}
+.ai-chip{font-size:9.5px;font-weight:600;padding:1px 6px;border-radius:10px;display:inline-block;margin-right:4px}
+.ai-chip.red{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
+.ai-chip.amber{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-bd)}
+.ai-chip.green{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
+.ai-insight-item{color:var(--text2);cursor:pointer;display:flex;align-items:center;gap:2px}
+.ai-insight-item:hover{color:var(--text)}
+
+/* ── STAT CARDS ── */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:14px 16px;position:relative;overflow:hidden;transition:border-color 0.15s,transform 0.15s;cursor:pointer}
+.stat-card:hover{transform:translateY(-1px)}
+.stat-card.amber{border-color:rgba(245,158,11,0.2)}.stat-card.amber:hover{border-color:rgba(245,158,11,0.4)}
+.stat-card.red{border-color:rgba(239,68,68,0.2)}.stat-card.red:hover{border-color:rgba(239,68,68,0.4)}
+.stat-card.blue{border-color:rgba(59,130,246,0.2)}.stat-card.blue:hover{border-color:rgba(59,130,246,0.4)}
+.stat-card.green{border-color:rgba(34,197,94,0.2)}.stat-card.green:hover{border-color:rgba(34,197,94,0.4)}
+.stat-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px}
+.stat-card.amber::after{background:linear-gradient(90deg,var(--amber),transparent)}
+.stat-card.red::after{background:linear-gradient(90deg,var(--red),transparent)}
+.stat-card.blue::after{background:linear-gradient(90deg,var(--blue),transparent)}
+.stat-card.green::after{background:linear-gradient(90deg,var(--green),transparent)}
+.stat-label{font-size:10px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;color:var(--text3);margin-bottom:10px}
+.stat-num{font-size:38px;font-weight:300;letter-spacing:-2px;line-height:1;margin-bottom:6px;font-family:var(--mono)}
+.stat-num.amber{color:var(--amber)}.stat-num.red{color:var(--red)}.stat-num.blue{color:var(--blue)}.stat-num.green{color:var(--green)}
+.stat-sub{font-size:11px;color:var(--text3)}
+.stat-glow{position:absolute;right:-20px;bottom:-20px;width:80px;height:80px;border-radius:50%;opacity:0.07;filter:blur(20px)}
+.stat-card.amber .stat-glow{background:var(--amber)}.stat-card.red .stat-glow{background:var(--red)}
+.stat-card.blue .stat-glow{background:var(--blue)}.stat-card.green .stat-glow{background:var(--green)}
+
+/* ── MAIN GRID ── */
+.main-grid{display:grid;grid-template-columns:1fr 300px;gap:12px}
+.left-stack{display:flex;flex-direction:column;gap:12px;min-width:0}
+.right-stack{display:flex;flex-direction:column;gap:12px}
+
+/* ── CARD ── */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;transition:border-color 0.15s}
+.card:hover{border-color:rgba(255,255,255,0.09)}
+.card-head{display:flex;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border);gap:8px;flex-shrink:0}
+.card-title{font-size:12.5px;font-weight:600;letter-spacing:-0.2px}
+.card-count{font-size:10px;font-weight:500;background:var(--bg3);color:var(--text3);padding:1px 6px;border-radius:20px;border:1px solid var(--border)}
+.card-actions{margin-left:auto;display:flex;align-items:center;gap:5px}
+.pill-tabs{display:flex;background:var(--bg3);border-radius:6px;padding:2px;gap:1px;border:1px solid var(--border)}
+.pill-tab{padding:3px 8px;font-size:10.5px;font-weight:500;border-radius:4px;border:none;background:transparent;cursor:pointer;color:var(--text3);font-family:var(--font);transition:background 0.1s,color 0.1s}
+.pill-tab.active{background:var(--bg4);color:var(--text);border:1px solid var(--border2)}
+.link-btn{font-size:11px;color:var(--blue);cursor:pointer;padding:3px 7px;border-radius:5px;font-weight:500;transition:background 0.1s;border:none;background:transparent;font-family:var(--font)}
+.link-btn:hover{background:var(--blue-bg)}
+.add-row-btn{display:flex;align-items:center;gap:6px;padding:9px 16px;font-size:11.5px;color:var(--text3);cursor:pointer;border-top:1px solid var(--border);transition:background 0.1s,color 0.1s;background:transparent;width:100%;border-left:none;border-right:none;border-bottom:none;font-family:var(--font)}
+.add-row-btn:hover{background:var(--bg3);color:var(--text2)}
+
+/* ── EMPTY STATE ── */
+.empty-state{display:flex;flex-direction:column;align-items:center;padding:36px 20px;gap:8px;text-align:center}
+.empty-icon{font-size:26px;opacity:0.2;margin-bottom:2px}
+.empty-title{font-size:12.5px;font-weight:500;color:var(--text2)}
+.empty-sub{font-size:11px;color:var(--text3);max-width:220px;line-height:1.6}
+.ghost-btn{margin-top:6px;padding:6px 14px;border-radius:var(--r);border:1px solid var(--border2);background:transparent;font-family:var(--font);font-size:11px;color:var(--text2);cursor:pointer;transition:background 0.1s,color 0.1s}
+.ghost-btn:hover{background:var(--bg3);color:var(--text)}
+
+/* ── RENEWALS ── */
+.renew-head{display:grid;grid-template-columns:1fr 108px 86px 100px 60px;padding:7px 16px;background:var(--bg3);font-size:9.5px;font-weight:600;letter-spacing:0.6px;text-transform:uppercase;color:var(--text3)}
+.renew-row{display:grid;grid-template-columns:1fr 108px 86px 100px 60px;align-items:center;padding:10px 16px;border-top:1px solid var(--border);cursor:pointer;transition:background 0.1s;position:relative}
+.renew-row:hover{background:var(--bg3)}
+.renew-row:hover .row-actions{opacity:1}
+.cn{font-size:12.5px;font-weight:500}
+.ct{font-size:10px;color:var(--text3);margin-top:2px}
+.pid{font-size:10.5px;color:var(--text2);font-family:var(--mono)}
+.days-chip{display:inline-flex;align-items:center;font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px}
+.days-chip.urgent{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
+.days-chip.soon{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-bd)}
+.days-chip.ok{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
+.status-pill{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--text2)}
+.sdot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.sdot.pending{background:var(--amber)}.sdot.progress{background:var(--blue)}.sdot.quoted{background:var(--green)}.sdot.urgent{background:var(--red)}
+.row-actions{opacity:0;transition:opacity 0.1s;display:flex;align-items:center;gap:3px}
+.row-btn{width:24px;height:24px;border-radius:5px;border:1px solid var(--border2);background:transparent;cursor:pointer;color:var(--text3);font-size:12px;display:flex;align-items:center;justify-content:center;transition:background 0.1s,color 0.1s;font-family:var(--font)}
+.row-btn:hover{background:var(--bg4);color:var(--text)}
+.row-btn.del:hover{background:var(--red-bg);color:var(--red);border-color:var(--red-bd)}
+
+/* ── PIPELINE ── */
+.pipeline-wrap{padding:12px 14px;display:flex;gap:8px}
+.p-col{flex:1;min-width:0;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.p-head{padding:7px 10px;background:var(--bg3);display:flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;color:var(--text2);border-bottom:1px solid var(--border);flex-shrink:0}
+.p-count{margin-left:auto;font-size:9.5px;background:var(--bg4);color:var(--text3);padding:1px 5px;border-radius:8px}
+.p-items{padding:5px;display:flex;flex-direction:column;gap:4px;flex:1}
+.p-card{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 9px;cursor:pointer;transition:border-color 0.1s;position:relative}
+.p-card:hover{background:var(--bg4);border-color:var(--border2)}
+.p-card:hover .p-card-actions{opacity:1}
+.pc-name{font-size:11px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:36px}
+.pc-type{font-size:9.5px;color:var(--text3);margin-top:1px}
+.pc-amt{font-size:10.5px;font-weight:600;color:var(--text2);font-family:var(--mono);margin-top:5px}
+.p-card-actions{position:absolute;top:6px;right:6px;display:flex;gap:2px;opacity:0;transition:opacity 0.1s}
+.p-add-btn{display:flex;align-items:center;gap:4px;padding:6px 9px;font-size:10.5px;color:var(--text3);cursor:pointer;border-top:1px solid var(--border);transition:background 0.1s,color 0.1s;background:transparent;border-left:none;border-right:none;border-bottom:none;font-family:var(--font);width:100%}
+.p-add-btn:hover{background:var(--bg4);color:var(--text2)}
+
+/* ── ACTIVITY ── */
+.act-item{display:flex;align-items:flex-start;gap:10px;padding:10px 16px;border-top:1px solid var(--border);cursor:pointer;transition:background 0.1s;position:relative}
+.act-item:hover{background:var(--bg3)}
+.act-item:hover .act-actions{opacity:1}
+.act-dot{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px}
+.act-dot.task{background:var(--green-bg);border:1px solid var(--green-bd)}
+.act-dot.renewal{background:var(--amber-bg);border:1px solid var(--amber-bd)}
+.act-dot.call{background:var(--blue-bg);border:1px solid var(--blue-bd)}
+.act-dot.quote{background:var(--red-bg);border:1px solid var(--red-bd)}
+.act-dot.document{background:var(--purple-bg);border:1px solid var(--purple-bd)}
+.act-body{flex:1;min-width:0}
+.act-title{font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.act-desc{font-size:10.5px;color:var(--text3);margin-top:1px}
+.act-time{font-size:9.5px;color:var(--text3);flex-shrink:0;margin-top:2px;font-family:var(--mono)}
+.act-actions{position:absolute;right:10px;top:50%;transform:translateY(-50%);display:flex;gap:3px;opacity:0;transition:opacity 0.1s}
+
+/* ── TASKS ── */
+.task-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;padding:9px 12px;border-bottom:1px solid var(--border)}
+.tms{text-align:center;padding:7px 4px;border-radius:var(--r);cursor:pointer;transition:background 0.1s;border:1px solid transparent}
+.tms:hover{background:var(--bg3)}.tms.active{background:var(--bg3);border-color:var(--border2)}
+.tms-num{font-size:18px;font-weight:500;line-height:1;font-family:var(--mono);color:var(--text2)}
+.tms-num.red{color:var(--red)}.tms-num.amber{color:var(--amber)}.tms-num.green{color:var(--green)}
+.tms-label{font-size:9px;color:var(--text3);margin-top:2px;font-weight:500}
+.task-item{display:flex;align-items:flex-start;gap:9px;padding:9px 12px;border-top:1px solid var(--border);transition:background 0.1s;position:relative}
+.task-item:hover{background:var(--bg3)}
+.task-item:hover .task-actions{opacity:1}
+.task-cb{width:15px;height:15px;border-radius:4px;border:1.5px solid var(--border2);flex-shrink:0;margin-top:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.1s,border-color 0.1s;font-size:9px;font-weight:700}
+.task-cb:hover{border-color:var(--green)}.task-cb.done{background:var(--green);border-color:var(--green);color:#000}
+.task-body{flex:1;min-width:0}
+.task-name{font-size:11.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:50px}
+.task-name.done{text-decoration:line-through;color:var(--text3);font-weight:400}
+.task-meta{display:flex;align-items:center;gap:5px;margin-top:2px;flex-wrap:wrap}
+.task-due{font-size:9.5px;color:var(--text3);font-family:var(--mono)}
+.task-due.over{color:var(--red);font-weight:500}
+.pri{font-size:9px;font-weight:600;padding:1px 5px;border-radius:8px}
+.pri.high{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
+.pri.med{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-bd)}
+.pri.low{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
+.task-actions{position:absolute;right:10px;top:50%;transform:translateY(-50%);display:flex;gap:3px;opacity:0;transition:opacity 0.1s}
+
+/* ── MINI PAIR ── */
+.mini-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mini-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:12px 14px}
+.mini-label{font-size:9.5px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--text3);margin-bottom:5px}
+.mini-num{font-size:24px;font-weight:300;font-family:var(--mono);letter-spacing:-1px}
+.mini-sub{font-size:10px;color:var(--text3);margin-top:2px}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);display:none;align-items:center;justify-content:center;z-index:300;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex;animation:fadeIn 0.15s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--rl);width:460px;max-width:96vw;box-shadow:0 24px 60px rgba(0,0,0,0.8);animation:scaleIn 0.18s ease;overflow:hidden;max-height:90vh;display:flex;flex-direction:column}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.96)}to{opacity:1;transform:none}}
+.modal-head{padding:16px 18px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.modal-title{font-size:14px;font-weight:600;letter-spacing:-0.3px}
+.modal-x{width:26px;height:26px;border-radius:6px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-size:15px;color:var(--text3);display:flex;align-items:center;justify-content:center;transition:background 0.1s}
+.modal-x:hover{background:var(--bg3)}
+.modal-body{padding:16px 18px;display:flex;flex-direction:column;gap:12px;overflow-y:auto}
+.modal-foot{padding:12px 18px;border-top:1px solid var(--border);display:flex;gap:7px;justify-content:flex-end;flex-shrink:0}
+.fg{display:flex;flex-direction:column;gap:4px}
+.fl{font-size:11px;font-weight:500;color:var(--text2)}
+.fi{border:1px solid var(--border2);border-radius:var(--r);padding:7px 10px;font-family:var(--font);font-size:12px;color:var(--text);background:var(--bg3);outline:none;width:100%;transition:border-color 0.15s,box-shadow 0.15s;appearance:none}
+.fi:focus{border-color:rgba(59,130,246,0.5);box-shadow:0 0 0 3px rgba(59,130,246,0.08)}
+.fi::placeholder{color:var(--text3)}
+.fi option{background:var(--bg3)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.btn-sec{padding:0 12px;height:30px;border-radius:var(--r);border:1px solid var(--border2);background:transparent;font-family:var(--font);font-size:11.5px;color:var(--text2);cursor:pointer;transition:background 0.1s}
+.btn-sec:hover{background:var(--bg3)}
+.btn-pri{padding:0 14px;height:30px;border-radius:var(--r);border:none;background:var(--blue);color:#fff;font-family:var(--font);font-size:11.5px;font-weight:500;cursor:pointer;transition:opacity 0.1s;box-shadow:0 0 12px rgba(59,130,246,0.25)}
+.btn-pri:hover{opacity:0.88}
+.btn-danger{padding:0 12px;height:30px;border-radius:var(--r);border:1px solid var(--red-bd);background:var(--red-bg);font-family:var(--font);font-size:11.5px;color:var(--red);cursor:pointer;margin-right:auto;transition:background 0.1s}
+.btn-danger:hover{background:rgba(239,68,68,0.15)}
+.section-divider{font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--text3);padding-top:4px;border-top:1px solid var(--border)}
+.err-msg{background:var(--red-bg);border:1px solid var(--red-bd);border-radius:var(--r);padding:8px 12px;font-size:11.5px;color:var(--red)}
+
+/* ── CONFIRM DIALOG ── */
+.confirm-box{background:var(--bg2);border:1px solid var(--red-bd);border-radius:var(--rl);width:360px;max-width:95vw;box-shadow:0 24px 60px rgba(0,0,0,0.8);animation:scaleIn 0.18s ease;overflow:hidden;padding:20px}
+.confirm-title{font-size:14px;font-weight:600;margin-bottom:8px}
+.confirm-sub{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:16px}
+.confirm-actions{display:flex;gap:8px;justify-content:flex-end}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:20px;right:20px;background:var(--bg3);color:var(--text);border:1px solid var(--border2);padding:10px 16px;border-radius:var(--r);font-size:12px;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,0.5);display:none;align-items:center;gap:7px;z-index:400;animation:slideUp 0.2s ease;max-width:340px}
+.toast.show{display:flex}
+@keyframes slideUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.toast-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.toast-dot.green{background:var(--green)}.toast-dot.red{background:var(--red)}.toast-dot.blue{background:var(--blue)}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- ═══ SIDEBAR ═══ -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">IT</div>
+    <div><div class="logo-name">InsureTrack</div><div class="logo-sub">AI-Powered Portal</div></div>
+  </div>
+  <nav class="nav-body">
+    <div class="nav-section">Overview</div>
+    <div class="nav-item active" onclick="navClick(this)"><span class="nav-icon">⊞</span> Dashboard</div>
+    <div class="nav-item" onclick="navClick(this)"><span class="nav-icon">✓</span> My Tasks <span class="nbadge amber" id="navTaskBadge" style="display:none">0</span></div>
+    <div class="nav-item" onclick="navClick(this)"><span class="nav-icon">◈</span> Reports</div>
+    <div class="nav-section">Insurance</div>
+    <div class="nav-item" onclick="navClick(this)"><span class="nav-icon">↻</span> Renewals <span class="nbadge red" id="navRenewalBadge" style="display:none">0</span></div>
+    <div class="nav-item" onclick="navClick(this)"><span class="nav-icon">◻</span> Submissions</div>
+    <div class="nav-item" onclick="navClick(this)"><span class="nav-icon">$</span> Quotes <span class="nbadge blue" id="navQuoteBadge" style="display:none">0</span></div>
+    <div class="nav-item" onclick="navClick(this)"><span class="nav-icon">⬡</span> Market Submissions</div>
+    <div class="nav-section">Clients</div>
+    <div class="nav-item" onclick="navClick(this)"><span class="nav-icon">◉</span> Clients</div>
+    <div class="nav-item" onclick="navClick(this)"><span class="nav-icon">◎</span> Leads</div>
+    <div class="nav-item" onclick="navClick(this)"><span class="nav-icon">◌</span> Call Log</div>
+    <div class="nav-section">Operations</div>
+    <div class="nav-item" onclick="navClick(this)"><span class="nav-icon">⚙</span> Service Requests</div>
+    <div class="nav-item" onclick="navClick(this)"><span class="nav-icon">◈</span> Inspections</div>
+    <div class="nav-item" onclick="navClick(this)"><span class="nav-icon">◧</span> Documents</div>
+    <div class="nav-item" onclick="navClick(this)"><span class="nav-icon">⬣</span> Carrier Contacts</div>
+    <div class="nav-section">Sync & API</div>
+    <div class="nav-item" onclick="navClick(this)"><span class="nav-icon">⟳</span> QQCatalyst Sync</div>
+    <div class="nav-item" onclick="navClick(this)"><span class="nav-icon">◈</span> Settings</div>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-row" onclick="openModal('user')">
+      <div class="avatar" id="sidebarAvatar">?</div>
+      <div><div class="user-name" id="sidebarName">Your Name</div><div class="user-role" id="sidebarRole">Agent</div></div>
+      <span style="margin-left:auto;color:var(--text3);font-size:11px">⌄</span>
+    </div>
+  </div>
+</aside>
+
+<!-- ═══ MAIN ═══ -->
+<div class="main">
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:8px">
+      <div class="page-title">Dashboard</div>
+      <div class="topbar-date" id="dateStr"></div>
+    </div>
+    <div class="search-wrap">
+      <div class="search-box">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input id="searchInput" class="search-input" placeholder="Search clients, policies, tasks…" autocomplete="off"/>
+        <span class="search-key">/</span>
+      </div>
+      <div class="search-results" id="searchDropdown">
+        <div id="searchBody"></div>
+        <div class="sr-footer">
+          <span class="sr-hint"><kbd>Esc</kbd> close</span>
+        </div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="ai-pill"><span class="ai-dot"></span> AI Copilot</div>
+      <div class="icon-btn" onclick="showToast('Data refreshed','green')" title="Refresh">⟳</div>
+      <button class="new-btn" onclick="openModal('renewal')">+ New</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- AI STRIP -->
+    <div class="ai-strip">
+      <div class="ai-strip-label"><span class="ai-dot"></span> AI Insights</div>
+      <div class="ai-insights-row" id="aiInsights">
+        <span style="color:var(--text3);font-size:11px;font-style:italic">Add data to unlock AI insights</span>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-row">
+      <div class="stat-card amber" onclick="scrollTo('tasks-section')">
+        <div class="stat-label">Pending Tasks</div>
+        <div class="stat-num amber" id="statTasks">0</div>
+        <div class="stat-sub" id="statTasksSub">No tasks yet</div>
+        <div class="stat-glow"></div>
+      </div>
+      <div class="stat-card red" onclick="scrollTo('renewals-section')">
+        <div class="stat-label">Upcoming Renewals</div>
+        <div class="stat-num red" id="statRenewals">0</div>
+        <div class="stat-sub" id="statRenewalsSub">No renewals yet</div>
+        <div class="stat-glow"></div>
+      </div>
+      <div class="stat-card blue" onclick="scrollTo('quotes-section')">
+        <div class="stat-label">Active Quotes</div>
+        <div class="stat-num blue" id="statQuotes">0</div>
+        <div class="stat-sub" id="statQuotesSub">No quotes yet</div>
+        <div class="stat-glow"></div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">Active Clients</div>
+        <div class="stat-num green" id="statClients">0</div>
+        <div class="stat-sub" id="statClientsSub">No clients yet</div>
+        <div class="stat-glow"></div>
+      </div>
+    </div>
+
+    <div class="main-grid">
+      <div class="left-stack">
+
+        <!-- RENEWALS -->
+        <div class="card" id="renewals-section">
+          <div class="card-head">
+            <div class="card-title">Upcoming Renewals</div>
+            <span class="card-count" id="renewalCardCount">0 total</span>
+            <div class="card-actions">
+              <div class="pill-tabs" id="renewalTabs">
+                <button class="pill-tab active" onclick="filterRenewals('all',this)">All</button>
+                <button class="pill-tab" onclick="filterRenewals('urgent',this)">Urgent</button>
+                <button class="pill-tab" onclick="filterRenewals('pending',this)">Pending</button>
+                <button class="pill-tab" onclick="filterRenewals('quoted',this)">Quoted</button>
+              </div>
+            </div>
+          </div>
+          <div class="renew-head"><span>Client</span><span>Policy ID</span><span>Expires</span><span>Status</span><span></span></div>
+          <div id="renewalRows"></div>
+          <button class="add-row-btn" onclick="openModal('renewal')">+ Add renewal</button>
+        </div>
+
+        <!-- QUOTES -->
+        <div class="card" id="quotes-section">
+          <div class="card-head">
+            <div class="card-title">Quotes Pipeline</div>
+            <span class="card-count" id="quoteCardCount">0 active</span>
+            <div class="card-actions">
+              <button class="link-btn" onclick="openModal('quote')">+ Add quote</button>
+            </div>
+          </div>
+          <div class="pipeline-wrap">
+            <div class="p-col">
+              <div class="p-head"><span style="color:var(--blue)">●</span> Pending <span class="p-count" id="qPending">0</span></div>
+              <div class="p-items" id="qColPending"></div>
+              <button class="p-add-btn" onclick="openModal('quote','pending')">+ Add</button>
+            </div>
+            <div class="p-col">
+              <div class="p-head"><span style="color:var(--amber)">●</span> Submitted <span class="p-count" id="qSubmitted">0</span></div>
+              <div class="p-items" id="qColSubmitted"></div>
+              <button class="p-add-btn" onclick="openModal('quote','submitted')">+ Add</button>
+            </div>
+            <div class="p-col">
+              <div class="p-head"><span style="color:var(--green)">●</span> Bound <span class="p-count" id="qBound">0</span></div>
+              <div class="p-items" id="qColBound"></div>
+              <button class="p-add-btn" onclick="openModal('quote','bound')">+ Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTIVITY -->
+        <div class="card" id="activity-section">
+          <div class="card-head">
+            <div class="card-title">Recent Activity</div>
+            <div class="card-actions">
+              <div class="pill-tabs">
+                <button class="pill-tab active" onclick="filterActivity('all',this)">All</button>
+                <button class="pill-tab" onclick="filterActivity('task',this)">Tasks</button>
+                <button class="pill-tab" onclick="filterActivity('renewal',this)">Renewals</button>
+                <button class="pill-tab" onclick="filterActivity('call',this)">Calls</button>
+              </div>
+            </div>
+          </div>
+          <div id="activityRows"></div>
+          <button class="add-row-btn" onclick="openModal('activity')">+ Log activity</button>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="right-stack">
+        <div class="mini-pair">
+          <div class="mini-card">
+            <div class="mini-label">Overdue</div>
+            <div class="mini-num" id="miniOverdue" style="color:var(--red)">0</div>
+            <div class="mini-sub">tasks past due</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-label">Done</div>
+            <div class="mini-num" id="miniDone" style="color:var(--green)">0</div>
+            <div class="mini-sub">completed today</div>
+          </div>
+        </div>
+
+        <!-- TASKS -->
+        <div class="card" id="tasks-section">
+          <div class="card-head">
+            <div class="card-title">My Tasks</div>
+            <div class="card-actions">
+              <button class="new-btn" style="height:26px;font-size:10.5px;padding:0 9px" onclick="openModal('task')">+ New</button>
+            </div>
+          </div>
+          <div class="task-mini">
+            <div class="tms active" onclick="filterTasks('all',this)"><div class="tms-num" id="tmAll">0</div><div class="tms-label">All</div></div>
+            <div class="tms" onclick="filterTasks('overdue',this)"><div class="tms-num red" id="tmOverdue">0</div><div class="tms-label">Overdue</div></div>
+            <div class="tms" onclick="filterTasks('progress',this)"><div class="tms-num amber" id="tmPending">0</div><div class="tms-label">Pending</div></div>
+            <div class="tms" onclick="filterTasks('done',this)"><div class="tms-num green" id="tmDone">0</div><div class="tms-label">Done</div></div>
+          </div>
+          <div id="taskRows"></div>
+          <button class="add-row-btn" onclick="openModal('task')">+ Add task</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══ MODAL ═══ -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title" id="modalTitle">Add Item</div>
+      <button class="modal-x" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-foot" id="modalFoot"></div>
+  </div>
+</div>
+
+<!-- ═══ CONFIRM ═══ -->
+<div class="modal-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="confirm-title" id="confirmTitle">Delete item?</div>
+    <div class="confirm-sub" id="confirmSub">This cannot be undone.</div>
+    <div class="confirm-actions">
+      <button class="btn-sec" onclick="closeConfirm()">Cancel</button>
+      <button class="btn-danger" id="confirmOk">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toastEl"><span class="toast-dot green" id="toastDot"></span><span id="toastMsg"></span></div>
+
+<script>
+/* ══════════════════════════════════════════════════
+   STATE
+══════════════════════════════════════════════════ */
+let DB = {
+  user: { name: 'Your Name', role: 'Agent' },
+  renewals: [],
+  quotes: [],
+  tasks: [],
+  activity: [],
+  clients: []
+};
+
+let editingId = null;
+let currentTaskFilter = 'all';
+let currentRenewalFilter = 'all';
+let currentActivityFilter = 'all';
+let toastTimer;
+
+// Persist to localStorage
+function save() { try { localStorage.setItem('insuretrack_db', JSON.stringify(DB)); } catch(e){} }
+function load() { try { const d = localStorage.getItem('insuretrack_db'); if(d) DB = JSON.parse(d); } catch(e){} }
+
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+
+/* ══════════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════════ */
+document.getElementById('dateStr').textContent =
+  new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'});
+
+load();
+renderAll();
+
+/* ══════════════════════════════════════════════════
+   RENDER ALL
+══════════════════════════════════════════════════ */
+function renderAll() {
+  renderUser();
+  renderRenewals();
+  renderQuotes();
+  renderTasks();
+  renderActivity();
+  updateStats();
+  updateSearch();
+  updateAI();
+}
+
+/* ══════════════════════════════════════════════════
+   USER
+══════════════════════════════════════════════════ */
+function renderUser() {
+  document.getElementById('sidebarName').textContent = DB.user.name || 'Your Name';
+  document.getElementById('sidebarRole').textContent = DB.user.role || 'Agent';
+  document.getElementById('sidebarAvatar').textContent = (DB.user.name||'?').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+}
+
+/* ══════════════════════════════════════════════════
+   STATS
+══════════════════════════════════════════════════ */
+function updateStats() {
+  const pendingTasks = DB.tasks.filter(t=>!t.done).length;
+  const overdueTasks = DB.tasks.filter(t=>!t.done && t.dueDate && new Date(t.dueDate)<new Date()).length;
+  const doneTasks = DB.tasks.filter(t=>t.done).length;
+  const urgentRenewals = DB.renewals.filter(r=>daysUntil(r.expiryDate)<=20).length;
+
+  document.getElementById('statTasks').textContent = pendingTasks;
+  document.getElementById('statTasksSub').textContent = pendingTasks ? `${overdueTasks} overdue · ${pendingTasks} pending` : 'No pending tasks';
+  document.getElementById('statRenewals').textContent = DB.renewals.length;
+  document.getElementById('statRenewalsSub').textContent = DB.renewals.length ? `${urgentRenewals} urgent · 90-day window` : 'No renewals yet';
+  document.getElementById('statQuotes').textContent = DB.quotes.length;
+  document.getElementById('statQuotesSub').textContent = DB.quotes.length ? `${DB.quotes.filter(q=>q.stage==='pending').length} pending · ${DB.quotes.filter(q=>q.stage==='bound').length} bound` : 'No quotes yet';
+  document.getElementById('statClients').textContent = DB.clients.length;
+  document.getElementById('statClientsSub').textContent = DB.clients.length ? `${DB.clients.length} active` : 'No clients yet';
+
+  document.getElementById('miniOverdue').textContent = overdueTasks;
+  document.getElementById('miniDone').textContent = doneTasks;
+
+  document.getElementById('tmAll').textContent = DB.tasks.length;
+  document.getElementById('tmOverdue').textContent = overdueTasks;
+  document.getElementById('tmPending').textContent = pendingTasks;
+  document.getElementById('tmDone').textContent = doneTasks;
+
+  // Nav badges
+  const nb = document.getElementById('navTaskBadge');
+  nb.textContent = pendingTasks; nb.style.display = pendingTasks ? '' : 'none';
+  const rb = document.getElementById('navRenewalBadge');
+  rb.textContent = urgentRenewals; rb.style.display = urgentRenewals ? '' : 'none';
+  const qb = document.getElementById('navQuoteBadge');
+  qb.textContent = DB.quotes.filter(q=>q.stage==='pending').length;
+  qb.style.display = qb.textContent > 0 ? '' : 'none';
+}
+
+/* ══════════════════════════════════════════════════
+   AI INSIGHTS
+══════════════════════════════════════════════════ */
+function updateAI() {
+  const el = document.getElementById('aiInsights');
+  const insights = [];
+  const urgent = DB.renewals.filter(r=>daysUntil(r.expiryDate)<=20);
+  if (urgent.length) insights.push(`<span class="ai-insight-item"><span class="ai-chip red">Urgent</span>${urgent.length} renewal${urgent.length>1?'s':''} expiring within 20 days</span>`);
+  const overdue = DB.tasks.filter(t=>!t.done&&t.dueDate&&new Date(t.dueDate)<new Date());
+  if (overdue.length) insights.push(`<span class="ai-insight-item"><span class="ai-chip amber">Overdue</span>${overdue.length} task${overdue.length>1?'s':''} past due date</span>`);
+  const pending = DB.quotes.filter(q=>q.stage==='submitted');
+  if (pending.length) insights.push(`<span class="ai-insight-item"><span class="ai-chip green">Follow-up</span>${pending.length} quote${pending.length>1?'s':''} awaiting carrier response</span>`);
+  if (!insights.length) el.innerHTML = `<span style="color:var(--text3);font-size:11px;font-style:italic">Add data to unlock AI insights</span>`;
+  else el.innerHTML = insights.join('');
+}
+
+/* ══════════════════════════════════════════════════
+   RENEWALS
+══════════════════════════════════════════════════ */
+function daysUntil(dateStr) {
+  if (!dateStr) return 9999;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const d = new Date(dateStr); d.setHours(0,0,0,0);
+  return Math.round((d-today)/86400000);
+}
+
+function getDaysChip(days) {
+  if (days <= 20) return `<span class="days-chip urgent">${days}d</span>`;
+  if (days <= 35) return `<span class="days-chip soon">${days}d</span>`;
+  return `<span class="days-chip ok">${days}d</span>`;
+}
+
+function getStatusDot(status) {
+  const map = { pending:'pending', 'in progress':'progress', quoted:'quoted', urgent:'urgent' };
+  const cls = map[status?.toLowerCase()] || 'pending';
+  const labels = { pending:'Pending', progress:'In Progress', quoted:'Quoted', urgent:'Urgent' };
+  return `<span class="status-pill"><span class="sdot ${cls}"></span>${labels[cls]||status}</span>`;
+}
+
+function renderRenewals() {
+  const el = document.getElementById('renewalRows');
+  let list = DB.renewals.slice().sort((a,b)=>daysUntil(a.expiryDate)-daysUntil(b.expiryDate));
+
+  if (currentRenewalFilter !== 'all') {
+    list = list.filter(r => {
+      const days = daysUntil(r.expiryDate);
+      const s = r.status?.toLowerCase();
+      if (currentRenewalFilter==='urgent') return days<=20;
+      if (currentRenewalFilter==='pending') return s==='pending'||s==='in progress';
+      if (currentRenewalFilter==='quoted') return s==='quoted';
+      return true;
+    });
+  }
+
+  document.getElementById('renewalCardCount').textContent = `${DB.renewals.length} total`;
+
+  if (!list.length) {
+    el.innerHTML = `<div class="empty-state"><div class="empty-icon">↻</div><div class="empty-title">No renewals yet</div><div class="empty-sub">Add your first renewal to start tracking expiring policies</div><button class="ghost-btn" onclick="openModal('renewal')">+ Add renewal</button></div>`;
+    return;
+  }
+
+  el.innerHTML = list.map(r => {
+    const days = daysUntil(r.expiryDate);
+    return `<div class="renew-row">
+      <div><div class="cn">${esc(r.clientName)}</div><div class="ct">${esc(r.policyType)}</div></div>
+      <div class="pid">${esc(r.policyId)}</div>
+      <div>${getDaysChip(days)}</div>
+      <div>${getStatusDot(r.status)}</div>
+      <div class="row-actions">
+        <button class="row-btn" onclick="openModal('renewal','',${JSON.stringify(r.id)})" title="Edit">✎</button>
+        <button class="row-btn del" onclick="confirmDelete('renewal','${r.id}','${esc(r.clientName)}')" title="Delete">✕</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterRenewals(f, btn) {
+  currentRenewalFilter = f;
+  document.querySelectorAll('#renewalTabs .pill-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderRenewals();
+}
+
+/* ══════════════════════════════════════════════════
+   QUOTES
+══════════════════════════════════════════════════ */
+function renderQuotes() {
+  const stages = ['pending','submitted','bound'];
+  const ids = ['qColPending','qColSubmitted','qColBound'];
+  const counts = ['qPending','qSubmitted','qBound'];
+
+  stages.forEach((stage, i) => {
+    const list = DB.quotes.filter(q=>q.stage===stage);
+    document.getElementById(counts[i]).textContent = list.length;
+    const el = document.getElementById(ids[i]);
+    if (!list.length) {
+      el.innerHTML = `<div style="padding:16px 8px;text-align:center;color:var(--text3);font-size:10.5px">Empty</div>`;
+    } else {
+      el.innerHTML = list.map(q=>`<div class="p-card">
+        <div class="pc-name">${esc(q.clientName)}</div>
+        <div class="pc-type">${esc(q.policyType)}</div>
+        <div class="pc-amt">${esc(q.premium)}</div>
+        <div class="p-card-actions">
+          <button class="row-btn" onclick="openModal('quote','${stage}',${JSON.stringify(q.id)})" title="Edit">✎</button>
+          <button class="row-btn del" onclick="confirmDelete('quote','${q.id}','${esc(q.clientName)}')" title="Delete">✕</button>
+        </div>
+      </div>`).join('');
+    }
+  });
+
+  document.getElementById('quoteCardCount').textContent = `${DB.quotes.length} active`;
+}
+
+/* ══════════════════════════════════════════════════
+   TASKS
+══════════════════════════════════════════════════ */
+function renderTasks() {
+  const el = document.getElementById('taskRows');
+  let list = DB.tasks.slice().sort((a,b)=>{
+    if (a.done !== b.done) return a.done ? 1 : -1;
+    const da = a.dueDate ? new Date(a.dueDate) : new Date('9999');
+    const db2 = b.dueDate ? new Date(b.dueDate) : new Date('9999');
+    return da - db2;
+  });
+
+  if (currentTaskFilter === 'overdue') list = list.filter(t=>!t.done&&t.dueDate&&new Date(t.dueDate)<new Date());
+  else if (currentTaskFilter === 'progress') list = list.filter(t=>!t.done);
+  else if (currentTaskFilter === 'done') list = list.filter(t=>t.done);
+
+  if (!list.length) {
+    el.innerHTML = `<div class="empty-state" style="padding:24px 16px"><div class="empty-icon">✓</div><div class="empty-title">No tasks</div><div class="empty-sub">${currentTaskFilter==='all'?'Add your first task to get started':'No tasks match this filter'}</div>${currentTaskFilter==='all'?'<button class="ghost-btn" onclick="openModal(\'task\')">+ Add task</button>':''}</div>`;
+    return;
+  }
+
+  el.innerHTML = list.map(t => {
+    const days = t.dueDate ? daysUntil(t.dueDate) : null;
+    const isOverdue = !t.done && days !== null && days < 0;
+    const dueLabel = t.dueDate ? (isOverdue ? `Overdue · ${fmtDate(t.dueDate)}` : `Due ${fmtDate(t.dueDate)}`) : 'No due date';
+    const pri = t.priority?.toLowerCase();
+    return `<div class="task-item">
+      <div class="task-cb ${t.done?'done':''}" onclick="toggleTask('${t.id}')">${t.done?'✓':''}</div>
+      <div class="task-body">
+        <div class="task-name ${t.done?'done':''}">${esc(t.name)}</div>
+        <div class="task-meta">
+          <span class="task-due ${isOverdue?'over':''}">${dueLabel}</span>
+          ${pri?`<span class="pri ${pri==='high'?'high':pri==='low'?'low':'med'}">${t.priority}</span>`:''}
+        </div>
+      </div>
+      <div class="task-actions">
+        <button class="row-btn" onclick="openModal('task','',${JSON.stringify(t.id)})" title="Edit">✎</button>
+        <button class="row-btn del" onclick="confirmDelete('task','${t.id}','${esc(t.name)}')" title="Delete">✕</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterTasks(f, el) {
+  currentTaskFilter = f;
+  document.querySelectorAll('.tms').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  renderTasks();
+}
+
+function toggleTask(id) {
+  const t = DB.tasks.find(t=>t.id===id);
+  if (!t) return;
+  t.done = !t.done;
+  save(); renderTasks(); updateStats(); updateAI();
+  showToast(t.done ? 'Task completed' : 'Task reopened', t.done?'green':'blue');
+}
+
+/* ══════════════════════════════════════════════════
+   ACTIVITY
+══════════════════════════════════════════════════ */
+const ACT_ICONS = { task:'✔', renewal:'↻', call:'📞', quote:'$', document:'📄' };
+
+function renderActivity() {
+  const el = document.getElementById('activityRows');
+  let list = DB.activity.slice().reverse();
+  if (currentActivityFilter !== 'all') list = list.filter(a=>a.type===currentActivityFilter);
+
+  if (!list.length) {
+    el.innerHTML = `<div class="empty-state"><div class="empty-icon">◈</div><div class="empty-title">No activity yet</div><div class="empty-sub">Log calls, tasks, and renewals to build your activity feed</div></div>`;
+    return;
+  }
+
+  el.innerHTML = list.map(a=>`<div class="act-item">
+    <div class="act-dot ${a.type}">${ACT_ICONS[a.type]||'●'}</div>
+    <div class="act-body">
+      <div class="act-title">${esc(a.title)}</div>
+      <div class="act-desc">${esc(a.description)}</div>
+    </div>
+    <div class="act-time">${a.date}</div>
+    <div class="act-actions">
+      <button class="row-btn del" onclick="confirmDelete('activity','${a.id}','this activity')" title="Delete">✕</button>
+    </div>
+  </div>`).join('');
+}
+
+function filterActivity(f, btn) {
+  currentActivityFilter = f;
+  document.querySelectorAll('#activity-section .pill-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderActivity();
+}
+
+/* ══════════════════════════════════════════════════
+   SEARCH
+══════════════════════════════════════════════════ */
+function updateSearch() {
+  const si = document.getElementById('searchInput');
+  si.addEventListener('input', doSearch);
+}
+
+function doSearch() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  const body = document.getElementById('searchBody');
+  if (!q) { body.innerHTML=''; return; }
+
+  let html = '';
+  const rMatches = DB.renewals.filter(r=>r.clientName?.toLowerCase().includes(q)||r.policyId?.toLowerCase().includes(q));
+  if (rMatches.length) {
+    html += `<div class="sr-cat">Renewals</div>` + rMatches.slice(0,3).map(r=>`<div class="sr-item" onclick="openModal('renewal','',${JSON.stringify(r.id)});closeSearch()"><div class="sr-icon r">↻</div><div><div class="sr-name">${esc(r.clientName)}</div><div class="sr-sub">${esc(r.policyType)} · ${daysUntil(r.expiryDate)}d remaining</div></div><span class="sr-arrow">→</span></div>`).join('');
+  }
+  const tMatches = DB.tasks.filter(t=>t.name?.toLowerCase().includes(q));
+  if (tMatches.length) {
+    html += `<div class="sr-cat">Tasks</div>` + tMatches.slice(0,3).map(t=>`<div class="sr-item" onclick="openModal('task','',${JSON.stringify(t.id)});closeSearch()"><div class="sr-icon t">T</div><div><div class="sr-name">${esc(t.name)}</div><div class="sr-sub">${t.priority||'Medium'} priority · ${t.done?'Done':'Pending'}</div></div><span class="sr-arrow">→</span></div>`).join('');
+  }
+  const qMatches = DB.quotes.filter(r=>r.clientName?.toLowerCase().includes(q));
+  if (qMatches.length) {
+    html += `<div class="sr-cat">Quotes</div>` + qMatches.slice(0,3).map(q=>`<div class="sr-item" onclick="openModal('quote',q.stage,${JSON.stringify(q.id)});closeSearch()"><div class="sr-icon q">$</div><div><div class="sr-name">${esc(q.clientName)}</div><div class="sr-sub">${esc(q.policyType)} · ${q.stage}</div></div><span class="sr-arrow">→</span></div>`).join('');
+  }
+
+  if (!html) html = `<div style="padding:20px;text-align:center;color:var(--text3);font-size:12px">No results for "${esc(q)}"</div>`;
+  body.innerHTML = html;
+}
+
+const si = document.getElementById('searchInput');
+const sd = document.getElementById('searchDropdown');
+si.addEventListener('focus', ()=>{ if(si.value.trim()) sd.classList.add('open'); });
+si.addEventListener('input', ()=>{ sd.classList.toggle('open', si.value.trim().length>0); doSearch(); });
+document.addEventListener('keydown', e=>{
+  if(e.key==='/'&&document.activeElement!==si){e.preventDefault();si.focus();}
+  if(e.key==='Escape'){si.blur();closeModal();closeConfirm();}
+});
+document.addEventListener('click', e=>{ if(!e.target.closest('.search-wrap')) { sd.classList.remove('open'); }});
+function closeSearch(){ sd.classList.remove('open'); si.value=''; document.getElementById('searchBody').innerHTML=''; }
+
+/* ══════════════════════════════════════════════════
+   MODAL SYSTEM
+══════════════════════════════════════════════════ */
+function openModal(type, stage='', id='') {
+  editingId = id || null;
+  const overlay = document.getElementById('modalOverlay');
+  const title = document.getElementById('modalTitle');
+  const body = document.getElementById('modalBody');
+  const foot = document.getElementById('modalFoot');
+
+  let existing = null;
+  if (id) {
+    if (type==='renewal') existing = DB.renewals.find(r=>r.id===id);
+    if (type==='task') existing = DB.tasks.find(t=>t.id===id);
+    if (type==='quote') existing = DB.quotes.find(q=>q.id===id);
+    if (type==='activity') existing = DB.activity.find(a=>a.id===id);
+  }
+
+  const isEdit = !!existing;
+
+  if (type==='renewal') {
+    title.textContent = isEdit ? 'Edit Renewal' : 'Add Renewal';
+    body.innerHTML = `
+      ${isEdit?'':''}
+      <div class="fg"><label class="fl">Client Name *</label><input class="fi" id="f_clientName" placeholder="e.g. KARS INC" value="${esc(existing?.clientName||'')}"/></div>
+      <div class="form-row">
+        <div class="fg"><label class="fl">Policy Type *</label>
+          <select class="fi" id="f_policyType">
+            ${['General Liability','Commercial Property','Commercial Auto','Dwelling Fire','Workers Comp','Commercial Umbrella','BOP','Homeowners',"Renter's Policy",'Other'].map(p=>`<option ${existing?.policyType===p?'selected':''}>${p}</option>`).join('')}
+          </select>
+        </div>
+        <div class="fg"><label class="fl">Policy ID</label><input class="fi" id="f_policyId" placeholder="e.g. GL-2024-001" value="${esc(existing?.policyId||'')}"/></div>
+      </div>
+      <div class="form-row">
+        <div class="fg"><label class="fl">Expiry Date *</label><input type="date" class="fi" id="f_expiryDate" value="${existing?.expiryDate||''}"/></div>
+        <div class="fg"><label class="fl">Status</label>
+          <select class="fi" id="f_status">
+            ${['Pending','In Progress','Quoted','Cancelled'].map(s=>`<option ${existing?.status===s?'selected':''}>${s}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label class="fl">Premium ($)</label><input type="number" class="fi" id="f_premium" placeholder="Annual premium amount" value="${existing?.premium||''}"/></div>
+      <div class="fg"><label class="fl">Notes</label><textarea class="fi" id="f_notes" rows="2" placeholder="Optional notes…">${existing?.notes||''}</textarea></div>
+      <div id="formErr"></div>`;
+    foot.innerHTML = `${isEdit?`<button class="btn-danger" onclick="confirmDelete('renewal','${id}','${esc(existing?.clientName)}')">Delete</button>`:''}
+      <button class="btn-sec" onclick="closeModal()">Cancel</button>
+      <button class="btn-pri" onclick="saveRenewal()">Save</button>`;
+  }
+
+  else if (type==='quote') {
+    title.textContent = isEdit ? 'Edit Quote' : 'Add Quote';
+    body.innerHTML = `
+      <div class="fg"><label class="fl">Client Name *</label><input class="fi" id="f_clientName" placeholder="e.g. Acme Corp" value="${esc(existing?.clientName||'')}"/></div>
+      <div class="form-row">
+        <div class="fg"><label class="fl">Policy Type *</label>
+          <select class="fi" id="f_policyType">
+            ${['General Liability','Commercial Property','Commercial Auto','Dwelling Fire','Workers Comp','Commercial Umbrella','BOP','Homeowners',"Renter's Policy",'Other'].map(p=>`<option ${existing?.policyType===p?'selected':''}>${p}</option>`).join('')}
+          </select>
+        </div>
+        <div class="fg"><label class="fl">Stage</label>
+          <select class="fi" id="f_stage">
+            ${['pending','submitted','bound'].map(s=>`<option value="${s}" ${(existing?.stage||stage||'pending')===s?'selected':''}>${s.charAt(0).toUpperCase()+s.slice(1)}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="fg"><label class="fl">Estimated Premium</label><input class="fi" id="f_premium" placeholder="e.g. Est. $4,200" value="${esc(existing?.premium||'')}"/></div>
+        <div class="fg"><label class="fl">Carrier</label><input class="fi" id="f_carrier" placeholder="e.g. Travelers" value="${esc(existing?.carrier||'')}"/></div>
+      </div>
+      <div class="fg"><label class="fl">Notes</label><textarea class="fi" id="f_notes" rows="2" placeholder="Optional notes…">${existing?.notes||''}</textarea></div>
+      <div id="formErr"></div>`;
+    foot.innerHTML = `${isEdit?`<button class="btn-danger" onclick="confirmDelete('quote','${id}','${esc(existing?.clientName)}')">Delete</button>`:''}
+      <button class="btn-sec" onclick="closeModal()">Cancel</button>
+      <button class="btn-pri" onclick="saveQuote()">Save</button>`;
+  }
+
+  else if (type==='task') {
+    title.textContent = isEdit ? 'Edit Task' : 'Add Task';
+    body.innerHTML = `
+      <div class="fg"><label class="fl">Task Name *</label><input class="fi" id="f_name" placeholder="e.g. Send renewal quote to client" value="${esc(existing?.name||'')}"/></div>
+      <div class="fg"><label class="fl">Client / Account</label><input class="fi" id="f_client" placeholder="Optional client name" value="${esc(existing?.client||'')}"/></div>
+      <div class="form-row">
+        <div class="fg"><label class="fl">Due Date</label><input type="date" class="fi" id="f_dueDate" value="${existing?.dueDate||''}"/></div>
+        <div class="fg"><label class="fl">Priority</label>
+          <select class="fi" id="f_priority">
+            ${['High','Medium','Low'].map(p=>`<option ${(existing?.priority||'Medium')===p?'selected':''}>${p}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label class="fl">Policy Type</label>
+        <select class="fi" id="f_policyType">
+          <option value="">— None —</option>
+          ${['General Liability','Commercial Property','Commercial Auto','Dwelling Fire','Workers Comp','Commercial Umbrella','BOP','Homeowners',"Renter's Policy"].map(p=>`<option ${existing?.policyType===p?'selected':''}>${p}</option>`).join('')}
+        </select>
+      </div>
+      <div class="fg"><label class="fl">Notes</label><textarea class="fi" id="f_notes" rows="2" placeholder="Optional notes…">${existing?.notes||''}</textarea></div>
+      <div id="formErr"></div>`;
+    foot.innerHTML = `${isEdit?`<button class="btn-danger" onclick="confirmDelete('task','${id}','${esc(existing?.name)}')">Delete</button>`:''}
+      <button class="btn-sec" onclick="closeModal()">Cancel</button>
+      <button class="btn-pri" onclick="saveTask()">Save</button>`;
+  }
+
+  else if (type==='activity') {
+    title.textContent = 'Log Activity';
+    body.innerHTML = `
+      <div class="fg"><label class="fl">Title *</label><input class="fi" id="f_title" placeholder="e.g. Called KARS INC re: renewal"/></div>
+      <div class="form-row">
+        <div class="fg"><label class="fl">Type</label>
+          <select class="fi" id="f_type">
+            ${['task','renewal','call','quote','document'].map(t=>`<option value="${t}">${t.charAt(0).toUpperCase()+t.slice(1)}</option>`).join('')}
+          </select>
+        </div>
+        <div class="fg"><label class="fl">Date</label><input type="date" class="fi" id="f_date" value="${new Date().toISOString().slice(0,10)}"/></div>
+      </div>
+      <div class="fg"><label class="fl">Description</label><textarea class="fi" id="f_desc" rows="2" placeholder="What happened?"></textarea></div>
+      <div id="formErr"></div>`;
+    foot.innerHTML = `<button class="btn-sec" onclick="closeModal()">Cancel</button><button class="btn-pri" onclick="saveActivity()">Log</button>`;
+  }
+
+  else if (type==='user') {
+    title.textContent = 'Profile Settings';
+    body.innerHTML = `
+      <div class="fg"><label class="fl">Full Name</label><input class="fi" id="f_name" value="${esc(DB.user.name||'')}"/></div>
+      <div class="fg"><label class="fl">Role / Title</label><input class="fi" id="f_role" value="${esc(DB.user.role||'')}"/></div>
+      <div class="fg"><label class="fl">Agency Name</label><input class="fi" id="f_agency" value="${esc(DB.user.agency||'')}"/></div>
+      <div class="fg"><label class="fl">Email</label><input type="email" class="fi" id="f_email" value="${esc(DB.user.email||'')}"/></div>`;
+    foot.innerHTML = `<button class="btn-sec" onclick="closeModal()">Cancel</button><button class="btn-pri" onclick="saveUser()">Save</button>`;
+  }
+
+  overlay.classList.add('open');
+  setTimeout(()=>{ const f=body.querySelector('.fi'); if(f) f.focus(); },80);
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  editingId = null;
+}
+
+/* ── SAVE FUNCTIONS ── */
+function formErr(msg) {
+  const el = document.getElementById('formErr');
+  if(el) el.innerHTML = `<div class="err-msg">${msg}</div>`;
+}
+
+function val(id) { const el=document.getElementById(id); return el?el.value.trim():''; }
+
+function saveRenewal() {
+  const clientName = val('f_clientName');
+  const expiryDate = val('f_expiryDate');
+  if (!clientName) return formErr('Client name is required');
+  if (!expiryDate) return formErr('Expiry date is required');
+  const obj = { id: editingId||uid(), clientName, policyType: val('f_policyType'), policyId: val('f_policyId'), expiryDate, status: val('f_status'), premium: val('f_premium'), notes: val('f_notes') };
+  if (editingId) { const i=DB.renewals.findIndex(r=>r.id===editingId); if(i>-1) DB.renewals[i]=obj; }
+  else { DB.renewals.push(obj); logActivity('renewal', `Renewal Added — ${clientName}`, obj.policyType); }
+  save(); closeModal(); renderAll();
+  showToast(editingId?'Renewal updated':'Renewal added','green');
+}
+
+function saveQuote() {
+  const clientName = val('f_clientName');
+  if (!clientName) return formErr('Client name is required');
+  const obj = { id: editingId||uid(), clientName, policyType: val('f_policyType'), stage: val('f_stage'), premium: val('f_premium'), carrier: val('f_carrier'), notes: val('f_notes') };
+  if (editingId) { const i=DB.quotes.findIndex(q=>q.id===editingId); if(i>-1) DB.quotes[i]=obj; }
+  else { DB.quotes.push(obj); logActivity('quote', `Quote Added — ${clientName}`, `${obj.policyType} · ${obj.stage}`); }
+  save(); closeModal(); renderAll();
+  showToast(editingId?'Quote updated':'Quote added','green');
+}
+
+function saveTask() {
+  const name = val('f_name');
+  if (!name) return formErr('Task name is required');
+  const obj = { id: editingId||uid(), name, client: val('f_client'), dueDate: val('f_dueDate'), priority: val('f_priority'), policyType: val('f_policyType'), notes: val('f_notes'), done: editingId ? DB.tasks.find(t=>t.id===editingId)?.done||false : false };
+  if (editingId) { const i=DB.tasks.findIndex(t=>t.id===editingId); if(i>-1) DB.tasks[i]=obj; }
+  else { DB.tasks.push(obj); logActivity('task', `Task Created — ${name}`, obj.client||''); }
+  save(); closeModal(); renderAll();
+  showToast(editingId?'Task updated':'Task added','green');
+}
+
+function saveActivity() {
+  const title = val('f_title');
+  if (!title) return formErr('Title is required');
+  const d = val('f_date') || new Date().toISOString().slice(0,10);
+  DB.activity.push({ id: uid(), title, type: val('f_type'), description: val('f_desc'), date: fmtDate(d) });
+  save(); closeModal(); renderActivity();
+  showToast('Activity logged','green');
+}
+
+function saveUser() {
+  DB.user.name = val('f_name') || 'Your Name';
+  DB.user.role = val('f_role') || 'Agent';
+  DB.user.agency = val('f_agency');
+  DB.user.email = val('f_email');
+  save(); closeModal(); renderUser();
+  showToast('Profile saved','green');
+}
+
+/* ── AUTO-LOG ── */
+function logActivity(type, title, description) {
+  DB.activity.push({ id: uid(), type, title, description, date: fmtDate(new Date().toISOString().slice(0,10)) });
+}
+
+/* ══════════════════════════════════════════════════
+   CONFIRM DELETE
+══════════════════════════════════════════════════ */
+function confirmDelete(type, id, label) {
+  closeModal();
+  document.getElementById('confirmTitle').textContent = `Delete "${label}"?`;
+  document.getElementById('confirmSub').textContent = `This will permanently remove this ${type} and cannot be undone.`;
+  document.getElementById('confirmOk').onclick = () => { doDelete(type, id); closeConfirm(); };
+  document.getElementById('confirmOverlay').classList.add('open');
+}
+
+function closeConfirm() { document.getElementById('confirmOverlay').classList.remove('open'); }
+
+function doDelete(type, id) {
+  if (type==='renewal') DB.renewals = DB.renewals.filter(r=>r.id!==id);
+  if (type==='quote') DB.quotes = DB.quotes.filter(q=>q.id!==id);
+  if (type==='task') DB.tasks = DB.tasks.filter(t=>t.id!==id);
+  if (type==='activity') DB.activity = DB.activity.filter(a=>a.id!==id);
+  save(); renderAll();
+  showToast('Deleted','red');
+}
+
+/* ══════════════════════════════════════════════════
+   HELPERS
+══════════════════════════════════════════════════ */
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+function fmtDate(s) { if(!s) return ''; try { return new Date(s+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'}); } catch(e){ return s; } }
+
+function showToast(msg, color='green') {
+  document.getElementById('toastMsg').textContent = msg;
+  const dot = document.getElementById('toastDot');
+  dot.className = `toast-dot ${color}`;
+  const el = document.getElementById('toastEl');
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>el.classList.remove('show'), 2800);
+}
+
+function navClick(el) {
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>

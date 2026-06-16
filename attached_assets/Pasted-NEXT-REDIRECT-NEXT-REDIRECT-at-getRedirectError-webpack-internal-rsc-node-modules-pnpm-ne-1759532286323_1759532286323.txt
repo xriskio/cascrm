@@ -1,0 +1,21 @@
+NEXT_REDIRECT
+NEXT_REDIRECT
+at getRedirectError (webpack-internal:///(rsc)/./node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/client/components/redirect.js:49:19)
+at redirect (webpack-internal:///(rsc)/./node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/client/components/redirect.js:60:11)
+at Home (webpack-internal:///(rsc)/./app/page.tsx:10:62)
+at e_ (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:263963)
+at e (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:268095)
+at eF (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:268583)
+at eq (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:274547)
+at ej (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:264791)
+at e_ (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:263833)
+at e (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:268095)
+at eF (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:268583)
+at /home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265814
+at Array.toJSON (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:266278)
+at stringify (<anonymous>)
+at eq (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:274646)
+at eJ (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275164)
+at Timeout._onTimeout (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:264951)
+at listOnTimeout (node:internal/timers:569:17)
+at process.processTimers (node:internal/timers:512:7)

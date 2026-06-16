@@ -1,0 +1,148 @@
+2025-10-16 11:17:40.01
+21e80aab
+User
+at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-10-16 11:17:40.01
+21e80aab
+User
+at async i (/home/runner/workspace/.next/server/app/api/qqcatalyst/renewals/import/route.js:1:7116)
+2025-10-16 11:17:40.01
+21e80aab
+User
+at async c (/home/runner/workspace/.next/server/app/api/qqcatalyst/renewals/import/route.js:1:8352)
+2025-10-16 11:17:40.01
+21e80aab
+User
+at async d (/home/runner/workspace/.next/server/app/api/qqcatalyst/renewals/import/route.js:1:925)
+2025-10-16 11:17:40.01
+21e80aab
+User
+at async /home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:37010
+2025-10-16 11:17:40.01
+21e80aab
+User
+at async eC.execute (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:27552)
+2025-10-16 11:17:40.01
+21e80aab
+User
+at async eC.handle (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38344)
+2025-10-16 11:17:40.01
+21e80aab
+User
+at async doRender (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/base-server.js:1352:42)
+2025-10-16 11:17:40.01
+21e80aab
+User
+at async cacheEntry.responseCache.get.routeKind (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/base-server.js:1574:28)
+2025-10-16 11:17:40.01
+21e80aab
+User
+❌ Renewals import failed: Error: QQCatalyst API Error: 401 - {"Message":"Authorization token is invalid or expired"}
+2025-10-16 11:17:40.01
+21e80aab
+User
+at a (/home/runner/workspace/.next/server/app/api/qqcatalyst/renewals/import/route.js:1:5082)
+2025-10-16 11:17:40.01
+21e80aab
+User
+at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-10-16 11:17:40.01
+21e80aab
+User
+at async i (/home/runner/workspace/.next/server/app/api/qqcatalyst/renewals/import/route.js:1:7116)
+2025-10-16 11:17:40.01
+21e80aab
+User
+at async c (/home/runner/workspace/.next/server/app/api/qqcatalyst/renewals/import/route.js:1:8352)
+2025-10-16 11:17:40.01
+21e80aab
+User
+at async d (/home/runner/workspace/.next/server/app/api/qqcatalyst/renewals/import/route.js:1:925)
+2025-10-16 11:17:40.01
+21e80aab
+User
+at async /home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:37010
+2025-10-16 11:17:40.01
+21e80aab
+User
+at async eC.execute (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:27552)
+2025-10-16 11:17:40.01
+21e80aab
+User
+at async eC.handle (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38344)
+2025-10-16 11:17:40.01
+21e80aab
+User
+at async doRender (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/base-server.js:1352:42)
+2025-10-16 11:17:40.01
+21e80aab
+User
+at async cacheEntry.responseCache.get.routeKind (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/base-server.js:1574:28)
+2025-10-16 11:28:32.76
+21e80aab
+User
+RPC error: {
+2025-10-16 11:28:32.76
+21e80aab
+User
+code: 'PGRST202',
+2025-10-16 11:28:32.76
+21e80aab
+User
+details: 'Searched for the function public.generate_client_number without parameters or with a single unnamed json/jsonb parameter, but no matches were found in the schema cache.',
+2025-10-16 11:28:32.76
+21e80aab
+User
+hint: 'Perhaps you meant to call the function public.generate_quote_number',
+2025-10-16 11:28:32.76
+21e80aab
+User
+message: 'Could not find the function public.generate_client_number without parameters in the schema cache'
+2025-10-16 11:28:32.76
+21e80aab
+User
+}
+2025-10-16 11:28:32.76
+21e80aab
+User
+Error in POST /api/clients: Error: Failed to generate client number: Could not find the function public.generate_client_number without parameters in the schema cache
+2025-10-16 11:28:32.76
+21e80aab
+User
+at m (/home/runner/workspace/.next/server/app/api/clients/route.js:1:1664)
+2025-10-16 11:28:32.76
+21e80aab
+User
+at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-10-16 11:28:32.76
+21e80aab
+User
+at async /home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:37010
+2025-10-16 11:28:32.76
+21e80aab
+User
+at async eC.execute (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:27552)
+2025-10-16 11:28:32.76
+21e80aab
+User
+at async eC.handle (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38344)
+2025-10-16 11:28:32.76
+21e80aab
+User
+at async doRender (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/base-server.js:1352:42)
+2025-10-16 11:28:32.76
+21e80aab
+User
+at async cacheEntry.responseCache.get.routeKind (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/base-server.js:1574:28)
+2025-10-16 11:28:32.76
+21e80aab
+User
+at async NextNodeServer.renderToResponseWithComponentsImpl (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/base-server.js:1482:28)
+2025-10-16 11:28:32.76
+21e80aab
+User
+at async NextNodeServer.renderPageComponent (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/server/base-server.js:1908:24)
+2025-10-16 11:28:32.76
+21e80aab
+User
+at async NextNodeServer.renderToResponseImpl (/home/runner/workspace/node_modules/.pnpm/next@14.2.16_react-do
