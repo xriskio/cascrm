@@ -69,5 +69,20 @@ injected into new VMs. Auth uses the OAuth **password grant**; `client_credentia
 with `{ "startDate": "YYYY-MM-DD", "endDate": "YYYY-MM-DD" }` — it filters policies by
 **expiration date** within that window.
 
+### AI Copilot (OpenAI)
+The in-app **AI Copilot** (top-bar pill on the dashboard; floating button elsewhere)
+calls `POST /api/ai/copilot`, which grounds answers in a live Supabase snapshot
+(renewals/submissions/leads/tasks) and is scoped by a strict system prompt to this
+app's insurance workflow only. It needs `OPENAI_API_KEY` in the env (add via the
+**Secrets** panel for new VMs). The model is `OPENAI_MODEL` (defaults to `gpt-4o-mini`);
+set it to a model the key can access (e.g. `gpt-3.5-turbo`) if needed. Without the key
+the route returns a 503 with a helpful message and the rest of the app is unaffected.
+
 See also `.agents/memory/` for two important gotchas (QQ auth grant type; never import
 types from API route files into client components or the dev server hangs).
+
+### Theming
+The app is dark-only. Use the semantic Tailwind tokens (`bg-card`, `bg-background`,
+`text-foreground`, `text-muted-foreground`, `border-border`, `bg-primary`) defined in
+`app/globals.css` rather than hardcoded `bg-white`/`text-gray-*`/`border-gray-*`, so new
+UI stays consistent with the dashboard.
