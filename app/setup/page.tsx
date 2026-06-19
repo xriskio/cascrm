@@ -4,8 +4,14 @@ import { CopyButton } from "@/components/setup/copy-button"
 
 export default async function SetupPage() {
   const migrationsDir = path.join(process.cwd(), "supabase/migrations")
-  const files = await fs.readdir(migrationsDir)
-  const sqlFiles = files.filter((f) => f.endsWith(".sql")).sort()
+  let sqlFiles: string[] = []
+  try {
+    const files = await fs.readdir(migrationsDir)
+    sqlFiles = files.filter((f) => f.endsWith(".sql")).sort()
+  } catch {
+    // The migrations directory may not exist in all environments; degrade gracefully.
+    sqlFiles = []
+  }
 
   const migrations = await Promise.all(
     sqlFiles.map(async (file) => {
