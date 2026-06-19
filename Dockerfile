@@ -1,25 +1,35 @@
 FROM node:20-alpine AS base
-
-# Install pnpm
-RUN npm install -g pnpm@9
-
 WORKDIR /app
 
-# Copy package files
-COPY package.json pnpm-lock.yaml* .npmrc* ./
+# Install client dependencies
+COPY client/package.json client/package-lock.json* ./client/
+RUN cd client && npm install
 
-# Install dependencies using official pnpm (not Replit-patched)
-RUN pnpm install --frozen-lockfile
+# Install server dependencies
+COPY server/package.json server/package-lock.json* ./server/
+RUN cd server && npm install
 
-# Copy source
-COPY . .
+# Copy all source
+COPY client/ ./client/
+COPY server/ ./server/
+COPY shared/ ./shared/
 
-# Build
-RUN pnpm run build
+# Build client (outputs to server/public/)
+RUN cd client && npm run build
+
+# Build server
+RUN cd server && npm run build
 
 # Runtime
-EXPOSE 3000
+FROM node:20-alpine AS runtime
+WORKDIR /app
+
+COPY --from=base /app/server/dist ./dist
+COPY --from=base /app/server/public ./public
+COPY --from=base /app/server/node_modules ./node_modules
 
 ENV NODE_ENV=production
 
-CMD ["pnpm", "start"]
+EXPOSE 3000
+
+CMD ["node", "dist/index.js"]

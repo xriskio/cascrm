@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ── DASHBOARD DESIGN TOKENS ─────────────────────────────────────────────────── */
+/* Scoped to .dash so they don't interfere with Tailwind variables elsewhere     */
+.dash {
+  /* ── Reference design tokens (exact match) ── */
+  --bg:        #0A0A0B;
+  --surface:   #0F0F11;
+  --surface2:  #141416;
+  --surface3:  #1A1A1E;
+  --surface4:  #202026;
+
+  --border:      rgba(255,255,255,0.06);
+  --border-med:  rgba(255,255,255,0.10);
+  --border-hi:   rgba(255,255,255,0.16);
+
+  --text:    #F0F0F2;
+  --text-2:  #8A8A96;
+  --text-3:  #52525E;
+  --text-4:  #35353F;
+
+  /* Semantic colors with bg + border variants */
+  --green:     #22C55E;
+  --green-bg:  rgba(34,197,94,0.08);
+  --green-bd:  rgba(34,197,94,0.18);
+  --green-mid: #4ADE80;
+
+  --amber:     #F59E0B;
+  --amber-bg:  rgba(245,158,11,0.08);
+  --amber-bd:  rgba(245,158,11,0.18);
+
+  --red:     #EF4444;
+  --red-bg:  rgba(239,68,68,0.08);
+  --red-bd:  rgba(239,68,68,0.18);
+
+  --blue:     #3B82F6;
+  --blue-bg:  rgba(59,130,246,0.08);
+  --blue-bd:  rgba(59,130,246,0.18);
+
+  --purple:     #A855F7;
+  --purple-bg:  rgba(168,85,247,0.08);
+  --purple-bd:  rgba(168,85,247,0.18);
+
+  /* Aliases for backward compat with other components */
+  --accent:      #3B82F6;
+  --accent-2:    #A855F7;
+  --accent-glow: rgba(59,130,246,0.15);
+  --cyan:        #22D3EE;
+  --cyan-bg:     rgba(34,211,238,0.08);
+
+  --radius:    8px;
+  --radius-lg: 12px;
+  --sidebar-w: 210px;
+  --topbar-h:  52px;
+
+  --font: var(--inter, var(--dm-sans, 'Inter', system-ui, sans-serif));
+  --mono: var(--jb-mono, var(--dm-mono, 'JetBrains Mono', monospace));
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.5);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.6);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,0.7), 0 4px 12px rgba(0,0,0,0.5);
+
+  font-family: var(--font);
+  font-size: 13px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  color-scheme: dark;
+}
+
+/* Thin scrollbars inside .dash */
+.dash ::-webkit-scrollbar { width: 4px; height: 4px; }
+.dash ::-webkit-scrollbar-track { background: transparent; }
+.dash ::-webkit-scrollbar-thumb { background: var(--surface4); border-radius: 4px; }
+
+/* ── Reference aliases (--bg1/bg2 naming, --r/rl, --text2/3 no-hyphen) ── */
+.dash {
+  --bg1: #0F0F11;   --bg2: #141416;   --bg3: #1A1A1E;   --bg4: #202026;
+  --text2: #8A8A96; --text3: #52525E; --text4: #35353F;
+  --r: 8px; --rl: 12px;
+  --border2: rgba(255,255,255,0.10); --border3: rgba(255,255,255,0.16);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* ── DASHBOARD ANIMATIONS ───────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes dropIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes aiPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.85); }
+}
+@keyframes dashPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}

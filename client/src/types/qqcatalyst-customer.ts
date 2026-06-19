@@ -1,0 +1,31 @@
+export interface CustomerDetailSummaryDTO {
+  EntityID: number
+  IsPerson: number
+  FirstName: string
+  MiddleName: string
+  LastName: string
+  DOB: string
+  MaritalStatusID: number
+  MaritalStatus: string
+  Gender: string
+  BusinessName: string
+  LocationID: number
+  CustomerSourceID: number
+  EntityStatus: string
+  SourceDetail: string
+  CustomerSTatus: string
+  Prospect: boolean
+  CustomerNo: string
+  CustomerSince: string
+  AgentID: number
+  AgentName: string
+  CSRID: number
+  CSRName: string
+  Type: string
+  PreferredLanguageCode: number
+  DisplayName: string
+  Salutation: string
+  SSN: string
+  DriverLicenseNo: string
+  FEIN: string
+}

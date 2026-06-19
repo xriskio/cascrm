@@ -1,14 +1,14 @@
 {
-  "name": "insurance-portal",
+  "name": "cascrm",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
-    "dev": "next dev -p 5000 -H 0.0.0.0",
-    "lint": "next lint",
-    "start": "next start -H 0.0.0.0",
-    "preview": "next build && next start -p 5000 -H 0.0.0.0",
-    "type-check": "tsc --noEmit",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "build": "cd client && npm run build && cd server && npm run build",
+    "start": "cd server && node dist/index.js",
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install",
     "db:push": "drizzle-kit push",
     "db:generate": "drizzle-kit generate",
     "db:studio": "drizzle-kit studio"
@@ -86,14 +86,9 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@types/eslint": "^8.56.0",
     "@types/node": "^22",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8.56.0",
-    "eslint-config-next": "14.0.4",
-    "playwright": "^1.61.0",
-    "postcss": "^8.5",
+    "concurrently": "^9.0.0",
+    "drizzle-kit": "^0.31.5",
     "typescript": "^5"
   },
   "engines": {
