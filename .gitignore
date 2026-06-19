@@ -115,3 +115,6 @@ temp/
 *.njsproj
 *.sln
 *.sw?
+
+# supabase CLI temp
+supabase/.temp/
