@@ -4,9 +4,8 @@
 -- Copy all this SQL and click "Run"
 -- =====================================================
 
--- able UUID extension
+-- Enable UUID extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-En
 -- =====================================================
 -- 1. USERS TABLE
 -- =====================================================
