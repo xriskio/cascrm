@@ -8,6 +8,10 @@ export default function AddResourcePage() {
   const router = useRouter();
   const [title, setTitle] = useState("");
   // … other state …
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [fileUrl, setFileUrl] = useState("");
+  const [resourceType, setResourceType] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -22,7 +26,7 @@ export default function AddResourcePage() {
     };
 
     try {
-      await addResource(resource);
+      await addResource(resource as any);
       router.push("/agency-resources");
     } catch (err: any) {
       console.error(err);

@@ -8,20 +8,20 @@ import { createClient } from "@/lib/supabase/client"
 import { RefreshCw, Database } from "lucide-react"
 
 export default function DataDebugPage() {
-  const [data, setData] = useState({})
+  const [data, setData] = useState<Record<string, any>>({})
   const [loading, setLoading] = useState(false)
   const supabase = createClient()
 
   const fetchTableData = async (tableName: string) => {
     try {
-      const { data: tableData, error, count } = await supabase.from(tableName).select("*", { count: "exact" }).limit(5)
+      const { data: tableData, error, count } = await (supabase as any).from(tableName).select("*", { count: "exact" }).limit(5)
 
       if (error) throw error
 
       return { data: tableData, count, error: null }
     } catch (error) {
       console.error(`Error fetching ${tableName}:`, error)
-      return { data: [], count: 0, error: error.message }
+      return { data: [], count: 0, error: (error as any).message }
     }
   }
 
@@ -29,7 +29,7 @@ export default function DataDebugPage() {
     setLoading(true)
     try {
       const tables = ["contacts", "policies", "clients", "qqcatalyst_contact_accounts", "customer_details"]
-      const results = {}
+      const results: Record<string, any> = {}
 
       for (const table of tables) {
         results[table] = await fetchTableData(table)
@@ -94,7 +94,7 @@ export default function DataDebugPage() {
                   <div className="text-gray-500 p-4 bg-gray-50 rounded">No data found in {tableName} table</div>
                 ) : (
                   <div className="space-y-4">
-                    {tableInfo?.data?.map((record, index) => (
+                    {tableInfo?.data?.map((record: any, index: number) => (
                       <div key={index} className="p-4 bg-gray-50 rounded">
                         <pre className="text-xs overflow-auto">{JSON.stringify(record, null, 2)}</pre>
                       </div>

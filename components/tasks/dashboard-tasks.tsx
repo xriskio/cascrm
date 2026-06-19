@@ -10,7 +10,7 @@ import { CheckCircle, Clock, AlertCircle, PauseCircle, CheckCircle2 } from "luci
 import Link from "next/link"
 
 export function DashboardTasks() {
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState<any[]>([])
   const [stats, setStats] = useState({
     total: 0,
     notStarted: 0,
@@ -19,7 +19,7 @@ export function DashboardTasks() {
     onHold: 0,
   })
   const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<any | null>(null)
   const [activeTab, setActiveTab] = useState("all")
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export function DashboardTasks() {
         })
       } catch (err) {
         console.error("Error loading tasks:", err)
-        setError(err.message || "Failed to load tasks")
+        setError((err as any)?.message || "Failed to load tasks")
       } finally {
         setIsLoading(false)
       }
@@ -46,27 +46,27 @@ export function DashboardTasks() {
     loadTasks()
   }, [])
 
-  const handleComplete = async (taskId) => {
+  const handleComplete = async (taskId: any) => {
     const success = await updateTaskStatus(taskId, "Completed", 100)
     if (success) {
       setTasks(
-        tasks.map((task) => (task.id === taskId ? { ...task, status: "Completed", completion_percentage: 100 } : task)),
+        tasks.map((task: any) => (task.id === taskId ? { ...task, status: "Completed", completion_percentage: 100 } : task)),
       )
     }
   }
 
-  const handleReopen = async (taskId) => {
+  const handleReopen = async (taskId: any) => {
     const success = await updateTaskStatus(taskId, "In Progress", 50)
     if (success) {
       setTasks(
-        tasks.map((task) =>
+        tasks.map((task: any) =>
           task.id === taskId ? { ...task, status: "In Progress", completion_percentage: 50 } : task,
         ),
       )
     }
   }
 
-  const filteredTasks = (tasks || []).filter((task) => {
+  const filteredTasks = (tasks || []).filter((task: any) => {
     const today = new Date()
     today.setHours(0, 0, 0, 0)
 
@@ -87,7 +87,7 @@ export function DashboardTasks() {
     }
   })
 
-  const getPriorityColor = (priority) => {
+  const getPriorityColor = (priority: any) => {
     switch (priority) {
       case "Low":
         return "bg-blue-100 text-blue-800"
@@ -102,7 +102,7 @@ export function DashboardTasks() {
     }
   }
 
-  const formatDate = (dateString) => {
+  const formatDate = (dateString: any) => {
     if (!dateString) return "No due date"
 
     const date = new Date(dateString)
@@ -129,7 +129,7 @@ export function DashboardTasks() {
     })
   }
 
-  const isOverdue = (dateString) => {
+  const isOverdue = (dateString: any) => {
     if (!dateString) return false
     const date = new Date(dateString)
     const today = new Date()
@@ -232,7 +232,7 @@ export function DashboardTasks() {
               </div>
             ) : (
               <div className="space-y-4">
-                {filteredTasks.map((task) => (
+                {filteredTasks.map((task: any) => (
                   <div key={task.id} className="border rounded-lg p-4">
                     <div className="flex justify-between items-start mb-2">
                       <div className="font-medium">{task.title}</div>

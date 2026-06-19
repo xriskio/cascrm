@@ -25,8 +25,8 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error("Error performing search:", error)
     return NextResponse.json(
-      { error: error.message || "Failed to perform search" },
-      { status: error.response?.status || 500 },
+      { error: (error as any).message || "Failed to perform search" },
+      { status: (error as any).response?.status || 500 },
     )
   }
 }

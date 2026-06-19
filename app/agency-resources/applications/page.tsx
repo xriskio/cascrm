@@ -27,7 +27,7 @@ export default function ApplicationsPage() {
     async function fetchResources() {
       try {
         setIsLoading(true)
-        const supabase = createClient()
+        const supabase: any = createClient()
 
         console.log("Fetching application resources")
 

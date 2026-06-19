@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase"
 import { handleAsyncError, createSuccessResponse } from "@/lib/error-utils"
 import { revalidatePath } from "next/cache"
 
-const adminSupabase = createClient({ useServiceRole: true })
+const adminSupabase = createClient({ useServiceRole: true }) as any
 
 /**
  * Delete all existing clients from the database

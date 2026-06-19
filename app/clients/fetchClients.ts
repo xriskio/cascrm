@@ -29,7 +29,7 @@ export async function fetchClients(cacheTime = 5 * 60 * 1000) {
 
     // Add QQCatalyst contacts
     if (contacts && contacts.length > 0) {
-      const transformedContacts = contacts.map((contact) => ({
+      const transformedContacts = contacts.map((contact: any) => ({
         id: contact.id,
         name: `${contact.first_name || ""} ${contact.last_name || ""}`.trim() || "Unknown",
         first_name: contact.first_name,
@@ -114,10 +114,10 @@ export async function fetchClientWithPolicies(clientId: string) {
         business_name: contact.business_name,
         email: contact.email,
         phone: contact.phone,
-        address: contact.address,
+        address: (contact as any).address,
         city: contact.city,
         state: contact.state,
-        zip: contact.zip,
+        zip: (contact as any).zip,
         status: "active",
         created_at: contact.updated_at || contact.created_at,
         qq_contact_id: contact.id,

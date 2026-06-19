@@ -37,7 +37,7 @@ export async function getQQCatalystTokens() {
 
     if (error) {
       console.error("Error fetching QQCatalyst tokens:", error)
-      return { success: false, error: error.message }
+      return { success: false, error: (error as any).message }
     }
 
     return { success: true, data: data || [] }
@@ -60,7 +60,7 @@ export async function getQQCatalystToken(id: string) {
 
     if (error) {
       console.error("Error fetching QQCatalyst token:", error)
-      return { success: false, error: error.message }
+      return { success: false, error: (error as any).message }
     }
 
     return { success: true, data }
@@ -92,7 +92,7 @@ export async function createQQCatalystToken(tokenData: Partial<QQCatalystToken>)
 
     if (error) {
       console.error("Error creating QQCatalyst token:", error)
-      return { success: false, error: error.message }
+      return { success: false, error: (error as any).message }
     }
 
     revalidatePath("/admin/qqcatalyst/tokens")
@@ -126,7 +126,7 @@ export async function updateQQCatalystToken(id: string, tokenData: Partial<QQCat
 
     if (error) {
       console.error("Error updating QQCatalyst token:", error)
-      return { success: false, error: error.message }
+      return { success: false, error: (error as any).message }
     }
 
     revalidatePath("/admin/qqcatalyst/tokens")
@@ -145,7 +145,7 @@ export async function deleteQQCatalystToken(id: string) {
 
     if (error) {
       console.error("Error deleting QQCatalyst token:", error)
-      return { success: false, error: error.message }
+      return { success: false, error: (error as any).message }
     }
 
     revalidatePath("/admin/qqcatalyst/tokens")
@@ -215,7 +215,7 @@ async function refreshTokenWithCredentials(token: QQCatalystToken) {
     return { success: true, data }
   } catch (error) {
     console.error("Error refreshing token:", error)
-    return { success: false, error: error.message }
+    return { success: false, error: (error as any).message }
   }
 }
 
@@ -244,6 +244,6 @@ export async function testQQCatalystToken(id: string, endpoint = "/v1/Carriers")
     return { success: true, data }
   } catch (error) {
     console.error("Error testing QQCatalyst token:", error)
-    return { success: false, error: error.message }
+    return { success: false, error: (error as any).message }
   }
 }

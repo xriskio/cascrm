@@ -90,7 +90,7 @@ export default function ContactsPage() {
           console.log(`Trying to load from table: ${tableName}`)
 
           const { data, error: fetchError } = await supabase
-            .from(tableName)
+            .from(tableName as any)
             .select("*")
             .order("created_at", { ascending: false })
 

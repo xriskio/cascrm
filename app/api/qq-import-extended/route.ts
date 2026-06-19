@@ -35,7 +35,7 @@ async function fetchAll<T>(path: string, token: string): Promise<T[]> {
       const res = await axios.get<{ items: T[] }>(`${QQ_API}/${path}?pageNumber=${page}&pageSize=${pageSize}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      const items = (res.data as any).items ?? res.data.Contacts ?? res.data.Policies ?? []
+      const items = (res.data as any).items ?? (res.data as any).Contacts ?? (res.data as any).Policies ?? []
       if (!items.length) break
       all.push(...items)
       page++
@@ -141,7 +141,7 @@ async function upsertPhoneNumbers(token: string) {
     if (rows.length > 0) {
       const { error } = await supabase
         .from("contact_phone_numbers")
-        .upsert(rows, { onConflict: ["contact_id", "number"] })
+        .upsert(rows, { onConflict: ["contact_id", "number"] as any })
       if (error) {
         console.error("❌ phones error", error)
         throw error
@@ -176,7 +176,7 @@ async function upsertEmails(token: string) {
     }))
 
     if (rows.length > 0) {
-      const { error } = await supabase.from("contact_emails").upsert(rows, { onConflict: ["contact_id", "email"] })
+      const { error } = await supabase.from("contact_emails").upsert(rows, { onConflict: ["contact_id", "email"] as any })
       if (error) {
         console.error("❌ emails error", error)
         throw error
@@ -327,7 +327,7 @@ async function upsertRenewals(token: string) {
     if (rows.length > 0) {
       const { error } = await supabase
         .from("policy_renewals")
-        .upsert(rows, { onConflict: ["policy_id", "renewal_date"] })
+        .upsert(rows, { onConflict: ["policy_id", "renewal_date"] as any })
       if (error) {
         console.error("❌ renewals error", error)
         throw error

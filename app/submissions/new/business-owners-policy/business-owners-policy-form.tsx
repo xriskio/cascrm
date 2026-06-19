@@ -106,7 +106,7 @@ export default function BusinessOwnersPolicyForm() {
     submissionType: "Business Owners Policy",
   })
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: any) => {
     const { name, value, type, checked } = e.target
     setFormData({
       ...formData,
@@ -114,14 +114,14 @@ export default function BusinessOwnersPolicyForm() {
     })
   }
 
-  const handleRadioChange = (name, value) => {
+  const handleRadioChange = (name: string, value: any) => {
     setFormData({
       ...formData,
       [name]: value,
     })
   }
 
-  const handleTabChange = (value) => {
+  const handleTabChange = (value: string) => {
     setActiveTab(value)
   }
 
@@ -161,7 +161,7 @@ export default function BusinessOwnersPolicyForm() {
     }
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault()
     setIsSubmitting(true)
 
@@ -686,7 +686,7 @@ export default function BusinessOwnersPolicyForm() {
                   <textarea
                     id="claimsDetails"
                     name="claimsDetails"
-                    value={formData.claimsDetails || ""}
+                    value={(formData as any).claimsDetails || ""}
                     onChange={handleInputChange}
                     rows={4}
                     className="w-full p-2 border rounded"
@@ -1290,7 +1290,7 @@ export default function BusinessOwnersPolicyForm() {
                         type="text"
                         id="mortgageName"
                         name="mortgageName"
-                        value={formData.mortgageName || ""}
+                        value={(formData as any).mortgageName || ""}
                         onChange={handleInputChange}
                         className="w-full p-2 border rounded"
                       />
@@ -1303,7 +1303,7 @@ export default function BusinessOwnersPolicyForm() {
                         type="text"
                         id="mortgageAddress"
                         name="mortgageAddress"
-                        value={formData.mortgageAddress || ""}
+                        value={(formData as any).mortgageAddress || ""}
                         onChange={handleInputChange}
                         className="w-full p-2 border rounded"
                       />
@@ -1419,7 +1419,7 @@ export default function BusinessOwnersPolicyForm() {
                         type="text"
                         id="additionalInterestName"
                         name="additionalInterestName"
-                        value={formData.additionalInterestName || ""}
+                        value={(formData as any).additionalInterestName || ""}
                         onChange={handleInputChange}
                         className="w-full p-2 border rounded"
                       />
@@ -1432,7 +1432,7 @@ export default function BusinessOwnersPolicyForm() {
                         type="text"
                         id="additionalInterestAddress"
                         name="additionalInterestAddress"
-                        value={formData.additionalInterestAddress || ""}
+                        value={(formData as any).additionalInterestAddress || ""}
                         onChange={handleInputChange}
                         className="w-full p-2 border rounded"
                       />

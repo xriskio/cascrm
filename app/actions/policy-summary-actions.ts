@@ -89,7 +89,7 @@ export async function importPolicySummaryAction(policyId: string) {
     console.error("Error importing policy summary:", error)
     return {
       success: false,
-      message: `Failed to import policy summary: ${error.message}`,
+      message: `Failed to import policy summary: ${(error as any).message}`,
     }
   }
 }
@@ -132,7 +132,7 @@ export async function importMultiplePolicySummariesAction(policyIds: string[]) {
     console.error("Error importing multiple policy summaries:", error)
     return {
       success: false,
-      message: `Failed to import policy summaries: ${error.message}`,
+      message: `Failed to import policy summaries: ${(error as any).message}`,
     }
   }
 }

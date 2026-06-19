@@ -12,7 +12,7 @@ import Link from "next/link"
 import { getMyTasks, getTaskStats } from "@/app/actions/task-actions"
 
 export function TaskList() {
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState<any[]>([])
   const [stats, setStats] = useState({
     total: 0,
     notStarted: 0,
@@ -21,7 +21,7 @@ export function TaskList() {
     onHold: 0,
   })
   const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<any | null>(null)
   const [activeTab, setActiveTab] = useState("all")
   const [showArchived, setShowArchived] = useState(false)
 
@@ -41,7 +41,7 @@ export function TaskList() {
         setStats(statsData)
       } catch (err) {
         console.error("Error loading tasks:", err)
-        setError(err.message || "Failed to load tasks")
+        setError((err as any)?.message || "Failed to load tasks")
         setTasks([])
       } finally {
         setIsLoading(false)
@@ -51,7 +51,7 @@ export function TaskList() {
     loadTasks()
   }, [])
 
-  const filteredTasks = tasks.filter((task) => {
+  const filteredTasks = tasks.filter((task: any) => {
     // Filter by archived status first
     if (showArchived && task.status !== "Archived") return false
     if (!showArchived && task.status === "Archived") return false
@@ -76,7 +76,7 @@ export function TaskList() {
     }
   })
 
-  const getPriorityColor = (priority) => {
+  const getPriorityColor = (priority: any) => {
     switch (priority) {
       case "Low":
         return "bg-blue-100 text-blue-800"
@@ -91,7 +91,7 @@ export function TaskList() {
     }
   }
 
-  const formatDate = (dateString) => {
+  const formatDate = (dateString: any) => {
     if (!dateString) return "No due date"
 
     const date = new Date(dateString)
@@ -118,7 +118,7 @@ export function TaskList() {
     })
   }
 
-  const isOverdue = (dateString) => {
+  const isOverdue = (dateString: any) => {
     if (!dateString) return false
     const date = new Date(dateString)
     const today = new Date()
@@ -232,7 +232,7 @@ export function TaskList() {
               </div>
             ) : (
               <div className="space-y-4">
-                {filteredTasks.map((task) => (
+                {filteredTasks.map((task: any) => (
                   <div key={task.id} className="border rounded-lg p-4">
                     <div className="flex justify-between items-start mb-2">
                       <div className="font-medium">{task.title}</div>

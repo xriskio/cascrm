@@ -14,7 +14,7 @@ export async function fetchAll<T>(path: string, token: string): Promise<T[]> {
       const res = await axios.get<{ items: T[] }>(`${QQ_API}/${path}?pageNumber=${page}&pageSize=${pageSize}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      const items = (res.data as any).items ?? res.data.Contacts ?? res.data.Policies ?? []
+      const items = (res.data as any).items ?? (res.data as any).Contacts ?? (res.data as any).Policies ?? []
       if (!items.length) break
       all.push(...items)
       page++
@@ -48,7 +48,7 @@ export async function upsertToSupabase<T>(
 ): Promise<number> {
   if (data.length === 0) return 0
 
-  const { error } = await supabase.from(tableName).upsert(data, { onConflict: conflictColumns })
+  const { error } = await (supabase.from(tableName) as any).upsert(data, { onConflict: conflictColumns })
 
   if (error) {
     console.error(`❌ ${tableName} upsert error`, error)

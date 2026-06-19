@@ -31,13 +31,13 @@ export async function GET(request: NextRequest) {
         .order('created_at', { ascending: false })
         .limit(10),
 
-      supabase
+      (supabase
         .from('call_logs')
         .select('id, client_name, created_at, call_type, notes')
         .order('created_at', { ascending: false })
         .limit(10)
         .maybeSingle()
-        .then(() => ({ data: null, error: null }))
+        .then(() => ({ data: null, error: null })) as Promise<{ data: null; error: null }>)
         .catch(() => ({ data: null, error: null })),
     ])
 

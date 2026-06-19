@@ -25,8 +25,8 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error("Error fetching policies:", error)
     return NextResponse.json(
-      { error: error.message || "Failed to fetch policies" },
-      { status: error.response?.status || 500 },
+      { error: (error as any).message || "Failed to fetch policies" },
+      { status: (error as any).response?.status || 500 },
     )
   }
 }

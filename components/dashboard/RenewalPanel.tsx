@@ -49,7 +49,7 @@ export default function RenewalPanel() {
     renewals.forEach(r => {
       const key = r.policy_number || `renewal_${r.id}`;
       const existing = seen.get(key);
-      if (!existing || new Date(r.created_at || 0) > new Date(existing.created_at || 0)) {
+      if (!existing || new Date((r as any).created_at || 0) > new Date((existing as any).created_at || 0)) {
         seen.set(key, r);
       }
     });

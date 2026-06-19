@@ -45,7 +45,7 @@ export class BaseAction {
       skipAudit?: boolean
     } = {},
   ) {
-    const supabase = createClient({ useServiceRole: true })
+    const supabase = await (createClient as any)({ useServiceRole: true })
     const { userId, skipAudit = false } = options
 
     try {
@@ -87,7 +87,7 @@ export class BaseAction {
       skipAudit?: boolean
     } = {},
   ) {
-    const supabase = createClient({ useServiceRole: true })
+    const supabase = await (createClient as any)({ useServiceRole: true })
     const { userId, skipAudit = false } = options
 
     try {
@@ -146,7 +146,7 @@ export class BaseAction {
       skipAudit?: boolean
     } = {},
   ) {
-    const supabase = createClient({ useServiceRole: true })
+    const supabase = await (createClient as any)({ useServiceRole: true })
     const { userId, skipAudit = false } = options
 
     try {

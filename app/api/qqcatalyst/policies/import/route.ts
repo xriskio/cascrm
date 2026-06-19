@@ -11,11 +11,11 @@ export async function POST(request: NextRequest) {
     const result = await importPoliciesFromQQCatalyst()
 
     if (result.success) {
-      console.log(`Successfully imported ${result.imported} policies`)
+      console.log(`Successfully imported ${(result as any).imported} policies`)
       return NextResponse.json({
         success: true,
-        imported: result.imported,
-        total: result.total,
+        imported: (result as any).imported,
+        total: (result as any).total,
         message: result.message,
       })
     } else {

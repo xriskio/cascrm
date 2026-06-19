@@ -14,7 +14,7 @@ export interface AuditLogData {
 // Create an audit log entry
 export async function createAuditLog(data: AuditLogData) {
   try {
-    const supabase = createClient({ useServiceRole: true })
+    const supabase = await (createClient as any)({ useServiceRole: true })
     const headersList = headers()
     const ip = headersList.get("x-forwarded-for") || "unknown"
 
@@ -76,7 +76,7 @@ export async function addAuditFields(
 // Get user information for audit display
 export async function getUserInfo(userId: string) {
   try {
-    const supabase = createClient({ useServiceRole: true })
+    const supabase = await (createClient as any)({ useServiceRole: true })
     const { data, error } = await supabase
       .from("users")
       .select("email, first_name, last_name")

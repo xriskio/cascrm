@@ -88,9 +88,9 @@ export default function QQCatalystTestPage() {
     } catch (error) {
       setResults((prev) => ({
         ...prev,
-        [testType]: { success: false, error: error.message },
+        [testType]: { success: false, error: error instanceof Error ? error.message : String(error) },
       }))
-      addLog(`Error in test ${testType}: ${error.message}`)
+      addLog(`Error in test ${testType}: ${error instanceof Error ? error.message : String(error)}`)
     } finally {
       setLoading(false)
     }

@@ -107,38 +107,38 @@ export async function testEmailNotifications(type: string) {
 
     switch (type) {
       case "submission":
-        const submissionResult = await sendSubmissionNotification(testData.submission)
+        const submissionResult = await sendSubmissionNotification(testData.submission as any)
         results.push({ type: "Submission", result: submissionResult })
         break
 
       case "lead":
-        const leadResult = await sendLeadNotification(testData.lead)
+        const leadResult = await sendLeadNotification(testData.lead as any)
         results.push({ type: "Lead", result: leadResult })
         break
 
       case "task":
-        const taskResult = await sendTaskAssignmentNotification(testData.task)
+        const taskResult = await sendTaskAssignmentNotification(testData.task as any)
         results.push({ type: "Task", result: taskResult })
         break
 
       case "service":
-        const serviceResult = await sendServiceRequestNotification(testData.service)
+        const serviceResult = await sendServiceRequestNotification(testData.service as any)
         results.push({ type: "Service Request", result: serviceResult })
         break
 
       case "summary":
-        const summaryResult = await sendDailySummaryNotification(testData.summary)
+        const summaryResult = await sendDailySummaryNotification(testData.summary as any)
         results.push({ type: "Daily Summary", result: summaryResult })
         break
 
       case "all":
         // Test all notification types
         const allResults = await Promise.allSettled([
-          sendSubmissionNotification(testData.submission),
-          sendLeadNotification(testData.lead),
-          sendTaskAssignmentNotification(testData.task),
-          sendServiceRequestNotification(testData.service),
-          sendDailySummaryNotification(testData.summary),
+          sendSubmissionNotification(testData.submission as any),
+          sendLeadNotification(testData.lead as any),
+          sendTaskAssignmentNotification(testData.task as any),
+          sendServiceRequestNotification(testData.service as any),
+          sendDailySummaryNotification(testData.summary as any),
         ])
 
         results = allResults.map((result, index) => ({
@@ -159,6 +159,6 @@ export async function testEmailNotifications(type: string) {
     return { success: true, results }
   } catch (error) {
     console.error("Error testing email notifications:", error)
-    return { success: false, error: error.message }
+    return { success: false, error: error instanceof Error ? error.message : String(error) }
   }
 }

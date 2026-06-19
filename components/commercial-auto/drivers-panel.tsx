@@ -36,7 +36,7 @@ export function CommercialAutoDriversPanel({ policyDetailId, initialDrivers = []
           : "No drivers found for this policy",
       )
     } catch (error) {
-      setMessage(`Error: ${error.message}`)
+      setMessage(`Error: ${(error as any).message}`)
     } finally {
       setLoading(false)
     }
@@ -58,7 +58,7 @@ export function CommercialAutoDriversPanel({ policyDetailId, initialDrivers = []
         }
       }
     } catch (error) {
-      setMessage(`Error: ${error.message}`)
+      setMessage(`Error: ${(error as any).message}`)
     } finally {
       setImporting(false)
     }
@@ -78,10 +78,10 @@ export function CommercialAutoDriversPanel({ policyDetailId, initialDrivers = []
             : "No drivers found in database",
         )
       } else {
-        setMessage(result.message)
+        setMessage(result.message as string)
       }
     } catch (error) {
-      setMessage(`Error: ${error.message}`)
+      setMessage(`Error: ${(error as any).message}`)
     } finally {
       setLoading(false)
     }

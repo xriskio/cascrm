@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server"
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 import { NextResponse } from "next/server"
+import { cookies } from "next/headers"
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs"
 import { qqClient } from "@/lib/qqcatalyst/client"
 
@@ -11,8 +12,8 @@ export async function GET() {
     const supabase = createRouteHandlerClient({ cookies })
     const diagnostics = {
       timestamp: new Date().toISOString(),
-      database: {},
-      qqcatalyst: {},
+      database: {} as Record<string, any>,
+      qqcatalyst: {} as Record<string, any>,
       environment: {
         QQ_API_BASE: process.env.QQ_API_BASE || "Not set",
         QQ_CLIENT_ID: process.env.QQ_CLIENT_ID ? "Set" : "Not set",
@@ -37,7 +38,7 @@ export async function GET() {
         diagnostics.database[table] = {
           exists: false,
           count: 0,
-          error: err.message,
+          error: (err as any).message,
         }
       }
     }
@@ -61,7 +62,7 @@ export async function GET() {
       } catch (err) {
         diagnostics.qqcatalyst.customers = {
           success: false,
-          error: err.message,
+          error: (err as any).message,
         }
       }
 
@@ -75,19 +76,19 @@ export async function GET() {
       } catch (err) {
         diagnostics.qqcatalyst.policies = {
           success: false,
-          error: err.message,
+          error: (err as any).message,
         }
       }
     } catch (err) {
       diagnostics.qqcatalyst.connection = {
         success: false,
-        error: err.message,
+        error: (err as any).message,
       }
     }
 
     return NextResponse.json(diagnostics)
   } catch (error) {
     console.error("Debug API error:", error)
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    return NextResponse.json({ error: (error as any).message }, { status: 500 })
   }
 }

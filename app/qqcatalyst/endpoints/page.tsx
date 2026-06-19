@@ -96,7 +96,7 @@ export default function QQCatalystEndpointsPage() {
       const result = await response.json()
       setTestResults((prev) => ({ ...prev, [endpoint]: result }))
     } catch (error) {
-      setTestResults((prev) => ({ ...prev, [endpoint]: { success: false, error: error.message } }))
+      setTestResults((prev) => ({ ...prev, [endpoint]: { success: false, error: error instanceof Error ? error.message : String(error) } }))
     } finally {
       setLoading(false)
     }
@@ -109,7 +109,7 @@ export default function QQCatalystEndpointsPage() {
       const result = await response.json()
       setTestResults((prev) => ({ ...prev, discovery: result }))
     } catch (error) {
-      setTestResults((prev) => ({ ...prev, discovery: { success: false, error: error.message } }))
+      setTestResults((prev) => ({ ...prev, discovery: { success: false, error: error instanceof Error ? error.message : String(error) } }))
     } finally {
       setLoading(false)
     }

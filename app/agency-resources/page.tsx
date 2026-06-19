@@ -28,7 +28,7 @@ export default function AgencyResourcesPage() {
     async function fetchResources() {
       try {
         setIsLoading(true)
-        const supabase = createClient()
+        const supabase: any = createClient()
 
         console.log("Fetching resources from agency_resources table")
 

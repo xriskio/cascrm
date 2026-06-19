@@ -334,13 +334,13 @@ export function LeadDetailsModal({ isOpen, onClose, leadId }: LeadDetailsModalPr
                       <div className="text-sm text-gray-500">Insurance Type</div>
                     </div>
                     <div className="text-center p-4 border rounded-lg">
-                      <Badge className={getStatusColor(lead.status)} size="lg">
+                      <Badge className={getStatusColor(lead.status)} {...({ size: "lg" } as any)}>
                         {lead.status}
                       </Badge>
                       <div className="text-sm text-gray-500 mt-2">Current Status</div>
                     </div>
                     <div className="text-center p-4 border rounded-lg">
-                      <Badge className={getPriorityColor(lead.priority)} size="lg">
+                      <Badge className={getPriorityColor(lead.priority)} {...({ size: "lg" } as any)}>
                         {lead.priority}
                       </Badge>
                       <div className="text-sm text-gray-500 mt-2">Priority Level</div>

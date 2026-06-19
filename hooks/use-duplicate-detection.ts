@@ -25,7 +25,7 @@ export function useDuplicateDetection() {
       const duplicates = []
 
       for (const renewal of renewals || []) {
-        const key = `${renewal.policy_number}-${renewal.client_name || renewal.insured_name}`.toLowerCase()
+        const key = `${renewal.policy_number}-${renewal.client_name || (renewal as any).insured_name}`.toLowerCase()
 
         if (seen.has(key)) {
           duplicates.push({
@@ -40,7 +40,7 @@ export function useDuplicateDetection() {
       return { success: true, duplicates }
     } catch (error) {
       console.error("Error detecting duplicates:", error)
-      return { success: false, error: error.message || "Failed to detect duplicates", duplicates: [] }
+      return { success: false, error: (error as any).message || "Failed to detect duplicates", duplicates: [] }
     } finally {
       setLoading(false)
     }
@@ -54,11 +54,11 @@ export function useDuplicateDetection() {
       return {
         success: result.success,
         removed: duplicateIds.length,
-        error: result.error,
+        error: (result as any).error,
       }
     } catch (error) {
       console.error("Error removing duplicates:", error)
-      return { success: false, error: error.message || "Failed to remove duplicates", removed: 0 }
+      return { success: false, error: (error as any).message || "Failed to remove duplicates", removed: 0 }
     } finally {
       setLoading(false)
     }

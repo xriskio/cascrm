@@ -61,7 +61,7 @@ export default function SQLQueriesPage() {
     try {
       // Note: This is a simplified example. In production, you'd want to use
       // a secure server-side endpoint for running custom SQL queries
-      const { data, error } = await supabase.rpc("execute_sql", { sql_query: sqlQuery })
+      const { data, error } = await (supabase as any).rpc("execute_sql", { sql_query: sqlQuery })
 
       if (error) {
         setError(error.message)

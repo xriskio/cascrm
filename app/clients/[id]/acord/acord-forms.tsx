@@ -234,12 +234,12 @@ export function AcordForms({ client }: AcordFormsProps) {
                           {form.type}
                         </Badge>
                         {form.status === "complete" ? (
-                          <Badge variant="success" className="bg-green-100 text-green-800 border-green-200">
+                          <Badge variant={"success" as any} className="bg-green-100 text-green-800 border-green-200">
                             <CheckCircle className="h-3 w-3 mr-1" />
                             Complete
                           </Badge>
                         ) : (
-                          <Badge variant="warning" className="bg-yellow-100 text-yellow-800 border-yellow-200">
+                          <Badge variant={"warning" as any} className="bg-yellow-100 text-yellow-800 border-yellow-200">
                             <AlertCircle className="h-3 w-3 mr-1" />
                             Pending
                           </Badge>

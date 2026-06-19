@@ -37,7 +37,7 @@ export default function BulkDeletePanel() {
       if (result.success) {
         setStats(result.stats)
       } else {
-        setMessage({ type: "error", text: result.error || "Failed to load statistics" })
+        setMessage({ type: "error", text: (result as any).error || "Failed to load statistics" })
       }
     } catch (error: any) {
       setMessage({ type: "error", text: extractErrorMessage(error) })
@@ -59,7 +59,7 @@ export default function BulkDeletePanel() {
         setMessage({ type: "success", text: result.message })
         await loadStats()
       } else {
-        setMessage({ type: "error", text: result.error })
+        setMessage({ type: "error", text: (result as any).error })
       }
     } catch (error: any) {
       setMessage({ type: "error", text: extractErrorMessage(error) })
@@ -84,7 +84,7 @@ export default function BulkDeletePanel() {
         setMessage({ type: "success", text: result.message })
         await loadStats()
       } else {
-        setMessage({ type: "error", text: result.error })
+        setMessage({ type: "error", text: (result as any).error })
       }
     } catch (error: any) {
       setMessage({ type: "error", text: extractErrorMessage(error) })
@@ -109,7 +109,7 @@ export default function BulkDeletePanel() {
         setMessage({ type: "success", text: result.message })
         await loadStats()
       } else {
-        setMessage({ type: "error", text: result.error })
+        setMessage({ type: "error", text: (result as any).error })
       }
     } catch (error: any) {
       setMessage({ type: "error", text: extractErrorMessage(error) })

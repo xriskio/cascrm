@@ -34,8 +34,8 @@ export function ClientAccountInfo({ clientId, contactId }: ClientAccountInfoProp
         : await getContactAccountInfo(contactId || clientId)
 
       if (result.success) {
-        setAccountInfo(result.data)
-        setCached(result.cached || false)
+        setAccountInfo(result.data as any)
+        setCached((result as any).cached || false)
       } else {
         setError(result.error || "Failed to load account information")
       }

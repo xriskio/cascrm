@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label"
 import type { Renewal } from "@/types"
 
 interface RenewalFormProps {
-  renewal?: Renewal
+  renewal?: Renewal & Record<string, any>
 }
 
 export function RenewalForm({ renewal }: RenewalFormProps) {

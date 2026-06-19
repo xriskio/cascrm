@@ -61,7 +61,7 @@ export default function IncomingCallForm({ onSaved }: { onSaved?: () => void }) 
   const supabase = createClient()
 
   const form = useForm<CallFormValues>({
-    resolver: zodResolver(callFormSchema),
+    resolver: zodResolver(callFormSchema) as any,
     defaultValues: {
       call_date: new Date(),
       call_time: format(new Date(), "HH:mm"),

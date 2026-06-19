@@ -38,7 +38,7 @@ export default function DatabaseDebugPage() {
           console.log(`Checking table: ${table}`)
 
           // Get count
-          const { count, error: countError } = await supabase.from(table).select("*", { count: "exact", head: true })
+          const { count, error: countError } = await (supabase as any).from(table).select("*", { count: "exact", head: true })
 
           if (countError) {
             tableResults[table] = { error: countError.message, count: 0, sample: [] }
@@ -46,7 +46,7 @@ export default function DatabaseDebugPage() {
           }
 
           // Get sample data (first 3 records)
-          const { data: sampleData, error: sampleError } = await supabase.from(table).select("*").limit(3)
+          const { data: sampleData, error: sampleError } = await (supabase as any).from(table).select("*").limit(3)
 
           tableResults[table] = {
             count: count || 0,

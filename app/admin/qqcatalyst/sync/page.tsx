@@ -102,7 +102,7 @@ export default function QQCatalystSyncPage() {
       setProgress(100)
     } catch (error) {
       console.error("Sync error:", error)
-      setError(error.message)
+      setError(error instanceof Error ? error.message : String(error))
       setStatus("Sync failed")
       setProgress(0)
     } finally {

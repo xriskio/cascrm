@@ -61,7 +61,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error("QQCatalyst callback error:", error)
     return NextResponse.redirect(
-      `${process.env.NEXT_PUBLIC_APP_URL}/qqcatalyst/oauth?error=${encodeURIComponent(error.message)}`,
+      `${process.env.NEXT_PUBLIC_APP_URL}/qqcatalyst/oauth?error=${encodeURIComponent((error as any).message)}`,
     )
   }
 }

@@ -194,7 +194,7 @@ export async function POST(request: NextRequest) {
       } catch (batchError: any) {
         console.error(`Batch processing error:`, batchError)
         // Mark entire batch as failed
-        batch.forEach((_, index) => {
+        batch.forEach((_: any, index: number) => {
           results.errors++
           results.errorDetails.push(`Batch ${Math.floor(i / chunkSize) + 1}, Row ${index + 1}: ${batchError.message}`)
         })

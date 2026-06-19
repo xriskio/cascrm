@@ -8,7 +8,7 @@ export function useNotification() {
 
   const showNotification = useCallback(
     (message: string, type: "info" | "success" | "warning" | "error" = "info") => {
-      const variants = {
+      const variants: Record<string, "default" | "destructive" | null | undefined> = {
         info: undefined,
         success: "default",
         warning: "destructive",

@@ -31,7 +31,7 @@ export function useEmailNotifications() {
       return { success: true, message: "Email sent successfully" }
     } catch (error) {
       console.error("Error sending email:", error)
-      return { success: false, error: error.message || "Failed to send email" }
+      return { success: false, error: (error as any).message || "Failed to send email" }
     } finally {
       setSending(false)
     }

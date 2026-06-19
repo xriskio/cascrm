@@ -64,7 +64,7 @@ Notes: ${renewal.renewal_offer_notes || ""}
       text: eventDetails.title,
       details: eventDetails.description,
       dates: `${eventDetails.startDate}/${formatDateForCalendar(endDate.toISOString())}`,
-      reminders: `popup,${reminderTime * 60}`,
+      reminders: `popup,${(reminderTime as any) * 60}`,
     })
 
     return `https://calendar.google.com/calendar/render?${params.toString()}`
@@ -88,7 +88,7 @@ Notes: ${renewal.renewal_offer_notes || ""}
       startdt: startDate.toISOString(),
       enddt: endDate.toISOString(),
       allday: "false",
-      reminder: `${reminderTime * 60}`,
+      reminder: `${(reminderTime as any) * 60}`,
     })
 
     return `https://outlook.office.com/calendar/0/deeplink/compose?${params.toString()}`

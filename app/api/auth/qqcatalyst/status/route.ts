@@ -90,7 +90,7 @@ export async function GET() {
     return NextResponse.json({
       valid: false,
       expired: false,
-      error: error.message || "Unknown error occurred",
+      error: (error as any).message || "Unknown error occurred",
     })
   }
 }

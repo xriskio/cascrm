@@ -39,7 +39,7 @@ export default async function SubmissionsPage() {
           <CardTitle>All Submissions</CardTitle>
         </CardHeader>
         <CardContent>
-          {submissions && submissions.length > 0 ? (
+          {submissions && submissions!.length > 0 ? (
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
@@ -53,7 +53,7 @@ export default async function SubmissionsPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {submissions.map((submission) => (
+                  {submissions!.map((submission) => (
                     <tr key={submission.id} className="hover:bg-gray-50">
                       <td className="border px-4 py-2">{submission.tracking_number}</td>
                       <td className="border px-4 py-2">{submission.policy_type}</td>
@@ -100,9 +100,9 @@ export default async function SubmissionsPage() {
           <p>Number of submissions: {submissions?.length || 0}</p>
           {error && (
             <div className="text-red-500 mt-2">
-              <p>Error: {error.message}</p>
-              <p>Code: {error.code}</p>
-              <p>Details: {error.details}</p>
+              <p>Error: {error!.message}</p>
+              <p>Code: {error!.code}</p>
+              <p>Details: {error!.details}</p>
             </div>
           )}
           <div className="mt-2">

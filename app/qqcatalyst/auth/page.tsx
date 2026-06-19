@@ -44,7 +44,7 @@ export default function QQCatalystAuthPage() {
     } catch (error) {
       setResult({
         success: false,
-        error: error.message,
+        error: error instanceof Error ? error.message : String(error),
       })
     } finally {
       setLoading(false)
@@ -65,7 +65,7 @@ export default function QQCatalystAuthPage() {
     } catch (error) {
       setResult({
         success: false,
-        error: error.message,
+        error: error instanceof Error ? error.message : String(error),
       })
     } finally {
       setLoading(false)

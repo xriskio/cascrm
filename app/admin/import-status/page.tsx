@@ -9,7 +9,7 @@ import { RefreshCw, CheckCircle, XCircle, AlertCircle } from "lucide-react"
 import Link from "next/link"
 
 export default function ImportStatusPage() {
-  const [status, setStatus] = useState({})
+  const [status, setStatus] = useState<Record<string, any>>({})
   const [loading, setLoading] = useState(false)
   const supabase = createClient()
 
@@ -25,11 +25,11 @@ export default function ImportStatusPage() {
         { name: "customer_details", label: "Customer Details" },
       ]
 
-      const results = {}
+      const results: Record<string, any> = {}
 
       for (const table of tables) {
         try {
-          const { count, error } = await supabase.from(table.name).select("*", { count: "exact", head: true })
+          const { count, error } = await (supabase as any).from(table.name).select("*", { count: "exact", head: true })
 
           results[table.name] = {
             label: table.label,
@@ -42,7 +42,7 @@ export default function ImportStatusPage() {
             label: table.label,
             count: 0,
             status: "error",
-            error: err.message,
+            error: err instanceof Error ? err.message : String(err),
           }
         }
       }
@@ -59,7 +59,7 @@ export default function ImportStatusPage() {
     checkImportStatus()
   }, [])
 
-  const getStatusIcon = (status) => {
+  const getStatusIcon = (status: string) => {
     switch (status) {
       case "success":
         return <CheckCircle className="h-4 w-4 text-green-500" />
@@ -72,7 +72,7 @@ export default function ImportStatusPage() {
     }
   }
 
-  const getStatusColor = (status) => {
+  const getStatusColor = (status: string) => {
     switch (status) {
       case "success":
         return "bg-green-100 text-green-800"

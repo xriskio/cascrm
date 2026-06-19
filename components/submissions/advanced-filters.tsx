@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { DatePicker } from "@/components/ui/date-picker"
+import { DatePicker as DatePickerBase } from "@/components/ui/date-picker"
+const DatePicker: any = DatePickerBase
 import { Badge } from "@/components/ui/badge"
 import { X, Filter } from "lucide-react"
 
@@ -63,13 +64,13 @@ export function AdvancedFilters({ onFiltersChange, activeFilters }: AdvancedFilt
               <div className="flex items-center gap-2">
                 <DatePicker
                   selected={filters.startDate}
-                  onSelect={(date) => handleFilterChange("startDate", date)}
+                  onSelect={(date: any) => handleFilterChange("startDate", date)}
                   placeholderText="Start date"
                 />
                 <span className="text-gray-400">to</span>
                 <DatePicker
                   selected={filters.endDate}
-                  onSelect={(date) => handleFilterChange("endDate", date)}
+                  onSelect={(date: any) => handleFilterChange("endDate", date)}
                   placeholderText="End date"
                 />
               </div>

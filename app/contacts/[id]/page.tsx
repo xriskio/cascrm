@@ -71,7 +71,7 @@ export default function ContactDetailPage() {
         throw fetchError
       }
 
-      setContact(data)
+      setContact(data as any)
     } catch (error) {
       console.error("Error loading contact:", error)
       setError(`Failed to load contact: ${error instanceof Error ? error.message : String(error)}`)

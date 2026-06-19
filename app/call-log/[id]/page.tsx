@@ -43,12 +43,12 @@ function formatDate(dateStr?: string) {
   }
 }
 
-function formatTime(timeStr?: string) {
+function formatTime(timeStr?: string | null) {
   if (!timeStr) return ""
   return timeStr.slice(0, 5)
 }
 
-function parseDate(dateStr?: string) {
+function parseDate(dateStr?: string | null) {
   if (!dateStr) return undefined
   try {
     return parseISO(dateStr)
@@ -60,7 +60,7 @@ function parseDate(dateStr?: string) {
 export default function CallDetailPage({ params }: { params: { id: string } }) {
   const router = useRouter()
   const supabase = createClient()
-  const [call, setCall] = useState(null)
+  const [call, setCall] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [callDateOpen, setCallDateOpen] = useState(false)
@@ -182,18 +182,18 @@ export default function CallDetailPage({ params }: { params: { id: string } }) {
   }
 
   // Handle form changes
-  function handleChange(e) {
+  function handleChange(e: any) {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
   // Handle select changes
-  function handleSelectChange(name, value) {
+  function handleSelectChange(name: any, value: any) {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
   // Handle date changes
-  function handleDateChange(name, date) {
+  function handleDateChange(name: any, date: any) {
     setFormData((prev) => ({ ...prev, [name]: date }))
   }
 

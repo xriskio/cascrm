@@ -37,13 +37,13 @@ export default function EditCarrierContactPage({ params }: { params: { id: strin
   useEffect(() => {
     const fetchCarrier = async () => {
       try {
-        const data = await getCarrierContactById(params.id)
+        const data: any = await getCarrierContactById(params.id)
         setCarrier(data)
 
         // Initialize underwriters state
         if (data?.underwriters && Array.isArray(data.underwriters)) {
           setUnderwriters(
-            data.underwriters.map((uw) => ({
+            data.underwriters.map((uw: any) => ({
               name: uw.name || "",
               phone: uw.phone || "",
               email: uw.email || "",

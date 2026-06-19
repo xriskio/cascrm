@@ -95,7 +95,7 @@ export async function importRenewalsFromQQ(params: {
         }
       } catch (recordError) {
         console.error("Error processing record:", recordError)
-        errors.push(`Record processing error: ${recordError.message}`)
+        errors.push(`Record processing error: ${(recordError as any).message}`)
         errorCount++
       }
     }

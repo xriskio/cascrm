@@ -77,7 +77,7 @@ export default function RenewalsImportPage() {
       })
 
       if (result.success) {
-        setTotalRecords(result.totalRecords)
+        setTotalRecords(result.totalRecords as number)
         alert(`${result.totalRecords} renewals imported successfully!`)
       } else {
         setError(result.error || "Failed to import data")

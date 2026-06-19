@@ -18,8 +18,8 @@ export default function PolicySyncPage() {
   const [loading, setLoading] = useState(false)
   const [syncing, setSyncing] = useState(false)
   const [message, setMessage] = useState("")
-  const [syncStats, setSyncStats] = useState(null)
-  const [previewData, setPreviewData] = useState(null)
+  const [syncStats, setSyncStats] = useState<any | null>(null)
+  const [previewData, setPreviewData] = useState<any | null>(null)
 
   const handlePreview = async () => {
     setLoading(true)
@@ -41,7 +41,7 @@ export default function PolicySyncPage() {
         setPreviewData(null)
       }
     } catch (error) {
-      setMessage(`Error: ${error.message}`)
+      setMessage(`Error: ${error instanceof Error ? error.message : String(error)}`)
       setPreviewData(null)
     } finally {
       setLoading(false)
@@ -63,7 +63,7 @@ export default function PolicySyncPage() {
       setMessage(result.message)
       setSyncStats(result.stats)
     } catch (error) {
-      setMessage(`Error: ${error.message}`)
+      setMessage(`Error: ${error instanceof Error ? error.message : String(error)}`)
     } finally {
       setSyncing(false)
     }
@@ -83,7 +83,7 @@ export default function PolicySyncPage() {
       setMessage(result.message)
       setSyncStats(result.stats)
     } catch (error) {
-      setMessage(`Error: ${error.message}`)
+      setMessage(`Error: ${error instanceof Error ? error.message : String(error)}`)
     } finally {
       setSyncing(false)
     }
@@ -211,7 +211,7 @@ export default function PolicySyncPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {previewData.data.slice(0, 5).map((policy, index) => (
+              {previewData.data.slice(0, 5).map((policy: any, index: number) => (
                 <div key={index} className="border rounded-lg p-4">
                   <div className="flex justify-between items-start mb-2">
                     <div>

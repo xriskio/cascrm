@@ -21,6 +21,10 @@ interface TaskActionsProps {
   taskId: string
   taskTitle: string
   currentStatus?: string
+  taskStatus?: string
+  canEdit?: boolean
+  canDelete?: boolean
+  canArchive?: boolean
 }
 
 export function TaskActions({ taskId, taskTitle, currentStatus }: TaskActionsProps) {

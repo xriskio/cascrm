@@ -251,6 +251,6 @@ export async function submitApplication(data: any) {
     }
   } catch (error) {
     console.error("Error in submitApplication:", error)
-    return { success: false, error: error.message }
+    return { success: false, error: (error as any).message }
   }
 }

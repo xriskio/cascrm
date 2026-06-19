@@ -51,7 +51,7 @@ export default function CarrierContactsPage() {
           return
         }
 
-        setCarriers(data || [])
+        setCarriers((data as any) || [])
       } catch (err) {
         console.error("Unexpected error:", err)
         setError("An unexpected error occurred. Please try again.")
@@ -94,7 +94,7 @@ export default function CarrierContactsPage() {
 
     try {
       const supabase = createClient()
-      const { error } = await supabase.from("carrier_contacts").delete().eq("id", id)
+      const { error } = await supabase.from("carrier_contacts").delete().eq("id", id as any)
 
       if (error) {
         console.error("Error deleting carrier contact:", error)

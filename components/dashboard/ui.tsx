@@ -94,7 +94,7 @@ export function AddRowBtn({ label, onClick }: { label: string; onClick?: () => v
       display:'flex', alignItems:'center', gap:6, padding:'9px 16px',
       fontSize:11.5, color: h ? 'var(--text2)' : 'var(--text3)', cursor:'pointer',
       borderTop:'1px solid var(--border)', background: h ? 'var(--bg3)' : 'transparent',
-      width:'100%', border:'none', borderTop:'1px solid var(--border)',
+      width:'100%', border:'none',
       fontFamily:'var(--font)', transition:'background 0.1s, color 0.1s',
     }}
       onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)}>

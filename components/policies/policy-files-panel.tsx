@@ -35,7 +35,7 @@ export function PolicyFilesPanel({ contactId, policyId, policyNumber }: PolicyFi
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState("")
-  const [selectedFileType, setSelectedFileType] = useState(FILE_TYPES.ALL)
+  const [selectedFileType, setSelectedFileType] = useState<string>(FILE_TYPES.ALL)
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
   const [totalItems, setTotalItems] = useState(0)

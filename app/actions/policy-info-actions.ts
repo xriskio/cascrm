@@ -86,7 +86,7 @@ export async function importPolicyInfoAction(policyId: string) {
     console.error("Error importing policy info:", error)
     return {
       success: false,
-      message: `Failed to import policy: ${error.message}`,
+      message: `Failed to import policy: ${(error as any).message}`,
     }
   }
 }
@@ -131,7 +131,7 @@ export async function importEnhancedPoliciesAction() {
     console.error("Error importing enhanced policies:", error)
     return {
       success: false,
-      message: `Failed to import policies: ${error.message}`,
+      message: `Failed to import policies: ${(error as any).message}`,
     }
   }
 }

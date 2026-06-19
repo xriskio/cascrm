@@ -148,7 +148,7 @@ export default function RemarketingTracker({
       notes: "",
       followUpDate: "",
     })
-    onUpdate()
+    onUpdate?.()
   }
 
   // In the updateDatabase function, replace the alert with proper error handling:

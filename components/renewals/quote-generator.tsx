@@ -55,7 +55,7 @@ export default function QuoteGenerator({ renewalId, renewal, onUpdate }: QuoteGe
         alert(`Quote generated successfully! Quote Number: ${result.quoteNumber}`)
         onUpdate()
       } else {
-        alert(`Error generating quote: ${result.error}`)
+        alert(`Error generating quote: ${(result as any).error}`)
       }
     } catch (error) {
       console.error("Error generating quote:", error)

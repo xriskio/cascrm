@@ -4,7 +4,8 @@ import type React from "react"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Check, Plus } from "lucide-react"
-import { DatePicker } from "@/components/ui/date-picker"
+import { DatePicker as DatePickerBase } from "@/components/ui/date-picker"
+const DatePicker: any = DatePickerBase
 import { US_STATES } from "@/lib/states"
 import { submitApplication } from "@/app/actions/submit-application"
 

@@ -207,7 +207,7 @@ export async function bulkArchiveRenewals(renewalIds: string[]) {
   }
 }
 
-export async function deleteDuplicateRenewals(renewalIds: string[]) {
+export async function deleteDuplicateRenewals(renewalIds?: string[]) {
   // TODO: implement
   return { success: true, deletedCount: 0 }
 }

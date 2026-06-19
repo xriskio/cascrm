@@ -85,8 +85,8 @@ export async function POST() {
 
         const response = await fetch(OAUTH_URL, {
           method: "POST",
-          headers: method.headers,
-          body: new URLSearchParams(method.params).toString(),
+          headers: method.headers as any,
+          body: new URLSearchParams(method.params as any).toString(),
         })
 
         const responseText = await response.text()

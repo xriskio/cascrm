@@ -83,6 +83,7 @@ export default async function TaskDetailPage({ params }: { params: { id: string 
     }
 
     // Check if user can edit this task
+    const session: any = { user }
     const canEdit = session.user.id === task.creator_id || session.user.id === task.assignee_id
     const canDelete = session.user.id === task.creator_id
     const canArchive =

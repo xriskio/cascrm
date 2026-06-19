@@ -20,7 +20,7 @@ export async function GET() {
     return NextResponse.json(
       {
         error: "Failed to check environment variables",
-        details: error.message,
+        details: (error as any).message,
       },
       { status: 500 },
     )

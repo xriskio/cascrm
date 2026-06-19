@@ -6,7 +6,7 @@ import Link from "next/link"
 export const dynamic = "force-dynamic"
 
 export default async function AuditLogsPage() {
-  const supabase = createClient({ useServiceRole: true })
+  const supabase = (createClient as any)({ useServiceRole: true })
 
   // Fetch the most recent 100 audit logs
   const { data: logs, error } = await supabase
@@ -103,7 +103,7 @@ export default async function AuditLogsPage() {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {logs && logs.length > 0 ? (
-                logs.map((log) => (
+                logs.map((log: any) => (
                   <tr key={log.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {format(new Date(log.created_at), "MMM d, yyyy h:mm a")}

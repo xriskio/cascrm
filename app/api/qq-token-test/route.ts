@@ -29,14 +29,14 @@ export async function GET() {
       "https://api.qqcatalyst.com/oauth/token",
     ].filter(Boolean)
 
-    const tokenResults = []
+    const tokenResults: any[] = []
 
     for (const tokenUrl of tokenUrls) {
       console.log(`🔐 Testing token URL: ${tokenUrl}`)
 
       try {
         // Test with password grant
-        const passwordGrantRes = await fetch(tokenUrl, {
+        const passwordGrantRes = await fetch(tokenUrl as string, {
           method: "POST",
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -76,7 +76,7 @@ export async function GET() {
         tokenResults.push(passwordResult)
 
         // Also try client_credentials grant
-        const clientCredentialsRes = await fetch(tokenUrl, {
+        const clientCredentialsRes = await fetch(tokenUrl as string, {
           method: "POST",
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",

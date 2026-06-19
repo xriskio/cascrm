@@ -7,7 +7,7 @@ import { notFound } from "next/navigation"
 export const dynamic = "force-dynamic"
 
 export default async function AuditLogDetailPage({ params }: { params: { id: string } }) {
-  const supabase = createClient({ useServiceRole: true })
+  const supabase = (createClient as any)({ useServiceRole: true })
 
   // Fetch the audit log
   const { data: log, error } = await supabase.from("audit_logs").select("*").eq("id", params.id).single()

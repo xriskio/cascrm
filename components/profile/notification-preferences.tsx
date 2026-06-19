@@ -35,7 +35,7 @@ export function NotificationPreferences({ userId }: NotificationPreferencesProps
   }
 
   const form = useForm<NotificationFormValues>({
-    resolver: zodResolver(notificationFormSchema),
+    resolver: zodResolver(notificationFormSchema) as any,
     defaultValues,
   })
 

@@ -37,7 +37,7 @@ export default function QQCatalystDatabasePage() {
         fetchSyncStats()
       }
     } catch (error) {
-      setTestResult({ success: false, error: error.message })
+      setTestResult({ success: false, error: error instanceof Error ? error.message : String(error) })
     } finally {
       setLoading(false)
     }
@@ -55,7 +55,7 @@ export default function QQCatalystDatabasePage() {
         await testConnection()
       }
     } catch (error) {
-      setInitResult({ success: false, error: error.message })
+      setInitResult({ success: false, error: error instanceof Error ? error.message : String(error) })
     } finally {
       setLoading(false)
     }
@@ -378,11 +378,11 @@ export default function QQCatalystDatabasePage() {
                               <td className="py-2 px-4">
                                 <Badge
                                   variant={
-                                    policy.days_until_expiration <= 30
+                                    (policy.days_until_expiration <= 30
                                       ? "destructive"
                                       : policy.days_until_expiration <= 60
                                         ? "warning"
-                                        : "default"
+                                        : "default") as any
                                   }
                                 >
                                   {policy.days_until_expiration}

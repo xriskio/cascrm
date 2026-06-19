@@ -78,7 +78,7 @@ export default function DataViewerPage() {
 
       const countPromises = tables.map(async (table) => {
         try {
-          const { count, error } = await supabase.from(table).select("*", { count: "exact", head: true })
+          const { count, error } = await (supabase as any).from(table).select("*", { count: "exact", head: true })
 
           if (error) {
             console.warn(`Table ${table} not found or accessible:`, error)
@@ -117,7 +117,7 @@ export default function DataViewerPage() {
       if (contactsError && contactsError.code !== "PGRST116") {
         console.warn("Contacts table error:", contactsError)
       } else if (contactsData) {
-        setContacts(contactsData)
+        setContacts(contactsData as any)
       }
 
       // Fetch sample policies
@@ -130,7 +130,7 @@ export default function DataViewerPage() {
       if (policiesError && policiesError.code !== "PGRST116") {
         console.warn("Policies table error:", policiesError)
       } else if (policiesData) {
-        setPolicies(policiesData)
+        setPolicies(policiesData as any)
       }
     } catch (err) {
       console.error("Error fetching sample data:", err)

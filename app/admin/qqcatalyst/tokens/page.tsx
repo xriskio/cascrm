@@ -55,7 +55,7 @@ export default function QQCatalystTokensPage() {
     try {
       const result = await getQQCatalystTokens()
       if (result.success) {
-        setTokens(result.data)
+        setTokens(result.data as any)
       }
     } catch (error) {
       console.error("Error loading tokens:", error)

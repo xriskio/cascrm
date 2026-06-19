@@ -28,7 +28,7 @@ export default function CarrierContactDetailPage() {
 
       try {
         const supabase = createClient()
-        const { data, error } = await supabase.from("carrier_contacts").select("*").eq("id", id).single()
+        const { data, error } = await supabase.from("carrier_contacts").select("*").eq("id", id as any).single()
 
         if (error) {
           console.error("Error fetching carrier contact:", error.message)

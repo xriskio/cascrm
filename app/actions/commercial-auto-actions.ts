@@ -95,7 +95,7 @@ export async function importCommercialAutoDriversAction(policyDetailId: string |
     console.error("Error importing commercial auto drivers:", error)
     return {
       success: false,
-      message: `Failed to import drivers: ${error.message}`,
+      message: `Failed to import drivers: ${(error as any).message}`,
     }
   }
 }
@@ -124,7 +124,7 @@ export async function getCommercialAutoDriversAction(policyDetailId: string | nu
     console.error("Error getting commercial auto drivers:", error)
     return {
       success: false,
-      message: `Failed to get drivers: ${error.message}`,
+      message: `Failed to get drivers: ${(error as any).message}`,
       drivers: [],
     }
   }

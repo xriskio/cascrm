@@ -68,7 +68,7 @@ function formatTime(timeStr?: string) {
   return timeStr.slice(0, 5)
 }
 
-function getStatusColor(status) {
+function getStatusColor(status: any) {
   const statusOption = STATUS_OPTIONS.find((opt) => opt.value === status)
   return statusOption?.color || "gray"
 }
@@ -76,15 +76,15 @@ function getStatusColor(status) {
 export default function IncomingCallLogPage() {
   const router = useRouter()
   const supabase = createClient()
-  const [calls, setCalls] = useState([])
+  const [calls, setCalls] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [refreshFlag, setRefreshFlag] = useState(0)
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("all")
   const [categoryFilter, setCategoryFilter] = useState("all")
-  const [dateFilter, setDateFilter] = useState(null)
+  const [dateFilter, setDateFilter] = useState<any>(null)
   const [sortConfig, setSortConfig] = useState({ key: "created_at", direction: "desc" })
-  const [expandedRow, setExpandedRow] = useState(null)
+  const [expandedRow, setExpandedRow] = useState<any>(null)
   const [showForm, setShowForm] = useState(false)
 
   // Fetch calls
@@ -118,7 +118,7 @@ export default function IncomingCallLogPage() {
   }, [refreshFlag, sortConfig, supabase])
 
   // Handle status update inline
-  async function updateStatus(id, status) {
+  async function updateStatus(id: any, status: any) {
     try {
       console.log("Updating status:", id, status)
       const { error } = await supabase.from("incoming_calls").update({ status }).eq("id", id)
@@ -137,7 +137,7 @@ export default function IncomingCallLogPage() {
   }
 
   // Delete call
-  async function deleteCall(id) {
+  async function deleteCall(id: any) {
     try {
       if (confirm("Delete this call log entry?")) {
         console.log("Deleting call:", id)
@@ -158,12 +158,12 @@ export default function IncomingCallLogPage() {
   }
 
   // View call details
-  function viewCallDetails(id) {
+  function viewCallDetails(id: any) {
     router.push(`/call-log/${id}`)
   }
 
   // Handle sorting
-  const requestSort = (key) => {
+  const requestSort = (key: any) => {
     let direction = "asc"
     if (sortConfig.key === key && sortConfig.direction === "asc") {
       direction = "desc"
@@ -172,7 +172,7 @@ export default function IncomingCallLogPage() {
   }
 
   // Filter calls
-  const filteredCalls = calls.filter((call) => {
+  const filteredCalls = calls.filter((call: any) => {
     const matchesSearch =
       (call.named_insured || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
       (call.contact_name || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -206,7 +206,7 @@ export default function IncomingCallLogPage() {
         "Notes",
       ]
 
-      const csvData = filteredCalls.map((call) => [
+      const csvData = filteredCalls.map((call: any) => [
         formatDate(call.call_date),
         formatTime(call.call_time),
         call.named_insured || "",
@@ -491,7 +491,7 @@ export default function IncomingCallLogPage() {
                       </TableCell>
                     </TableRow>
                   ) : (
-                    filteredCalls.map((call) => (
+                    filteredCalls.map((call: any) => (
                       <>
                         <TableRow key={call.id} className="group hover:bg-blue-50/50 transition-colors">
                           <TableCell>

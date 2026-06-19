@@ -6,7 +6,7 @@ import { ArrowLeft, Search, ChevronDown } from "lucide-react"
 import { getServiceRequests } from "@/app/actions/service-request-actions"
 
 export default function ServiceRequestListPage() {
-  const [requests, setRequests] = useState([])
+  const [requests, setRequests] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState("")
   const [searchQuery, setSearchQuery] = useState("")
@@ -34,7 +34,7 @@ export default function ServiceRequestListPage() {
     fetchRequests()
   }, [])
 
-  const getStatusBadgeClass = (status) => {
+  const getStatusBadgeClass = (status: any) => {
     switch (status) {
       case "pending":
         return "bg-yellow-100 text-yellow-800"
@@ -49,7 +49,7 @@ export default function ServiceRequestListPage() {
     }
   }
 
-  const getRequestTypeLabel = (type) => {
+  const getRequestTypeLabel = (type: any) => {
     const typeLabels = {
       endorsements: "Endorsement",
       certificates: "Certificate of Insurance",
@@ -61,7 +61,7 @@ export default function ServiceRequestListPage() {
       cancel: "Policy Cancellation",
     }
 
-    return typeLabels[type] || type
+    return (typeLabels as any)[type] || type
   }
 
   const filteredRequests = requests.filter((request) => {

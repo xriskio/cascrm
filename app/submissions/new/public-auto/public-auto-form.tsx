@@ -201,82 +201,82 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
 
     const newClaim = {
       date: claimDate,
-      amount: (document.getElementById("claimAmount") as HTMLInputElement)?.value || "0",
-      description: (document.getElementById("claimDescription") as HTMLTextAreaElement)?.value || "",
-      status: (document.getElementById("claimStatus") as HTMLSelectElement)?.value || "Open",
+      amount: ((document as any).getElementById("claimAmount") as HTMLInputElement)?.value || "0",
+      description: ((document as any).getElementById("claimDescription") as HTMLTextAreaElement)?.value || "",
+      status: ((document as any).getElementById("claimStatus") as HTMLSelectElement)?.value || "Open",
     }
 
     setClaims([...claims, newClaim])
     setClaimDate(undefined)
 
     // Reset form fields
-    if (document.getElementById("claimAmount") as HTMLInputElement)
-      (document.getElementById("claimAmount") as HTMLInputElement).value = ""
-    if (document.getElementById("claimDescription") as HTMLTextAreaElement)
-      (document.getElementById("claimDescription") as HTMLTextAreaElement).value = ""
-    if (document.getElementById("claimStatus") as HTMLSelectElement)
-      (document.getElementById("claimStatus") as HTMLSelectElement).value = "Open"
+    if ((document as any).getElementById("claimAmount") as HTMLInputElement)
+      ((document as any).getElementById("claimAmount") as HTMLInputElement).value = ""
+    if ((document as any).getElementById("claimDescription") as HTMLTextAreaElement)
+      ((document as any).getElementById("claimDescription") as HTMLTextAreaElement).value = ""
+    if ((document as any).getElementById("claimStatus") as HTMLSelectElement)
+      ((document as any).getElementById("claimStatus") as HTMLSelectElement).value = "Open"
   }
 
   const addVehicle = () => {
     const newVehicle = {
-      year: (document.getElementById("vehicleYear") as HTMLInputElement)?.value || "",
-      make: (document.getElementById("vehicleMake") as HTMLInputElement)?.value || "",
-      model: (document.getElementById("vehicleModel") as HTMLInputElement)?.value || "",
-      vin: (document.getElementById("vehicleVin") as HTMLInputElement)?.value || "",
-      seatingCapacity: (document.getElementById("vehicleSeatingCapacity") as HTMLInputElement)?.value || "0",
-      value: (document.getElementById("vehicleValue") as HTMLInputElement)?.value || "0",
-      primaryUsage: (document.getElementById("vehiclePrimaryUsage") as HTMLSelectElement)?.value || "",
+      year: ((document as any).getElementById("vehicleYear") as HTMLInputElement)?.value || "",
+      make: ((document as any).getElementById("vehicleMake") as HTMLInputElement)?.value || "",
+      model: ((document as any).getElementById("vehicleModel") as HTMLInputElement)?.value || "",
+      vin: ((document as any).getElementById("vehicleVin") as HTMLInputElement)?.value || "",
+      seatingCapacity: ((document as any).getElementById("vehicleSeatingCapacity") as HTMLInputElement)?.value || "0",
+      value: ((document as any).getElementById("vehicleValue") as HTMLInputElement)?.value || "0",
+      primaryUsage: ((document as any).getElementById("vehiclePrimaryUsage") as HTMLSelectElement)?.value || "",
     }
 
     setVehicles([...vehicles, newVehicle])
 
     // Reset form fields
-    if (document.getElementById("vehicleYear") as HTMLInputElement)
-      (document.getElementById("vehicleYear") as HTMLInputElement).value = ""
-    if (document.getElementById("vehicleMake") as HTMLInputElement)
-      (document.getElementById("vehicleMake") as HTMLInputElement).value = ""
-    if (document.getElementById("vehicleModel") as HTMLInputElement)
-      (document.getElementById("vehicleModel") as HTMLInputElement).value = ""
-    if (document.getElementById("vehicleVin") as HTMLInputElement)
-      (document.getElementById("vehicleVin") as HTMLInputElement).value = ""
-    if (document.getElementById("vehicleSeatingCapacity") as HTMLInputElement)
-      (document.getElementById("vehicleSeatingCapacity") as HTMLInputElement).value = "0"
-    if (document.getElementById("vehicleValue") as HTMLInputElement)
-      (document.getElementById("vehicleValue") as HTMLInputElement).value = "0"
-    if (document.getElementById("vehiclePrimaryUsage") as HTMLSelectElement)
-      (document.getElementById("vehiclePrimaryUsage") as HTMLSelectElement).value = ""
+    if ((document as any).getElementById("vehicleYear") as HTMLInputElement)
+      ((document as any).getElementById("vehicleYear") as HTMLInputElement).value = ""
+    if ((document as any).getElementById("vehicleMake") as HTMLInputElement)
+      ((document as any).getElementById("vehicleMake") as HTMLInputElement).value = ""
+    if ((document as any).getElementById("vehicleModel") as HTMLInputElement)
+      ((document as any).getElementById("vehicleModel") as HTMLInputElement).value = ""
+    if ((document as any).getElementById("vehicleVin") as HTMLInputElement)
+      ((document as any).getElementById("vehicleVin") as HTMLInputElement).value = ""
+    if ((document as any).getElementById("vehicleSeatingCapacity") as HTMLInputElement)
+      ((document as any).getElementById("vehicleSeatingCapacity") as HTMLInputElement).value = "0"
+    if ((document as any).getElementById("vehicleValue") as HTMLInputElement)
+      ((document as any).getElementById("vehicleValue") as HTMLInputElement).value = "0"
+    if ((document as any).getElementById("vehiclePrimaryUsage") as HTMLSelectElement)
+      ((document as any).getElementById("vehiclePrimaryUsage") as HTMLSelectElement).value = ""
   }
 
   const addDriver = () => {
     const newDriver = {
-      firstName: (document.getElementById("driverFirstName") as HTMLInputElement)?.value || "",
-      lastName: (document.getElementById("driverLastName") as HTMLInputElement)?.value || "",
-      dateOfBirth: (document.getElementById("driverDOB") as HTMLInputElement)?.value || "",
-      hireDate: (document.getElementById("driverHireDate") as HTMLInputElement)?.value || "",
-      licenseNumber: (document.getElementById("driverLicenseNumber") as HTMLInputElement)?.value || "",
-      licenseState: (document.getElementById("driverLicenseState") as HTMLSelectElement)?.value || "",
-      experience: (document.getElementById("driverExperience") as HTMLInputElement)?.value || "0",
-      violations: (document.getElementById("driverViolations") as HTMLSelectElement)?.selectedOptions || [],
+      firstName: ((document as any).getElementById("driverFirstName") as HTMLInputElement)?.value || "",
+      lastName: ((document as any).getElementById("driverLastName") as HTMLInputElement)?.value || "",
+      dateOfBirth: ((document as any).getElementById("driverDOB") as HTMLInputElement)?.value || "",
+      hireDate: ((document as any).getElementById("driverHireDate") as HTMLInputElement)?.value || "",
+      licenseNumber: ((document as any).getElementById("driverLicenseNumber") as HTMLInputElement)?.value || "",
+      licenseState: ((document as any).getElementById("driverLicenseState") as HTMLSelectElement)?.value || "",
+      experience: ((document as any).getElementById("driverExperience") as HTMLInputElement)?.value || "0",
+      violations: ((document as any).getElementById("driverViolations") as HTMLSelectElement)?.selectedOptions || [],
     }
 
     setDrivers([...drivers, newDriver])
 
     // Reset form fields
-    if (document.getElementById("driverFirstName") as HTMLInputElement)
-      (document.getElementById("driverFirstName") as HTMLInputElement).value = ""
-    if (document.getElementById("driverLastName") as HTMLInputElement)
-      (document.getElementById("driverLastName") as HTMLInputElement).value = ""
-    if (document.getElementById("driverDOB") as HTMLInputElement)
-      (document.getElementById("driverDOB") as HTMLInputElement).value = ""
-    if (document.getElementById("driverHireDate") as HTMLInputElement)
-      (document.getElementById("driverHireDate") as HTMLInputElement).value = ""
-    if (document.getElementById("driverLicenseNumber") as HTMLInputElement)
-      (document.getElementById("driverLicenseNumber") as HTMLInputElement).value = ""
-    if (document.getElementById("driverLicenseState") as HTMLSelectElement)
-      (document.getElementById("driverLicenseState") as HTMLSelectElement).value = ""
-    if (document.getElementById("driverExperience") as HTMLInputElement)
-      (document.getElementById("driverExperience") as HTMLInputElement).value = "0"
+    if ((document as any).getElementById("driverFirstName") as HTMLInputElement)
+      ((document as any).getElementById("driverFirstName") as HTMLInputElement).value = ""
+    if ((document as any).getElementById("driverLastName") as HTMLInputElement)
+      ((document as any).getElementById("driverLastName") as HTMLInputElement).value = ""
+    if ((document as any).getElementById("driverDOB") as HTMLInputElement)
+      ((document as any).getElementById("driverDOB") as HTMLInputElement).value = ""
+    if ((document as any).getElementById("driverHireDate") as HTMLInputElement)
+      ((document as any).getElementById("driverHireDate") as HTMLInputElement).value = ""
+    if ((document as any).getElementById("driverLicenseNumber") as HTMLInputElement)
+      ((document as any).getElementById("driverLicenseNumber") as HTMLInputElement).value = ""
+    if ((document as any).getElementById("driverLicenseState") as HTMLSelectElement)
+      ((document as any).getElementById("driverLicenseState") as HTMLSelectElement).value = ""
+    if ((document as any).getElementById("driverExperience") as HTMLInputElement)
+      ((document as any).getElementById("driverExperience") as HTMLInputElement).value = "0"
   }
 
   const handleUrbanDrivingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -1537,7 +1537,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="aircraft"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("aircraft_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("aircraft_yes")?.checked}
                     />
                     <label htmlFor="aircraft_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1550,7 +1550,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="aircraft"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || !document.getElementById("aircraft_yes")?.checked}
+                      checked={defaultNoAnswers || !(document as any).getElementById("aircraft_yes")?.checked}
                     />
                     <label htmlFor="aircraft_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1572,7 +1572,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="hazardous"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("hazardous_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("hazardous_yes")?.checked}
                     />
                     <label htmlFor="hazardous_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1585,7 +1585,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="hazardous"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || !document.getElementById("hazardous_yes")?.checked}
+                      checked={defaultNoAnswers || !(document as any).getElementById("hazardous_yes")?.checked}
                     />
                     <label htmlFor="hazardous_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1606,7 +1606,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="underground"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("underground_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("underground_yes")?.checked}
                     />
                     <label htmlFor="underground_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1619,7 +1619,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="underground"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || !document.getElementById("underground_yes")?.checked}
+                      checked={defaultNoAnswers || !(document as any).getElementById("underground_yes")?.checked}
                     />
                     <label htmlFor="underground_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1640,7 +1640,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="barges"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("barges_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("barges_yes")?.checked}
                     />
                     <label htmlFor="barges_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1653,7 +1653,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="barges"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || !document.getElementById("barges_yes")?.checked}
+                      checked={defaultNoAnswers || !(document as any).getElementById("barges_yes")?.checked}
                     />
                     <label htmlFor="barges_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1674,7 +1674,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="otherBusiness"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("otherBusiness_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("otherBusiness_yes")?.checked}
                     />
                     <label htmlFor="otherBusiness_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1687,7 +1687,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="otherBusiness"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || !document.getElementById("otherBusiness_yes")?.checked}
+                      checked={defaultNoAnswers || !(document as any).getElementById("otherBusiness_yes")?.checked}
                     />
                     <label htmlFor="otherBusiness_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1708,7 +1708,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="subcontractors"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("subcontractors_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("subcontractors_yes")?.checked}
                     />
                     <label htmlFor="subcontractors_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1721,7 +1721,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="subcontractors"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || !document.getElementById("subcontractors_yes")?.checked}
+                      checked={defaultNoAnswers || !(document as any).getElementById("subcontractors_yes")?.checked}
                     />
                     <label htmlFor="subcontractors_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1742,7 +1742,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="workSublet"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("workSublet_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("workSublet_yes")?.checked}
                     />
                     <label htmlFor="workSublet_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1755,7 +1755,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="workSublet"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || !document.getElementById("workSublet_yes")?.checked}
+                      checked={defaultNoAnswers || !(document as any).getElementById("workSublet_yes")?.checked}
                     />
                     <label htmlFor="workSublet_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1774,7 +1774,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="safetyProgram"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("safetyProgram_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("safetyProgram_yes")?.checked}
                     />
                     <label htmlFor="safetyProgram_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1787,7 +1787,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="safetyProgram"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || !document.getElementById("safetyProgram_yes")?.checked}
+                      checked={defaultNoAnswers || !(document as any).getElementById("safetyProgram_yes")?.checked}
                     />
                     <label htmlFor="safetyProgram_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1806,7 +1806,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="groupTransportation"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("groupTransportation_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("groupTransportation_yes")?.checked}
                     />
                     <label htmlFor="groupTransportation_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1819,7 +1819,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="groupTransportation"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || !document.getElementById("groupTransportation_yes")?.checked}
+                      checked={defaultNoAnswers || !(document as any).getElementById("groupTransportation_yes")?.checked}
                     />
                     <label htmlFor="groupTransportation_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1838,7 +1838,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="seasonalEmployees"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("seasonalEmployees_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("seasonalEmployees_yes")?.checked}
                     />
                     <label htmlFor="seasonalEmployees_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1851,7 +1851,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="seasonalEmployees"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || !document.getElementById("seasonalEmployees_yes")?.checked}
+                      checked={defaultNoAnswers || !(document as any).getElementById("seasonalEmployees_yes")?.checked}
                     />
                     <label htmlFor="seasonalEmployees_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1870,7 +1870,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="volunteerLabor"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("volunteerLabor_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("volunteerLabor_yes")?.checked}
                     />
                     <label htmlFor="volunteerLabor_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1883,7 +1883,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="volunteerLabor"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || !document.getElementById("volunteerLabor_yes")?.checked}
+                      checked={defaultNoAnswers || !(document as any).getElementById("volunteerLabor_yes")?.checked}
                     />
                     <label htmlFor="volunteerLabor_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1902,7 +1902,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="travelOutOfState"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("travelOutOfState_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("travelOutOfState_yes")?.checked}
                     />
                     <label htmlFor="travelOutOfState_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1915,7 +1915,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="travelOutOfState"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || !document.getElementById("travelOutOfState_yes")?.checked}
+                      checked={defaultNoAnswers || !(document as any).getElementById("travelOutOfState_yes")?.checked}
                     />
                     <label htmlFor="travelOutOfState_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1934,7 +1934,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="athleticTeams"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("athleticTeams_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("athleticTeams_yes")?.checked}
                     />
                     <label htmlFor="athleticTeams_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1947,7 +1947,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="athleticTeams"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || !document.getElementById("athleticTeams_yes")?.checked}
+                      checked={defaultNoAnswers || !(document as any).getElementById("athleticTeams_yes")?.checked}
                     />
                     <label htmlFor="athleticTeams_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1968,7 +1968,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="physicals"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("physicals_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("physicals_yes")?.checked}
                     />
                     <label htmlFor="physicals_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1981,7 +1981,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       name="physicals"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || !document.getElementById("physicals_yes")?.checked}
+                      checked={defaultNoAnswers || !(document as any).getElementById("physicals_yes")?.checked}
                     />
                     <label htmlFor="physicals_no" className="ml-2 block text-sm text-gray-700">
                       No

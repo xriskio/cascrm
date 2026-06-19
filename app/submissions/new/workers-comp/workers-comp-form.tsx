@@ -4,7 +4,8 @@ import type React from "react"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Check, Plus, Trash } from "lucide-react"
-import { DatePicker } from "@/components/ui/date-picker"
+import { DatePicker as DatePickerBase } from "@/components/ui/date-picker"
+const DatePicker: any = DatePickerBase
 import { US_STATES } from "@/lib/states"
 import { submitApplication } from "@/app/actions/submit-application"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
@@ -953,7 +954,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
 
                 <h4 className="text-md font-medium mb-4">Class Codes</h4>
 
-                {location.classCodes.map((classCode, classIndex) => (
+                {location.classCodes.map((classCode: any, classIndex: number) => (
                   <div key={classIndex} className="border border-gray-100 rounded p-4 mb-4 bg-gray-50">
                     <div className="flex justify-between items-center mb-4">
                       <h5 className="text-sm font-medium">Class Code {classIndex + 1}</h5>
@@ -1574,7 +1575,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="aircraft"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("aircraft_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("aircraft_yes")?.checked}
                     />
                     <label htmlFor="aircraft_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1587,7 +1588,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="aircraft"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("aircraft_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("aircraft_no")?.checked}
                     />
                     <label htmlFor="aircraft_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1609,7 +1610,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="hazardous"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("hazardous_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("hazardous_yes")?.checked}
                     />
                     <label htmlFor="hazardous_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1622,7 +1623,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="hazardous"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("hazardous_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("hazardous_no")?.checked}
                     />
                     <label htmlFor="hazardous_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1643,7 +1644,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="underground"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("underground_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("underground_yes")?.checked}
                     />
                     <label htmlFor="underground_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1656,7 +1657,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="underground"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("underground_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("underground_no")?.checked}
                     />
                     <label htmlFor="underground_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1677,7 +1678,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="barges"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("barges_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("barges_yes")?.checked}
                     />
                     <label htmlFor="barges_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1690,7 +1691,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="barges"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("barges_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("barges_no")?.checked}
                     />
                     <label htmlFor="barges_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1711,7 +1712,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="otherBusiness"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("otherBusiness_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("otherBusiness_yes")?.checked}
                     />
                     <label htmlFor="otherBusiness_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1724,7 +1725,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="otherBusiness"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("otherBusiness_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("otherBusiness_no")?.checked}
                     />
                     <label htmlFor="otherBusiness_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1745,7 +1746,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="subcontractors"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("subcontractors_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("subcontractors_yes")?.checked}
                     />
                     <label htmlFor="subcontractors_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1758,7 +1759,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="subcontractors"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("subcontractors_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("subcontractors_no")?.checked}
                     />
                     <label htmlFor="subcontractors_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1779,7 +1780,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="workSublet"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("workSublet_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("workSublet_yes")?.checked}
                     />
                     <label htmlFor="workSublet_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1792,7 +1793,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="workSublet"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("workSublet_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("workSublet_no")?.checked}
                     />
                     <label htmlFor="workSublet_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1811,7 +1812,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="safetyProgram"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("safetyProgram_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("safetyProgram_yes")?.checked}
                     />
                     <label htmlFor="safetyProgram_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1824,7 +1825,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="safetyProgram"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("safetyProgram_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("safetyProgram_no")?.checked}
                     />
                     <label htmlFor="safetyProgram_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1843,7 +1844,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="groupTransportation"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("groupTransportation_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("groupTransportation_yes")?.checked}
                     />
                     <label htmlFor="groupTransportation_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1856,7 +1857,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="groupTransportation"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("groupTransportation_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("groupTransportation_no")?.checked}
                     />
                     <label htmlFor="groupTransportation_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1875,7 +1876,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="seasonalEmployees"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("seasonalEmployees_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("seasonalEmployees_yes")?.checked}
                     />
                     <label htmlFor="seasonalEmployees_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1888,7 +1889,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="seasonalEmployees"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("seasonalEmployees_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("seasonalEmployees_no")?.checked}
                     />
                     <label htmlFor="seasonalEmployees_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1907,7 +1908,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="volunteerLabor"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("volunteerLabor_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("volunteerLabor_yes")?.checked}
                     />
                     <label htmlFor="volunteerLabor_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1920,7 +1921,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="volunteerLabor"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("volunteerLabor_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("volunteerLabor_no")?.checked}
                     />
                     <label htmlFor="volunteerLabor_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1939,7 +1940,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="travelOutOfState"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("travelOutOfState_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("travelOutOfState_yes")?.checked}
                     />
                     <label htmlFor="travelOutOfState_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1952,7 +1953,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="travelOutOfState"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("travelOutOfState_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("travelOutOfState_no")?.checked}
                     />
                     <label htmlFor="travelOutOfState_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -1971,7 +1972,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="athleticTeams"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("athleticTeams_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("athleticTeams_yes")?.checked}
                     />
                     <label htmlFor="athleticTeams_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -1984,7 +1985,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="athleticTeams"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("athleticTeams_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("athleticTeams_no")?.checked}
                     />
                     <label htmlFor="athleticTeams_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -2005,7 +2006,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="physicals"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("physicals_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("physicals_yes")?.checked}
                     />
                     <label htmlFor="physicals_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -2018,7 +2019,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="physicals"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("physicals_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("physicals_no")?.checked}
                     />
                     <label htmlFor="physicals_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -2037,7 +2038,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="otherInsurance"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("otherInsurance_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("otherInsurance_yes")?.checked}
                     />
                     <label htmlFor="otherInsurance_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -2050,7 +2051,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="otherInsurance"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("otherInsurance_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("otherInsurance_no")?.checked}
                     />
                     <label htmlFor="otherInsurance_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -2071,7 +2072,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="priorCoverage"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("priorCoverage_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("priorCoverage_yes")?.checked}
                     />
                     <label htmlFor="priorCoverage_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -2084,7 +2085,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="priorCoverage"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("priorCoverage_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("priorCoverage_no")?.checked}
                     />
                     <label htmlFor="priorCoverage_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -2103,7 +2104,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="healthPlans"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("healthPlans_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("healthPlans_yes")?.checked}
                     />
                     <label htmlFor="healthPlans_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -2116,7 +2117,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="healthPlans"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("healthPlans_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("healthPlans_no")?.checked}
                     />
                     <label htmlFor="healthPlans_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -2137,7 +2138,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="laborInterchange"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("laborInterchange_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("laborInterchange_yes")?.checked}
                     />
                     <label htmlFor="laborInterchange_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -2150,7 +2151,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="laborInterchange"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("laborInterchange_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("laborInterchange_no")?.checked}
                     />
                     <label htmlFor="laborInterchange_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -2171,7 +2172,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="leaseEmployees"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("leaseEmployees_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("leaseEmployees_yes")?.checked}
                     />
                     <label htmlFor="leaseEmployees_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -2184,7 +2185,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="leaseEmployees"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("leaseEmployees_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("leaseEmployees_no")?.checked}
                     />
                     <label htmlFor="leaseEmployees_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -2205,7 +2206,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="workAtHome"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("workAtHome_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("workAtHome_yes")?.checked}
                     />
                     <label htmlFor="workAtHome_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -2218,7 +2219,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="workAtHome"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("workAtHome_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("workAtHome_no")?.checked}
                     />
                     <label htmlFor="workAtHome_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -2239,7 +2240,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="taxLiens"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("taxLiens_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("taxLiens_yes")?.checked}
                     />
                     <label htmlFor="taxLiens_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -2252,7 +2253,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="taxLiens"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("taxLiens_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("taxLiens_no")?.checked}
                     />
                     <label htmlFor="taxLiens_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -2274,7 +2275,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="unpaidPremium"
                       value="yes"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={!defaultNoAnswers && document.getElementById("unpaidPremium_yes")?.checked}
+                      checked={!defaultNoAnswers && (document as any).getElementById("unpaidPremium_yes")?.checked}
                     />
                     <label htmlFor="unpaidPremium_yes" className="ml-2 block text-sm text-gray-700">
                       Yes
@@ -2287,7 +2288,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name="unpaidPremium"
                       value="no"
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                      checked={defaultNoAnswers || document.getElementById("unpaidPremium_no")?.checked}
+                      checked={defaultNoAnswers || (document as any).getElementById("unpaidPremium_no")?.checked}
                     />
                     <label htmlFor="unpaidPremium_no" className="ml-2 block text-sm text-gray-700">
                       No
@@ -2410,14 +2411,14 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                       <DatePicker
                         date={policy.effectiveDate}
-                        setDate={(date) => updatePriorPolicy(index, "effectiveDate", date)}
+                        setDate={(date: any) => updatePriorPolicy(index, "effectiveDate", date)}
                         label="Effective Date"
                         placeholder="Select date"
                         name={`policy_${index}_effectiveDate`}
                       />
                       <DatePicker
                         date={policy.expirationDate}
-                        setDate={(date) => updatePriorPolicy(index, "expirationDate", date)}
+                        setDate={(date: any) => updatePriorPolicy(index, "expirationDate", date)}
                         label="Expiration Date"
                         placeholder="Select date"
                         name={`policy_${index}_expirationDate`}
@@ -2520,7 +2521,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                       <DatePicker
                         date={claim.date}
-                        setDate={(date) => updateLargeClaim(index, "date", date)}
+                        setDate={(date: any) => updateLargeClaim(index, "date", date)}
                         label="Date of Loss"
                         placeholder="Select date"
                         name={`claim_${index}_date`}

@@ -31,7 +31,7 @@ export default function QQCatalystApiStatusPage() {
       const authData = await authResponse.json()
 
       // Check basic endpoints
-      const endpoints = []
+      const endpoints: NonNullable<ApiStatus["endpoints"]> = []
 
       try {
         const contactsResponse = await fetch("/api/qqcatalyst/test?endpoint=Contacts&limit=1")
@@ -172,7 +172,7 @@ export default function QQCatalystApiStatusPage() {
               {loading ? "Checking..." : "Refresh Status"}
             </Button>
 
-            <Button onClick={handleImport} disabled={importLoading || (status && !status.success)}>
+            <Button onClick={handleImport} disabled={importLoading || ((status && !status.success) as any)}>
               <Download className={`h-4 w-4 mr-2 ${importLoading ? "animate-spin" : ""}`} />
               {importLoading ? "Importing..." : "Import Data"}
             </Button>

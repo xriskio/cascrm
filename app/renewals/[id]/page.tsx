@@ -70,7 +70,7 @@ export default function RenewalDetailPage() {
   const handleStatusUpdate = async (newStatus: string) => {
     try {
       setProcessing(true)
-      const result = await updateRenewalStatus(renewalId, newStatus, "", "User")
+      const result = await (updateRenewalStatus as any)(renewalId, newStatus, "", "User")
       if (result.success) {
         setRenewal({ ...renewal, status: newStatus })
         toast({
@@ -128,7 +128,7 @@ export default function RenewalDetailPage() {
     try {
       setProcessing(true)
       // First update status to bound
-      await updateRenewalStatus(renewalId, "bound", "Converted to policy", "User")
+      await (updateRenewalStatus as any)(renewalId, "bound", "Converted to policy", "User")
 
       toast({
         title: "Renewal converted",
@@ -172,7 +172,7 @@ export default function RenewalDetailPage() {
           description: "Renewal notification has been sent to the client",
         })
         // Update status to "contacted"
-        await updateRenewalStatus(renewalId, "contacted", "Initial notification sent", "User")
+        await (updateRenewalStatus as any)(renewalId, "contacted", "Initial notification sent", "User")
         setRenewal({ ...renewal, status: "contacted" })
       } else {
         throw new Error(result.error || "Failed to send notification")

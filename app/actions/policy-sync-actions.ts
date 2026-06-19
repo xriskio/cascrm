@@ -107,7 +107,7 @@ export async function syncPoliciesAction(
     console.error("Error syncing policies:", error)
     return {
       success: false,
-      message: `Failed to sync policies: ${error.message}`,
+      message: `Failed to sync policies: ${(error as any).message}`,
     }
   }
 }
@@ -214,7 +214,7 @@ export async function syncAllPoliciesInDateRangeAction(
     console.error("Error syncing all policies in date range:", error)
     return {
       success: false,
-      message: `Failed to sync policies: ${error.message}`,
+      message: `Failed to sync policies: ${(error as any).message}`,
     }
   }
 }

@@ -171,7 +171,7 @@ export default function ImportRenewalsForm() {
         setColumnMappings(mappings)
       } else {
         const errorMessage =
-          typeof result.error === "string" ? result.error : result.error?.message || "Failed to process file"
+          typeof (result as any).error === "string" ? (result as any).error : (result as any).error?.message || "Failed to process file"
         setError(errorMessage)
       }
     } catch (err: any) {
@@ -228,7 +228,7 @@ export default function ImportRenewalsForm() {
         }, 3000)
       } else {
         const errorMessage =
-          typeof result.error === "string" ? result.error : result.error?.message || "Failed to import renewals"
+          typeof (result as any).error === "string" ? (result as any).error : (result as any).error?.message || "Failed to import renewals"
         setError(errorMessage)
       }
     } catch (err: any) {

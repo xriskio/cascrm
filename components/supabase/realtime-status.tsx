@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Wifi, WifiOff, Loader2, AlertTriangle } from "lucide-react"
 
 export function RealtimeStatus() {
-  const { isConnected, connectionStatus } = useRealtime()
+  const { isConnected, connectionStatus } = useRealtime() as any
 
   const getStatusIcon = () => {
     switch (connectionStatus) {

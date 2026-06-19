@@ -60,7 +60,7 @@ export function AddLeadModal({ isOpen, onClose, onLeadAdded }: AddLeadModalProps
         value: formData.value ? Number.parseFloat(formData.value) : null,
         status: "new",
         date_entered: new Date().toISOString(),
-      })
+      } as any)
 
       if (error) throw error
 

@@ -1,5 +1,7 @@
 import { qqcatalystRequest } from "./client"
-import type { PageOfBlobInfoDTO, BlobInfoDTO, ContactAccountInfoDTO, CustomerDetailSummaryDTO } from "./types" // Declare or import the necessary types
+import type { PageOfBlobInfoDTO, BlobInfoDTO } from "@/types/qqcatalyst-files"
+import type { ContactAccountInfoDTO } from "@/types/qqcatalyst-account"
+import type { CustomerDetailSummaryDTO } from "@/types/qqcatalyst-customer"
 
 /**
  * Fetch contacts from QQCatalyst using the LastModifiedCreated endpoint

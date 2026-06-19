@@ -35,7 +35,7 @@ export default function ContractorsForm() {
     return `CONT-${timestamp}-${random}`
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault()
     setIsSubmitting(true)
 
@@ -43,7 +43,7 @@ export default function ContractorsForm() {
       const formData = new FormData(event.target)
 
       // Convert FormData to a regular object
-      const formDataObj = {}
+      const formDataObj: Record<string, any> = {}
       formData.forEach((value, key) => {
         formDataObj[key] = value
       })
@@ -243,7 +243,7 @@ export default function ContractorsForm() {
                   <Checkbox
                     id="mailing-same"
                     checked={mailingAddressSameAsPhysical}
-                    onCheckedChange={setMailingAddressSameAsPhysical}
+                    onCheckedChange={setMailingAddressSameAsPhysical as any}
                     name="mailing_same_as_physical"
                   />
                   <Label htmlFor="mailing-same">Mailing address same as physical address</Label>
@@ -345,7 +345,7 @@ export default function ContractorsForm() {
                   <Checkbox
                     id="owner-address-same"
                     checked={ownerAddressSameAsPhysical}
-                    onCheckedChange={setOwnerAddressSameAsPhysical}
+                    onCheckedChange={setOwnerAddressSameAsPhysical as any}
                     name="owner_address_same_as_physical"
                   />
                   <Label htmlFor="owner-address-same">Owner / Officer address same as physical address</Label>

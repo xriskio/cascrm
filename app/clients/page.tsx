@@ -88,7 +88,7 @@ const ClientsPage = () => {
         }
 
         console.log(`Loaded ${clientData?.length || 0} clients from database`)
-        setClients(clientData || [])
+        setClients((clientData as any) || [])
       } catch (error) {
         console.error("Error loading clients:", error)
         setError(`Failed to load clients: ${error instanceof Error ? error.message : String(error)}`)
@@ -114,7 +114,7 @@ const ClientsPage = () => {
       })
 
       console.log(`Refreshed ${clientData?.length || 0} clients from database`)
-      setClients(clientData || [])
+      setClients((clientData as any) || [])
 
       // If still no data, show error
       if (!clientData || clientData.length === 0) {

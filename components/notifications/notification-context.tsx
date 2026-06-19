@@ -164,7 +164,7 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
         return
       }
 
-      setNotifications(data || [])
+      setNotifications((data as any) || [])
       setUnreadCount(data?.filter((n) => !n.is_read).length || 0)
     } catch (error) {
       console.error("Error in fetchNotifications:", error)

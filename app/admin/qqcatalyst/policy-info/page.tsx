@@ -13,11 +13,11 @@ import { fetchPolicySummary } from "@/lib/qqcatalyst/api"
 
 export default function PolicyInfoPage() {
   const [policyId, setPolicyId] = useState("")
-  const [policyInfo, setPolicyInfo] = useState(null)
+  const [policyInfo, setPolicyInfo] = useState<any | null>(null)
   const [loading, setLoading] = useState(false)
   const [importing, setImporting] = useState(false)
   const [message, setMessage] = useState("")
-  const [policySummary, setPolicySummary] = useState(null)
+  const [policySummary, setPolicySummary] = useState<any | null>(null)
   const [showSummary, setShowSummary] = useState(false)
 
   const handleFetchPolicy = async () => {
@@ -33,7 +33,7 @@ export default function PolicyInfoPage() {
         setMessage("Policy not found")
       }
     } catch (error) {
-      setMessage(`Error: ${error.message}`)
+      setMessage(`Error: ${error instanceof Error ? error.message : String(error)}`)
       setPolicyInfo(null)
     } finally {
       setLoading(false)
@@ -50,7 +50,7 @@ export default function PolicyInfoPage() {
       const result = await importPolicyInfoAction(policyId)
       setMessage(result.message)
     } catch (error) {
-      setMessage(`Error: ${error.message}`)
+      setMessage(`Error: ${error instanceof Error ? error.message : String(error)}`)
     } finally {
       setImporting(false)
     }
@@ -64,7 +64,7 @@ export default function PolicyInfoPage() {
       const result = await importEnhancedPoliciesAction()
       setMessage(result.message)
     } catch (error) {
-      setMessage(`Error: ${error.message}`)
+      setMessage(`Error: ${error instanceof Error ? error.message : String(error)}`)
     } finally {
       setImporting(false)
     }
@@ -84,7 +84,7 @@ export default function PolicyInfoPage() {
         setMessage("Policy summary not found")
       }
     } catch (error) {
-      setMessage(`Error: ${error.message}`)
+      setMessage(`Error: ${error instanceof Error ? error.message : String(error)}`)
       setPolicySummary(null)
     } finally {
       setLoading(false)
@@ -101,7 +101,7 @@ export default function PolicyInfoPage() {
       const result = await importPolicySummaryAction(policyId)
       setMessage(result.message)
     } catch (error) {
-      setMessage(`Error: ${error.message}`)
+      setMessage(`Error: ${error instanceof Error ? error.message : String(error)}`)
     } finally {
       setImporting(false)
     }
@@ -314,7 +314,7 @@ export default function PolicyInfoPage() {
                 <div>
                   <h3 className="font-semibold mb-3">Agency Fees</h3>
                   <div className="space-y-2">
-                    {policyInfo.PolicyAgencyFees.map((fee, index) => (
+                    {policyInfo.PolicyAgencyFees.map((fee: any, index: number) => (
                       <div key={index} className="flex justify-between items-center p-2 bg-gray-50 rounded">
                         <span className="font-medium">{fee.AgencyFeeName}</span>
                         <span>${fee.CalculatedAmount?.toFixed(2) || fee.Amount?.toFixed(2)}</span>
@@ -413,7 +413,7 @@ export default function PolicyInfoPage() {
                 <div>
                   <h3 className="font-semibold mb-3">Agency Fees</h3>
                   <div className="space-y-2">
-                    {policySummary.PolicyAgencyFees.map((fee, index) => (
+                    {policySummary.PolicyAgencyFees.map((fee: any, index: number) => (
                       <div key={index} className="flex justify-between items-center p-2 bg-gray-50 rounded">
                         <span className="font-medium">{fee.AgencyFeeName}</span>
                         <span>${fee.CalculatedAmount?.toFixed(2) || fee.Amount?.toFixed(2)}</span>

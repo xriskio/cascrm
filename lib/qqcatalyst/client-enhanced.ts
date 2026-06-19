@@ -49,7 +49,7 @@ async function fetchToken(): Promise<string> {
     return access_token
   } catch (error) {
     console.error("Failed to fetch QQCatalyst token:", error)
-    throw new Error(`Authentication failed: ${error.message}`)
+    throw new Error(`Authentication failed: ${(error as any).message}`)
   }
 }
 
@@ -79,7 +79,7 @@ export async function qqcatalystRequest(
     console.error(`QQCatalyst API error for ${endpoint}:`, error)
 
     // If it's a 401, clear the cached token and retry once
-    if (error.response?.status === 401 && cached.token) {
+    if ((error as any).response?.status === 401 && cached.token) {
       console.log("Token expired, clearing cache and retrying...")
       cached = { token: null, exp: 0 }
 

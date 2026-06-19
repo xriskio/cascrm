@@ -24,7 +24,7 @@ export async function testClientNavigation(clientId: string): Promise<ClientNavi
     // Step 1: Test Supabase client creation
     let supabase
     try {
-      supabase = createClient()
+      supabase = await createClient()
       results.push({
         step: "Create Supabase Client",
         success: true,
@@ -207,7 +207,7 @@ export async function testClientNavigation(clientId: string): Promise<ClientNavi
 
 export async function getAllClientsForTesting(): Promise<{ id: string; name: string }[]> {
   try {
-    const supabase = createClient()
+    const supabase = await createClient()
 
     const { data: clients, error } = await supabase.from("clients").select("id, name, company_name").limit(10)
 

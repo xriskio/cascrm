@@ -107,7 +107,7 @@ export default function GarageKeepersForm() {
     additionalComments: "",
   })
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: any) => {
     const { name, value, type } = e.target
 
     // For date inputs, convert to ISO string format if it's a valid date
@@ -118,19 +118,19 @@ export default function GarageKeepersForm() {
     }
   }
 
-  const handleCheckboxChange = (name, checked) => {
+  const handleCheckboxChange = (name: string, checked: any) => {
     setFormData((prev) => ({ ...prev, [name]: checked }))
   }
 
-  const handleDateChange = (name, date) => {
+  const handleDateChange = (name: string, date: any) => {
     setFormData((prev) => ({ ...prev, [name]: date }))
   }
 
-  const handleSelectChange = (name, value) => {
+  const handleSelectChange = (name: string, value: any) => {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleTabChange = (value) => {
+  const handleTabChange = (value: string) => {
     setActiveTab(value)
   }
 
@@ -150,7 +150,7 @@ export default function GarageKeepersForm() {
     }
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault()
     setIsSubmitting(true)
 

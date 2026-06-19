@@ -53,7 +53,7 @@ export default function StatusTracker({ renewalId, currentStatus, onStatusUpdate
     try {
       const result = await getRenewalStatusHistory(renewalId)
       if (result.success) {
-        setHistory(result.history)
+        setHistory((result as any).history)
       }
     } catch (error) {
       console.error("Error fetching status history:", error)
@@ -70,7 +70,7 @@ export default function StatusTracker({ renewalId, currentStatus, onStatusUpdate
 
     setUpdating(true)
     try {
-      const result = await updateRenewalStatus(renewalId, newStatus, notes)
+      const result = await (updateRenewalStatus as any)(renewalId, newStatus, notes)
       if (result.success) {
         toast({
           title: "Status Updated",

@@ -52,7 +52,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: error.message,
+        error: (error as any).message,
         timestamp: new Date().toISOString(),
       },
       { status: 500 },

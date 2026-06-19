@@ -79,7 +79,7 @@ export function GoogleMapsAddressInput({
     }
 
     // Handle API errors
-    window.gm_authFailure = () => {
+    ;(window as any).gm_authFailure = () => {
       setHasError(true)
       setErrorMessage("Google Maps API authentication failed. Using manual address entry.")
       setUseManualEntry(true)

@@ -90,7 +90,7 @@ async function upsertContactPhoneNumbers(token: string) {
     if (rows.length > 0) {
       const { error } = await supabase
         .from("contact_phone_numbers")
-        .upsert(rows, { onConflict: ["contact_id", "number"] })
+        .upsert(rows, { onConflict: ["contact_id", "number"] as any })
 
       if (error) {
         console.error("❌ contact phone numbers upsert error", error)
@@ -126,7 +126,7 @@ async function upsertContactEmails(token: string) {
     }))
 
     if (rows.length > 0) {
-      const { error } = await supabase.from("contact_emails").upsert(rows, { onConflict: ["contact_id", "email"] })
+      const { error } = await supabase.from("contact_emails").upsert(rows, { onConflict: ["contact_id", "email"] as any })
 
       if (error) {
         console.error("❌ contact emails upsert error", error)
@@ -267,13 +267,13 @@ async function importAll() {
   const token = await getToken()
 
   // Core data
-  const contactsCount = await upsertContacts(token)
-  const policiesCount = await upsertPolicies(token)
+  const contactsCount = await upsertContacts(token as any)
+  const policiesCount = await upsertPolicies(token as any)
 
   // Extended data
-  const renewalsCount = await upsertRenewals(token)
-  const locationsCount = await upsertLocations(token)
-  const vehiclesCount = await upsertVehicles(token)
+  const renewalsCount = await upsertRenewals(token as any)
+  const locationsCount = await upsertLocations(token as any)
+  const vehiclesCount = await upsertVehicles(token as any)
 
   // Contact details
   const phoneNumbersCount = await upsertContactPhoneNumbers(token)

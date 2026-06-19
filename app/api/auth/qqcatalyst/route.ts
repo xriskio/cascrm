@@ -59,8 +59,8 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         error: "Failed to initiate authentication",
-        details: error.message,
-        stack: process.env.NODE_ENV === "development" ? error.stack : undefined,
+        details: (error as any).message,
+        stack: process.env.NODE_ENV === "development" ? (error as any).stack : undefined,
       },
       { status: 500 },
     )

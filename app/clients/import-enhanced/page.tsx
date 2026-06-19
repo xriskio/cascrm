@@ -49,7 +49,7 @@ export default function ClientImportEnhancedPage() {
 
       clearInterval(progressInterval)
       setProgress(100)
-      setResult(importResult)
+      setResult(importResult as any)
 
       if (importResult.success) {
         toast({
@@ -136,7 +136,7 @@ export default function ClientImportEnhancedPage() {
             <Checkbox
               id="includeInactive"
               checked={includeInactive}
-              onCheckedChange={setIncludeInactive}
+              onCheckedChange={setIncludeInactive as any}
               disabled={isImporting}
             />
             <Label htmlFor="includeInactive">Include inactive clients</Label>

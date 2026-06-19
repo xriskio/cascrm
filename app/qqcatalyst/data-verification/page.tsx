@@ -27,12 +27,12 @@ export default function DataVerificationPage() {
     setError(null)
 
     try {
-      const { data, error } = await supabase.from(tableName).select("*").limit(10)
+      const { data, error } = await (supabase as any).from(tableName).select("*").limit(10)
 
       if (error) throw error
 
       // Get count
-      const { count, error: countError } = await supabase.from(tableName).select("*", { count: "exact", head: true })
+      const { count, error: countError } = await (supabase as any).from(tableName).select("*", { count: "exact", head: true })
 
       if (countError) throw countError
 
@@ -45,7 +45,7 @@ export default function DataVerificationPage() {
       }))
     } catch (err) {
       console.error(`Error fetching ${tableName}:`, err)
-      setError(`Failed to fetch ${tableName}: ${err.message}`)
+      setError(`Failed to fetch ${tableName}: ${err instanceof Error ? err.message : String(err)}`)
     } finally {
       setLoading(false)
     }
@@ -60,13 +60,13 @@ export default function DataVerificationPage() {
         await fetchTableData(table.name)
       }
     } catch (err) {
-      setError(`Failed to fetch all tables: ${err.message}`)
+      setError(`Failed to fetch all tables: ${err instanceof Error ? err.message : String(err)}`)
     } finally {
       setLoading(false)
     }
   }
 
-  const TableCard = ({ table }) => {
+  const TableCard = ({ table }: { table: any }) => {
     const tableInfo = tableData[table.name]
     const Icon = table.icon
 
@@ -191,7 +191,7 @@ export default function DataVerificationPage() {
                         diagnostics: data,
                       }))
                     } catch (err) {
-                      setError(`Diagnostics failed: ${err.message}`)
+                      setError(`Diagnostics failed: ${err instanceof Error ? err.message : String(err)}`)
                     } finally {
                       setLoading(false)
                     }

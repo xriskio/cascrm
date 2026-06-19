@@ -272,7 +272,7 @@ export async function initializeQQCatalystSchemaAction() {
 
     if (error) {
       console.error("Error initializing QQCatalyst schema:", error)
-      return { success: false, error: error.message }
+      return { success: false, error: (error as any).message }
     }
 
     // Log the successful initialization
@@ -289,7 +289,7 @@ export async function initializeQQCatalystSchemaAction() {
     return { success: true }
   } catch (error) {
     console.error("Error in initializeQQCatalystSchemaAction:", error)
-    return { success: false, error: error.message }
+    return { success: false, error: (error as any).message }
   }
 }
 
@@ -314,7 +314,7 @@ export async function testDatabaseConnectionAction() {
         }
       }
 
-      return { success: false, error: error.message }
+      return { success: false, error: (error as any).message }
     }
 
     return {
@@ -324,7 +324,7 @@ export async function testDatabaseConnectionAction() {
     }
   } catch (error) {
     console.error("Error in testDatabaseConnectionAction:", error)
-    return { success: false, error: error.message }
+    return { success: false, error: (error as any).message }
   }
 }
 
@@ -339,7 +339,7 @@ export async function getPolicySyncStatsAction() {
     const { data, error } = await supabase.rpc("get_qqcatalyst_sync_stats")
 
     if (error) {
-      return { success: false, error: error.message }
+      return { success: false, error: (error as any).message }
     }
 
     // Also get total policy counts
@@ -358,7 +358,7 @@ export async function getPolicySyncStatsAction() {
     }
   } catch (error) {
     console.error("Error in getPolicySyncStatsAction:", error)
-    return { success: false, error: error.message }
+    return { success: false, error: (error as any).message }
   }
 }
 
@@ -375,7 +375,7 @@ export async function getExpiringPoliciesAction(daysFromNow = 90) {
     })
 
     if (error) {
-      return { success: false, error: error.message }
+      return { success: false, error: (error as any).message }
     }
 
     return {
@@ -384,6 +384,6 @@ export async function getExpiringPoliciesAction(daysFromNow = 90) {
     }
   } catch (error) {
     console.error("Error in getExpiringPoliciesAction:", error)
-    return { success: false, error: error.message }
+    return { success: false, error: (error as any).message }
   }
 }
