@@ -14,6 +14,12 @@ COPY client/ ./client/
 COPY server/ ./server/
 COPY shared/ ./shared/
 
+# Build-time env vars for Vite (injected via Railway build variables)
+ARG VITE_SUPABASE_URL
+ARG VITE_SUPABASE_ANON_KEY
+ENV VITE_SUPABASE_URL=$VITE_SUPABASE_URL
+ENV VITE_SUPABASE_ANON_KEY=$VITE_SUPABASE_ANON_KEY
+
 # Build client (outputs to server/public/)
 RUN cd client && npm run build
 
