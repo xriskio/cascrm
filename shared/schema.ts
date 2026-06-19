@@ -242,6 +242,90 @@ export const market_submissions = pgTable("market_submissions", {
   updated_at: timestamp("updated_at").defaultNow().notNull(),
 })
 
+export const renewal_workflows = pgTable("renewal_workflows", {
+  id: uuid("id").primaryKey().defaultRandom(),
+
+  renewal_id: uuid("renewal_id").notNull(),
+  policy_number: varchar("policy_number", { length: 255 }),
+  named_insured: varchar("named_insured", { length: 500 }),
+  policy_type: varchar("policy_type", { length: 255 }),
+  expiration_date: timestamp("expiration_date").notNull(),
+
+  // Contact
+  client_email: varchar("client_email", { length: 255 }),
+  client_phone: varchar("client_phone", { length: 50 }),
+  agent_name: varchar("agent_name", { length: 255 }),
+  agent_email: varchar("agent_email", { length: 255 }),
+
+  // Phase tracking: planning | execution | finalization | complete
+  current_phase: varchar("current_phase", { length: 50 }).default("planning"),
+
+  // Internal notes
+  strategy_notes: text("strategy_notes"),
+  market_notes: text("market_notes"),
+  binding_notes: text("binding_notes"),
+
+  // Financial tracking
+  expiring_premium: decimal("expiring_premium", { precision: 12, scale: 2 }),
+  quoted_premium: decimal("quoted_premium", { precision: 12, scale: 2 }),
+  bound_premium: decimal("bound_premium", { precision: 12, scale: 2 }),
+
+  // Status
+  status: varchar("status", { length: 50 }).default("active"), // active | bound | lost | cancelled
+
+  created_at: timestamp("created_at").defaultNow().notNull(),
+  updated_at: timestamp("updated_at").defaultNow().notNull(),
+})
+
+export const renewal_workflow_tasks = pgTable("renewal_workflow_tasks", {
+  id: uuid("id").primaryKey().defaultRandom(),
+
+  workflow_id: uuid("workflow_id").notNull(),
+  phase: varchar("phase", { length: 50 }).notNull(), // planning | execution | finalization | post_renewal
+  title: varchar("title", { length: 500 }).notNull(),
+  description: text("description"),
+
+  // Status
+  status: varchar("status", { length: 50 }).default("pending"), // pending | in_progress | completed | skipped
+
+  // Assignment
+  assigned_to: varchar("assigned_to", { length: 255 }),
+  assigned_role: varchar("assigned_role", { length: 50 }), // agent | account_manager | csr
+
+  due_date: timestamp("due_date"),
+  completed_at: timestamp("completed_at"),
+  completed_by: varchar("completed_by", { length: 255 }),
+
+  sort_order: integer("sort_order").default(0),
+  is_default: boolean("is_default").default(true), // part of standard workflow vs custom
+
+  created_at: timestamp("created_at").defaultNow().notNull(),
+  updated_at: timestamp("updated_at").defaultNow().notNull(),
+})
+
+export const renewal_workflow_notifications = pgTable("renewal_workflow_notifications", {
+  id: uuid("id").primaryKey().defaultRandom(),
+
+  workflow_id: uuid("workflow_id").notNull(),
+
+  // Type of notification
+  notification_type: varchar("notification_type", { length: 100 }).notNull(),
+  // kickoff_120 | phase2_90 | quotes_ready | proposal_30 | bound_confirmation | post_renewal_debrief
+
+  recipient_email: varchar("recipient_email", { length: 255 }).notNull(),
+  recipient_name: varchar("recipient_name", { length: 500 }),
+  recipient_type: varchar("recipient_type", { length: 50 }), // client | agent | csr
+
+  subject: varchar("subject", { length: 500 }),
+  body_preview: text("body_preview"),
+
+  status: varchar("status", { length: 50 }).default("sent"), // sent | failed
+  resend_id: varchar("resend_id", { length: 255 }),
+  error_message: text("error_message"),
+
+  sent_at: timestamp("sent_at").defaultNow().notNull(),
+})
+
 export const policies = pgTable("policies", {
   id: uuid("id").primaryKey().defaultRandom(),
   

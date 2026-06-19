@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { getRenewal, updateRenewalStatus, archiveRenewal } from "@/app/actions/renewal-actions"
 import { extractErrorMessage } from "@/lib/error-utils"
-import { ArrowLeft, AlertTriangle, Archive, Send, FileCheck, RefreshCw, FileText, Mail } from "lucide-react"
+import { ArrowLeft, AlertTriangle, Archive, Send, FileCheck, RefreshCw, FileText, Mail, GitBranch } from "lucide-react"
 import Link from "next/link"
 import {
   Dialog,
@@ -31,6 +31,8 @@ export default function RenewalDetailPage() {
   const [showConvertDialog, setShowConvertDialog] = useState(false)
   const [showEmailDialog, setShowEmailDialog] = useState(false)
   const [processing, setProcessing] = useState(false)
+  const [startingWorkflow, setStartingWorkflow] = useState(false)
+  const [existingWorkflowId, setExistingWorkflowId] = useState<string | null>(null)
 
   useEffect(() => {
     async function loadRenewal() {
@@ -54,6 +56,13 @@ export default function RenewalDetailPage() {
 
         if (result.success) {
           setRenewal(result.data)
+          // Check for existing workflow
+          const wfRes = await fetch(`/api/renewal-workflows?search=${result.data?.policy_number || result.data?.id}&limit=5`)
+          if (wfRes.ok) {
+            const wfJson = await wfRes.json()
+            const match = (wfJson.data || []).find((w: { renewal_id: string; id: string }) => w.renewal_id === renewalId)
+            if (match) setExistingWorkflowId(match.id)
+          }
         } else {
           setError(result.error || "Failed to load renewal")
         }
@@ -247,6 +256,54 @@ export default function RenewalDetailPage() {
           <h1 className="text-3xl font-bold mt-4">Renewal Details</h1>
         </div>
         <div className="flex gap-2">
+          {existingWorkflowId ? (
+            <Button
+              onClick={() => router.push(`/renewal-workflow/${existingWorkflowId}`)}
+              variant="outline"
+              className="bg-indigo-50 text-indigo-700 border-indigo-200 hover:bg-indigo-100"
+            >
+              <GitBranch className="h-4 w-4 mr-2" />
+              View Workflow
+            </Button>
+          ) : (
+            <Button
+              onClick={async () => {
+                setStartingWorkflow(true)
+                try {
+                  const res = await fetch('/api/renewal-workflows', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      renewal_id: renewalId,
+                      policy_number: renewal.policy_number,
+                      named_insured: renewal.named_insured || renewal.client_name,
+                      policy_type: renewal.policy_type || renewal.lob,
+                      expiration_date: renewal.expiration_date,
+                      agent_name: renewal.agent_name,
+                      expiring_premium: renewal.premium || renewal.total_premium,
+                    }),
+                  })
+                  const json = await res.json()
+                  if (res.ok || res.status === 409) {
+                    const wfId = json.data?.id || json.workflowId
+                    toast({ title: 'Workflow Started', description: '120-day renewal workflow created.' })
+                    router.push(`/renewal-workflow/${wfId}`)
+                  } else {
+                    toast({ title: 'Error', description: json.error || 'Failed to start workflow', variant: 'destructive' })
+                  }
+                } finally {
+                  setStartingWorkflow(false)
+                }
+              }}
+              disabled={startingWorkflow}
+              variant="outline"
+              className="bg-indigo-50 text-indigo-700 border-indigo-200 hover:bg-indigo-100"
+            >
+              <GitBranch className="h-4 w-4 mr-2" />
+              {startingWorkflow ? 'Starting...' : 'Start 120-Day Workflow'}
+            </Button>
+          )}
+
           {renewal.status !== "contacted" && (
             <Button
               onClick={() => setShowEmailDialog(true)}
