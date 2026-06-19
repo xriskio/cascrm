@@ -24,6 +24,7 @@ const NAV = [
     section: 'Insurance',
     items: [
       { label: 'Renewals',           icon: '↻', href: '/renewals'           },
+      { label: 'Renewal Workflow',   icon: '◴', href: '/renewals/workflow'  },
       { label: 'Submissions',        icon: '◻', href: '/submissions'        },
       { label: 'Quotes',             icon: '$', href: '/quotes'              },
       { label: 'Market Submissions', icon: '⊜', href: '/market-submissions' },

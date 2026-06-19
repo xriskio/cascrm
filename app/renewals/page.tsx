@@ -635,6 +635,15 @@ export default function RenewalsPage() {
           </div>
           <div className="flex gap-3">
             <Button
+              className="bg-primary text-primary-foreground hover:opacity-90"
+              onClick={() => router.push("/renewals/workflow")}
+              title="Open the 120-day renewal workflow board"
+            >
+              <Calendar className="h-4 w-4 mr-2" />
+              Open Renewal Workflow
+            </Button>
+
+            <Button
               variant="outline"
               className="bg-red-600/90 border-red-500/50 text-white hover:bg-red-700"
               onClick={handleClearAllRenewals}

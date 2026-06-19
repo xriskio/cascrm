@@ -149,6 +149,76 @@ export async function sendDocumentReminderEmail(data: DocumentReminderEmailData)
   }
 }
 
+export interface RenewalProgressEmailData {
+  clientName: string
+  clientEmail: string
+  policyNumber?: string | null
+  policyType?: string | null
+  carrier?: string | null
+  expirationDate?: string | null
+  phaseTitle: string
+  progressPct: number
+  completedSteps: string[]
+  nextSteps: string[]
+  agencyName?: string
+}
+
+export async function sendRenewalProgressEmail(data: RenewalProgressEmailData) {
+  const exp = data.expirationDate ? new Date(data.expirationDate).toLocaleDateString() : "TBD"
+  const completed = data.completedSteps.length
+    ? data.completedSteps.map((s) => `<li style="margin:4px 0;">✅ ${s}</li>`).join("")
+    : `<li style="margin:4px 0;color:#666;">Getting started</li>`
+  const next = data.nextSteps.length
+    ? data.nextSteps.map((s) => `<li style="margin:4px 0;">🔜 ${s}</li>`).join("")
+    : `<li style="margin:4px 0;color:#666;">Finalizing your renewal</li>`
+
+  const subject = `Your policy renewal is in progress${data.policyNumber ? ` — ${data.policyNumber}` : ""}`
+  const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <div style="background:#0066cc;color:#fff;padding:20px;border-radius:5px 5px 0 0;">
+        <h1 style="margin:0;font-size:22px;">Renewal Progress Update</h1>
+      </div>
+      <div style="background:#f9f9f9;padding:20px;border:1px solid #ddd;border-top:none;">
+        <p>Dear ${data.clientName},</p>
+        <p>Here is an update on the renewal of your policy. Our team is actively managing your renewal to ensure continuous coverage and the best possible terms.</p>
+        <div style="background:#fff;padding:15px;border-radius:5px;margin:18px 0;">
+          ${data.policyNumber ? `<p style="margin:6px 0;"><strong>Policy:</strong> ${data.policyNumber}</p>` : ""}
+          ${data.policyType ? `<p style="margin:6px 0;"><strong>Line of business:</strong> ${data.policyType}</p>` : ""}
+          ${data.carrier ? `<p style="margin:6px 0;"><strong>Carrier:</strong> ${data.carrier}</p>` : ""}
+          <p style="margin:6px 0;"><strong>Expiration:</strong> ${exp}</p>
+          <p style="margin:6px 0;"><strong>Current stage:</strong> ${data.phaseTitle}</p>
+        </div>
+        <div style="background:#e7f3ff;border-left:4px solid #0066cc;padding:12px 15px;border-radius:3px;margin:18px 0;">
+          <strong>Overall progress: ${data.progressPct}% complete</strong>
+          <div style="height:10px;background:#d6e4f5;border-radius:6px;margin-top:8px;overflow:hidden;">
+            <div style="height:10px;width:${data.progressPct}%;background:#0066cc;"></div>
+          </div>
+        </div>
+        <h3 style="color:#333;margin:18px 0 6px;">Completed</h3>
+        <ul style="padding-left:18px;margin:0;">${completed}</ul>
+        <h3 style="color:#333;margin:18px 0 6px;">What's next</h3>
+        <ul style="padding-left:18px;margin:0;">${next}</ul>
+        <p style="margin-top:24px;">If you have any questions or updates to share, simply reply to this email or contact your account manager.</p>
+        <p style="margin-top:24px;">Best regards,<br><strong>${data.agencyName || "Casurance Insurance Agency"}</strong></p>
+      </div>
+      <div style="background:#333;color:#999;padding:12px;text-align:center;border-radius:0 0 5px 5px;font-size:12px;">
+        Automated renewal update from InsureTrac by Casurance Insurance Agency
+      </div>
+    </div>`
+
+  const { data: emailData, error } = await resend.emails.send({
+    from: "InsureTrac <noreply@casurance.net>",
+    to: data.clientEmail,
+    subject,
+    html,
+  })
+
+  if (error) {
+    return { success: false, error: (error as any)?.message || "Failed to send email", subject }
+  }
+  return { success: true, emailId: emailData?.id, subject }
+}
+
 export async function sendSubmissionNotification(data: SubmissionEmailData) {
   try {
     const emailHtml = `

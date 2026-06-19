@@ -54,6 +54,7 @@ const navigation = [
   { name: "Submissions", href: "/submissions", icon: FileText },
   { name: "Market Submissions", href: "/market-submissions", icon: Briefcase },
   { name: "Renewals", href: "/renewals", icon: RefreshCw },
+  { name: "Renewal Workflow", href: "/renewals/workflow", icon: RefreshCw },
   { name: "Leads", href: "/leads", icon: UserPlus },
   { name: "Clients", href: "/clients", icon: Users },
   { name: "Call Log", href: "/call-log", icon: Phone },
