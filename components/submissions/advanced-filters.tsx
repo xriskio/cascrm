@@ -67,7 +67,7 @@ export function AdvancedFilters({ onFiltersChange, activeFilters }: AdvancedFilt
                   onSelect={(date: any) => handleFilterChange("startDate", date)}
                   placeholderText="Start date"
                 />
-                <span className="text-gray-400">to</span>
+                <span className="text-muted-foreground">to</span>
                 <DatePicker
                   selected={filters.endDate}
                   onSelect={(date: any) => handleFilterChange("endDate", date)}
@@ -86,7 +86,7 @@ export function AdvancedFilters({ onFiltersChange, activeFilters }: AdvancedFilt
                   value={filters.minPremium || ""}
                   onChange={(e) => handleFilterChange("minPremium", e.target.value)}
                 />
-                <span className="text-gray-400">to</span>
+                <span className="text-muted-foreground">to</span>
                 <Input
                   type="number"
                   placeholder="Max"
@@ -132,7 +132,7 @@ export function AdvancedFilters({ onFiltersChange, activeFilters }: AdvancedFilt
           {/* Active Filters Display */}
           {activeFilterCount > 0 && (
             <div className="flex flex-wrap gap-2 pt-4 border-t">
-              <span className="text-sm font-medium text-gray-700">Active filters:</span>
+              <span className="text-sm font-medium text-muted-foreground">Active filters:</span>
               {Object.entries(filters).map(([key, value]) => {
                 if (!value) return null
                 return (
@@ -144,7 +144,7 @@ export function AdvancedFilters({ onFiltersChange, activeFilters }: AdvancedFilt
                   </Badge>
                 )
               })}
-              <Button variant="ghost" size="sm" onClick={clearAllFilters} className="text-red-600 hover:text-red-700">
+              <Button variant="ghost" size="sm" onClick={clearAllFilters} className="text-red-600 hover:text-red-400">
                 Clear all
               </Button>
             </div>

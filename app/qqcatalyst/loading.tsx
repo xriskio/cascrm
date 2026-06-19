@@ -8,8 +8,8 @@ export default function QQCatalystLoading() {
           <Database className="h-8 w-8 text-blue-600 mr-2" />
           <Loader2 className="h-6 w-6 animate-spin text-blue-600" />
         </div>
-        <h3 className="text-lg font-medium text-gray-900 mb-2">Loading QQCatalyst</h3>
-        <p className="text-gray-500">Please wait while we load the QQCatalyst integration...</p>
+        <h3 className="text-lg font-medium text-foreground mb-2">Loading QQCatalyst</h3>
+        <p className="text-muted-foreground">Please wait while we load the QQCatalyst integration...</p>
       </div>
     </div>
   )

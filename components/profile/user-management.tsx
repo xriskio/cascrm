@@ -168,11 +168,11 @@ export function UserManagement() {
   const getRoleBadgeColor = (role: UserRole) => {
     switch (role) {
       case "admin":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       case "agent":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-500/15 text-blue-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -185,7 +185,7 @@ export function UserManagement() {
       <div className="flex justify-between items-center">
         <div>
           <h3 className="text-lg font-semibold">User Management</h3>
-          <p className="text-sm text-gray-500">Manage user accounts and permissions</p>
+          <p className="text-sm text-muted-foreground">Manage user accounts and permissions</p>
         </div>
         <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
           <DialogTrigger asChild>
@@ -278,7 +278,7 @@ export function UserManagement() {
           <TableBody>
             {users.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={5} className="text-center text-gray-500 py-8">
+                <TableCell colSpan={5} className="text-center text-muted-foreground py-8">
                   No users found
                 </TableCell>
               </TableRow>
@@ -310,7 +310,7 @@ export function UserManagement() {
                       variant="ghost"
                       size="sm"
                       onClick={() => setUserToDelete(user)}
-                      className="text-red-600 hover:text-red-800 hover:bg-red-50"
+                      className="text-red-600 hover:text-red-300 hover:bg-red-500/10"
                     >
                       <Trash2 className="w-4 h-4" />
                     </Button>

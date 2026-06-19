@@ -58,13 +58,13 @@ export function CompanyInformation({ showHoursOnly = false, showWebsitesOnly = f
               <div key={index} className="flex items-center justify-between border-b pb-2">
                 <div>
                   <p className="font-medium">{website.name}</p>
-                  <p className="text-sm text-gray-500">{website.description}</p>
+                  <p className="text-sm text-muted-foreground">{website.description}</p>
                 </div>
                 <Link
                   href={website.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800"
+                  className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-300"
                 >
                   Visit <ExternalLink className="h-3 w-3" />
                 </Link>
@@ -110,19 +110,19 @@ export function CompanyInformation({ showHoursOnly = false, showWebsitesOnly = f
               </div>
               <div className="flex justify-between">
                 <span className="font-medium">Saturday:</span>
-                <span className="text-gray-500">{companyInfo.hours.saturday}</span>
+                <span className="text-muted-foreground">{companyInfo.hours.saturday}</span>
               </div>
               <div className="flex justify-between">
                 <span className="font-medium">Sunday:</span>
-                <span className="text-gray-500">{companyInfo.hours.sunday}</span>
+                <span className="text-muted-foreground">{companyInfo.hours.sunday}</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-6 flex items-center gap-2 p-3 bg-amber-50 border border-amber-200 rounded-md">
+        <div className="mt-6 flex items-center gap-2 p-3 bg-amber-500/10 border border-border rounded-md">
           <AlertTriangle className="h-5 w-5 text-amber-500 flex-shrink-0" />
-          <p className="text-sm text-amber-800">{companyInfo.policies.walkins}</p>
+          <p className="text-sm text-amber-300">{companyInfo.policies.walkins}</p>
         </div>
       </div>
     )
@@ -133,7 +133,7 @@ export function CompanyInformation({ showHoursOnly = false, showWebsitesOnly = f
       <div>
         <h2 className="text-2xl font-bold text-orange-600 mb-1">{companyInfo.name}</h2>
         <div className="flex items-start gap-2">
-          <MapPin className="h-5 w-5 text-gray-500 mt-0.5 flex-shrink-0" />
+          <MapPin className="h-5 w-5 text-muted-foreground mt-0.5 flex-shrink-0" />
           <div>
             <p>{companyInfo.address.street}</p>
             <p>{companyInfo.address.suite}</p>
@@ -153,25 +153,25 @@ export function CompanyInformation({ showHoursOnly = false, showWebsitesOnly = f
             </h3>
             <div className="space-y-2">
               <div>
-                <span className="text-sm text-gray-500">Toll Free:</span>
+                <span className="text-sm text-muted-foreground">Toll Free:</span>
                 <p>{companyInfo.contact.tollFree}</p>
               </div>
               <div>
-                <span className="text-sm text-gray-500">Phone:</span>
+                <span className="text-sm text-muted-foreground">Phone:</span>
                 <p>{companyInfo.contact.phone}</p>
               </div>
               <div>
-                <span className="text-sm text-gray-500">Text:</span>
+                <span className="text-sm text-muted-foreground">Text:</span>
                 <p>{companyInfo.contact.text}</p>
               </div>
               <div className="flex items-center gap-2">
-                <Fax className="h-4 w-4 text-gray-500" />
-                <span className="text-sm text-gray-500">Fax:</span>
+                <Fax className="h-4 w-4 text-muted-foreground" />
+                <span className="text-sm text-muted-foreground">Fax:</span>
                 <p>{companyInfo.contact.fax}</p>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-gray-500" />
-                <span className="text-sm text-gray-500">Email:</span>
+                <Mail className="h-4 w-4 text-muted-foreground" />
+                <span className="text-sm text-muted-foreground">Email:</span>
                 <p>{companyInfo.contact.email}</p>
               </div>
             </div>
@@ -207,11 +207,11 @@ export function CompanyInformation({ showHoursOnly = false, showWebsitesOnly = f
               </div>
               <div className="flex justify-between">
                 <span className="font-medium">Saturday:</span>
-                <span className="text-gray-500">{companyInfo.hours.saturday}</span>
+                <span className="text-muted-foreground">{companyInfo.hours.saturday}</span>
               </div>
               <div className="flex justify-between">
                 <span className="font-medium">Sunday:</span>
-                <span className="text-gray-500">{companyInfo.hours.sunday}</span>
+                <span className="text-muted-foreground">{companyInfo.hours.sunday}</span>
               </div>
             </div>
           </CardContent>
@@ -231,20 +231,20 @@ export function CompanyInformation({ showHoursOnly = false, showWebsitesOnly = f
                   href={website.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-blue-600 hover:text-blue-800 flex items-center gap-1"
+                  className="font-medium text-blue-600 hover:text-blue-300 flex items-center gap-1"
                 >
                   {website.name} <ExternalLink className="h-3 w-3" />
                 </Link>
-                <span className="text-sm text-gray-500">{website.description}</span>
+                <span className="text-sm text-muted-foreground">{website.description}</span>
               </div>
             ))}
           </div>
         </CardContent>
       </Card>
 
-      <div className="mt-6 flex items-center gap-2 p-3 bg-amber-50 border border-amber-200 rounded-md">
+      <div className="mt-6 flex items-center gap-2 p-3 bg-amber-500/10 border border-border rounded-md">
         <AlertTriangle className="h-5 w-5 text-amber-500 flex-shrink-0" />
-        <p className="text-sm text-amber-800">{companyInfo.policies.walkins}</p>
+        <p className="text-sm text-amber-300">{companyInfo.policies.walkins}</p>
       </div>
     </div>
   )

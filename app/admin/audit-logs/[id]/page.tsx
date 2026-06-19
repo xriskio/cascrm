@@ -27,7 +27,7 @@ export default async function AuditLogDetailPage({ params }: { params: { id: str
       case "delete":
         return <Trash2 className="h-5 w-5 text-red-500" />
       case "view":
-        return <Eye className="h-5 w-5 text-gray-500" />
+        return <Eye className="h-5 w-5 text-muted-foreground" />
       default:
         return null
     }
@@ -63,13 +63,13 @@ export default async function AuditLogDetailPage({ params }: { params: { id: str
   return (
     <div className="p-6">
       <div className="mb-6">
-        <Link href="/admin/audit-logs" className="flex items-center text-orange-600 hover:text-orange-800">
+        <Link href="/admin/audit-logs" className="flex items-center text-orange-600 hover:text-orange-300">
           <ArrowLeft className="h-4 w-4 mr-1" />
           Back to Audit Logs
         </Link>
       </div>
 
-      <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+      <div className="bg-card rounded-lg shadow-md p-6 mb-6">
         <div className="flex items-center mb-4">
           {getActionIcon(log.action)}
           <h1 className="text-2xl font-bold ml-2 capitalize">
@@ -79,28 +79,28 @@ export default async function AuditLogDetailPage({ params }: { params: { id: str
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div>
-            <h2 className="text-sm font-medium text-gray-500 uppercase mb-2">Details</h2>
-            <div className="bg-gray-50 rounded-md p-4">
-              <dl className="divide-y divide-gray-200">
+            <h2 className="text-sm font-medium text-muted-foreground uppercase mb-2">Details</h2>
+            <div className="bg-muted rounded-md p-4">
+              <dl className="divide-y divide-border">
                 <div className="py-2 flex justify-between">
-                  <dt className="text-sm font-medium text-gray-500">Date & Time</dt>
-                  <dd className="text-sm text-gray-900">{format(new Date(log.created_at), "PPpp")}</dd>
+                  <dt className="text-sm font-medium text-muted-foreground">Date & Time</dt>
+                  <dd className="text-sm text-foreground">{format(new Date(log.created_at), "PPpp")}</dd>
                 </div>
                 <div className="py-2 flex justify-between">
-                  <dt className="text-sm font-medium text-gray-500">User</dt>
-                  <dd className="text-sm text-gray-900">{log.user_name || "Unknown User"}</dd>
+                  <dt className="text-sm font-medium text-muted-foreground">User</dt>
+                  <dd className="text-sm text-foreground">{log.user_name || "Unknown User"}</dd>
                 </div>
                 <div className="py-2 flex justify-between">
-                  <dt className="text-sm font-medium text-gray-500">Table</dt>
-                  <dd className="text-sm text-gray-900">{formatTableName(log.table_name)}</dd>
+                  <dt className="text-sm font-medium text-muted-foreground">Table</dt>
+                  <dd className="text-sm text-foreground">{formatTableName(log.table_name)}</dd>
                 </div>
                 <div className="py-2 flex justify-between">
-                  <dt className="text-sm font-medium text-gray-500">Record ID</dt>
-                  <dd className="text-sm font-mono text-gray-900">{log.record_id}</dd>
+                  <dt className="text-sm font-medium text-muted-foreground">Record ID</dt>
+                  <dd className="text-sm font-mono text-foreground">{log.record_id}</dd>
                 </div>
                 <div className="py-2 flex justify-between">
-                  <dt className="text-sm font-medium text-gray-500">IP Address</dt>
-                  <dd className="text-sm text-gray-900">{log.ip_address}</dd>
+                  <dt className="text-sm font-medium text-muted-foreground">IP Address</dt>
+                  <dd className="text-sm text-foreground">{log.ip_address}</dd>
                 </div>
               </dl>
             </div>
@@ -108,9 +108,9 @@ export default async function AuditLogDetailPage({ params }: { params: { id: str
 
           {log.action === "update" && (
             <div>
-              <h2 className="text-sm font-medium text-gray-500 uppercase mb-2">Changes</h2>
-              <div className="bg-gray-50 rounded-md p-4 max-h-60 overflow-y-auto">
-                <ul className="divide-y divide-gray-200">
+              <h2 className="text-sm font-medium text-muted-foreground uppercase mb-2">Changes</h2>
+              <div className="bg-muted rounded-md p-4 max-h-60 overflow-y-auto">
+                <ul className="divide-y divide-border">
                   {log.old_data &&
                     log.new_data &&
                     Object.keys(log.new_data)
@@ -125,7 +125,7 @@ export default async function AuditLogDetailPage({ params }: { params: { id: str
 
                         return (
                           <li key={key} className="py-2">
-                            <div className="text-sm font-medium text-gray-900">{key}</div>
+                            <div className="text-sm font-medium text-foreground">{key}</div>
                             <div className="mt-1 flex flex-col sm:flex-row">
                               <div className="text-sm text-red-500 line-through sm:w-1/2">
                                 {oldValue === null
@@ -160,7 +160,7 @@ export default async function AuditLogDetailPage({ params }: { params: { id: str
                         (oldValue == null && newValue != null) ||
                         (oldValue != null && newValue == null)
                       )
-                    }).length === 0) && <li className="py-2 text-sm text-gray-500">No visible changes detected</li>}
+                    }).length === 0) && <li className="py-2 text-sm text-muted-foreground">No visible changes detected</li>}
                 </ul>
               </div>
             </div>
@@ -169,10 +169,10 @@ export default async function AuditLogDetailPage({ params }: { params: { id: str
 
         {log.action !== "delete" && log.new_data && (
           <div>
-            <h2 className="text-sm font-medium text-gray-500 uppercase mb-2">
+            <h2 className="text-sm font-medium text-muted-foreground uppercase mb-2">
               {log.action === "create" ? "Created Data" : "Current Data"}
             </h2>
-            <div className="bg-gray-50 rounded-md p-4">
+            <div className="bg-muted rounded-md p-4">
               <pre className="text-xs overflow-x-auto max-h-96 overflow-y-auto">{formatJsonData(log.new_data)}</pre>
             </div>
           </div>
@@ -180,8 +180,8 @@ export default async function AuditLogDetailPage({ params }: { params: { id: str
 
         {log.action === "delete" && log.old_data && (
           <div>
-            <h2 className="text-sm font-medium text-gray-500 uppercase mb-2">Deleted Data</h2>
-            <div className="bg-gray-50 rounded-md p-4">
+            <h2 className="text-sm font-medium text-muted-foreground uppercase mb-2">Deleted Data</h2>
+            <div className="bg-muted rounded-md p-4">
               <pre className="text-xs overflow-x-auto max-h-96 overflow-y-auto">{formatJsonData(log.old_data)}</pre>
             </div>
           </div>

@@ -103,7 +103,7 @@ export function PasteImportModal({ isOpen, onClose }: PasteImportModalProps) {
               className="min-h-[200px] font-mono text-sm"
             />
             <div className="flex justify-between items-center mt-2">
-              <div className="text-sm text-gray-500">
+              <div className="text-sm text-muted-foreground">
                 {pastedData.split("\n").filter((line) => line.trim()).length} lines
               </div>
               <Button onClick={handleParse} disabled={!pastedData.trim()}>
@@ -114,9 +114,9 @@ export function PasteImportModal({ isOpen, onClose }: PasteImportModalProps) {
 
           {/* Format Examples */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-3 bg-gray-50 rounded-lg">
+            <div className="p-3 bg-muted rounded-lg">
               <div className="font-medium text-sm mb-2">CSV Format Example:</div>
-              <code className="text-xs text-gray-600">
+              <code className="text-xs text-muted-foreground">
                 Name,Email,Phone,Company
                 <br />
                 John Doe,john@example.com,555-1234,ABC Corp
@@ -124,9 +124,9 @@ export function PasteImportModal({ isOpen, onClose }: PasteImportModalProps) {
                 Jane Smith,jane@example.com,555-5678,XYZ Inc
               </code>
             </div>
-            <div className="p-3 bg-gray-50 rounded-lg">
+            <div className="p-3 bg-muted rounded-lg">
               <div className="font-medium text-sm mb-2">Tab-Separated Example:</div>
-              <code className="text-xs text-gray-600">
+              <code className="text-xs text-muted-foreground">
                 Name&nbsp;&nbsp;&nbsp;&nbsp;Email&nbsp;&nbsp;&nbsp;&nbsp;Phone&nbsp;&nbsp;&nbsp;&nbsp;Company
                 <br />
                 John
@@ -149,7 +149,7 @@ export function PasteImportModal({ isOpen, onClose }: PasteImportModalProps) {
               </div>
               <ImportPreviewTable data={parsedData.slice(0, 10)} />
               {parsedData.length > 10 && (
-                <div className="text-sm text-gray-500 mt-2">
+                <div className="text-sm text-muted-foreground mt-2">
                   Showing first 10 rows of {parsedData.length} total rows
                 </div>
               )}
@@ -158,7 +158,7 @@ export function PasteImportModal({ isOpen, onClose }: PasteImportModalProps) {
 
           {/* Import Result */}
           {result && (
-            <Alert className={result.success ? "border-green-200 bg-green-50" : "border-red-200 bg-red-50"}>
+            <Alert className={result.success ? "border-border bg-green-500/10" : "border-border bg-red-500/10"}>
               {result.success ? (
                 <CheckCircle className="h-4 w-4 text-green-600" />
               ) : (
@@ -167,7 +167,7 @@ export function PasteImportModal({ isOpen, onClose }: PasteImportModalProps) {
               <AlertDescription>
                 <div className="font-medium">{result.message}</div>
                 {result.success && (
-                  <div className="text-sm text-green-700 mt-1">Successfully imported {result.imported} leads</div>
+                  <div className="text-sm text-green-400 mt-1">Successfully imported {result.imported} leads</div>
                 )}
               </AlertDescription>
             </Alert>

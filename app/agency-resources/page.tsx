@@ -76,11 +76,11 @@ export default function AgencyResourcesPage() {
         {/* AI Search Bar */}
         <div className="mb-8">
           <div className="relative max-w-2xl mx-auto">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             <input
               type="text"
               placeholder="🤖 AI-powered search across all resources..."
-              className="w-full pl-12 pr-4 py-4 bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all duration-200"
+              className="w-full pl-12 pr-4 py-4 bg-card backdrop-blur-sm border border-border/50 rounded-2xl shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all duration-200"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -90,42 +90,42 @@ export default function AgencyResourcesPage() {
         {/* Resource Categories */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <Link href="/agency-resources/supplementals">
-            <div className="group bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+            <div className="group bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
               <div className="flex items-center">
-                <div className="flex-shrink-0 bg-gradient-to-br from-blue-500 to-cyan-500 p-4 rounded-xl group-hover:scale-110 transition-transform duration-200">
+                <div className="flex-shrink-0 bg-card text-foreground p-4 rounded-xl group-hover:scale-110 transition-transform duration-200">
                   <FileText className="h-8 w-8 text-white" />
                 </div>
                 <div className="ml-4">
-                  <h3 className="font-semibold text-lg text-gray-800">Supplementals</h3>
-                  <p className="text-sm text-gray-600 mt-1">View and manage supplemental documents</p>
+                  <h3 className="font-semibold text-lg text-foreground">Supplementals</h3>
+                  <p className="text-sm text-muted-foreground mt-1">View and manage supplemental documents</p>
                 </div>
               </div>
             </div>
           </Link>
 
           <Link href="/agency-resources/applications">
-            <div className="group bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+            <div className="group bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
               <div className="flex items-center">
-                <div className="flex-shrink-0 bg-gradient-to-br from-green-500 to-emerald-500 p-4 rounded-xl group-hover:scale-110 transition-transform duration-200">
+                <div className="flex-shrink-0 bg-card text-foreground p-4 rounded-xl group-hover:scale-110 transition-transform duration-200">
                   <ClipboardList className="h-8 w-8 text-white" />
                 </div>
                 <div className="ml-4">
-                  <h3 className="font-semibold text-lg text-gray-800">Applications</h3>
-                  <p className="text-sm text-gray-600 mt-1">Access application forms and documents</p>
+                  <h3 className="font-semibold text-lg text-foreground">Applications</h3>
+                  <p className="text-sm text-muted-foreground mt-1">Access application forms and documents</p>
                 </div>
               </div>
             </div>
           </Link>
 
           <Link href="/agency-resources/submission-contacts">
-            <div className="group bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+            <div className="group bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
               <div className="flex items-center">
-                <div className="flex-shrink-0 bg-gradient-to-br from-orange-500 to-red-500 p-4 rounded-xl group-hover:scale-110 transition-transform duration-200">
+                <div className="flex-shrink-0 bg-card text-foreground p-4 rounded-xl group-hover:scale-110 transition-transform duration-200">
                   <BookmarkIcon className="h-8 w-8 text-white" />
                 </div>
                 <div className="ml-4">
-                  <h3 className="font-semibold text-lg text-gray-800">Submission Contacts</h3>
-                  <p className="text-sm text-gray-600 mt-1">Find submission contact information</p>
+                  <h3 className="font-semibold text-lg text-foreground">Submission Contacts</h3>
+                  <p className="text-sm text-muted-foreground mt-1">Find submission contact information</p>
                 </div>
               </div>
             </div>
@@ -138,7 +138,7 @@ export default function AgencyResourcesPage() {
             href="https://tcportal.cpuc.ca.gov/TCP/s/"
             target="_blank"
             rel="noopener noreferrer"
-            className="group bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-xl hover:scale-105 transition-all duration-300"
+            className="group bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center">
@@ -146,11 +146,11 @@ export default function AgencyResourcesPage() {
                   <ExternalLink className="h-6 w-6 text-white" />
                 </div>
                 <div className="ml-4">
-                  <h3 className="font-semibold text-lg text-gray-800">CA CPUC TCP LOOKUP</h3>
-                  <p className="text-sm text-gray-600 mt-1">Lookup information for limousines, charter buses, etc.</p>
+                  <h3 className="font-semibold text-lg text-foreground">CA CPUC TCP LOOKUP</h3>
+                  <p className="text-sm text-muted-foreground mt-1">Lookup information for limousines, charter buses, etc.</p>
                 </div>
               </div>
-              <ExternalLink className="h-5 w-5 text-gray-400 group-hover:text-purple-500 transition-colors duration-200" />
+              <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-purple-500 transition-colors duration-200" />
             </div>
           </a>
 
@@ -158,7 +158,7 @@ export default function AgencyResourcesPage() {
             href="https://safer.fmcsa.dot.gov/CompanySnapshot.aspx"
             target="_blank"
             rel="noopener noreferrer"
-            className="group bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-xl hover:scale-105 transition-all duration-300"
+            className="group bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center">
@@ -166,11 +166,11 @@ export default function AgencyResourcesPage() {
                   <ExternalLink className="h-6 w-6 text-white" />
                 </div>
                 <div className="ml-4">
-                  <h3 className="font-semibold text-lg text-gray-800">SAFER DOT LOOKUP</h3>
-                  <p className="text-sm text-gray-600 mt-1">Lookup DOT and trucking information</p>
+                  <h3 className="font-semibold text-lg text-foreground">SAFER DOT LOOKUP</h3>
+                  <p className="text-sm text-muted-foreground mt-1">Lookup DOT and trucking information</p>
                 </div>
               </div>
-              <ExternalLink className="h-5 w-5 text-gray-400 group-hover:text-indigo-500 transition-colors duration-200" />
+              <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-indigo-500 transition-colors duration-200" />
             </div>
           </a>
 
@@ -178,7 +178,7 @@ export default function AgencyResourcesPage() {
             href="https://npiregistry.cms.hhs.gov/search"
             target="_blank"
             rel="noopener noreferrer"
-            className="group bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-xl hover:scale-105 transition-all duration-300"
+            className="group bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center">
@@ -186,11 +186,11 @@ export default function AgencyResourcesPage() {
                   <ExternalLink className="h-6 w-6 text-white" />
                 </div>
                 <div className="ml-4">
-                  <h3 className="font-semibold text-lg text-gray-800">NPI RECORDS LOOKUP</h3>
-                  <p className="text-sm text-gray-600 mt-1">Non-emergency Medical Transport (VAN) provider lookup</p>
+                  <h3 className="font-semibold text-lg text-foreground">NPI RECORDS LOOKUP</h3>
+                  <p className="text-sm text-muted-foreground mt-1">Non-emergency Medical Transport (VAN) provider lookup</p>
                 </div>
               </div>
-              <ExternalLink className="h-5 w-5 text-gray-400 group-hover:text-teal-500 transition-colors duration-200" />
+              <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-teal-500 transition-colors duration-200" />
             </div>
           </a>
         </div>
@@ -200,19 +200,19 @@ export default function AgencyResourcesPage() {
         </h2>
 
         {isLoading ? (
-          <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-16 text-center">
+          <div className="bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-16 text-center">
             <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-500 border-r-transparent mb-4"></div>
-            <p className="text-gray-500">Loading resources...</p>
+            <p className="text-muted-foreground">Loading resources...</p>
           </div>
         ) : filteredResources.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredResources.slice(0, 6).map((resource) => (
               <div
                 key={resource.id}
-                className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-xl hover:scale-105 transition-all duration-300"
+                className="bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-xl hover:scale-105 transition-all duration-300"
               >
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 bg-gradient-to-br from-gray-100 to-gray-200 p-3 rounded-xl">
+                  <div className="flex-shrink-0 bg-gradient-to-br from-muted to-muted p-3 rounded-xl">
                     {resource.resource_type === "link" || resource.external_url ? (
                       <ExternalLink className="h-6 w-6 text-blue-500" />
                     ) : (
@@ -220,7 +220,7 @@ export default function AgencyResourcesPage() {
                     )}
                   </div>
                   <div className="ml-3 flex-1">
-                    <h3 className="font-semibold text-gray-800 truncate">
+                    <h3 className="font-semibold text-foreground truncate">
                       {resource.external_url ? (
                         <a
                           href={resource.external_url}
@@ -243,9 +243,9 @@ export default function AgencyResourcesPage() {
                         <span>{resource.title}</span>
                       )}
                     </h3>
-                    <p className="text-sm text-gray-600 line-clamp-2 mt-1">{resource.description}</p>
+                    <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{resource.description}</p>
                     <div className="mt-3 flex justify-between items-center">
-                      <span className="inline-block px-3 py-1 text-xs bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 rounded-full">
+                      <span className="inline-block px-3 py-1 text-xs bg-card text-blue-300 rounded-full">
                         {resource.category}
                       </span>
                       <SimpleDeleteButton id={resource.id} />
@@ -256,13 +256,13 @@ export default function AgencyResourcesPage() {
             ))}
           </div>
         ) : (
-          <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-16 text-center">
+          <div className="bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-16 text-center">
             <div className="flex flex-col items-center">
-              <div className="p-4 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full mb-4">
+              <div className="p-4 bg-card rounded-full mb-4">
                 <FileText className="h-8 w-8 text-blue-500" />
               </div>
-              <p className="text-lg font-medium mb-2 text-gray-800">No agency resources found</p>
-              <p className="text-sm text-gray-600">Add resources using the button above.</p>
+              <p className="text-lg font-medium mb-2 text-foreground">No agency resources found</p>
+              <p className="text-sm text-muted-foreground">Add resources using the button above.</p>
             </div>
           </div>
         )}

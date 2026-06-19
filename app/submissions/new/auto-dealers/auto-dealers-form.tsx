@@ -173,7 +173,7 @@ export default function AutoDealersForm() {
     <div className="container mx-auto py-6">
       <div className="mb-6">
         <h1 className="text-3xl font-bold">Auto Dealers Submission</h1>
-        <p className="text-gray-500">
+        <p className="text-muted-foreground">
           Fill out the form below to create a new submission. All fields marked with an asterisk (*) are required.
         </p>
       </div>

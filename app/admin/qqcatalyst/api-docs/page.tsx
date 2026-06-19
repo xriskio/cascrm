@@ -127,10 +127,10 @@ export default function QQCatalystApiDocsPage() {
                       <span
                         className={`px-2 py-1 text-xs font-semibold rounded ${
                           endpoint.method === "GET"
-                            ? "bg-green-100 text-green-800"
+                            ? "bg-green-500/15 text-green-300"
                             : endpoint.method === "POST"
-                              ? "bg-blue-100 text-blue-800"
-                              : "bg-gray-100 text-gray-800"
+                              ? "bg-blue-500/15 text-blue-300"
+                              : "bg-muted text-foreground"
                         }`}
                       >
                         {endpoint.method}

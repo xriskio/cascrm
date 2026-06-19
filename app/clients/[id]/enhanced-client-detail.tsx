@@ -618,17 +618,17 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
       case "delivered":
       case "completed":
       case "closed":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       case "pending":
       case "outstanding":
       case "open":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-500/15 text-yellow-300"
       case "expired":
       case "declined":
       case "overdue":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -638,7 +638,7 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
         return (
           <div className="space-y-6">
             {/* AI Policy Analytics */}
-            <Card className="border-l-4 border-l-blue-500 bg-gradient-to-r from-blue-50 to-purple-50">
+            <Card className="border-l-4 border-l-blue-500 bg-card">
               <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle className="flex items-center">
                   <Brain className="h-5 w-5 mr-2 text-blue-600" />
@@ -649,7 +649,7 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
                   size="sm"
                   onClick={() => setIsRefreshingInsights(true)}
                   disabled={isRefreshingInsights}
-                  className="text-blue-600 hover:bg-blue-100"
+                  className="text-blue-600 hover:bg-blue-500/15"
                 >
                   <RefreshCw className={`h-4 w-4 mr-2 ${isRefreshingInsights ? "animate-spin" : ""}`} />
                   {isRefreshingInsights ? "Analyzing..." : "Refresh"}
@@ -660,25 +660,25 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
                   <div className="text-center">
                     <Shield className="h-8 w-8 text-green-500 mx-auto mb-2" />
                     <div className="text-2xl font-bold text-green-600">A+</div>
-                    <div className="text-sm text-gray-600">Policy Rating</div>
+                    <div className="text-sm text-muted-foreground">Policy Rating</div>
                     <Progress value={92} className="mt-2" />
                   </div>
                   <div className="text-center">
                     <TrendingUp className="h-8 w-8 text-blue-500 mx-auto mb-2" />
                     <div className="text-2xl font-bold text-blue-600">88%</div>
-                    <div className="text-sm text-gray-600">Coverage Adequacy</div>
+                    <div className="text-sm text-muted-foreground">Coverage Adequacy</div>
                     <Progress value={88} className="mt-2" />
                   </div>
                   <div className="text-center">
                     <BarChart3 className="h-8 w-8 text-purple-500 mx-auto mb-2" />
                     <div className="text-2xl font-bold text-purple-600">Low</div>
-                    <div className="text-sm text-gray-600">Risk Level</div>
+                    <div className="text-sm text-muted-foreground">Risk Level</div>
                     <Progress value={25} className="mt-2" />
                   </div>
                   <div className="text-center">
                     <Activity className="h-8 w-8 text-orange-500 mx-auto mb-2" />
                     <div className="text-2xl font-bold text-orange-600">95%</div>
-                    <div className="text-sm text-gray-600">Compliance Score</div>
+                    <div className="text-sm text-muted-foreground">Compliance Score</div>
                     <Progress value={95} className="mt-2" />
                   </div>
                 </div>
@@ -687,24 +687,24 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
 
             {/* Policy Summary Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Card className="bg-gradient-to-br from-green-50 to-green-100 border-green-200">
+              <Card className="bg-card border-border">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-green-600 text-sm font-medium">Annual Premium</p>
-                      <p className="text-2xl font-bold text-green-800">{formatCurrency(selectedPolicy?.premium)}</p>
+                      <p className="text-2xl font-bold text-green-300">{formatCurrency(selectedPolicy?.premium)}</p>
                     </div>
                     <DollarSign className="h-8 w-8 text-green-600" />
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200">
+              <Card className="bg-card border-border">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-blue-600 text-sm font-medium">Total Coverage</p>
-                      <p className="text-2xl font-bold text-blue-800">
+                      <p className="text-2xl font-bold text-blue-300">
                         {formatCurrency(
                           policyDetailData.coverageLimits.reduce(
                             (total, loc) => total + loc.coverages.reduce((sum, cov) => sum + cov.amount, 0),
@@ -718,12 +718,12 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200">
+              <Card className="bg-card border-border">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-purple-600 text-sm font-medium">Locations</p>
-                      <p className="text-2xl font-bold text-purple-800">{policyDetailData.locations.length}</p>
+                      <p className="text-2xl font-bold text-purple-300">{policyDetailData.locations.length}</p>
                     </div>
                     <MapPin className="h-8 w-8 text-purple-600" />
                   </div>
@@ -747,18 +747,18 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
               <CardContent>
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-blue-50">
-                      <TableHead className="font-semibold text-blue-800">Loc #</TableHead>
-                      <TableHead className="font-semibold text-blue-800">Bldg #</TableHead>
-                      <TableHead className="font-semibold text-blue-800">Street Address</TableHead>
-                      <TableHead className="font-semibold text-blue-800">City / State / Zip</TableHead>
-                      <TableHead className="font-semibold text-blue-800">County</TableHead>
-                      <TableHead className="font-semibold text-blue-800">Actions</TableHead>
+                    <TableRow className="bg-blue-500/10">
+                      <TableHead className="font-semibold text-blue-300">Loc #</TableHead>
+                      <TableHead className="font-semibold text-blue-300">Bldg #</TableHead>
+                      <TableHead className="font-semibold text-blue-300">Street Address</TableHead>
+                      <TableHead className="font-semibold text-blue-300">City / State / Zip</TableHead>
+                      <TableHead className="font-semibold text-blue-300">County</TableHead>
+                      <TableHead className="font-semibold text-blue-300">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {policyDetailData.locations.map((location) => (
-                      <TableRow key={location.locNumber} className="hover:bg-gray-50">
+                      <TableRow key={location.locNumber} className="hover:bg-muted">
                         <TableCell className="font-medium">{location.locNumber}</TableCell>
                         <TableCell>{location.bldgNumber}</TableCell>
                         <TableCell className="text-blue-600 hover:underline cursor-pointer">
@@ -782,7 +782,7 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
             <div className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-gray-600">COVERAGE LIMITS</CardTitle>
+                  <CardTitle className="text-muted-foreground">COVERAGE LIMITS</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-8">
                   {policyDetailData.coverageLimits.map((locationCoverage, index) => (
@@ -794,7 +794,7 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
                       </div>
                       <Table>
                         <TableHeader>
-                          <TableRow className="bg-gray-50">
+                          <TableRow className="bg-muted">
                             <TableHead className="font-semibold">Subject of Insurance</TableHead>
                             <TableHead className="font-semibold">Amount</TableHead>
                             <TableHead className="font-semibold">Coins %</TableHead>
@@ -807,7 +807,7 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
                         </TableHeader>
                         <TableBody>
                           {locationCoverage.coverages.map((coverage, covIndex) => (
-                            <TableRow key={covIndex} className="hover:bg-gray-50">
+                            <TableRow key={covIndex} className="hover:bg-muted">
                               <TableCell className="font-medium">{coverage.subjectOfInsurance}</TableCell>
                               <TableCell>{formatCurrency(coverage.amount)}</TableCell>
                               <TableCell>{coverage.coinsPercent || "-"}</TableCell>
@@ -845,17 +845,17 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
             <CardContent>
               <Table>
                 <TableHeader>
-                  <TableRow className="bg-blue-50">
-                    <TableHead className="font-semibold text-blue-800">Name</TableHead>
-                    <TableHead className="font-semibold text-blue-800">Address</TableHead>
-                    <TableHead className="font-semibold text-blue-800">City / State / Zip</TableHead>
-                    <TableHead className="font-semibold text-blue-800">Type</TableHead>
-                    <TableHead className="font-semibold text-blue-800">Location #</TableHead>
+                  <TableRow className="bg-blue-500/10">
+                    <TableHead className="font-semibold text-blue-300">Name</TableHead>
+                    <TableHead className="font-semibold text-blue-300">Address</TableHead>
+                    <TableHead className="font-semibold text-blue-300">City / State / Zip</TableHead>
+                    <TableHead className="font-semibold text-blue-300">Type</TableHead>
+                    <TableHead className="font-semibold text-blue-300">Location #</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {policyDetailData.additionalInterests.map((interest, index) => (
-                    <TableRow key={index} className="hover:bg-gray-50">
+                    <TableRow key={index} className="hover:bg-muted">
                       <TableCell className="font-medium">{interest.name}</TableCell>
                       <TableCell className="text-blue-600">{interest.address}</TableCell>
                       <TableCell>{interest.cityStateZip}</TableCell>
@@ -887,12 +887,12 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
             <CardContent>
               <div className="space-y-4">
                 {policyDetailData.namedInsureds.map((insured) => (
-                  <div key={insured.id} className="p-4 border rounded-lg hover:bg-gray-50">
+                  <div key={insured.id} className="p-4 border rounded-lg hover:bg-muted">
                     <div className="flex items-center justify-between">
                       <div>
                         <h4 className="font-medium">{insured.name}</h4>
-                        <p className="text-sm text-gray-600">{insured.relationship}</p>
-                        <p className="text-sm text-gray-500">{insured.address}</p>
+                        <p className="text-sm text-muted-foreground">{insured.relationship}</p>
+                        <p className="text-sm text-muted-foreground">{insured.address}</p>
                       </div>
                       <Badge variant={insured.type === "Primary" ? "default" : "secondary"}>{insured.type}</Badge>
                     </div>
@@ -915,44 +915,44 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <h4 className="font-medium text-gray-800">Premium Breakdown</h4>
+                  <h4 className="font-medium text-foreground">Premium Breakdown</h4>
                   <div className="space-y-3">
-                    <div className="flex justify-between p-3 bg-blue-50 rounded-lg">
-                      <span className="text-gray-600">Base Premium:</span>
+                    <div className="flex justify-between p-3 bg-blue-500/10 rounded-lg">
+                      <span className="text-muted-foreground">Base Premium:</span>
                       <span className="font-medium">
                         {formatCurrency(policyDetailData.premiumBreakdown.basePremium)}
                       </span>
                     </div>
-                    <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                      <span className="text-gray-600">Policy Fee:</span>
+                    <div className="flex justify-between p-3 bg-muted rounded-lg">
+                      <span className="text-muted-foreground">Policy Fee:</span>
                       <span className="font-medium">
                         {formatCurrency(policyDetailData.premiumBreakdown.fees.policyFee)}
                       </span>
                     </div>
-                    <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                      <span className="text-gray-600">Inspection Fee:</span>
+                    <div className="flex justify-between p-3 bg-muted rounded-lg">
+                      <span className="text-muted-foreground">Inspection Fee:</span>
                       <span className="font-medium">
                         {formatCurrency(policyDetailData.premiumBreakdown.fees.inspectionFee)}
                       </span>
                     </div>
-                    <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                      <span className="text-gray-600">Carrier Fee:</span>
+                    <div className="flex justify-between p-3 bg-muted rounded-lg">
+                      <span className="text-muted-foreground">Carrier Fee:</span>
                       <span className="font-medium">
                         {formatCurrency(policyDetailData.premiumBreakdown.fees.carrierFee)}
                       </span>
                     </div>
-                    <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                      <span className="text-gray-600">Taxes:</span>
+                    <div className="flex justify-between p-3 bg-muted rounded-lg">
+                      <span className="text-muted-foreground">Taxes:</span>
                       <span className="font-medium">{formatCurrency(policyDetailData.premiumBreakdown.taxes)}</span>
                     </div>
                   </div>
                 </div>
                 <div className="space-y-4">
-                  <h4 className="font-medium text-gray-800">Total Premium</h4>
-                  <div className="p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200">
+                  <h4 className="font-medium text-foreground">Total Premium</h4>
+                  <div className="p-6 bg-card rounded-lg border border-border">
                     <div className="text-center">
                       <p className="text-green-600 text-sm font-medium">Annual Premium</p>
-                      <p className="text-3xl font-bold text-green-800">
+                      <p className="text-3xl font-bold text-green-300">
                         {formatCurrency(policyDetailData.premiumBreakdown.totalPremium)}
                       </p>
                     </div>
@@ -979,7 +979,7 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
             <CardContent>
               <div className="space-y-4">
                 {policyDetailData.underwritingQuestions.map((question, index) => (
-                  <div key={index} className="p-4 border rounded-lg hover:bg-gray-50">
+                  <div key={index} className="p-4 border rounded-lg hover:bg-muted">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <Badge variant="outline">{question.category}</Badge>
@@ -1010,17 +1010,17 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
             <CardContent>
               <Table>
                 <TableHeader>
-                  <TableRow className="bg-purple-50">
-                    <TableHead className="font-semibold text-purple-800">Form Number</TableHead>
-                    <TableHead className="font-semibold text-purple-800">Form Name</TableHead>
-                    <TableHead className="font-semibold text-purple-800">Edition</TableHead>
-                    <TableHead className="font-semibold text-purple-800">Type</TableHead>
-                    <TableHead className="font-semibold text-purple-800">Actions</TableHead>
+                  <TableRow className="bg-purple-500/10">
+                    <TableHead className="font-semibold text-purple-300">Form Number</TableHead>
+                    <TableHead className="font-semibold text-purple-300">Form Name</TableHead>
+                    <TableHead className="font-semibold text-purple-300">Edition</TableHead>
+                    <TableHead className="font-semibold text-purple-300">Type</TableHead>
+                    <TableHead className="font-semibold text-purple-300">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {policyDetailData.policyForms.map((form, index) => (
-                    <TableRow key={index} className="hover:bg-gray-50">
+                    <TableRow key={index} className="hover:bg-muted">
                       <TableCell className="font-medium text-blue-600">{form.formNumber}</TableCell>
                       <TableCell>{form.formName}</TableCell>
                       <TableCell>{form.edition}</TableCell>
@@ -1053,9 +1053,9 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
             </CardHeader>
             <CardContent>
               <div className="text-center py-8">
-                <Brain className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600">This section is being enhanced with AI capabilities.</p>
-                <p className="text-sm text-gray-500 mt-2">More detailed information will be available soon.</p>
+                <Brain className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                <p className="text-muted-foreground">This section is being enhanced with AI capabilities.</p>
+                <p className="text-sm text-muted-foreground mt-2">More detailed information will be available soon.</p>
               </div>
             </CardContent>
           </Card>
@@ -1102,7 +1102,7 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
 
           {/* Policy Tabs */}
           <Tabs value={activePolicyTab} onValueChange={setActivePolicyTab} className="space-y-4">
-            <div className="bg-white p-4 rounded-lg border">
+            <div className="bg-card p-4 rounded-lg border">
               <ScrollArea className="w-full">
                 <TabsList className="grid w-full grid-cols-10 lg:grid-cols-20 gap-1">
                   {policyTabs.map((tab) => {
@@ -1136,7 +1136,7 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
         return (
           <div className="space-y-6">
             {/* AI Insights Dashboard */}
-            <Card className="border-l-4 border-l-blue-500 bg-gradient-to-r from-blue-50 to-purple-50">
+            <Card className="border-l-4 border-l-blue-500 bg-card">
               <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle className="flex items-center">
                   <Brain className="h-5 w-5 mr-2 text-blue-600" />
@@ -1147,7 +1147,7 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
                   size="sm"
                   onClick={() => setIsRefreshingInsights(true)}
                   disabled={isRefreshingInsights}
-                  className="text-blue-600 hover:bg-blue-100"
+                  className="text-blue-600 hover:bg-blue-500/15"
                 >
                   <RefreshCw className={`h-4 w-4 mr-2 ${isRefreshingInsights ? "animate-spin" : ""}`} />
                   {isRefreshingInsights ? "Analyzing..." : "Refresh"}
@@ -1158,25 +1158,25 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
                   <div className="text-center">
                     <Shield className="h-8 w-8 text-orange-500 mx-auto mb-2" />
                     <div className="text-2xl font-bold text-orange-600">75%</div>
-                    <div className="text-sm text-gray-600">Risk Score</div>
+                    <div className="text-sm text-muted-foreground">Risk Score</div>
                     <Progress value={75} className="mt-2" />
                   </div>
                   <div className="text-center">
                     <TrendingUp className="h-8 w-8 text-green-500 mx-auto mb-2" />
                     <div className="text-2xl font-bold text-green-600">85%</div>
-                    <div className="text-sm text-gray-600">Renewal Probability</div>
+                    <div className="text-sm text-muted-foreground">Renewal Probability</div>
                     <Progress value={85} className="mt-2" />
                   </div>
                   <div className="text-center">
                     <BarChart3 className="h-8 w-8 text-purple-500 mx-auto mb-2" />
                     <div className="text-2xl font-bold text-purple-600">88%</div>
-                    <div className="text-sm text-gray-600">Underwriting Score</div>
+                    <div className="text-sm text-muted-foreground">Underwriting Score</div>
                     <Progress value={88} className="mt-2" />
                   </div>
                   <div className="text-center">
                     <Activity className="h-8 w-8 text-blue-500 mx-auto mb-2" />
                     <div className="text-2xl font-bold text-blue-600">92%</div>
-                    <div className="text-sm text-gray-600">Customer Health</div>
+                    <div className="text-sm text-muted-foreground">Customer Health</div>
                     <Progress value={92} className="mt-2" />
                   </div>
                 </div>
@@ -1185,12 +1185,12 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
 
             {/* Quick Stats */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <Card className="bg-gradient-to-br from-green-50 to-green-100 border-green-200">
+              <Card className="bg-card border-border">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-green-600 text-sm font-medium">Active Policies</p>
-                      <p className="text-2xl font-bold text-green-800">
+                      <p className="text-2xl font-bold text-green-300">
                         {mockData.policies.filter((p) => p.status === "Active").length}
                       </p>
                     </div>
@@ -1199,12 +1199,12 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200">
+              <Card className="bg-card border-border">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-blue-600 text-sm font-medium">Total Premium</p>
-                      <p className="text-2xl font-bold text-blue-800">
+                      <p className="text-2xl font-bold text-blue-300">
                         {formatCurrency(mockData.policies.reduce((sum, p) => sum + p.premium, 0))}
                       </p>
                     </div>
@@ -1213,12 +1213,12 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200">
+              <Card className="bg-card border-border">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-purple-600 text-sm font-medium">Open Claims</p>
-                      <p className="text-2xl font-bold text-purple-800">
+                      <p className="text-2xl font-bold text-purple-300">
                         {mockData.claims.filter((c) => c.status === "Open").length}
                       </p>
                     </div>
@@ -1227,12 +1227,12 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-orange-50 to-orange-100 border-orange-200">
+              <Card className="bg-card border-border">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-orange-600 text-sm font-medium">Open Tasks</p>
-                      <p className="text-2xl font-bold text-orange-800">
+                      <p className="text-2xl font-bold text-orange-300">
                         {mockData.tasks.filter((t) => t.status === "Open").length}
                       </p>
                     </div>
@@ -1262,7 +1262,7 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
                 {mockData.policies.map((policy) => (
                   <div
                     key={policy.id}
-                    className="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer transition-all duration-200 hover:shadow-md"
+                    className="p-4 border rounded-lg hover:bg-muted cursor-pointer transition-all duration-200 hover:shadow-md"
                     onClick={() => setSelectedPolicy(policy)}
                   >
                     <div className="flex items-center justify-between">
@@ -1271,12 +1271,12 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
                           <h4 className="font-medium text-blue-600 hover:underline">{policy.type}</h4>
                           <Badge className={getStatusColor(policy.status)}>{policy.status}</Badge>
                         </div>
-                        <p className="text-sm text-gray-600 mt-1">Policy #{policy.id}</p>
-                        <p className="text-sm text-gray-600">Carrier: {policy.carrier}</p>
+                        <p className="text-sm text-muted-foreground mt-1">Policy #{policy.id}</p>
+                        <p className="text-sm text-muted-foreground">Carrier: {policy.carrier}</p>
                       </div>
                       <div className="text-right">
                         <p className="font-medium text-green-600">{formatCurrency(policy.premium)}</p>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-muted-foreground">
                           {formatDate(policy.effectiveDate)} - {formatDate(policy.expirationDate)}
                         </p>
                       </div>
@@ -1311,8 +1311,8 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
                     <div className="flex items-center justify-between">
                       <div>
                         <h4 className="font-medium">{adjustment.type}</h4>
-                        <p className="text-sm text-gray-600">{adjustment.reason}</p>
-                        <p className="text-sm text-gray-500">{formatDate(adjustment.date)}</p>
+                        <p className="text-sm text-muted-foreground">{adjustment.reason}</p>
+                        <p className="text-sm text-muted-foreground">{formatDate(adjustment.date)}</p>
                       </div>
                       <div className="text-right">
                         <p className={`font-medium ${adjustment.amount > 0 ? "text-red-600" : "text-green-600"}`}>
@@ -1349,8 +1349,8 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
                     <div className="flex items-center justify-between">
                       <div>
                         <h4 className="font-medium">Invoice #{invoice.id}</h4>
-                        <p className="text-sm text-gray-600">{invoice.type}</p>
-                        <p className="text-sm text-gray-500">Due: {formatDate(invoice.dueDate)}</p>
+                        <p className="text-sm text-muted-foreground">{invoice.type}</p>
+                        <p className="text-sm text-muted-foreground">Due: {formatDate(invoice.dueDate)}</p>
                       </div>
                       <div className="text-right">
                         <p className="font-medium">{formatCurrency(invoice.amount)}</p>
@@ -1369,7 +1369,7 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
           <Card>
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle className="flex items-center">
-                <Folder className="h-5 w-5 mr-2 text-gray-600" />
+                <Folder className="h-5 w-5 mr-2 text-muted-foreground" />
                 Client Files
               </CardTitle>
               <Button size="sm">
@@ -1380,16 +1380,16 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
             <CardContent>
               <div className="space-y-4">
                 {mockData.files.map((file) => (
-                  <div key={file.id} className="p-4 border rounded-lg hover:bg-gray-50">
+                  <div key={file.id} className="p-4 border rounded-lg hover:bg-muted">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
                         <FileText className="h-8 w-8 text-blue-600" />
                         <div>
                           <h4 className="font-medium">{file.name}</h4>
-                          <p className="text-sm text-gray-600">
+                          <p className="text-sm text-muted-foreground">
                             {file.category} • {file.size}
                           </p>
-                          <p className="text-sm text-gray-500">Uploaded: {formatDate(file.uploadDate)}</p>
+                          <p className="text-sm text-muted-foreground">Uploaded: {formatDate(file.uploadDate)}</p>
                         </div>
                       </div>
                       <div className="flex space-x-2">
@@ -1424,17 +1424,17 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
             <CardContent>
               <div className="space-y-4">
                 {mockData.emails.map((email) => (
-                  <div key={email.id} className="p-4 border rounded-lg hover:bg-gray-50">
+                  <div key={email.id} className="p-4 border rounded-lg hover:bg-muted">
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
                         <h4 className="font-medium">{email.subject}</h4>
-                        <p className="text-sm text-gray-600">From: {email.from}</p>
-                        <p className="text-sm text-gray-600">To: {email.to}</p>
-                        <p className="text-sm text-gray-500">{formatDate(email.date)}</p>
+                        <p className="text-sm text-muted-foreground">From: {email.from}</p>
+                        <p className="text-sm text-muted-foreground">To: {email.to}</p>
+                        <p className="text-sm text-muted-foreground">{formatDate(email.date)}</p>
                       </div>
                       <div className="text-right">
                         <Badge className={getStatusColor(email.status)}>{email.status}</Badge>
-                        <p className="text-sm text-gray-500 mt-1">{email.type}</p>
+                        <p className="text-sm text-muted-foreground mt-1">{email.type}</p>
                       </div>
                     </div>
                   </div>
@@ -1460,14 +1460,14 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
             <CardContent>
               <div className="space-y-4">
                 {mockData.acord.map((form) => (
-                  <div key={form.id} className="p-4 border rounded-lg hover:bg-gray-50">
+                  <div key={form.id} className="p-4 border rounded-lg hover:bg-muted">
                     <div className="flex items-center justify-between">
                       <div>
                         <h4 className="font-medium">
                           {form.id} - {form.name}
                         </h4>
-                        <p className="text-sm text-gray-600">Issue Date: {formatDate(form.issueDate)}</p>
-                        <p className="text-sm text-gray-600">Expires: {formatDate(form.expirationDate)}</p>
+                        <p className="text-sm text-muted-foreground">Issue Date: {formatDate(form.issueDate)}</p>
+                        <p className="text-sm text-muted-foreground">Expires: {formatDate(form.expirationDate)}</p>
                       </div>
                       <div className="flex items-center space-x-2">
                         <Badge className={getStatusColor(form.status)}>{form.status}</Badge>
@@ -1503,8 +1503,8 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
                     <div className="flex items-center justify-between">
                       <div>
                         <h4 className="font-medium">Policy: {commission.policy}</h4>
-                        <p className="text-sm text-gray-600">Rate: {commission.rate}</p>
-                        <p className="text-sm text-gray-500">{formatDate(commission.date)}</p>
+                        <p className="text-sm text-muted-foreground">Rate: {commission.rate}</p>
+                        <p className="text-sm text-muted-foreground">{formatDate(commission.date)}</p>
                       </div>
                       <div className="text-right">
                         <p className="font-medium text-green-600">{formatCurrency(commission.amount)}</p>
@@ -1534,23 +1534,23 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
             <CardContent>
               <div className="space-y-4">
                 {mockData.producers.map((producer) => (
-                  <div key={producer.id} className="p-4 border rounded-lg hover:bg-gray-50">
+                  <div key={producer.id} className="p-4 border rounded-lg hover:bg-muted">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
                         <Avatar className="h-10 w-10">
-                          <AvatarFallback className="bg-blue-100 text-blue-700">
+                          <AvatarFallback className="bg-blue-500/15 text-blue-400">
                             {getInitials(producer.name)}
                           </AvatarFallback>
                         </Avatar>
                         <div>
                           <h4 className="font-medium">{producer.name}</h4>
-                          <p className="text-sm text-gray-600">{producer.role}</p>
-                          <p className="text-sm text-gray-500">{producer.email}</p>
+                          <p className="text-sm text-muted-foreground">{producer.role}</p>
+                          <p className="text-sm text-muted-foreground">{producer.email}</p>
                         </div>
                       </div>
                       <div className="text-right">
                         <p className="font-medium">{producer.commission}</p>
-                        <p className="text-sm text-gray-600">{producer.phone}</p>
+                        <p className="text-sm text-muted-foreground">{producer.phone}</p>
                       </div>
                     </div>
                   </div>
@@ -1593,12 +1593,12 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
                             {task.priority}
                           </Badge>
                         </div>
-                        <p className="text-sm text-gray-600 mt-1">{task.description}</p>
-                        <p className="text-sm text-gray-500">Assigned to: {task.assignedTo}</p>
+                        <p className="text-sm text-muted-foreground mt-1">{task.description}</p>
+                        <p className="text-sm text-muted-foreground">Assigned to: {task.assignedTo}</p>
                       </div>
                       <div className="text-right">
                         <Badge className={getStatusColor(task.status)}>{task.status}</Badge>
-                        <p className="text-sm text-gray-500 mt-1">Due: {formatDate(task.dueDate)}</p>
+                        <p className="text-sm text-muted-foreground mt-1">Due: {formatDate(task.dueDate)}</p>
                       </div>
                     </div>
                   </div>
@@ -1624,13 +1624,13 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
             <CardContent>
               <div className="space-y-4">
                 {mockData.quotes.map((quote) => (
-                  <div key={quote.id} className="p-4 border rounded-lg hover:bg-gray-50">
+                  <div key={quote.id} className="p-4 border rounded-lg hover:bg-muted">
                     <div className="flex items-center justify-between">
                       <div>
                         <h4 className="font-medium">Quote #{quote.id}</h4>
-                        <p className="text-sm text-gray-600">Carrier: {quote.carrier}</p>
-                        <p className="text-sm text-gray-500">Date: {formatDate(quote.date)}</p>
-                        <p className="text-sm text-gray-500">Expires: {formatDate(quote.expirationDate)}</p>
+                        <p className="text-sm text-muted-foreground">Carrier: {quote.carrier}</p>
+                        <p className="text-sm text-muted-foreground">Date: {formatDate(quote.date)}</p>
+                        <p className="text-sm text-muted-foreground">Expires: {formatDate(quote.expirationDate)}</p>
                       </div>
                       <div className="text-right">
                         <p className="font-medium">{formatCurrency(quote.premium)}</p>
@@ -1660,13 +1660,13 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
             <CardContent>
               <div className="space-y-4">
                 {mockData.claims.map((claim) => (
-                  <div key={claim.id} className="p-4 border rounded-lg hover:bg-gray-50">
+                  <div key={claim.id} className="p-4 border rounded-lg hover:bg-muted">
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
                         <h4 className="font-medium">Claim #{claim.id}</h4>
-                        <p className="text-sm text-gray-600">{claim.type}</p>
-                        <p className="text-sm text-gray-600 mt-1">{claim.description}</p>
-                        <p className="text-sm text-gray-500">Date: {formatDate(claim.date)}</p>
+                        <p className="text-sm text-muted-foreground">{claim.type}</p>
+                        <p className="text-sm text-muted-foreground mt-1">{claim.description}</p>
+                        <p className="text-sm text-muted-foreground">Date: {formatDate(claim.date)}</p>
                       </div>
                       <div className="text-right">
                         <p className="font-medium">{formatCurrency(claim.amount)}</p>
@@ -1685,7 +1685,7 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
           <Card>
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle className="flex items-center">
-                <BookOpen className="h-5 w-5 mr-2 text-gray-600" />
+                <BookOpen className="h-5 w-5 mr-2 text-muted-foreground" />
                 Activity Log
               </CardTitle>
               <div className="flex items-center space-x-2">
@@ -1703,17 +1703,17 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
             <CardContent>
               <div className="space-y-4">
                 {mockData.logs.map((log) => (
-                  <div key={log.id} className="p-4 border rounded-lg hover:bg-gray-50">
+                  <div key={log.id} className="p-4 border rounded-lg hover:bg-muted">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
                         <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                         <div>
                           <h4 className="font-medium">{log.action}</h4>
-                          <p className="text-sm text-gray-600">{log.details}</p>
-                          <p className="text-sm text-gray-500">By: {log.user}</p>
+                          <p className="text-sm text-muted-foreground">{log.details}</p>
+                          <p className="text-sm text-muted-foreground">By: {log.user}</p>
                         </div>
                       </div>
-                      <div className="text-right text-sm text-gray-500">
+                      <div className="text-right text-sm text-muted-foreground">
                         <p>{formatDate(log.date)}</p>
                         <p>{log.time}</p>
                       </div>
@@ -1733,9 +1733,9 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
             </CardHeader>
             <CardContent>
               <div className="text-center py-8">
-                <Brain className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600">This section is being enhanced with AI capabilities.</p>
-                <p className="text-sm text-gray-500 mt-2">More detailed information will be available soon.</p>
+                <Brain className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                <p className="text-muted-foreground">This section is being enhanced with AI capabilities.</p>
+                <p className="text-sm text-muted-foreground mt-2">More detailed information will be available soon.</p>
               </div>
             </CardContent>
           </Card>
@@ -1744,10 +1744,10 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
   }
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-muted">
       {/* Modern Navigation Sidebar */}
-      <div className="w-80 bg-white border-r border-gray-200 shadow-sm">
-        <div className="p-6 border-b border-gray-200">
+      <div className="w-80 bg-card border-r border-border shadow-sm">
+        <div className="p-6 border-b border-border">
           <div className="flex items-center space-x-3">
             <Avatar className="h-12 w-12">
               <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-white font-bold">
@@ -1756,7 +1756,7 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
             </Avatar>
             <div>
               <h2 className="font-bold text-lg">{client.name}</h2>
-              <p className="text-sm text-gray-600">{client.business_name || "Individual Client"}</p>
+              <p className="text-sm text-muted-foreground">{client.business_name || "Individual Client"}</p>
             </div>
           </div>
         </div>
@@ -1774,14 +1774,14 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
                     setSelectedPolicy(null) // Reset policy selection when changing sections
                   }}
                   className={`w-full flex items-center justify-between p-3 rounded-lg text-left transition-all duration-200 ${
-                    isActive ? "bg-blue-100 text-blue-700 border border-blue-200" : "hover:bg-gray-100 text-gray-700"
+                    isActive ? "bg-blue-500/15 text-blue-400 border border-border" : "hover:bg-muted text-muted-foreground"
                   }`}
                 >
                   <div className="flex items-center space-x-3">
-                    <Icon className={`h-4 w-4 ${isActive ? "text-blue-600" : "text-gray-500"}`} />
+                    <Icon className={`h-4 w-4 ${isActive ? "text-blue-600" : "text-muted-foreground"}`} />
                     <span className="text-sm font-medium">{section.label}</span>
                   </div>
-                  <ChevronRight className={`h-4 w-4 ${isActive ? "text-blue-600" : "text-gray-400"}`} />
+                  <ChevronRight className={`h-4 w-4 ${isActive ? "text-blue-600" : "text-muted-foreground"}`} />
                 </button>
               )
             })}
@@ -1795,12 +1795,12 @@ export default function EnhancedClientDetail({ client }: EnhancedClientDetailPro
           <div className="mb-6">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">
+                <h1 className="text-2xl font-bold text-foreground">
                   {selectedPolicy
                     ? `${selectedPolicy.type} - Policy Details`
                     : navigationSections.find((s) => s.id === activeSection)?.label || "Client Details"}
                 </h1>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   {selectedPolicy
                     ? `Comprehensive policy information for ${selectedPolicy.id}`
                     : `Comprehensive insurance information for ${client.name}`}

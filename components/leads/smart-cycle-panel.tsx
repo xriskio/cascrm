@@ -127,13 +127,13 @@ export function SmartCyclePanel({ isOpen, onClose }: SmartCyclePanelProps) {
           <TabsContent value="overview" className="space-y-6">
             <div className="grid grid-cols-2 gap-6">
               {/* Pipeline Health */}
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
+              <div className="bg-card rounded-lg p-6 border border-border">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
                     <Target className="w-5 h-5 text-blue-600" />
-                    <h3 className="font-semibold text-gray-900">Pipeline Health</h3>
+                    <h3 className="font-semibold text-foreground">Pipeline Health</h3>
                   </div>
-                  <Badge variant="secondary" className="bg-blue-100 text-blue-700">
+                  <Badge variant="secondary" className="bg-blue-500/15 text-blue-400">
                     Excellent
                   </Badge>
                 </div>
@@ -143,18 +143,18 @@ export function SmartCyclePanel({ isOpen, onClose }: SmartCyclePanelProps) {
                     <TrendingUp className="w-5 h-5 text-green-500" />
                   </div>
                   <Progress value={aiInsights.pipelineHealth} className="h-2" />
-                  <p className="text-sm text-gray-600">Your pipeline is performing above industry average</p>
+                  <p className="text-sm text-muted-foreground">Your pipeline is performing above industry average</p>
                 </div>
               </div>
 
               {/* Lead Scoring */}
-              <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-6 border border-purple-200">
+              <div className="bg-card rounded-lg p-6 border border-border">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
                     <Brain className="w-5 h-5 text-purple-600" />
-                    <h3 className="font-semibold text-gray-900">AI Lead Scoring</h3>
+                    <h3 className="font-semibold text-foreground">AI Lead Scoring</h3>
                   </div>
-                  <Badge variant="secondary" className="bg-purple-100 text-purple-700">
+                  <Badge variant="secondary" className="bg-purple-500/15 text-purple-400">
                     Active
                   </Badge>
                 </div>
@@ -164,37 +164,37 @@ export function SmartCyclePanel({ isOpen, onClose }: SmartCyclePanelProps) {
                     <CheckCircle className="w-5 h-5 text-green-500" />
                   </div>
                   <Progress value={aiInsights.leadScore} className="h-2" />
-                  <p className="text-sm text-gray-600">Accuracy rate for lead quality prediction</p>
+                  <p className="text-sm text-muted-foreground">Accuracy rate for lead quality prediction</p>
                 </div>
               </div>
             </div>
 
             <div className="grid grid-cols-3 gap-4">
-              <div className="bg-white rounded-lg p-4 border border-gray-200">
+              <div className="bg-card rounded-lg p-4 border border-border">
                 <div className="flex items-center gap-2 mb-2">
                   <Clock className="w-4 h-4 text-orange-500" />
-                  <span className="text-sm font-medium text-gray-700">Time Saved</span>
+                  <span className="text-sm font-medium text-muted-foreground">Time Saved</span>
                 </div>
                 <div className="text-xl font-bold text-orange-600">{aiInsights.timeSaved}h</div>
-                <div className="text-xs text-gray-500">per week</div>
+                <div className="text-xs text-muted-foreground">per week</div>
               </div>
 
-              <div className="bg-white rounded-lg p-4 border border-gray-200">
+              <div className="bg-card rounded-lg p-4 border border-border">
                 <div className="flex items-center gap-2 mb-2">
                   <TrendingUp className="w-4 h-4 text-green-500" />
-                  <span className="text-sm font-medium text-gray-700">Conversion Rate</span>
+                  <span className="text-sm font-medium text-muted-foreground">Conversion Rate</span>
                 </div>
                 <div className="text-xl font-bold text-green-600">+{aiInsights.conversionRate}%</div>
-                <div className="text-xs text-gray-500">improvement</div>
+                <div className="text-xs text-muted-foreground">improvement</div>
               </div>
 
-              <div className="bg-white rounded-lg p-4 border border-gray-200">
+              <div className="bg-card rounded-lg p-4 border border-border">
                 <div className="flex items-center gap-2 mb-2">
                   <Zap className="w-4 h-4 text-blue-500" />
-                  <span className="text-sm font-medium text-gray-700">Next Actions</span>
+                  <span className="text-sm font-medium text-muted-foreground">Next Actions</span>
                 </div>
                 <div className="text-xl font-bold text-blue-600">{aiInsights.nextActions}</div>
-                <div className="text-xs text-gray-500">pending</div>
+                <div className="text-xs text-muted-foreground">pending</div>
               </div>
             </div>
           </TabsContent>
@@ -206,24 +206,24 @@ export function SmartCyclePanel({ isOpen, onClose }: SmartCyclePanelProps) {
                 return (
                   <div
                     key={rec.id}
-                    className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-shadow"
+                    className="bg-card rounded-lg border border-border p-4 hover:shadow-md transition-shadow"
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex items-start gap-3">
                         <div
                           className={`p-2 rounded-lg ${
                             rec.type === "urgent"
-                              ? "bg-red-100 text-red-600"
+                              ? "bg-red-500/15 text-red-600"
                               : rec.type === "opportunity"
-                                ? "bg-blue-100 text-blue-600"
-                                : "bg-purple-100 text-purple-600"
+                                ? "bg-blue-500/15 text-blue-600"
+                                : "bg-purple-500/15 text-purple-600"
                           }`}
                         >
                           <IconComponent className="w-4 h-4" />
                         </div>
                         <div className="flex-1">
-                          <h4 className="font-medium text-gray-900 mb-1">{rec.title}</h4>
-                          <p className="text-sm text-gray-600 mb-2">{rec.description}</p>
+                          <h4 className="font-medium text-foreground mb-1">{rec.title}</h4>
+                          <p className="text-sm text-muted-foreground mb-2">{rec.description}</p>
                           <div className="flex items-center gap-2">
                             <Badge variant={rec.impact === "High" ? "destructive" : "secondary"} className="text-xs">
                               {rec.impact} Impact
@@ -245,15 +245,15 @@ export function SmartCyclePanel({ isOpen, onClose }: SmartCyclePanelProps) {
           <TabsContent value="automation" className="space-y-4">
             <div className="space-y-4">
               {automationRules.map((rule) => (
-                <div key={rule.id} className="bg-white rounded-lg border border-gray-200 p-4">
+                <div key={rule.id} className="bg-card rounded-lg border border-border p-4">
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
-                        <h4 className="font-medium text-gray-900">{rule.name}</h4>
+                        <h4 className="font-medium text-foreground">{rule.name}</h4>
                         <Badge variant={rule.status === "active" ? "default" : "secondary"}>{rule.status}</Badge>
                       </div>
-                      <p className="text-sm text-gray-600 mb-2">{rule.description}</p>
-                      <div className="text-xs text-gray-500">Triggered {rule.triggers} times this month</div>
+                      <p className="text-sm text-muted-foreground mb-2">{rule.description}</p>
+                      <div className="text-xs text-muted-foreground">Triggered {rule.triggers} times this month</div>
                     </div>
                     <Button variant="outline" size="sm">
                       Configure
@@ -267,30 +267,30 @@ export function SmartCyclePanel({ isOpen, onClose }: SmartCyclePanelProps) {
           <TabsContent value="performance" className="space-y-6">
             <div className="grid grid-cols-2 gap-4">
               {performanceMetrics.map((metric, index) => (
-                <div key={index} className="bg-white rounded-lg border border-gray-200 p-4">
+                <div key={index} className="bg-card rounded-lg border border-border p-4">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-medium text-gray-700">{metric.label}</span>
+                    <span className="text-sm font-medium text-muted-foreground">{metric.label}</span>
                     <TrendingUp className="w-4 h-4 text-green-500" />
                   </div>
-                  <div className="text-2xl font-bold text-gray-900 mb-1">{metric.value}</div>
+                  <div className="text-2xl font-bold text-foreground mb-1">{metric.value}</div>
                   <div className="text-sm text-green-600">{metric.change} vs last month</div>
                 </div>
               ))}
             </div>
 
-            <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-6 border border-green-200">
-              <h3 className="font-semibold text-gray-900 mb-4">AI Performance Summary</h3>
+            <div className="bg-card rounded-lg p-6 border border-border">
+              <h3 className="font-semibold text-foreground mb-4">AI Performance Summary</h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Overall Efficiency Gain</span>
+                  <span className="text-sm text-muted-foreground">Overall Efficiency Gain</span>
                   <span className="font-semibold text-green-600">+34%</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Lead Quality Improvement</span>
+                  <span className="text-sm text-muted-foreground">Lead Quality Improvement</span>
                   <span className="font-semibold text-blue-600">+28%</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Response Time Reduction</span>
+                  <span className="text-sm text-muted-foreground">Response Time Reduction</span>
                   <span className="font-semibold text-purple-600">-45%</span>
                 </div>
               </div>

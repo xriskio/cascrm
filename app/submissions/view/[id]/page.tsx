@@ -337,18 +337,18 @@ export default function SubmissionViewPage({ params }: { params: { id: string } 
 
   const getStatusBadge = (status: string) => {
     const statusColors: Record<string, string> = {
-      pending: "bg-yellow-100 text-yellow-800 border-yellow-300",
-      submitted: "bg-blue-100 text-blue-800 border-blue-300",
-      approved: "bg-green-100 text-green-800 border-green-300",
-      rejected: "bg-red-100 text-red-800 border-red-300",
-      under_review: "bg-purple-100 text-purple-800 border-purple-300",
-      quoted: "bg-cyan-100 text-cyan-800 border-cyan-300",
-      bound: "bg-teal-100 text-teal-800 border-teal-300",
+      pending: "bg-yellow-500/15 text-yellow-300 border-yellow-300",
+      submitted: "bg-blue-500/15 text-blue-300 border-blue-300",
+      approved: "bg-green-500/15 text-green-300 border-green-300",
+      rejected: "bg-red-500/15 text-red-300 border-red-300",
+      under_review: "bg-purple-500/15 text-purple-300 border-purple-300",
+      quoted: "bg-cyan-500/15 text-cyan-300 border-cyan-300",
+      bound: "bg-teal-500/15 text-teal-300 border-teal-300",
     }
 
     return (
       <Badge
-        className={`${statusColors[status?.toLowerCase()] || "bg-gray-100 text-gray-800 border-gray-300"} capitalize`}
+        className={`${statusColors[status?.toLowerCase()] || "bg-muted text-foreground border-border"} capitalize`}
         variant="outline"
       >
         {status?.replace("_", " ") || "Pending"}
@@ -394,7 +394,7 @@ export default function SubmissionViewPage({ params }: { params: { id: string } 
         <div className="flex items-center justify-center min-h-[400px]">
           <div className="flex flex-col items-center space-y-4">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-            <p className="text-gray-600">Loading submission...</p>
+            <p className="text-muted-foreground">Loading submission...</p>
           </div>
         </div>
       </div>
@@ -444,7 +444,7 @@ export default function SubmissionViewPage({ params }: { params: { id: string } 
 
       {/* Application Summary Card */}
       <Card>
-        <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50">
+        <CardHeader className="bg-card">
           <div className="flex justify-between items-start">
             <div>
               <CardTitle className="text-2xl">
@@ -453,7 +453,7 @@ export default function SubmissionViewPage({ params }: { params: { id: string } 
                   submission.client_name ||
                   submission.tracking_number}
               </CardTitle>
-              <p className="text-sm text-gray-600 mt-1">
+              <p className="text-sm text-muted-foreground mt-1">
                 Application #{submission.tracking_number}
               </p>
             </div>
@@ -463,19 +463,19 @@ export default function SubmissionViewPage({ params }: { params: { id: string } 
         <CardContent className="pt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div>
-              <p className="text-sm text-gray-600 mb-1">Policy Type</p>
+              <p className="text-sm text-muted-foreground mb-1">Policy Type</p>
               <p className="font-semibold capitalize">{submission.policy_type?.replace(/-/g, ' ')}</p>
             </div>
             <div>
-              <p className="text-sm text-gray-600 mb-1">Application Date</p>
+              <p className="text-sm text-muted-foreground mb-1">Application Date</p>
               <p className="font-semibold">{formatDate(submission.created_at)}</p>
             </div>
             <div>
-              <p className="text-sm text-gray-600 mb-1">Number of Vehicles</p>
+              <p className="text-sm text-muted-foreground mb-1">Number of Vehicles</p>
               <p className="font-semibold">{extractVehicleCount(submission.json_raw)}</p>
             </div>
             <div>
-              <p className="text-sm text-gray-600 mb-1">Number of Drivers</p>
+              <p className="text-sm text-muted-foreground mb-1">Number of Drivers</p>
               <p className="font-semibold">{extractDriverCount(submission.json_raw)}</p>
             </div>
           </div>
@@ -511,7 +511,7 @@ export default function SubmissionViewPage({ params }: { params: { id: string } 
                   </SelectContent>
                 </Select>
               ) : (
-                <div className="flex items-center h-10 px-3 border border-gray-200 rounded-md bg-gray-50">
+                <div className="flex items-center h-10 px-3 border border-border rounded-md bg-muted">
                   {getStatusBadge(submission.status)}
                 </div>
               )}
@@ -528,7 +528,7 @@ export default function SubmissionViewPage({ params }: { params: { id: string } 
                   placeholder="Enter carrier name"
                 />
               ) : (
-                <div className="flex items-center h-10 px-3 border border-gray-200 rounded-md bg-gray-50">
+                <div className="flex items-center h-10 px-3 border border-border rounded-md bg-muted">
                   {submission.carrier || "Not specified"}
                 </div>
               )}
@@ -545,7 +545,7 @@ export default function SubmissionViewPage({ params }: { params: { id: string } 
                   placeholder="Enter agent name"
                 />
               ) : (
-                <div className="flex items-center h-10 px-3 border border-gray-200 rounded-md bg-gray-50">
+                <div className="flex items-center h-10 px-3 border border-border rounded-md bg-muted">
                   {submission.assigned_agent || "Unassigned"}
                 </div>
               )}
@@ -565,7 +565,7 @@ export default function SubmissionViewPage({ params }: { params: { id: string } 
                   onChange={(e) => setEditedDateReceived(e.target.value)}
                 />
               ) : (
-                <div className="flex items-center h-10 px-3 border border-gray-200 rounded-md bg-gray-50">
+                <div className="flex items-center h-10 px-3 border border-border rounded-md bg-muted">
                   {submission.date_received ? formatDate(submission.date_received) : "Not set"}
                 </div>
               )}
@@ -585,7 +585,7 @@ export default function SubmissionViewPage({ params }: { params: { id: string } 
                   onChange={(e) => setEditedTimeReceived(e.target.value)}
                 />
               ) : (
-                <div className="flex items-center h-10 px-3 border border-gray-200 rounded-md bg-gray-50">
+                <div className="flex items-center h-10 px-3 border border-border rounded-md bg-muted">
                   {submission.time_received || "Not set"}
                 </div>
               )}
@@ -642,7 +642,7 @@ export default function SubmissionViewPage({ params }: { params: { id: string } 
                     onChange={(e) => setEditedEffectiveDate(e.target.value)}
                   />
                 ) : (
-                  <div className="flex items-center h-10 px-3 border border-gray-200 rounded-md bg-gray-50">
+                  <div className="flex items-center h-10 px-3 border border-border rounded-md bg-muted">
                     {submission.effective_date || submission.json_raw?.effectiveDate || "Not set"}
                   </div>
                 )}
@@ -659,7 +659,7 @@ export default function SubmissionViewPage({ params }: { params: { id: string } 
                     onChange={(e) => setEditedExpirationDate(e.target.value)}
                   />
                 ) : (
-                  <div className="flex items-center h-10 px-3 border border-gray-200 rounded-md bg-gray-50">
+                  <div className="flex items-center h-10 px-3 border border-border rounded-md bg-muted">
                     {submission.expiration_date || "Not set"}
                   </div>
                 )}
@@ -677,7 +677,7 @@ export default function SubmissionViewPage({ params }: { params: { id: string } 
                     placeholder="$0.00"
                   />
                 ) : (
-                  <div className="flex items-center h-10 px-3 border border-gray-200 rounded-md bg-gray-50">
+                  <div className="flex items-center h-10 px-3 border border-border rounded-md bg-muted">
                     {submission.premium_amount || "Not set"}
                   </div>
                 )}
@@ -768,9 +768,9 @@ export default function SubmissionViewPage({ params }: { params: { id: string } 
                 {submission.json_raw.drivers.map((driver: any, index: number) => (
                   <div
                     key={index}
-                    className="bg-gradient-to-r from-gray-50 to-blue-50 border border-gray-200 rounded-lg p-5"
+                    className="bg-gradient-to-r from-muted to-blue-50 border border-border rounded-lg p-5"
                   >
-                    <h4 className="font-semibold text-lg text-gray-900 mb-4 flex items-center gap-2">
+                    <h4 className="font-semibold text-lg text-foreground mb-4 flex items-center gap-2">
                       <User className="h-5 w-5 text-blue-600" />
                       {`${driver.firstName || ""} ${driver.lastName || ""}`.trim() || `Driver ${index + 1}`}
                     </h4>
@@ -811,9 +811,9 @@ export default function SubmissionViewPage({ params }: { params: { id: string } 
                 {submission.json_raw.vehicles.map((vehicle: any, index: number) => (
                   <div
                     key={index}
-                    className="bg-gradient-to-r from-gray-50 to-green-50 border border-gray-200 rounded-lg p-5"
+                    className="bg-gradient-to-r from-muted to-green-50 border border-border rounded-lg p-5"
                   >
-                    <h4 className="font-semibold text-lg text-gray-900 mb-4 flex items-center gap-2">
+                    <h4 className="font-semibold text-lg text-foreground mb-4 flex items-center gap-2">
                       <Car className="h-5 w-5 text-green-600" />
                       Vehicle {index + 1}: {`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
                     </h4>
@@ -889,13 +889,13 @@ function DocumentUploadSection({
             {documents.map((doc) => (
               <div
                 key={doc.id}
-                className="flex items-center justify-between bg-gray-50 p-3 rounded-md border"
+                className="flex items-center justify-between bg-muted p-3 rounded-md border"
               >
                 <div className="flex items-center gap-2 flex-1 min-w-0">
                   <FileText className="h-4 w-4 text-blue-600 flex-shrink-0" />
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-medium truncate">{doc.name}</p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-muted-foreground">
                       {new Date(doc.uploadedAt).toLocaleDateString()}
                     </p>
                   </div>
@@ -914,7 +914,7 @@ function DocumentUploadSection({
         )}
 
         {documents.length === 0 && (
-          <p className="text-sm text-gray-500 text-center py-4">
+          <p className="text-sm text-muted-foreground text-center py-4">
             No documents uploaded yet
           </p>
         )}
@@ -927,8 +927,8 @@ function DocumentUploadSection({
 function DetailRow({ label, value }: { label: string; value: any }) {
   return (
     <div className="space-y-1">
-      <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">{label}</span>
-      <div className="text-sm text-gray-900 font-medium">{value || "N/A"}</div>
+      <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">{label}</span>
+      <div className="text-sm text-foreground font-medium">{value || "N/A"}</div>
     </div>
   )
 }

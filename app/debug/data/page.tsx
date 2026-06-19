@@ -52,7 +52,7 @@ export default function DataDebugPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Database Debug</h1>
-          <p className="text-gray-600">Check what data is actually in your database</p>
+          <p className="text-muted-foreground">Check what data is actually in your database</p>
         </div>
         <Button onClick={fetchAllData} disabled={loading}>
           <RefreshCw className={`h-4 w-4 mr-2 ${loading ? "animate-spin" : ""}`} />
@@ -87,15 +87,15 @@ export default function DataDebugPage() {
               </CardHeader>
               <CardContent>
                 {tableInfo?.error ? (
-                  <div className="text-red-500 p-4 bg-red-50 rounded">
+                  <div className="text-red-500 p-4 bg-red-500/10 rounded">
                     Error loading {tableName}: {tableInfo.error}
                   </div>
                 ) : tableInfo?.data?.length === 0 ? (
-                  <div className="text-gray-500 p-4 bg-gray-50 rounded">No data found in {tableName} table</div>
+                  <div className="text-muted-foreground p-4 bg-muted rounded">No data found in {tableName} table</div>
                 ) : (
                   <div className="space-y-4">
                     {tableInfo?.data?.map((record: any, index: number) => (
-                      <div key={index} className="p-4 bg-gray-50 rounded">
+                      <div key={index} className="p-4 bg-muted rounded">
                         <pre className="text-xs overflow-auto">{JSON.stringify(record, null, 2)}</pre>
                       </div>
                     ))}

@@ -93,13 +93,13 @@ export default function DatabaseCleanupPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold">Database Cleanup</h1>
-        <p className="text-gray-600">Prepare your database for QQCatalyst import by removing existing data</p>
+        <p className="text-muted-foreground">Prepare your database for QQCatalyst import by removing existing data</p>
       </div>
 
       {/* Warning Alert */}
-      <Alert className="border-red-200 bg-red-50">
+      <Alert className="border-border bg-red-500/10">
         <AlertTriangle className="h-4 w-4 text-red-600" />
-        <AlertDescription className="text-red-800">
+        <AlertDescription className="text-red-300">
           <strong>Warning:</strong> These operations permanently delete data and cannot be undone. Make sure you have
           backups if needed before proceeding.
         </AlertDescription>
@@ -116,7 +116,7 @@ export default function DatabaseCleanupPage() {
         </CardHeader>
         <CardContent>
           {loadingCounts ? (
-            <div className="flex items-center text-gray-500">
+            <div className="flex items-center text-muted-foreground">
               <Loader2 className="h-4 w-4 animate-spin mr-2" />
               Loading data counts...
             </div>
@@ -124,27 +124,27 @@ export default function DatabaseCleanupPage() {
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
               <div className="text-center">
                 <div className="text-2xl font-bold text-blue-600">{counts.clients}</div>
-                <div className="text-sm text-gray-600">Clients</div>
+                <div className="text-sm text-muted-foreground">Clients</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-green-600">{counts.policies}</div>
-                <div className="text-sm text-gray-600">Policies</div>
+                <div className="text-sm text-muted-foreground">Policies</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-purple-600">{counts.renewals}</div>
-                <div className="text-sm text-gray-600">Renewals</div>
+                <div className="text-sm text-muted-foreground">Renewals</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-orange-600">{counts.quotes}</div>
-                <div className="text-sm text-gray-600">Quotes</div>
+                <div className="text-sm text-muted-foreground">Quotes</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-gray-600">{counts.tasks}</div>
-                <div className="text-sm text-gray-600">Tasks</div>
+                <div className="text-2xl font-bold text-muted-foreground">{counts.tasks}</div>
+                <div className="text-sm text-muted-foreground">Tasks</div>
               </div>
             </div>
           ) : (
-            <div className="text-gray-500">Failed to load data counts</div>
+            <div className="text-muted-foreground">Failed to load data counts</div>
           )}
         </CardContent>
       </Card>
@@ -158,7 +158,7 @@ export default function DatabaseCleanupPage() {
             <CardDescription>Remove all clients from the database while keeping other data intact</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-muted-foreground">
               This will delete:
               <ul className="list-disc list-inside mt-2 space-y-1">
                 <li>All client records</li>
@@ -194,7 +194,7 @@ export default function DatabaseCleanupPage() {
             <CardDescription>Remove all client-related data to start completely fresh</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-muted-foreground">
               This will delete:
               <ul className="list-disc list-inside mt-2 space-y-1">
                 <li>All clients ({counts?.clients || 0})</li>
@@ -223,13 +223,13 @@ export default function DatabaseCleanupPage() {
 
       {/* Result Display */}
       {result && (
-        <Alert className={result.success ? "border-green-200 bg-green-50" : "border-red-200 bg-red-50"}>
+        <Alert className={result.success ? "border-border bg-green-500/10" : "border-border bg-red-500/10"}>
           {result.success ? (
             <CheckCircle className="h-4 w-4 text-green-600" />
           ) : (
             <AlertTriangle className="h-4 w-4 text-red-600" />
           )}
-          <AlertDescription className={result.success ? "text-green-800" : "text-red-800"}>
+          <AlertDescription className={result.success ? "text-green-300" : "text-red-300"}>
             {result.success ? (
               <div>
                 <strong>Success!</strong> {result.message}
@@ -254,9 +254,9 @@ export default function DatabaseCleanupPage() {
         </CardHeader>
         <CardContent>
           <div className="space-y-2">
-            <p className="text-sm text-gray-600">1. Clean up existing data using the options above</p>
-            <p className="text-sm text-gray-600">2. Go to QQCatalyst sync to import fresh client and policy data</p>
-            <p className="text-sm text-gray-600">3. Verify the imported data in your client dashboard</p>
+            <p className="text-sm text-muted-foreground">1. Clean up existing data using the options above</p>
+            <p className="text-sm text-muted-foreground">2. Go to QQCatalyst sync to import fresh client and policy data</p>
+            <p className="text-sm text-muted-foreground">3. Verify the imported data in your client dashboard</p>
           </div>
           <Button className="mt-4" asChild>
             <a href="/admin/qqcatalyst/sync">Import from QQCatalyst</a>

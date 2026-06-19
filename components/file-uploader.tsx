@@ -108,7 +108,7 @@ export function FileUploader({ onFileSelect, acceptedFileTypes = [".pdf"], maxSi
       {!selectedFile ? (
         <div
           className={`border-2 border-dashed rounded-md p-6 text-center ${
-            dragActive ? "border-blue-500 bg-blue-50" : "border-gray-300"
+            dragActive ? "border-blue-500 bg-blue-500/10" : "border-border"
           }`}
           onDragEnter={handleDrag}
           onDragOver={handleDrag}
@@ -116,41 +116,41 @@ export function FileUploader({ onFileSelect, acceptedFileTypes = [".pdf"], maxSi
           onDrop={handleDrop}
         >
           <div className="flex flex-col items-center justify-center">
-            <Upload className="h-10 w-10 text-gray-400 mb-2" />
-            <p className="text-gray-600 mb-1">
+            <Upload className="h-10 w-10 text-muted-foreground mb-2" />
+            <p className="text-muted-foreground mb-1">
               <span className="font-medium">Click to upload</span> or drag and drop
             </p>
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-muted-foreground">
               {acceptedFileTypes.join(", ")} (Max {maxSizeMB}MB)
             </p>
             <button
               type="button"
               onClick={handleButtonClick}
-              className="mt-4 px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200"
+              className="mt-4 px-4 py-2 bg-muted text-muted-foreground rounded-md hover:bg-muted"
             >
               Select File
             </button>
           </div>
         </div>
       ) : (
-        <div className="border rounded-md p-4 bg-gray-50">
+        <div className="border rounded-md p-4 bg-muted">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <div className="bg-blue-100 p-2 rounded-md mr-3">
+              <div className="bg-blue-500/15 p-2 rounded-md mr-3">
                 <Upload className="h-5 w-5 text-blue-600" />
               </div>
               <div className="truncate">
                 <p className="font-medium truncate">{selectedFile.name}</p>
-                <p className="text-xs text-gray-500">{(selectedFile.size / 1024 / 1024).toFixed(2)} MB</p>
+                <p className="text-xs text-muted-foreground">{(selectedFile.size / 1024 / 1024).toFixed(2)} MB</p>
               </div>
             </div>
             <button
               type="button"
               onClick={handleRemoveFile}
-              className="p-1 rounded-full hover:bg-gray-200"
+              className="p-1 rounded-full hover:bg-muted"
               aria-label="Remove file"
             >
-              <X className="h-5 w-5 text-gray-500" />
+              <X className="h-5 w-5 text-muted-foreground" />
             </button>
           </div>
         </div>

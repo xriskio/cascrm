@@ -83,7 +83,7 @@ export default function PoliciesPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Policies</h1>
-          <p className="text-gray-500">View and manage all policies</p>
+          <p className="text-muted-foreground">View and manage all policies</p>
         </div>
         <div className="flex items-center space-x-2">
           <Button variant="outline" onClick={refreshData} disabled={loading}>
@@ -105,7 +105,7 @@ export default function PoliciesPage() {
             {/* Search and filters */}
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="relative flex-1">
-                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
+                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
                   placeholder="Search policies..."
                   value={searchQuery}
@@ -141,9 +141,9 @@ export default function PoliciesPage() {
               <div className="text-center py-8">Loading policies...</div>
             ) : filteredPolicies.length === 0 ? (
               <div className="text-center py-8">
-                <Shield className="h-12 w-12 mx-auto text-gray-400 mb-4" />
+                <Shield className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
                 <h3 className="text-lg font-medium">No policies found</h3>
-                <p className="text-gray-500 mt-2">Try adjusting your search or filters</p>
+                <p className="text-muted-foreground mt-2">Try adjusting your search or filters</p>
               </div>
             ) : (
               <div className="rounded-md border">
@@ -197,7 +197,7 @@ export default function PoliciesPage() {
                               {policy.contacts.first_name} {policy.contacts.last_name}
                             </Link>
                           ) : (
-                            <span className="text-gray-500">Unknown</span>
+                            <span className="text-muted-foreground">Unknown</span>
                           )}
                         </TableCell>
                         <TableCell>{formatDate(policy.updated_at)}</TableCell>

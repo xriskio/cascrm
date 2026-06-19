@@ -118,20 +118,20 @@ export function AIInsightsModal({ isOpen, onClose, client }: AIInsightsModalProp
       case "low":
         return "text-green-600"
       default:
-        return "text-gray-600"
+        return "text-muted-foreground"
     }
   }
 
   const getPriorityColor = (priority: string) => {
     switch (priority.toLowerCase()) {
       case "high":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       case "medium":
-        return "bg-amber-100 text-amber-800"
+        return "bg-amber-500/15 text-amber-300"
       case "low":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -149,7 +149,7 @@ export function AIInsightsModal({ isOpen, onClose, client }: AIInsightsModalProp
         </DialogHeader>
 
         <div className="flex justify-between items-center mb-4">
-          <div className="text-sm text-gray-500">Last updated: Today at 10:45 AM</div>
+          <div className="text-sm text-muted-foreground">Last updated: Today at 10:45 AM</div>
           <Button
             variant="outline"
             size="sm"
@@ -183,7 +183,7 @@ export function AIInsightsModal({ isOpen, onClose, client }: AIInsightsModalProp
                       <span className="text-4xl font-bold text-green-600">{aiInsights.customerHealthScore}%</span>
                     </div>
                     <div className="text-center">
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-muted-foreground">
                         This client has a <span className="font-medium text-green-600">strong</span> relationship with
                         your agency
                       </p>
@@ -223,24 +223,24 @@ export function AIInsightsModal({ isOpen, onClose, client }: AIInsightsModalProp
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <div className="flex flex-col items-center p-3 bg-blue-50 rounded-lg">
+                  <div className="flex flex-col items-center p-3 bg-blue-500/10 rounded-lg">
                     <Shield className="h-8 w-8 text-blue-600 mb-2" />
-                    <div className="text-xl font-bold text-blue-700">{aiInsights.riskScore}</div>
+                    <div className="text-xl font-bold text-blue-400">{aiInsights.riskScore}</div>
                     <div className="text-xs text-center text-blue-600">Risk Score</div>
                   </div>
-                  <div className="flex flex-col items-center p-3 bg-green-50 rounded-lg">
+                  <div className="flex flex-col items-center p-3 bg-green-500/10 rounded-lg">
                     <TrendingUp className="h-8 w-8 text-green-600 mb-2" />
-                    <div className="text-xl font-bold text-green-700">{aiInsights.renewalProbability}%</div>
+                    <div className="text-xl font-bold text-green-400">{aiInsights.renewalProbability}%</div>
                     <div className="text-xs text-center text-green-600">Renewal Probability</div>
                   </div>
-                  <div className="flex flex-col items-center p-3 bg-purple-50 rounded-lg">
+                  <div className="flex flex-col items-center p-3 bg-purple-500/10 rounded-lg">
                     <Target className="h-8 w-8 text-purple-600 mb-2" />
-                    <div className="text-xl font-bold text-purple-700">{aiInsights.upsellOpportunities.length}</div>
+                    <div className="text-xl font-bold text-purple-400">{aiInsights.upsellOpportunities.length}</div>
                     <div className="text-xs text-center text-purple-600">Upsell Opportunities</div>
                   </div>
-                  <div className="flex flex-col items-center p-3 bg-amber-50 rounded-lg">
+                  <div className="flex flex-col items-center p-3 bg-amber-500/10 rounded-lg">
                     <AlertTriangle className="h-8 w-8 text-amber-600 mb-2" />
-                    <div className="text-xl font-bold text-amber-700">{aiInsights.riskFactors.length}</div>
+                    <div className="text-xl font-bold text-amber-400">{aiInsights.riskFactors.length}</div>
                     <div className="text-xs text-center text-amber-600">Risk Factors</div>
                   </div>
                 </div>
@@ -276,7 +276,7 @@ export function AIInsightsModal({ isOpen, onClose, client }: AIInsightsModalProp
                         <div className="flex justify-between items-start">
                           <div>
                             <div className="font-medium">{factor.factor}</div>
-                            <div className="text-sm text-gray-500">Recommendation: {factor.recommendation}</div>
+                            <div className="text-sm text-muted-foreground">Recommendation: {factor.recommendation}</div>
                           </div>
                           <Badge className={`${getSeverityColor(factor.severity)} bg-opacity-10`}>
                             {factor.severity} Risk
@@ -332,11 +332,11 @@ export function AIInsightsModal({ isOpen, onClose, client }: AIInsightsModalProp
                     <div key={index} className="border rounded-lg p-4">
                       <div className="flex justify-between items-start mb-2">
                         <div className="font-medium text-lg">{opportunity.product}</div>
-                        <Badge variant="outline" className="bg-green-50">
+                        <Badge variant="outline" className="bg-green-500/10">
                           {opportunity.confidence}% Match
                         </Badge>
                       </div>
-                      <p className="text-gray-600 mb-3">{opportunity.reason}</p>
+                      <p className="text-muted-foreground mb-3">{opportunity.reason}</p>
                       <div className="flex justify-end space-x-2">
                         <Button variant="outline" size="sm">
                           Learn More
@@ -356,7 +356,7 @@ export function AIInsightsModal({ isOpen, onClose, client }: AIInsightsModalProp
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="p-4 bg-blue-50 rounded-lg">
+                  <div className="p-4 bg-blue-500/10 rounded-lg">
                     <div className="font-medium mb-2">Similar clients also purchase:</div>
                     <ul className="space-y-2">
                       <li className="flex items-center">
@@ -392,7 +392,7 @@ export function AIInsightsModal({ isOpen, onClose, client }: AIInsightsModalProp
                         <div className="font-medium">{action.action}</div>
                         <Badge className={getPriorityColor(action.priority)}>{action.priority} Priority</Badge>
                       </div>
-                      <div className="flex items-center text-sm text-gray-500">
+                      <div className="flex items-center text-sm text-muted-foreground">
                         <Clock className="h-4 w-4 mr-1" />
                         <span>Timeframe: {action.timeframe}</span>
                       </div>

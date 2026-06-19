@@ -171,9 +171,9 @@ export default function NewSubmissionPage() {
 
   return (
     <div className="p-6">
-      <div className="bg-white border border-gray-200 rounded-lg p-6 mb-6">
+      <div className="bg-card border border-border rounded-lg p-6 mb-6">
         <h1 className="text-2xl font-bold mb-2">Create New Submission</h1>
-        <p className="text-gray-600 mb-6">
+        <p className="text-muted-foreground mb-6">
           Fill out the form below to create a new submission. All fields marked with an asterisk (*) are required.
         </p>
 
@@ -184,15 +184,15 @@ export default function NewSubmissionPage() {
             <Link
               key={type.id}
               href={`/submissions/new/${type.id}`}
-              className="border border-gray-200 rounded-lg p-4 hover:border-blue-500 hover:shadow-md transition-all bg-gradient-to-r from-blue-50 to-indigo-50"
+              className="border border-border rounded-lg p-4 hover:border-blue-500 hover:shadow-md transition-all bg-card"
             >
               <div className="flex items-start">
                 <div className="mr-3 mt-1 bg-gradient-to-r from-blue-500 to-indigo-600 p-2 rounded-lg">
                   <type.icon className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-gray-900">{type.name}</h3>
-                  <p className="text-sm text-gray-600">{type.description}</p>
+                  <h3 className="font-medium text-foreground">{type.name}</h3>
+                  <p className="text-sm text-muted-foreground">{type.description}</p>
                 </div>
               </div>
             </Link>
@@ -206,15 +206,15 @@ export default function NewSubmissionPage() {
             <Link
               key={type.id}
               href={`/submissions/new/${type.id}`}
-              className="border border-gray-200 rounded-lg p-4 hover:border-orange-500 hover:shadow-md transition-all"
+              className="border border-border rounded-lg p-4 hover:border-orange-500 hover:shadow-md transition-all"
             >
               <div className="flex items-start">
                 <div className="mr-3 mt-1">
-                  <type.icon className="h-6 w-6 text-gray-700" />
+                  <type.icon className="h-6 w-6 text-muted-foreground" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-gray-900">{type.name}</h3>
-                  <p className="text-sm text-gray-600">{type.description}</p>
+                  <h3 className="font-medium text-foreground">{type.name}</h3>
+                  <p className="text-sm text-muted-foreground">{type.description}</p>
                 </div>
               </div>
             </Link>

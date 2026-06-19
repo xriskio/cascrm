@@ -333,7 +333,7 @@ export default function IncomingCallLogPage() {
         </div>
 
         {showForm && (
-          <Card className="bg-white/70 backdrop-blur-sm border-0 shadow-xl">
+          <Card className="bg-card backdrop-blur-sm border-0 shadow-xl">
             <CardContent className="p-6">
               <IncomingCallForm
                 onSaved={() => {
@@ -346,8 +346,8 @@ export default function IncomingCallLogPage() {
           </Card>
         )}
 
-        <Card className="bg-white/70 backdrop-blur-sm border-0 shadow-xl">
-          <CardHeader className="bg-gradient-to-r from-slate-50 to-blue-50 border-b border-gray-200/50">
+        <Card className="bg-card backdrop-blur-sm border-0 shadow-xl">
+          <CardHeader className="bg-gradient-to-r from-slate-50 to-blue-50 border-b border-border/50">
             <div className="flex items-center gap-2">
               <Sparkles className="h-5 w-5 text-blue-600" />
               <CardTitle className="text-lg bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
@@ -356,16 +356,16 @@ export default function IncomingCallLogPage() {
             </div>
           </CardHeader>
           <CardContent className="p-0">
-            <div className="p-4 border-b flex flex-col md:flex-row gap-4 items-end bg-gradient-to-r from-gray-50 to-slate-50">
+            <div className="p-4 border-b flex flex-col md:flex-row gap-4 items-end bg-gradient-to-r from-muted to-slate-50">
               <div className="flex-1 space-y-1">
                 <label className="text-sm font-medium">AI-Powered Search</label>
                 <div className="relative">
-                  <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
+                  <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                   <Input
                     placeholder="Search by name, company, phone, or email..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-9 bg-white/80 backdrop-blur-sm border-gray-200/50"
+                    className="pl-9 bg-card backdrop-blur-sm border-border/50"
                   />
                 </div>
               </div>
@@ -373,7 +373,7 @@ export default function IncomingCallLogPage() {
               <div className="w-full md:w-40 space-y-1">
                 <label className="text-sm font-medium">Status</label>
                 <Select value={statusFilter} onValueChange={setStatusFilter}>
-                  <SelectTrigger className="bg-white/80 backdrop-blur-sm border-gray-200/50">
+                  <SelectTrigger className="bg-card backdrop-blur-sm border-border/50">
                     <SelectValue placeholder="All statuses" />
                   </SelectTrigger>
                   <SelectContent>
@@ -390,7 +390,7 @@ export default function IncomingCallLogPage() {
               <div className="w-full md:w-40 space-y-1">
                 <label className="text-sm font-medium">Category</label>
                 <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-                  <SelectTrigger className="bg-white/80 backdrop-blur-sm border-gray-200/50">
+                  <SelectTrigger className="bg-card backdrop-blur-sm border-border/50">
                     <SelectValue placeholder="All categories" />
                   </SelectTrigger>
                   <SelectContent>
@@ -411,7 +411,7 @@ export default function IncomingCallLogPage() {
                     <Button
                       variant={"outline"}
                       className={cn(
-                        "w-full justify-start text-left font-normal bg-white/80 backdrop-blur-sm border-gray-200/50",
+                        "w-full justify-start text-left font-normal bg-card backdrop-blur-sm border-border/50",
                         !dateFilter && "text-muted-foreground",
                       )}
                     >
@@ -517,7 +517,7 @@ export default function IncomingCallLogPage() {
                               {call.phone && (
                                 <a
                                   href={`tel:${call.phone}`}
-                                  className="text-blue-600 text-sm flex items-center hover:text-blue-800"
+                                  className="text-blue-600 text-sm flex items-center hover:text-blue-300"
                                 >
                                   <Phone className="h-3 w-3 mr-1" /> {call.phone}
                                 </a>
@@ -526,7 +526,7 @@ export default function IncomingCallLogPage() {
                           </TableCell>
                           <TableCell>
                             {call.category ? (
-                              <Badge variant="outline" className="capitalize bg-blue-50 text-blue-700 border-blue-200">
+                              <Badge variant="outline" className="capitalize bg-blue-500/10 text-blue-400 border-border">
                                 {call.category}
                               </Badge>
                             ) : (
@@ -543,10 +543,10 @@ export default function IncomingCallLogPage() {
                                   <Badge
                                     className={cn(
                                       "capitalize",
-                                      call.status === "pending" && "bg-yellow-100 text-yellow-800 hover:bg-yellow-100",
-                                      call.status === "called back" && "bg-green-100 text-green-800 hover:bg-green-100",
-                                      call.status === "message left" && "bg-blue-100 text-blue-800 hover:bg-blue-100",
-                                      call.status === "resolved" && "bg-gray-100 text-gray-800 hover:bg-gray-100",
+                                      call.status === "pending" && "bg-yellow-500/15 text-yellow-300 hover:bg-yellow-500/15",
+                                      call.status === "called back" && "bg-green-500/15 text-green-300 hover:bg-green-500/15",
+                                      call.status === "message left" && "bg-blue-500/15 text-blue-300 hover:bg-blue-500/15",
+                                      call.status === "resolved" && "bg-muted text-foreground hover:bg-muted",
                                     )}
                                   >
                                     {call.status || "pending"}
@@ -559,10 +559,10 @@ export default function IncomingCallLogPage() {
                                     <Badge
                                       className={cn(
                                         "capitalize",
-                                        option.value === "pending" && "bg-yellow-100 text-yellow-800",
-                                        option.value === "called back" && "bg-green-100 text-green-800",
-                                        option.value === "message left" && "bg-blue-100 text-blue-800",
-                                        option.value === "resolved" && "bg-gray-100 text-gray-800",
+                                        option.value === "pending" && "bg-yellow-500/15 text-yellow-300",
+                                        option.value === "called back" && "bg-green-500/15 text-green-300",
+                                        option.value === "message left" && "bg-blue-500/15 text-blue-300",
+                                        option.value === "resolved" && "bg-muted text-foreground",
                                       )}
                                     >
                                       {option.label}
@@ -589,19 +589,19 @@ export default function IncomingCallLogPage() {
                                 size="icon"
                                 onClick={() => viewCallDetails(call.id)}
                                 title="View Details"
-                                className="h-8 w-8 hover:bg-blue-100"
+                                className="h-8 w-8 hover:bg-blue-500/15"
                               >
                                 <Eye className="h-4 w-4" />
                               </Button>
                               {call.email && (
-                                <Button variant="ghost" size="icon" asChild className="h-8 w-8 hover:bg-green-100">
+                                <Button variant="ghost" size="icon" asChild className="h-8 w-8 hover:bg-green-500/15">
                                   <a href={`mailto:${call.email}`} title="Send email">
                                     <Mail className="h-4 w-4" />
                                   </a>
                                 </Button>
                               )}
                               {call.phone && (
-                                <Button variant="ghost" size="icon" asChild className="h-8 w-8 hover:bg-blue-100">
+                                <Button variant="ghost" size="icon" asChild className="h-8 w-8 hover:bg-blue-500/15">
                                   <a href={`tel:${call.phone}`} title="Call">
                                     <Phone className="h-4 w-4" />
                                   </a>
@@ -612,7 +612,7 @@ export default function IncomingCallLogPage() {
                                 size="icon"
                                 onClick={() => deleteCall(call.id)}
                                 title="Delete"
-                                className="h-8 w-8 hover:bg-red-100"
+                                className="h-8 w-8 hover:bg-red-500/15"
                               >
                                 <Trash2 className="h-4 w-4 text-red-500" />
                               </Button>
@@ -623,44 +623,44 @@ export default function IncomingCallLogPage() {
                           <TableRow>
                             <TableCell colSpan={9} className="bg-gradient-to-r from-slate-50 to-blue-50 p-4">
                               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div className="bg-white/70 backdrop-blur-sm rounded-lg p-4">
+                                <div className="bg-card backdrop-blur-sm rounded-lg p-4">
                                   <h4 className="font-medium mb-2 flex items-center">
                                     <Sparkles className="h-4 w-4 mr-2 text-blue-600" />
                                     Call Details
                                   </h4>
                                   <dl className="grid grid-cols-[120px_1fr] gap-1 text-sm">
-                                    <dt className="text-gray-500">Reason:</dt>
+                                    <dt className="text-muted-foreground">Reason:</dt>
                                     <dd>{call.reason || "-"}</dd>
-                                    <dt className="text-gray-500">Notes:</dt>
+                                    <dt className="text-muted-foreground">Notes:</dt>
                                     <dd className="whitespace-pre-line">{call.notes || "-"}</dd>
-                                    <dt className="text-gray-500">Created:</dt>
+                                    <dt className="text-muted-foreground">Created:</dt>
                                     <dd>{call.created_at ? format(parseISO(call.created_at), "PPpp") : "-"}</dd>
                                   </dl>
                                 </div>
-                                <div className="bg-white/70 backdrop-blur-sm rounded-lg p-4">
+                                <div className="bg-card backdrop-blur-sm rounded-lg p-4">
                                   <h4 className="font-medium mb-2 flex items-center">
                                     <Users className="h-4 w-4 mr-2 text-green-600" />
                                     Contact Information
                                   </h4>
                                   <dl className="grid grid-cols-[120px_1fr] gap-1 text-sm">
-                                    <dt className="text-gray-500">Company:</dt>
+                                    <dt className="text-muted-foreground">Company:</dt>
                                     <dd>{call.named_insured || "-"}</dd>
-                                    <dt className="text-gray-500">Contact:</dt>
+                                    <dt className="text-muted-foreground">Contact:</dt>
                                     <dd>{call.contact_name || "-"}</dd>
-                                    <dt className="text-gray-500">Phone:</dt>
+                                    <dt className="text-muted-foreground">Phone:</dt>
                                     <dd>
                                       {call.phone ? (
-                                        <a href={`tel:${call.phone}`} className="text-blue-600 hover:text-blue-800">
+                                        <a href={`tel:${call.phone}`} className="text-blue-600 hover:text-blue-300">
                                           {call.phone}
                                         </a>
                                       ) : (
                                         "-"
                                       )}
                                     </dd>
-                                    <dt className="text-gray-500">Email:</dt>
+                                    <dt className="text-muted-foreground">Email:</dt>
                                     <dd>
                                       {call.email ? (
-                                        <a href={`mailto:${call.email}`} className="text-blue-600 hover:text-blue-800">
+                                        <a href={`mailto:${call.email}`} className="text-blue-600 hover:text-blue-300">
                                           {call.email}
                                         </a>
                                       ) : (

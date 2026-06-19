@@ -17,9 +17,9 @@ export default function ModernClientLayout({ children, client }: ModernClientLay
   return (
     <div className="modern-client-container">
       {client && (
-        <div className="bg-white border-b border-gray-200 p-4">
+        <div className="bg-card border-b border-border p-4">
           <h1 className="text-2xl font-bold">{client.name}</h1>
-          {client.email && <p className="text-gray-600">{client.email}</p>}
+          {client.email && <p className="text-muted-foreground">{client.email}</p>}
         </div>
       )}
       <div className="p-6">{children}</div>

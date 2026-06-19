@@ -398,7 +398,7 @@ export function TopNavigation() {
                     <div className="flex items-center space-x-3">
                       <item.icon className="h-5 w-5" />
                       <span>{item.name}</span>
-                      {isActive && <div className="ml-auto w-2 h-2 bg-white rounded-full animate-pulse"></div>}
+                      {isActive && <div className="ml-auto w-2 h-2 bg-card rounded-full animate-pulse"></div>}
                     </div>
                   </Link>
                 )

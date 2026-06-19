@@ -26,14 +26,14 @@ interface StatusChange {
 }
 
 const statusOptions = [
-  { value: "pending", label: "Pending", color: "bg-yellow-100 text-yellow-800" },
-  { value: "contacted", label: "Contacted", color: "bg-blue-100 text-blue-800" },
-  { value: "quoted", label: "Quoted", color: "bg-purple-100 text-purple-800" },
-  { value: "bound", label: "Bound", color: "bg-green-100 text-green-800" },
-  { value: "declined", label: "Declined", color: "bg-red-100 text-red-800" },
-  { value: "non-renewed", label: "Non-Renewed", color: "bg-orange-100 text-orange-800" },
-  { value: "lost", label: "Lost", color: "bg-gray-100 text-gray-800" },
-  { value: "remarketing", label: "Remarketing", color: "bg-indigo-100 text-indigo-800" },
+  { value: "pending", label: "Pending", color: "bg-yellow-500/15 text-yellow-300" },
+  { value: "contacted", label: "Contacted", color: "bg-blue-500/15 text-blue-300" },
+  { value: "quoted", label: "Quoted", color: "bg-purple-500/15 text-purple-300" },
+  { value: "bound", label: "Bound", color: "bg-green-500/15 text-green-300" },
+  { value: "declined", label: "Declined", color: "bg-red-500/15 text-red-300" },
+  { value: "non-renewed", label: "Non-Renewed", color: "bg-orange-500/15 text-orange-300" },
+  { value: "lost", label: "Lost", color: "bg-muted text-foreground" },
+  { value: "remarketing", label: "Remarketing", color: "bg-indigo-500/15 text-indigo-300" },
 ]
 
 export default function StatusTracker({ renewalId, currentStatus, onStatusUpdate }: StatusTrackerProps) {
@@ -100,7 +100,7 @@ export default function StatusTracker({ renewalId, currentStatus, onStatusUpdate
 
   const getStatusColor = (status: string) => {
     const statusOption = statusOptions.find((opt) => opt.value === status.toLowerCase())
-    return statusOption?.color || "bg-gray-100 text-gray-800"
+    return statusOption?.color || "bg-muted text-foreground"
   }
 
   const formatDate = (dateString: string) => {
@@ -148,16 +148,16 @@ export default function StatusTracker({ renewalId, currentStatus, onStatusUpdate
       </CardHeader>
       <CardContent>
         {/* Current Status & Update Form */}
-        <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+        <div className="mb-6 p-4 bg-muted rounded-lg">
           <div className="flex items-center justify-between mb-3">
-            <span className="font-medium text-gray-700">Current Status:</span>
+            <span className="font-medium text-muted-foreground">Current Status:</span>
             <Badge className={getStatusColor(currentStatus)}>{currentStatus}</Badge>
           </div>
 
           {isEditing && (
             <div className="space-y-3">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">New Status</label>
+                <label className="block text-sm font-medium text-muted-foreground mb-1">New Status</label>
                 <Select value={newStatus} onValueChange={setNewStatus}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select new status" />
@@ -176,7 +176,7 @@ export default function StatusTracker({ renewalId, currentStatus, onStatusUpdate
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Notes (Optional)</label>
+                <label className="block text-sm font-medium text-muted-foreground mb-1">Notes (Optional)</label>
                 <Textarea
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
@@ -209,15 +209,15 @@ export default function StatusTracker({ renewalId, currentStatus, onStatusUpdate
 
         {/* Status History */}
         <div>
-          <h4 className="font-medium text-gray-900 mb-4">Status History</h4>
+          <h4 className="font-medium text-foreground mb-4">Status History</h4>
           {history.length === 0 ? (
-            <div className="text-center py-4 text-gray-500">No status changes recorded</div>
+            <div className="text-center py-4 text-muted-foreground">No status changes recorded</div>
           ) : (
             <div className="space-y-4">
               {history.map((change, index) => (
-                <div key={change.id} className="border-l-2 border-gray-200 pl-4 pb-4 relative">
+                <div key={change.id} className="border-l-2 border-border pl-4 pb-4 relative">
                   {index !== history.length - 1 && (
-                    <div className="absolute left-0 top-8 bottom-0 w-0.5 bg-gray-200"></div>
+                    <div className="absolute left-0 top-8 bottom-0 w-0.5 bg-muted"></div>
                   )}
                   <div className="absolute left-0 top-2 w-2 h-2 bg-orange-500 rounded-full transform -translate-x-1"></div>
 
@@ -225,11 +225,11 @@ export default function StatusTracker({ renewalId, currentStatus, onStatusUpdate
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         <Badge className={getStatusColor(change.old_status)}>{change.old_status}</Badge>
-                        <span className="text-gray-400">→</span>
+                        <span className="text-muted-foreground">→</span>
                         <Badge className={getStatusColor(change.new_status)}>{change.new_status}</Badge>
                       </div>
 
-                      <div className="flex items-center gap-4 text-sm text-gray-600 mb-2">
+                      <div className="flex items-center gap-4 text-sm text-muted-foreground mb-2">
                         <div className="flex items-center gap-1">
                           <User className="h-4 w-4" />
                           {change.changed_by_name}
@@ -242,8 +242,8 @@ export default function StatusTracker({ renewalId, currentStatus, onStatusUpdate
 
                       {change.notes && (
                         <div className="flex items-start gap-1 text-sm">
-                          <MessageSquare className="h-4 w-4 mt-0.5 text-gray-400" />
-                          <span className="text-gray-700">{change.notes}</span>
+                          <MessageSquare className="h-4 w-4 mt-0.5 text-muted-foreground" />
+                          <span className="text-muted-foreground">{change.notes}</span>
                         </div>
                       )}
                     </div>

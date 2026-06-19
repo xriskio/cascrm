@@ -213,7 +213,7 @@ export function GoogleMapsAddressInput({
           required={required}
           className="pr-10"
         />
-        <MapPin className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+        <MapPin className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
       </div>
 
       <div className="flex items-center gap-4">
@@ -226,11 +226,11 @@ export function GoogleMapsAddressInput({
             Address verified
           </span>
         )}
-        {!isLoaded && !hasError && <span className="text-sm text-gray-500">Loading address lookup...</span>}
+        {!isLoaded && !hasError && <span className="text-sm text-muted-foreground">Loading address lookup...</span>}
       </div>
 
       {useManualEntry && (
-        <div className="text-sm text-gray-600 bg-blue-50 p-3 rounded-lg">
+        <div className="text-sm text-muted-foreground bg-blue-500/10 p-3 rounded-lg">
           <p className="font-medium mb-1">Manual Address Entry</p>
           <p>Please enter the complete property address including:</p>
           <ul className="list-disc list-inside mt-1 space-y-1">
@@ -252,7 +252,7 @@ export function GoogleMapsAddressInput({
 
           <div className="space-y-2">
             <p className="text-sm font-medium">{selectedPlace.formatted_address}</p>
-            <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
+            <div className="grid grid-cols-2 gap-4 text-sm text-muted-foreground">
               {selectedPlace.address_components?.map((component: any, index: number) => {
                 const types = component.types
                 if (types.includes("locality")) {
@@ -281,9 +281,9 @@ export function GoogleMapsAddressInput({
             </div>
           </div>
 
-          <div ref={mapRef} className="w-full h-64 rounded-lg border bg-gray-100 flex items-center justify-center" />
+          <div ref={mapRef} className="w-full h-64 rounded-lg border bg-muted flex items-center justify-center" />
 
-          <div className="flex items-center justify-between text-sm text-gray-500">
+          <div className="flex items-center justify-between text-sm text-muted-foreground">
             <span>Property location verified</span>
             <span>Powered by Google Maps</span>
           </div>

@@ -20,8 +20,8 @@ export default async function AuditLogsPage() {
     return (
       <div className="p-6">
         <h1 className="text-2xl font-bold mb-6">Audit Logs</h1>
-        <div className="bg-red-50 border-l-4 border-red-500 p-4">
-          <p className="text-red-700">Error loading audit logs: {error.message}</p>
+        <div className="bg-red-500/10 border-l-4 border-red-500 p-4">
+          <p className="text-red-400">Error loading audit logs: {error.message}</p>
         </div>
       </div>
     )
@@ -37,7 +37,7 @@ export default async function AuditLogsPage() {
       case "delete":
         return <Trash2 className="h-4 w-4 text-red-500" />
       case "view":
-        return <Eye className="h-4 w-4 text-gray-500" />
+        return <Eye className="h-4 w-4 text-muted-foreground" />
       default:
         return null
     }
@@ -55,44 +55,44 @@ export default async function AuditLogsPage() {
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-6">Audit Logs</h1>
 
-      <div className="bg-white rounded-md shadow overflow-hidden">
+      <div className="bg-card rounded-md shadow overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+          <table className="min-w-full divide-y divide-border">
+            <thead className="bg-muted">
               <tr>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider"
                 >
                   Date & Time
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider"
                 >
                   User
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider"
                 >
                   Action
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider"
                 >
                   Table
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider"
                 >
                   Record ID
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider"
                 >
                   IP Address
                 </th>
@@ -101,33 +101,33 @@ export default async function AuditLogsPage() {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-card divide-y divide-border">
               {logs && logs.length > 0 ? (
                 logs.map((log: any) => (
-                  <tr key={log.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <tr key={log.id} className="hover:bg-muted">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">
                       {format(new Date(log.created_at), "MMM d, yyyy h:mm a")}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-foreground">
                       {log.user_name || "Unknown User"}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">
                       <div className="flex items-center">
                         {getActionIcon(log.action)}
                         <span className="ml-2 capitalize">{log.action}</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">
                       {formatTableName(log.table_name)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-muted-foreground">
                       {typeof log.record_id === "string" && log.record_id.length > 8
                         ? `${log.record_id.substring(0, 8)}...`
                         : log.record_id}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{log.ip_address}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{log.ip_address}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <Link href={`/admin/audit-logs/${log.id}`} className="text-orange-600 hover:text-orange-900">
+                      <Link href={`/admin/audit-logs/${log.id}`} className="text-orange-600 hover:text-orange-300">
                         View
                       </Link>
                     </td>
@@ -135,7 +135,7 @@ export default async function AuditLogsPage() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan={7} className="px-6 py-4 text-center text-sm text-gray-500">
+                  <td colSpan={7} className="px-6 py-4 text-center text-sm text-muted-foreground">
                     No audit logs found
                   </td>
                 </tr>

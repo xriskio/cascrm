@@ -209,7 +209,7 @@ export function LoginForm() {
         )}
       </CardContent>
       <CardFooter className="flex justify-center">
-        <p className="text-sm text-gray-500">Contact your administrator if you need access</p>
+        <p className="text-sm text-muted-foreground">Contact your administrator if you need access</p>
       </CardFooter>
     </Card>
   )

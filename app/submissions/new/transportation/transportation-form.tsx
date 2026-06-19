@@ -240,7 +240,7 @@ export default function TransportationForm() {
   return (
     <form onSubmit={handleSubmit}>
       {error && (
-        <div className="bg-red-50 border border-red-200 text-red-800 rounded-md p-4 mb-6 flex items-start">
+        <div className="bg-red-500/10 border border-border text-red-300 rounded-md p-4 mb-6 flex items-start">
           <AlertCircle className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" />
           <span>{error}</span>
         </div>
@@ -270,7 +270,7 @@ export default function TransportationForm() {
                   <div>
                     <Label htmlFor="dotNumber">DOT Number</Label>
                     <Input id="dotNumber" name="dotNumber" placeholder="DOT Number" />
-                    <p className="text-sm text-gray-500 mt-1">
+                    <p className="text-sm text-muted-foreground mt-1">
                       The "DOT Number" issued by the Federal Motor Carrier Safety Administration
                     </p>
                   </div>
@@ -402,7 +402,7 @@ export default function TransportationForm() {
                   <div>
                     <Label htmlFor="totalValueTrucks">Total Value of Trucks</Label>
                     <div className="relative">
-                      <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">$</span>
+                      <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-muted-foreground">$</span>
                       <Input
                         id="totalValueTrucks"
                         name="totalValueTrucks"
@@ -424,7 +424,7 @@ export default function TransportationForm() {
                   <div>
                     <Label htmlFor="totalValueTrailers">Total Value of Trailers</Label>
                     <div className="relative">
-                      <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">$</span>
+                      <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-muted-foreground">$</span>
                       <Input
                         id="totalValueTrailers"
                         name="totalValueTrailers"
@@ -455,7 +455,7 @@ export default function TransportationForm() {
               <div className="space-y-6">
                 <div>
                   <h3 className="text-lg font-medium mb-4">Application Summary</h3>
-                  <div className="bg-gray-50 p-4 rounded-md">
+                  <div className="bg-muted p-4 rounded-md">
                     <p className="text-sm mb-4">
                       Please review your application before submitting. Once submitted, a team member will review your
                       submission as soon as possible.

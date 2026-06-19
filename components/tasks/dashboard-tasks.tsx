@@ -90,15 +90,15 @@ export function DashboardTasks() {
   const getPriorityColor = (priority: any) => {
     switch (priority) {
       case "Low":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-500/15 text-blue-300"
       case "Medium":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-500/15 text-yellow-300"
       case "High":
-        return "bg-orange-100 text-orange-800"
+        return "bg-orange-500/15 text-orange-300"
       case "Urgent":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -173,33 +173,33 @@ export function DashboardTasks() {
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-4 gap-4 mb-6">
-          <div className="bg-blue-50 p-4 rounded-lg">
+          <div className="bg-blue-500/10 p-4 rounded-lg">
             <div className="text-blue-500 mb-1">
               <Clock className="h-5 w-5" />
             </div>
             <div className="text-2xl font-bold">{stats.notStarted}</div>
-            <div className="text-sm text-gray-500">Not Started</div>
+            <div className="text-sm text-muted-foreground">Not Started</div>
           </div>
-          <div className="bg-yellow-50 p-4 rounded-lg">
+          <div className="bg-yellow-500/10 p-4 rounded-lg">
             <div className="text-yellow-500 mb-1">
               <AlertCircle className="h-5 w-5" />
             </div>
             <div className="text-2xl font-bold">{stats.inProgress}</div>
-            <div className="text-sm text-gray-500">In Progress</div>
+            <div className="text-sm text-muted-foreground">In Progress</div>
           </div>
-          <div className="bg-green-50 p-4 rounded-lg">
+          <div className="bg-green-500/10 p-4 rounded-lg">
             <div className="text-green-500 mb-1">
               <CheckCircle className="h-5 w-5" />
             </div>
             <div className="text-2xl font-bold">{stats.completed}</div>
-            <div className="text-sm text-gray-500">Completed</div>
+            <div className="text-sm text-muted-foreground">Completed</div>
           </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <div className="text-gray-500 mb-1">
+          <div className="bg-muted p-4 rounded-lg">
+            <div className="text-muted-foreground mb-1">
               <PauseCircle className="h-5 w-5" />
             </div>
             <div className="text-2xl font-bold">{stats.onHold}</div>
-            <div className="text-sm text-gray-500">On Hold</div>
+            <div className="text-sm text-muted-foreground">On Hold</div>
           </div>
         </div>
 
@@ -217,7 +217,7 @@ export function DashboardTasks() {
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
               </div>
             ) : filteredTasks.length === 0 ? (
-              <div className="flex flex-col items-center justify-center h-40 text-gray-500">
+              <div className="flex flex-col items-center justify-center h-40 text-muted-foreground">
                 <CheckCircle2 className="h-12 w-12 mb-2 text-gray-300" />
                 <p>No tasks found</p>
                 <p className="text-sm">
@@ -240,18 +240,18 @@ export function DashboardTasks() {
                     </div>
 
                     <div className="flex items-center justify-between mb-2">
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-muted-foreground">
                         Status: <span className="font-medium">{task.status}</span>
                       </div>
                       <div
-                        className={`text-sm ${isOverdue(task.due_date) && task.status !== "Completed" ? "text-red-500 font-medium" : "text-gray-500"}`}
+                        className={`text-sm ${isOverdue(task.due_date) && task.status !== "Completed" ? "text-red-500 font-medium" : "text-muted-foreground"}`}
                       >
                         Due: {formatDate(task.due_date)}
                       </div>
                     </div>
 
                     <div className="mb-3">
-                      <div className="flex justify-between text-xs text-gray-500 mb-1">
+                      <div className="flex justify-between text-xs text-muted-foreground mb-1">
                         <span>Progress</span>
                         <span>{task.completion_percentage}%</span>
                       </div>
@@ -262,21 +262,21 @@ export function DashboardTasks() {
                       {task.status !== "Completed" ? (
                         <button
                           onClick={() => handleComplete(task.id)}
-                          className="text-xs px-2 py-1 bg-green-50 text-green-600 rounded hover:bg-green-100"
+                          className="text-xs px-2 py-1 bg-green-500/10 text-green-600 rounded hover:bg-green-500/15"
                         >
                           Mark Complete
                         </button>
                       ) : (
                         <button
                           onClick={() => handleReopen(task.id)}
-                          className="text-xs px-2 py-1 bg-yellow-50 text-yellow-600 rounded hover:bg-yellow-100"
+                          className="text-xs px-2 py-1 bg-yellow-500/10 text-yellow-600 rounded hover:bg-yellow-500/15"
                         >
                           Reopen
                         </button>
                       )}
                       <Link
                         href={`/tasks/${task.id}`}
-                        className="text-xs px-2 py-1 bg-gray-50 text-gray-600 rounded hover:bg-gray-100"
+                        className="text-xs px-2 py-1 bg-muted text-muted-foreground rounded hover:bg-muted"
                       >
                         View Details
                       </Link>
@@ -289,7 +289,7 @@ export function DashboardTasks() {
         </Tabs>
       </CardContent>
       <CardFooter className="border-t pt-4 flex justify-between">
-        <div className="text-sm text-gray-500">
+        <div className="text-sm text-muted-foreground">
           Showing {filteredTasks.length} of {stats.total} tasks
         </div>
         <Link href="/tasks" className="text-sm text-orange-500 hover:underline">

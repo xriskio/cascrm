@@ -136,7 +136,7 @@ export function ReminderModal({ isOpen, onClose, client }: ReminderModalProps) {
             <div className="space-y-2">
               <Label htmlFor="time">Time</Label>
               <div className="flex items-center">
-                <Clock className="mr-2 h-4 w-4 text-gray-500" />
+                <Clock className="mr-2 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="time"
                   type="time"

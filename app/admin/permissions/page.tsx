@@ -17,7 +17,7 @@ export default function PermissionsManagementPage() {
             <Shield className="h-8 w-8 text-orange-500" />
             Permissions & Authorization
           </h1>
-          <p className="text-gray-600 mt-2">
+          <p className="text-muted-foreground mt-2">
             Manage user roles and control access to different parts of the application
           </p>
         </div>
@@ -71,7 +71,7 @@ export default function PermissionsManagementPage() {
               </div>
               <div className="flex items-center gap-2">
                 <XCircle className="h-4 w-4 text-red-500" />
-                <span className="text-sm text-gray-400">No Admin Access</span>
+                <span className="text-sm text-muted-foreground">No Admin Access</span>
               </div>
             </div>
           </CardContent>
@@ -79,7 +79,7 @@ export default function PermissionsManagementPage() {
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="flex items-center gap-2 text-gray-600">
+            <CardTitle className="flex items-center gap-2 text-muted-foreground">
               <Lock className="h-5 w-5" />
               User
             </CardTitle>
@@ -93,11 +93,11 @@ export default function PermissionsManagementPage() {
               </div>
               <div className="flex items-center gap-2">
                 <XCircle className="h-4 w-4 text-red-500" />
-                <span className="text-sm text-gray-400">No Write Access</span>
+                <span className="text-sm text-muted-foreground">No Write Access</span>
               </div>
               <div className="flex items-center gap-2">
                 <XCircle className="h-4 w-4 text-red-500" />
-                <span className="text-sm text-gray-400">No Delete Access</span>
+                <span className="text-sm text-muted-foreground">No Delete Access</span>
               </div>
             </div>
           </CardContent>
@@ -114,26 +114,26 @@ export default function PermissionsManagementPage() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+            <table className="min-w-full divide-y divide-border">
+              <thead className="bg-muted">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Permission
                   </th>
                   {roles.map((role) => (
                     <th
                       key={role}
-                      className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="px-6 py-3 text-center text-xs font-medium text-muted-foreground uppercase tracking-wider"
                     >
                       {role}
                     </th>
                   ))}
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-card divide-y divide-border">
                 {permissions.map((permission) => (
                   <tr key={permission}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 capitalize">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-foreground capitalize">
                       {permission}
                     </td>
                     {roles.map((role) => (
@@ -168,7 +168,7 @@ export default function PermissionsManagementPage() {
                 <h3 className="font-semibold capitalize flex items-center gap-2">
                   {role === "admin" && <Key className="h-4 w-4 text-red-600" />}
                   {role === "agent" && <Users className="h-4 w-4 text-blue-600" />}
-                  {role === "user" && <Lock className="h-4 w-4 text-gray-600" />}
+                  {role === "user" && <Lock className="h-4 w-4 text-muted-foreground" />}
                   {role}
                 </h3>
                 <div className="space-y-1">
@@ -185,14 +185,14 @@ export default function PermissionsManagementPage() {
       </Card>
 
       {/* How to Manage Permissions */}
-      <Card className="bg-blue-50 border-blue-200">
+      <Card className="bg-blue-500/10 border-border">
         <CardHeader>
-          <CardTitle className="text-blue-800">How to Manage User Access</CardTitle>
+          <CardTitle className="text-blue-300">How to Manage User Access</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <h4 className="font-semibold text-blue-900">To change a user's permissions:</h4>
-            <ol className="list-decimal list-inside space-y-1 text-sm text-blue-800">
+            <h4 className="font-semibold text-blue-300">To change a user's permissions:</h4>
+            <ol className="list-decimal list-inside space-y-1 text-sm text-blue-300">
               <li>Go to <a href="/admin/users" className="underline font-medium">Users Management</a></li>
               <li>Click "Edit" next to the user you want to modify</li>
               <li>Select the appropriate role (Admin, Agent, or User)</li>
@@ -200,9 +200,9 @@ export default function PermissionsManagementPage() {
             </ol>
           </div>
           
-          <div className="space-y-2 pt-4 border-t border-blue-200">
-            <h4 className="font-semibold text-blue-900">Role Definitions:</h4>
-            <ul className="space-y-2 text-sm text-blue-800">
+          <div className="space-y-2 pt-4 border-t border-border">
+            <h4 className="font-semibold text-blue-300">Role Definitions:</h4>
+            <ul className="space-y-2 text-sm text-blue-300">
               <li>
                 <strong>Admin:</strong> Full access to all features including user management and system configuration
               </li>

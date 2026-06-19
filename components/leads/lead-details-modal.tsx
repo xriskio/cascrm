@@ -98,32 +98,32 @@ export function LeadDetailsModal({ isOpen, onClose, leadId }: LeadDetailsModalPr
   const getStatusColor = (status: string) => {
     switch (status) {
       case "new":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-500/15 text-blue-300"
       case "contacted":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-500/15 text-yellow-300"
       case "qualified":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       case "converted":
-        return "bg-purple-100 text-purple-800"
+        return "bg-purple-500/15 text-purple-300"
       case "lost":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case "urgent":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       case "high":
-        return "bg-orange-100 text-orange-800"
+        return "bg-orange-500/15 text-orange-300"
       case "medium":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-500/15 text-yellow-300"
       case "low":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -197,31 +197,31 @@ export function LeadDetailsModal({ isOpen, onClose, leadId }: LeadDetailsModalPr
                 <CardContent>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="flex items-center gap-2">
-                      <Tag className="w-4 h-4 text-gray-500" />
+                      <Tag className="w-4 h-4 text-muted-foreground" />
                       <div>
                         <div className="text-sm font-medium">Lead Type</div>
-                        <div className="text-sm text-gray-600">{lead.lead_type}</div>
+                        <div className="text-sm text-muted-foreground">{lead.lead_type}</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-gray-500" />
+                      <Calendar className="w-4 h-4 text-muted-foreground" />
                       <div>
                         <div className="text-sm font-medium">Date Entered</div>
-                        <div className="text-sm text-gray-600">{new Date(lead.date_entered).toLocaleDateString()}</div>
+                        <div className="text-sm text-muted-foreground">{new Date(lead.date_entered).toLocaleDateString()}</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <FileText className="w-4 h-4 text-gray-500" />
+                      <FileText className="w-4 h-4 text-muted-foreground" />
                       <div>
                         <div className="text-sm font-medium">Source</div>
-                        <div className="text-sm text-gray-600">{lead.source}</div>
+                        <div className="text-sm text-muted-foreground">{lead.source}</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Star className="w-4 h-4 text-gray-500" />
+                      <Star className="w-4 h-4 text-muted-foreground" />
                       <div>
                         <div className="text-sm font-medium">Spam Score</div>
-                        <div className="text-sm text-gray-600">{lead.spam_score}%</div>
+                        <div className="text-sm text-muted-foreground">{lead.spam_score}%</div>
                       </div>
                     </div>
                   </div>
@@ -262,7 +262,7 @@ export function LeadDetailsModal({ isOpen, onClose, leadId }: LeadDetailsModalPr
                     <CardTitle>Notes</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-700">{lead.notes}</p>
+                    <p className="text-muted-foreground">{lead.notes}</p>
                   </CardContent>
                 </Card>
               )}
@@ -280,21 +280,21 @@ export function LeadDetailsModal({ isOpen, onClose, leadId }: LeadDetailsModalPr
                         <Mail className="w-5 h-5 text-blue-600" />
                         <div>
                           <div className="font-medium">Email</div>
-                          <div className="text-gray-600">{lead.email}</div>
+                          <div className="text-muted-foreground">{lead.email}</div>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
                         <Phone className="w-5 h-5 text-green-600" />
                         <div>
                           <div className="font-medium">Phone</div>
-                          <div className="text-gray-600">{lead.phone}</div>
+                          <div className="text-muted-foreground">{lead.phone}</div>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
                         <MapPin className="w-5 h-5 text-red-600" />
                         <div>
                           <div className="font-medium">Address</div>
-                          <div className="text-gray-600">
+                          <div className="text-muted-foreground">
                             {lead.address}
                             <br />
                             {lead.city}, {lead.state} {lead.zip}
@@ -309,11 +309,11 @@ export function LeadDetailsModal({ isOpen, onClose, leadId }: LeadDetailsModalPr
                       </div>
                       <div>
                         <div className="font-medium mb-2">Referral Source</div>
-                        <div className="text-gray-600">{lead.referral}</div>
+                        <div className="text-muted-foreground">{lead.referral}</div>
                       </div>
                       <div>
                         <div className="font-medium mb-2">IP Address</div>
-                        <div className="text-gray-600 font-mono">{lead.ip_address}</div>
+                        <div className="text-muted-foreground font-mono">{lead.ip_address}</div>
                       </div>
                     </div>
                   </div>
@@ -331,19 +331,19 @@ export function LeadDetailsModal({ isOpen, onClose, leadId }: LeadDetailsModalPr
                     <div className="text-center p-4 border rounded-lg">
                       <div className="text-3xl mb-2">{getLeadTypeIcon(lead.lead_type)}</div>
                       <div className="font-medium">{lead.lead_type}</div>
-                      <div className="text-sm text-gray-500">Insurance Type</div>
+                      <div className="text-sm text-muted-foreground">Insurance Type</div>
                     </div>
                     <div className="text-center p-4 border rounded-lg">
                       <Badge className={getStatusColor(lead.status)} {...({ size: "lg" } as any)}>
                         {lead.status}
                       </Badge>
-                      <div className="text-sm text-gray-500 mt-2">Current Status</div>
+                      <div className="text-sm text-muted-foreground mt-2">Current Status</div>
                     </div>
                     <div className="text-center p-4 border rounded-lg">
                       <Badge className={getPriorityColor(lead.priority)} {...({ size: "lg" } as any)}>
                         {lead.priority}
                       </Badge>
-                      <div className="text-sm text-gray-500 mt-2">Priority Level</div>
+                      <div className="text-sm text-muted-foreground mt-2">Priority Level</div>
                     </div>
                   </div>
                 </CardContent>
@@ -358,7 +358,7 @@ export function LeadDetailsModal({ isOpen, onClose, leadId }: LeadDetailsModalPr
                     <div className="flex items-center justify-between">
                       <span>Spam Score</span>
                       <div className="flex items-center gap-2">
-                        <div className="w-32 bg-gray-200 rounded-full h-2">
+                        <div className="w-32 bg-muted rounded-full h-2">
                           <div
                             className={`h-2 rounded-full ${lead.spam_score! > 50 ? "bg-red-500" : lead.spam_score! > 25 ? "bg-yellow-500" : "bg-green-500"}`}
                             style={{ width: `${lead.spam_score}%` }}
@@ -399,16 +399,16 @@ export function LeadDetailsModal({ isOpen, onClose, leadId }: LeadDetailsModalPr
                       <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
                       <div>
                         <div className="font-medium">Lead Created</div>
-                        <div className="text-sm text-gray-500">{new Date(lead.created_at).toLocaleString()}</div>
-                        <div className="text-sm text-gray-600 mt-1">Lead submitted via {lead.source}</div>
+                        <div className="text-sm text-muted-foreground">{new Date(lead.created_at).toLocaleString()}</div>
+                        <div className="text-sm text-muted-foreground mt-1">Lead submitted via {lead.source}</div>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
                       <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
                       <div>
                         <div className="font-medium">Status Updated</div>
-                        <div className="text-sm text-gray-500">{new Date(lead.date_entered).toLocaleString()}</div>
-                        <div className="text-sm text-gray-600 mt-1">Status changed to "{lead.status}"</div>
+                        <div className="text-sm text-muted-foreground">{new Date(lead.date_entered).toLocaleString()}</div>
+                        <div className="text-sm text-muted-foreground mt-1">Status changed to "{lead.status}"</div>
                       </div>
                     </div>
                   </div>
@@ -417,7 +417,7 @@ export function LeadDetailsModal({ isOpen, onClose, leadId }: LeadDetailsModalPr
             </TabsContent>
           </Tabs>
         ) : (
-          <div className="text-center py-8 text-gray-500">Lead not found</div>
+          <div className="text-center py-8 text-muted-foreground">Lead not found</div>
         )}
 
         <div className="flex justify-end gap-2 pt-4">

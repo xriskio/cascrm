@@ -68,20 +68,20 @@ export default function ImportStatusPage() {
       case "empty":
         return <AlertCircle className="h-4 w-4 text-yellow-500" />
       default:
-        return <AlertCircle className="h-4 w-4 text-gray-500" />
+        return <AlertCircle className="h-4 w-4 text-muted-foreground" />
     }
   }
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case "success":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       case "error":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       case "empty":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-500/15 text-yellow-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -90,7 +90,7 @@ export default function ImportStatusPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Import Status</h1>
-          <p className="text-gray-600">Check the status of your QQCatalyst data imports</p>
+          <p className="text-muted-foreground">Check the status of your QQCatalyst data imports</p>
         </div>
         <Button onClick={checkImportStatus} disabled={loading}>
           <RefreshCw className={`h-4 w-4 mr-2 ${loading ? "animate-spin" : ""}`} />

@@ -61,15 +61,15 @@ export default async function AssignedTasksPage() {
   const getPriorityClass = (priority: string) => {
     switch (priority) {
       case "Low":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-500/15 text-blue-300"
       case "Medium":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-500/15 text-yellow-300"
       case "High":
-        return "bg-orange-100 text-orange-800"
+        return "bg-orange-500/15 text-orange-300"
       case "Urgent":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -144,7 +144,7 @@ function TaskList({ tasks, formatUserName, formatDate, getPriorityClass }: any) 
   if (tasks.length === 0) {
     return (
       <Card>
-        <CardContent className="py-10 text-center text-gray-500">No tasks found in this category.</CardContent>
+        <CardContent className="py-10 text-center text-muted-foreground">No tasks found in this category.</CardContent>
       </Card>
     )
   }
@@ -163,11 +163,11 @@ function TaskList({ tasks, formatUserName, formatDate, getPriorityClass }: any) 
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
-                <p className="text-sm text-gray-500">Status</p>
+                <p className="text-sm text-muted-foreground">Status</p>
                 <p>{task.status}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">Priority</p>
+                <p className="text-sm text-muted-foreground">Priority</p>
                 <p>
                   <span className={`inline-block px-2 py-1 rounded-full text-xs ${getPriorityClass(task.priority)}`}>
                     {task.priority}
@@ -175,25 +175,25 @@ function TaskList({ tasks, formatUserName, formatDate, getPriorityClass }: any) 
                 </p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">Due Date</p>
+                <p className="text-sm text-muted-foreground">Due Date</p>
                 <p>{formatDate(task.due_date)}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">Assigned To</p>
+                <p className="text-sm text-muted-foreground">Assigned To</p>
                 <p>{formatUserName(task.assignee)}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">Supervisor</p>
+                <p className="text-sm text-muted-foreground">Supervisor</p>
                 <p>{formatUserName(task.supervisor)}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">Completion</p>
+                <p className="text-sm text-muted-foreground">Completion</p>
                 <p>{task.completion_percentage}%</p>
               </div>
             </div>
             {task.description && (
               <div className="mt-4">
-                <p className="text-sm text-gray-500">Description</p>
+                <p className="text-sm text-muted-foreground">Description</p>
                 <p className="text-sm mt-1">{task.description}</p>
               </div>
             )}

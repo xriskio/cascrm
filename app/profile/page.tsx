@@ -39,7 +39,7 @@ export default async function ProfilePage() {
     <div className="container py-10">
       <div className="mb-8">
         <h1 className="text-3xl font-bold">My Profile</h1>
-        <p className="text-gray-500">Manage your account settings and preferences</p>
+        <p className="text-muted-foreground">Manage your account settings and preferences</p>
       </div>
 
       <ProfileTabs user={profileUser} />

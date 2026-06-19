@@ -76,32 +76,32 @@ export default function LeadsPage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "new":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-500/15 text-blue-300"
       case "contacted":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-500/15 text-yellow-300"
       case "qualified":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       case "converted":
-        return "bg-purple-100 text-purple-800"
+        return "bg-purple-500/15 text-purple-300"
       case "lost":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case "urgent":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       case "high":
-        return "bg-orange-100 text-orange-800"
+        return "bg-orange-500/15 text-orange-300"
       case "medium":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-500/15 text-yellow-300"
       case "low":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -140,8 +140,8 @@ export default function LeadsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Lead Management</h1>
-          <p className="text-gray-600 mt-1">Manage and track your insurance leads</p>
+          <h1 className="text-3xl font-bold text-foreground">Lead Management</h1>
+          <p className="text-muted-foreground mt-1">Manage and track your insurance leads</p>
         </div>
         <div className="flex flex-wrap gap-2">
           <Link href="/leads/import">
@@ -165,46 +165,46 @@ export default function LeadsPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200">
+        <Card className="bg-card border-border">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-blue-700">Total Leads</CardTitle>
+            <CardTitle className="text-sm font-medium text-blue-400">Total Leads</CardTitle>
             <Users className="h-4 w-4 text-blue-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-900">{stats.total}</div>
+            <div className="text-2xl font-bold text-blue-300">{stats.total}</div>
             <p className="text-xs text-blue-600 mt-1">All time leads</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-green-50 to-green-100 border-green-200">
+        <Card className="bg-card border-border">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-green-700">New Leads</CardTitle>
+            <CardTitle className="text-sm font-medium text-green-400">New Leads</CardTitle>
             <TrendingUp className="h-4 w-4 text-green-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-900">{stats.new}</div>
+            <div className="text-2xl font-bold text-green-300">{stats.new}</div>
             <p className="text-xs text-green-600 mt-1">Awaiting contact</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-yellow-50 to-yellow-100 border-yellow-200">
+        <Card className="bg-card border-border">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-yellow-700">Contacted</CardTitle>
+            <CardTitle className="text-sm font-medium text-yellow-400">Contacted</CardTitle>
             <Clock className="h-4 w-4 text-yellow-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-yellow-900">{stats.contacted}</div>
+            <div className="text-2xl font-bold text-yellow-300">{stats.contacted}</div>
             <p className="text-xs text-yellow-600 mt-1">In progress</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200">
+        <Card className="bg-card border-border">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-purple-700">Converted</CardTitle>
+            <CardTitle className="text-sm font-medium text-purple-400">Converted</CardTitle>
             <FileText className="h-4 w-4 text-purple-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-purple-900">{stats.converted}</div>
+            <div className="text-2xl font-bold text-purple-300">{stats.converted}</div>
             <p className="text-xs text-purple-600 mt-1">Successful conversions</p>
           </CardContent>
         </Card>
@@ -222,7 +222,7 @@ export default function LeadsPage() {
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                 <Input
                   placeholder="Search leads by name, company, email, phone, or ID..."
                   value={searchTerm}
@@ -285,7 +285,7 @@ export default function LeadsPage() {
               </thead>
               <tbody>
                 {filteredLeads.map((lead) => (
-                  <tr key={lead.id} className="border-b hover:bg-gray-50">
+                  <tr key={lead.id} className="border-b hover:bg-muted">
                     <td className="p-4">
                       <div className="font-mono text-sm text-blue-600">{lead.lead_id}</div>
                     </td>
@@ -293,7 +293,7 @@ export default function LeadsPage() {
                       <div className="font-medium">{lead.contact_name}</div>
                     </td>
                     <td className="p-4">
-                      <div className="text-gray-900">{lead.company_name || "N/A"}</div>
+                      <div className="text-foreground">{lead.company_name || "N/A"}</div>
                     </td>
                     <td className="p-4">
                       <div className="flex items-center gap-2">
@@ -304,7 +304,7 @@ export default function LeadsPage() {
                     <td className="p-4">
                       <div className="text-sm">
                         <div>{lead.email}</div>
-                        <div className="text-gray-500">{lead.phone}</div>
+                        <div className="text-muted-foreground">{lead.phone}</div>
                       </div>
                     </td>
                     <td className="p-4">
@@ -317,14 +317,14 @@ export default function LeadsPage() {
                       <Badge className={getPriorityColor(lead.priority)}>{lead.priority}</Badge>
                     </td>
                     <td className="p-4">
-                      <div className="text-sm text-gray-500">{new Date(lead.date_entered).toLocaleDateString()}</div>
+                      <div className="text-sm text-muted-foreground">{new Date(lead.date_entered).toLocaleDateString()}</div>
                     </td>
                     <td className="p-4">
                       <Button
                         size="sm"
                         variant="outline"
                         onClick={() => handleViewDetails(lead.id)}
-                        className="text-blue-600 hover:text-blue-700"
+                        className="text-blue-600 hover:text-blue-400"
                       >
                         <Eye className="w-4 h-4 mr-1" />
                         View Details
@@ -335,7 +335,7 @@ export default function LeadsPage() {
               </tbody>
             </table>
             {filteredLeads.length === 0 && (
-              <div className="text-center py-8 text-gray-500">No leads found matching your criteria</div>
+              <div className="text-center py-8 text-muted-foreground">No leads found matching your criteria</div>
             )}
           </div>
         </CardContent>

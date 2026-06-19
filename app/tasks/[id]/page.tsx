@@ -54,15 +54,15 @@ export default async function TaskDetailPage({ params }: { params: { id: string 
     const getPriorityClass = (priority: string) => {
       switch (priority) {
         case "Low":
-          return "bg-blue-100 text-blue-800"
+          return "bg-blue-500/15 text-blue-300"
         case "Medium":
-          return "bg-yellow-100 text-yellow-800"
+          return "bg-yellow-500/15 text-yellow-300"
         case "High":
-          return "bg-orange-100 text-orange-800"
+          return "bg-orange-500/15 text-orange-300"
         case "Urgent":
-          return "bg-red-100 text-red-800"
+          return "bg-red-500/15 text-red-300"
         default:
-          return "bg-gray-100 text-gray-800"
+          return "bg-muted text-foreground"
       }
     }
 
@@ -70,15 +70,15 @@ export default async function TaskDetailPage({ params }: { params: { id: string 
     const getStatusClass = (status: string) => {
       switch (status) {
         case "Not Started":
-          return "bg-gray-100 text-gray-800"
+          return "bg-muted text-foreground"
         case "In Progress":
-          return "bg-blue-100 text-blue-800"
+          return "bg-blue-500/15 text-blue-300"
         case "On Hold":
-          return "bg-yellow-100 text-yellow-800"
+          return "bg-yellow-500/15 text-yellow-300"
         case "Completed":
-          return "bg-green-100 text-green-800"
+          return "bg-green-500/15 text-green-300"
         default:
-          return "bg-gray-100 text-gray-800"
+          return "bg-muted text-foreground"
       }
     }
 
@@ -128,16 +128,16 @@ export default async function TaskDetailPage({ params }: { params: { id: string 
                 <h3 className="text-lg font-medium mb-4">Task Information</h3>
                 <div className="space-y-3">
                   <div>
-                    <p className="text-sm text-gray-500">Description</p>
+                    <p className="text-sm text-muted-foreground">Description</p>
                     <p className="mt-1">{task.description || "No description provided"}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Due Date</p>
+                    <p className="text-sm text-muted-foreground">Due Date</p>
                     <p>{formatDate(task.due_date)}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Completion</p>
-                    <div className="w-full bg-gray-200 rounded-full h-2.5 mt-1">
+                    <p className="text-sm text-muted-foreground">Completion</p>
+                    <div className="w-full bg-muted rounded-full h-2.5 mt-1">
                       <div
                         className="bg-blue-600 h-2.5 rounded-full"
                         style={{ width: `${task.completion_percentage}%` }}
@@ -147,7 +147,7 @@ export default async function TaskDetailPage({ params }: { params: { id: string 
                   </div>
                   {task.client_id && (
                     <div>
-                      <p className="text-sm text-gray-500">Related Client</p>
+                      <p className="text-sm text-muted-foreground">Related Client</p>
                       <p>{task.client_id}</p>
                     </div>
                   )}
@@ -158,26 +158,26 @@ export default async function TaskDetailPage({ params }: { params: { id: string 
                 <h3 className="text-lg font-medium mb-4">Assignment Information</h3>
                 <div className="space-y-3">
                   <div>
-                    <p className="text-sm text-gray-500">Created By</p>
+                    <p className="text-sm text-muted-foreground">Created By</p>
                     <p>{task.creator_id}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Assigned To</p>
+                    <p className="text-sm text-muted-foreground">Assigned To</p>
                     <p>{task.assignee_id || "Unassigned"}</p>
                   </div>
                   {task.supervisor_id && (
                     <div>
-                      <p className="text-sm text-gray-500">Supervisor</p>
+                      <p className="text-sm text-muted-foreground">Supervisor</p>
                       <p>{task.supervisor_id}</p>
                     </div>
                   )}
                   <div>
-                    <p className="text-sm text-gray-500">Created At</p>
+                    <p className="text-sm text-muted-foreground">Created At</p>
                     <p>{formatDate(task.created_at)}</p>
                   </div>
                   {task.updated_at && (
                     <div>
-                      <p className="text-sm text-gray-500">Last Updated</p>
+                      <p className="text-sm text-muted-foreground">Last Updated</p>
                       <p>{formatDate(task.updated_at)}</p>
                     </div>
                   )}

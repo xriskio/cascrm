@@ -115,8 +115,8 @@ export function CommercialAutoDriversPanel({ policyDetailId, initialDrivers = []
           <div
             className={`p-3 rounded-md ${
               message.includes("Error") || message.includes("Failed")
-                ? "bg-red-50 text-red-700 border border-red-200"
-                : "bg-green-50 text-green-700 border border-green-200"
+                ? "bg-red-500/10 text-red-400 border border-border"
+                : "bg-green-500/10 text-green-400 border border-border"
             }`}
           >
             {message}
@@ -165,7 +165,7 @@ export function CommercialAutoDriversPanel({ policyDetailId, initialDrivers = []
             </Table>
           </div>
         ) : (
-          <div className="text-center p-8 border rounded-md bg-gray-50">
+          <div className="text-center p-8 border rounded-md bg-muted">
             <p className="text-muted-foreground">No drivers found</p>
             <p className="text-sm text-muted-foreground mt-1">
               Click "Fetch from QQCatalyst" to retrieve drivers for this policy

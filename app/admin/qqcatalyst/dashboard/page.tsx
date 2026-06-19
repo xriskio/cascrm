@@ -103,7 +103,7 @@ export default function QQCatalystDashboard() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">QQCatalyst Data Dashboard</h1>
-          <p className="text-gray-500">View and manage your imported QQCatalyst data</p>
+          <p className="text-muted-foreground">View and manage your imported QQCatalyst data</p>
         </div>
         <div className="flex items-center space-x-2">
           <Button variant="outline" onClick={refreshData} disabled={loading}>
@@ -128,7 +128,7 @@ export default function QQCatalystDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{contacts.length}</div>
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-muted-foreground">
               Last updated: {contacts[0]?.updated_at ? formatDate(contacts[0].updated_at) : "N/A"}
             </p>
           </CardContent>
@@ -141,7 +141,7 @@ export default function QQCatalystDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{policies.length}</div>
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-muted-foreground">
               Last updated: {policies[0]?.updated_at ? formatDate(policies[0].updated_at) : "N/A"}
             </p>
           </CardContent>
@@ -156,7 +156,7 @@ export default function QQCatalystDashboard() {
             <div className="text-2xl font-bold">
               {new Set(policies.map((p) => p.line_of_business).filter(Boolean)).size}
             </div>
-            <p className="text-xs text-gray-500">Unique policy types</p>
+            <p className="text-xs text-muted-foreground">Unique policy types</p>
           </CardContent>
         </Card>
 
@@ -169,7 +169,7 @@ export default function QQCatalystDashboard() {
             <div className="text-2xl font-bold">
               {contacts[0]?.updated_at ? formatDate(contacts[0].updated_at) : "N/A"}
             </div>
-            <p className="text-xs text-gray-500">Most recent data sync</p>
+            <p className="text-xs text-muted-foreground">Most recent data sync</p>
           </CardContent>
         </Card>
       </div>
@@ -177,7 +177,7 @@ export default function QQCatalystDashboard() {
       {/* Tabs and Search */}
       <div className="space-y-4">
         <div className="flex items-center space-x-2">
-          <Search className="h-4 w-4 text-gray-400" />
+          <Search className="h-4 w-4 text-muted-foreground" />
           <Input
             placeholder="Search contacts or policies..."
             value={searchQuery}
@@ -331,7 +331,7 @@ export default function QQCatalystDashboard() {
                 )}
               </CardContent>
               <CardFooter className="flex justify-between">
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-muted-foreground">
                   Showing {Math.min(filteredContacts.length, 20)} of {filteredContacts.length} contacts
                 </div>
                 <Button variant="outline" size="sm" asChild>
@@ -391,7 +391,7 @@ export default function QQCatalystDashboard() {
                 )}
               </CardContent>
               <CardFooter className="flex justify-between">
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-muted-foreground">
                   Showing {Math.min(filteredPolicies.length, 20)} of {filteredPolicies.length} policies
                 </div>
                 <Button variant="outline" size="sm" asChild>

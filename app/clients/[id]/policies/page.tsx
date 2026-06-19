@@ -125,14 +125,14 @@ export default async function ClientPoliciesPage({ params }: { params: { id: str
       switch (status?.toLowerCase()) {
         case "active":
         case "bound":
-          return "bg-green-100 text-green-800"
+          return "bg-green-500/15 text-green-300"
         case "pending":
-          return "bg-yellow-100 text-yellow-800"
+          return "bg-yellow-500/15 text-yellow-300"
         case "expired":
         case "cancelled":
-          return "bg-red-100 text-red-800"
+          return "bg-red-500/15 text-red-300"
         default:
-          return "bg-gray-100 text-gray-800"
+          return "bg-muted text-foreground"
       }
     }
 
@@ -157,7 +157,7 @@ export default async function ClientPoliciesPage({ params }: { params: { id: str
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold">{client.name}</h1>
-            <p className="text-gray-600">
+            <p className="text-muted-foreground">
               {client.business_name && `${client.business_name} • `}
               {client.email} • {client.phone}
             </p>
@@ -182,7 +182,7 @@ export default async function ClientPoliciesPage({ params }: { params: { id: str
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Policies</p>
+                  <p className="text-sm font-medium text-muted-foreground">Total Policies</p>
                   <p className="text-2xl font-bold">{clientPolicies.length}</p>
                 </div>
                 <Shield className="h-8 w-8 text-blue-600" />
@@ -194,7 +194,7 @@ export default async function ClientPoliciesPage({ params }: { params: { id: str
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Active Policies</p>
+                  <p className="text-sm font-medium text-muted-foreground">Active Policies</p>
                   <p className="text-2xl font-bold text-green-600">{activePolicies}</p>
                 </div>
                 <CheckCircle className="h-8 w-8 text-green-600" />
@@ -206,7 +206,7 @@ export default async function ClientPoliciesPage({ params }: { params: { id: str
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Premium</p>
+                  <p className="text-sm font-medium text-muted-foreground">Total Premium</p>
                   <p className="text-2xl font-bold text-green-600">{formatCurrency(totalPremium)}</p>
                 </div>
                 <DollarSign className="h-8 w-8 text-green-600" />
@@ -218,7 +218,7 @@ export default async function ClientPoliciesPage({ params }: { params: { id: str
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Expiring Soon</p>
+                  <p className="text-sm font-medium text-muted-foreground">Expiring Soon</p>
                   <p className="text-2xl font-bold text-orange-600">{expiringPolicies}</p>
                 </div>
                 <AlertTriangle className="h-8 w-8 text-orange-600" />
@@ -238,9 +238,9 @@ export default async function ClientPoliciesPage({ params }: { params: { id: str
           <CardContent>
             {clientPolicies.length === 0 ? (
               <div className="text-center py-8">
-                <Shield className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No Policies Found</h3>
-                <p className="text-gray-600 mb-4">
+                <Shield className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-foreground mb-2">No Policies Found</h3>
+                <p className="text-muted-foreground mb-4">
                   This client doesn't have any policies yet. Add a policy to get started.
                 </p>
                 <Button>

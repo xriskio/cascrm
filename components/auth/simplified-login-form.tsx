@@ -39,10 +39,10 @@ export function LoginForm() {
   }
 
   return (
-    <div className="mt-8 bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+    <div className="mt-8 bg-card py-8 px-4 shadow sm:rounded-lg sm:px-10">
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="email" className="block text-sm font-medium text-muted-foreground">
             Email
           </label>
           <div className="mt-1">
@@ -54,14 +54,14 @@ export function LoginForm() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-orange-500 focus:outline-none focus:ring-orange-500"
+              className="block w-full appearance-none rounded-md border border-border px-3 py-2 placeholder-gray-400 shadow-sm focus:border-orange-500 focus:outline-none focus:ring-orange-500"
               placeholder="Enter your email"
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="password" className="block text-sm font-medium text-muted-foreground">
             Password
           </label>
           <div className="mt-1 relative">
@@ -73,7 +73,7 @@ export function LoginForm() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-orange-500 focus:outline-none focus:ring-orange-500"
+              className="block w-full appearance-none rounded-md border border-border px-3 py-2 placeholder-gray-400 shadow-sm focus:border-orange-500 focus:outline-none focus:ring-orange-500"
               placeholder="Enter your password"
             />
             <button
@@ -81,17 +81,17 @@ export function LoginForm() {
               onClick={() => setShowPassword(!showPassword)}
               className="absolute inset-y-0 right-0 pr-3 flex items-center"
             >
-              {showPassword ? <EyeOff className="h-5 w-5 text-gray-400" /> : <Eye className="h-5 w-5 text-gray-400" />}
+              {showPassword ? <EyeOff className="h-5 w-5 text-muted-foreground" /> : <Eye className="h-5 w-5 text-muted-foreground" />}
             </button>
           </div>
         </div>
 
         {error && (
-          <div className="rounded-md bg-red-50 p-4">
+          <div className="rounded-md bg-red-500/10 p-4">
             <div className="flex">
               <div className="ml-3">
-                <h3 className="text-sm font-medium text-red-800">Login Error</h3>
-                <div className="mt-2 text-sm text-red-700">
+                <h3 className="text-sm font-medium text-red-300">Login Error</h3>
+                <div className="mt-2 text-sm text-red-400">
                   <p>{error}</p>
                 </div>
               </div>
@@ -119,14 +119,14 @@ export function LoginForm() {
       <div className="mt-6">
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-300" />
+            <div className="w-full border-t border-border" />
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="bg-white px-2 text-gray-500">Need help?</span>
+            <span className="bg-card px-2 text-muted-foreground">Need help?</span>
           </div>
         </div>
 
-        <div className="mt-6 text-center text-sm text-gray-500">
+        <div className="mt-6 text-center text-sm text-muted-foreground">
           <p>Contact your administrator for access.</p>
         </div>
       </div>

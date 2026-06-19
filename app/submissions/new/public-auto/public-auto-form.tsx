@@ -362,19 +362,19 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                     ? "bg-blue-600 border-blue-600 text-white"
                     : currentStep === step.id
                       ? "border-blue-600 text-blue-600"
-                      : "border-gray-300 text-gray-300"
+                      : "border-border text-gray-300"
                 }`}
               >
                 {currentStep > step.id ? <Check className="w-4 h-4" /> : <span>{step.id}</span>}
               </div>
               <span
-                className={`hidden md:block ml-2 text-sm ${currentStep >= step.id ? "text-blue-600" : "text-gray-400"}`}
+                className={`hidden md:block ml-2 text-sm ${currentStep >= step.id ? "text-blue-600" : "text-muted-foreground"}`}
               >
                 {step.name}
               </span>
               {index < steps.length - 1 && (
                 <div
-                  className={`hidden md:block w-12 h-0.5 mx-2 ${currentStep > step.id ? "bg-blue-600" : "bg-gray-300"}`}
+                  className={`hidden md:block w-12 h-0.5 mx-2 ${currentStep > step.id ? "bg-blue-600" : "bg-muted"}`}
                 ></div>
               )}
             </div>
@@ -382,16 +382,16 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-md">
+      <form onSubmit={handleSubmit} className="bg-card rounded-lg shadow-md">
         {/* Step 1: Business Information */}
         {currentStep === 1 && (
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-2">Business Information</h2>
-            <p className="text-gray-600 mb-6">Basic information about your business</p>
+            <p className="text-muted-foreground mb-6">Basic information about your business</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="companyName" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="companyName" className="block text-sm font-medium text-muted-foreground mb-1">
                   Business Name<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -401,12 +401,12 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="dba" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="dba" className="block text-sm font-medium text-muted-foreground mb-1">
                   DBA (if applicable)
                 </label>
                 <input
@@ -415,14 +415,14 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   name="dba"
                   value={dba}
                   onChange={(e) => setDba(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
               <div>
-                <label htmlFor="contactName" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="contactName" className="block text-sm font-medium text-muted-foreground mb-1">
                   Contact Name<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -432,12 +432,12 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   value={contactName}
                   onChange={(e) => setContactName(e.target.value)}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="yearsInBusiness" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="yearsInBusiness" className="block text-sm font-medium text-muted-foreground mb-1">
                   Years in Business<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -448,14 +448,14 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   onChange={(e) => setYearsInBusiness(e.target.value)}
                   min="0"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-1">
                   Contact Email<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -465,12 +465,12 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="phoneNumber" className="block text-sm font-medium text-muted-foreground mb-1">
                   Contact Phone<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -480,17 +480,17 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
 
             <div className="mt-6">
-              <label htmlFor="website" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="website" className="block text-sm font-medium text-muted-foreground mb-1">
                 Business Website
               </label>
               <div className="flex">
-                <span className="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                <span className="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-border bg-muted text-muted-foreground text-sm">
                   https://
                 </span>
                 <input
@@ -499,13 +499,13 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   name="website"
                   value={website}
                   onChange={(e) => setWebsite(e.target.value)}
-                  className="flex-1 min-w-0 block w-full px-3 py-2 rounded-r-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="flex-1 min-w-0 block w-full px-3 py-2 rounded-r-md border border-border focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
 
             <div className="mt-6">
-              <label htmlFor="businessType" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="businessType" className="block text-sm font-medium text-muted-foreground mb-1">
                 Business Type<span className="text-red-500">*</span>
               </label>
               <select
@@ -514,7 +514,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                 value={businessType}
                 onChange={(e) => setBusinessType(e.target.value)}
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Select Business Type</option>
                 <option value="Sole Proprietorship">Sole Proprietorship</option>
@@ -529,7 +529,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
             <h3 className="text-lg font-semibold mt-8 mb-4">Mailing Address</h3>
 
             <div className="mb-4">
-              <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="address" className="block text-sm font-medium text-muted-foreground mb-1">
                 Mailing Address<span className="text-red-500">*</span>
               </label>
               <input
@@ -539,13 +539,13 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
-                <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="city" className="block text-sm font-medium text-muted-foreground mb-1">
                   City<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -555,12 +555,12 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   value={city}
                   onChange={(e) => setState(e.target.value)}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="state" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="state" className="block text-sm font-medium text-muted-foreground mb-1">
                   State<span className="text-red-500">*</span>
                 </label>
                 <select
@@ -569,7 +569,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   value={state}
                   onChange={(e) => setState1(e.target.value)}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="">Select...</option>
                   {US_STATES.map((state) => (
@@ -581,7 +581,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
               </div>
 
               <div>
-                <label htmlFor="zipCode" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="zipCode" className="block text-sm font-medium text-muted-foreground mb-1">
                   ZIP Code<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -591,14 +591,14 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   value={zipCode}
                   onChange={(e) => setZipCode(e.target.value)}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
               <div>
-                <label htmlFor="cpucNumber" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="cpucNumber" className="block text-sm font-medium text-muted-foreground mb-1">
                   CPUC Number (if applicable)
                 </label>
                 <input
@@ -607,12 +607,12 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   name="cpucNumber"
                   value={cpucNumber}
                   onChange={(e) => setCpucNumber(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="tcpNumber" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="tcpNumber" className="block text-sm font-medium text-muted-foreground mb-1">
                   TCP Number (if applicable)
                 </label>
                 <input
@@ -621,7 +621,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   name="tcpNumber"
                   value={tcpNumber}
                   onChange={(e) => setTcpNumber(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -629,7 +629,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
               <button
                 type="button"
                 onClick={handlePrevious}
-                className={`px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                className={`px-4 py-2 border border-border rounded-md shadow-sm text-sm font-medium text-muted-foreground bg-card hover:bg-muted focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                   currentStep === 1 ? "invisible" : ""
                 }`}
               >
@@ -650,13 +650,13 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
         {currentStep === 2 && (
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-2">Coverage & History</h2>
-            <p className="text-gray-600 mb-6">Coverage needs and insurance history</p>
+            <p className="text-muted-foreground mb-6">Coverage needs and insurance history</p>
 
             <h3 className="text-lg font-semibold mb-4">Liability Coverage</h3>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <label htmlFor="liabilityLimit" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="liabilityLimit" className="block text-sm font-medium text-muted-foreground mb-1">
                   Liability Limit<span className="text-red-500">*</span>
                 </label>
                 <select
@@ -665,7 +665,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   value={liabilityLimit}
                   onChange={(e) => setLiabilityLimit(e.target.value)}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="">Select...</option>
                   <option value="$750,000">$750,000</option>
@@ -677,7 +677,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
               </div>
 
               <div>
-                <label htmlFor="uninsuredMotoristLimit" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="uninsuredMotoristLimit" className="block text-sm font-medium text-muted-foreground mb-1">
                   Uninsured Motorist Limit<span className="text-red-500">*</span>
                 </label>
                 <select
@@ -686,7 +686,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   value={uninsuredMotoristLimit}
                   onChange={(e) => setUninsuredMotoristLimit(e.target.value)}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="">Select...</option>
                   <option value="$100,000">$100,000</option>
@@ -698,7 +698,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
               </div>
 
               <div>
-                <label htmlFor="medicalPaymentLimit" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="medicalPaymentLimit" className="block text-sm font-medium text-muted-foreground mb-1">
                   Medical Payment Limit<span className="text-red-500">*</span>
                 </label>
                 <select
@@ -707,7 +707,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   value={medicalPaymentLimit}
                   onChange={(e) => setMedicalPaymentLimit(e.target.value)}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="">Select...</option>
                   <option value="$5,000">$5,000</option>
@@ -722,7 +722,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="priorInsuranceCarrier" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="priorInsuranceCarrier" className="block text-sm font-medium text-muted-foreground mb-1">
                   Prior Insurance Carrier
                 </label>
                 <input
@@ -731,12 +731,12 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   name="priorInsuranceCarrier"
                   value={priorInsuranceCarrier}
                   onChange={(e) => setPriorInsuranceCarrier(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="reasonForChange" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="reasonForChange" className="block text-sm font-medium text-muted-foreground mb-1">
                   Reason for Change
                 </label>
                 <input
@@ -745,7 +745,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   name="reasonForChange"
                   value={reasonForChange}
                   onChange={(e) => setReasonForChange(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -754,7 +754,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
               <button
                 type="button"
                 onClick={handlePrevious}
-                className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="px-4 py-2 border border-border rounded-md shadow-sm text-sm font-medium text-muted-foreground bg-card hover:bg-muted focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 Previous
               </button>
@@ -773,12 +773,12 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
         {currentStep === 3 && (
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-2">Operations & Risk</h2>
-            <p className="text-gray-600 mb-6">Business operations and risk details</p>
+            <p className="text-muted-foreground mb-6">Business operations and risk details</p>
 
             <h3 className="text-lg font-semibold mb-4">Business Operations</h3>
 
             <div className="mb-6">
-              <label htmlFor="operationsType" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="operationsType" className="block text-sm font-medium text-muted-foreground mb-1">
                 Type of Operations<span className="text-red-500">*</span>
               </label>
               <select
@@ -788,7 +788,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                 value={operationsType}
                 onChange={handleOperationsTypeChange}
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 size={4}
               >
                 <option value="Airport Shuttle">Airport Shuttle</option>
@@ -802,12 +802,12 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                 <option value="Sightseeing Tours">Sightseeing Tours</option>
                 <option value="Taxi">Taxi</option>
               </select>
-              <p className="text-xs text-gray-500 mt-1">Hold Ctrl/Cmd to select multiple options</p>
+              <p className="text-xs text-muted-foreground mt-1">Hold Ctrl/Cmd to select multiple options</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="serviceArea" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="serviceArea" className="block text-sm font-medium text-muted-foreground mb-1">
                   Service Area<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -818,12 +818,12 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   onChange={(e) => setServiceArea(e.target.value)}
                   placeholder="e.g., Greater Los Angeles Area"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="operatingRadius" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="operatingRadius" className="block text-sm font-medium text-muted-foreground mb-1">
                   Operating Radius (miles)<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -834,13 +834,13 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   onChange={(e) => setOperatingRadius(e.target.value)}
                   min="0"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
 
             <div className="mt-6 mb-6">
-              <label htmlFor="tripTypes" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="tripTypes" className="block text-sm font-medium text-muted-foreground mb-1">
                 Trip Types<span className="text-red-500">*</span>
               </label>
               <select
@@ -850,7 +850,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                 value={tripTypes}
                 onChange={handleTripTypesChange}
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 size={4}
               >
                 <option value="Airport Transfers">Airport Transfers</option>
@@ -863,11 +863,11 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                 <option value="Sightseeing Tours">Sightseeing Tours</option>
                 <option value="Special Events">Special Events</option>
               </select>
-              <p className="text-xs text-gray-500 mt-1">Hold Ctrl/Cmd to select multiple options</p>
+              <p className="text-xs text-muted-foreground mt-1">Hold Ctrl/Cmd to select multiple options</p>
             </div>
 
             <div className="mb-6">
-              <label htmlFor="airportTransportationPercentage" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="airportTransportationPercentage" className="block text-sm font-medium text-muted-foreground mb-1">
                 Percentage of Airport Transportation<span className="text-red-500">*</span>
               </label>
               <div className="flex items-center">
@@ -880,15 +880,15 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   min="0"
                   max="100"
                   required
-                  className="w-24 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-24 px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <span className="ml-2">%</span>
               </div>
-              <p className="text-xs text-gray-500 mt-1">Enter a percentage between 0 and 100</p>
+              <p className="text-xs text-muted-foreground mt-1">Enter a percentage between 0 and 100</p>
             </div>
 
             <div className="mb-6">
-              <label htmlFor="passengerCapacities" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="passengerCapacities" className="block text-sm font-medium text-muted-foreground mb-1">
                 Passenger Capacities<span className="text-red-500">*</span>
               </label>
               <select
@@ -898,7 +898,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                 value={passengerCapacities}
                 onChange={handlePassengerCapacitiesChange}
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 size={4}
               >
                 <option value="1-4 passengers">1-4 passengers</option>
@@ -908,12 +908,12 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                 <option value="21-30 passengers">21-30 passengers</option>
                 <option value="31+ passengers">31+ passengers</option>
               </select>
-              <p className="text-xs text-gray-500 mt-1">Hold Ctrl/Cmd to select multiple options</p>
+              <p className="text-xs text-muted-foreground mt-1">Hold Ctrl/Cmd to select multiple options</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <label htmlFor="annualMiles" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="annualMiles" className="block text-sm font-medium text-muted-foreground mb-1">
                   Annual Miles<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -924,12 +924,12 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   onChange={(e) => setAnnualMiles(e.target.value)}
                   min="0"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="percentageUrbanDriving" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="percentageUrbanDriving" className="block text-sm font-medium text-muted-foreground mb-1">
                   Percentage Urban Driving<span className="text-red-500">*</span>
                 </label>
                 <div className="flex items-center">
@@ -942,15 +942,15 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                     value={urbanDriving}
                     onChange={handleUrbanDrivingChange}
                     required
-                    className="w-24 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-24 px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                   <span className="ml-2">%</span>
                 </div>
-                <p className="text-xs text-gray-500 mt-1">Urban + Interstate should total 100%</p>
+                <p className="text-xs text-muted-foreground mt-1">Urban + Interstate should total 100%</p>
               </div>
 
               <div>
-                <label htmlFor="percentageInterstateDriving" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="percentageInterstateDriving" className="block text-sm font-medium text-muted-foreground mb-1">
                   Percentage Interstate Driving<span className="text-red-500">*</span>
                 </label>
                 <div className="flex items-center">
@@ -963,11 +963,11 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                     value={interstateDriving}
                     onChange={handleInterstateDrivingChange}
                     required
-                    className="w-24 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-24 px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                   <span className="ml-2">%</span>
                 </div>
-                <p className="text-xs text-gray-500 mt-1">Current total: {urbanDriving + interstateDriving}%</p>
+                <p className="text-xs text-muted-foreground mt-1">Current total: {urbanDriving + interstateDriving}%</p>
               </div>
             </div>
 
@@ -981,9 +981,9 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   name="nighttimeOperations"
                   checked={nighttimeOperations}
                   onChange={(e) => setNighttimeOperations(e.target.checked)}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                 />
-                <label htmlFor="nighttimeOperations" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="nighttimeOperations" className="ml-2 block text-sm text-muted-foreground">
                   Nighttime Operations (after 10 PM)
                 </label>
               </div>
@@ -995,9 +995,9 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   name="specialEvents"
                   checked={specialEvents}
                   onChange={(e) => setSpecialEvents(e.target.checked)}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                 />
-                <label htmlFor="specialEvents" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="specialEvents" className="ml-2 block text-sm text-muted-foreground">
                   Special Events (concerts, sporting events, etc.)
                 </label>
               </div>
@@ -1006,7 +1006,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
               <button
                 type="button"
                 onClick={handlePrevious}
-                className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="px-4 py-2 border border-border rounded-md shadow-sm text-sm font-medium text-muted-foreground bg-card hover:bg-muted focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 Previous
               </button>
@@ -1025,11 +1025,11 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
         {currentStep === 4 && (
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-2">Fleet & Drivers</h2>
-            <p className="text-gray-600 mb-6">Vehicle and driver information</p>
+            <p className="text-muted-foreground mb-6">Vehicle and driver information</p>
 
-            <div className="bg-blue-50 p-4 rounded-md mb-6">
+            <div className="bg-blue-500/10 p-4 rounded-md mb-6">
               <h3 className="text-lg font-semibold mb-2">Bulk Upload Available</h3>
-              <p className="text-sm text-gray-700 mb-4">
+              <p className="text-sm text-muted-foreground mb-4">
                 For multiple vehicles, you can use our bulk upload feature. Download the template and upload your
                 completed file.
               </p>
@@ -1037,22 +1037,22 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   type="button"
-                  className="inline-flex items-center px-4 py-2 border border-gray-300 bg-white rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="inline-flex items-center px-4 py-2 border border-border bg-card rounded-md shadow-sm text-sm font-medium text-muted-foreground hover:bg-muted focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   Download Template
                 </button>
 
                 <div className="flex-1">
-                  <label htmlFor="vehicleList" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="vehicleList" className="block text-sm font-medium text-muted-foreground mb-1">
                     Upload Vehicle List
                   </label>
                   <input
                     type="file"
                     id="vehicleList"
                     name="vehicleList"
-                    className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-1.5 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <p className="text-xs text-gray-500 mt-1">Supported formats: Excel, CSV</p>
+                  <p className="text-xs text-muted-foreground mt-1">Supported formats: Excel, CSV</p>
                 </div>
               </div>
             </div>
@@ -1060,56 +1060,56 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
             {vehicles.length > 0 && (
               <div className="mb-6 overflow-x-auto">
                 <h3 className="text-lg font-semibold mb-4">Vehicles</h3>
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
+                <table className="min-w-full divide-y divide-border">
+                  <thead className="bg-muted">
                     <tr>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider"
                       >
                         Year
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider"
                       >
                         Make
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider"
                       >
                         Model
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider"
                       >
                         VIN
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider"
                       >
                         Capacity
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider"
                       >
                         Value
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
+                  <tbody className="bg-card divide-y divide-border">
                     {vehicles.map((vehicle, index) => (
                       <tr key={index}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{vehicle.year}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{vehicle.make}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{vehicle.model}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{vehicle.vin}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{vehicle.seatingCapacity}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${vehicle.value}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{vehicle.year}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{vehicle.make}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{vehicle.model}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{vehicle.vin}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{vehicle.seatingCapacity}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">${vehicle.value}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -1117,12 +1117,12 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
               </div>
             )}
 
-            <div className="border border-gray-300 rounded-md p-4 mb-8">
+            <div className="border border-border rounded-md p-4 mb-8">
               <h3 className="text-lg font-semibold mb-4">Add New Vehicle</h3>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                 <div>
-                  <label htmlFor="vehicleYear" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="vehicleYear" className="block text-sm font-medium text-muted-foreground mb-1">
                     Year
                   </label>
                   <input
@@ -1130,82 +1130,82 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                     id="vehicleYear"
                     name="vehicleYear"
                     placeholder="2025"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="vehicleMake" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="vehicleMake" className="block text-sm font-medium text-muted-foreground mb-1">
                     Make
                   </label>
                   <input
                     type="text"
                     id="vehicleMake"
                     name="vehicleMake"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="vehicleModel" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="vehicleModel" className="block text-sm font-medium text-muted-foreground mb-1">
                     Model
                   </label>
                   <input
                     type="text"
                     id="vehicleModel"
                     name="vehicleModel"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                 <div>
-                  <label htmlFor="vehicleVin" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="vehicleVin" className="block text-sm font-medium text-muted-foreground mb-1">
                     VIN
                   </label>
                   <input
                     type="text"
                     id="vehicleVin"
                     name="vehicleVin"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="vehicleSeatingCapacity" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="vehicleSeatingCapacity" className="block text-sm font-medium text-muted-foreground mb-1">
                     Seating Capacity
                   </label>
                   <input
                     type="number"
                     id="vehicleSeatingCapacity"
                     name="vehicleSeatingCapacity"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="vehicleValue" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="vehicleValue" className="block text-sm font-medium text-muted-foreground mb-1">
                     Value
                   </label>
                   <input
                     type="number"
                     id="vehicleValue"
                     name="vehicleValue"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                 <div>
-                  <label htmlFor="vehiclePrimaryUsage" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="vehiclePrimaryUsage" className="block text-sm font-medium text-muted-foreground mb-1">
                     Primary Usage
                   </label>
                   <select
                     id="vehiclePrimaryUsage"
                     name="vehiclePrimaryUsage"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="">Select...</option>
                     <option value="Airport Shuttle">Airport Shuttle</option>
@@ -1234,9 +1234,9 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
               </div>
             </div>
 
-            <div className="bg-blue-50 p-4 rounded-md mb-6">
+            <div className="bg-blue-500/10 p-4 rounded-md mb-6">
               <h3 className="text-lg font-semibold mb-2">Bulk Upload Available</h3>
-              <p className="text-sm text-gray-700 mb-4">
+              <p className="text-sm text-muted-foreground mb-4">
                 For multiple drivers, you can use our bulk upload feature. Download the template and upload your
                 completed file.
               </p>
@@ -1244,22 +1244,22 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   type="button"
-                  className="inline-flex items-center px-4 py-2 border border-gray-300 bg-white rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="inline-flex items-center px-4 py-2 border border-border bg-card rounded-md shadow-sm text-sm font-medium text-muted-foreground hover:bg-muted focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   Download Template
                 </button>
 
                 <div className="flex-1">
-                  <label htmlFor="driverList" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="driverList" className="block text-sm font-medium text-muted-foreground mb-1">
                     Upload Driver List
                   </label>
                   <input
                     type="file"
                     id="driverList"
                     name="driverList"
-                    className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-1.5 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <p className="text-xs text-gray-500 mt-1">Supported formats: Excel, CSV</p>
+                  <p className="text-xs text-muted-foreground mt-1">Supported formats: Excel, CSV</p>
                 </div>
               </div>
             </div>
@@ -1267,76 +1267,76 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
             {drivers.length > 0 && (
               <div className="mb-6 overflow-x-auto">
                 <h3 className="text-lg font-semibold mb-4">Drivers</h3>
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
+                <table className="min-w-full divide-y divide-border">
+                  <thead className="bg-muted">
                     <tr>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider"
                       >
                         First Name
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider"
                       >
                         Last Name
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider"
                       >
                         Date of Birth
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider"
                       >
                         Hire Date
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider"
                       >
                         License Number
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider"
                       >
                         License State
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider"
                       >
                         Experience
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider"
                       >
                         Violations
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
+                  <tbody className="bg-card divide-y divide-border">
                     {drivers.map((driver, index) => (
                       <tr key={index}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{driver.firstName}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{driver.lastName}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{driver.firstName}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{driver.lastName}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">
                           {driver.dateOfBirth instanceof Date
                             ? driver.dateOfBirth.toLocaleDateString()
                             : driver.dateOfBirth}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">
                           {driver.hireDate instanceof Date ? driver.hireDate.toLocaleDateString() : driver.hireDate}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{driver.licenseNumber}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{driver.licenseState}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{driver.experience}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{driver.licenseNumber}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{driver.licenseState}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{driver.experience}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">
                           {Array.from(driver.violations)
                             .map((violation: any) => violation.value)
                             .join(", ")}
@@ -1348,36 +1348,36 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
               </div>
             )}
 
-            <div className="border border-gray-300 rounded-md p-4 mb-8">
+            <div className="border border-border rounded-md p-4 mb-8">
               <h3 className="text-lg font-semibold mb-4">Add New Driver</h3>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                 <div>
-                  <label htmlFor="driverFirstName" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="driverFirstName" className="block text-sm font-medium text-muted-foreground mb-1">
                     First Name
                   </label>
                   <input
                     type="text"
                     id="driverFirstName"
                     name="driverFirstName"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="driverLastName" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="driverLastName" className="block text-sm font-medium text-muted-foreground mb-1">
                     Last Name
                   </label>
                   <input
                     type="text"
                     id="driverLastName"
                     name="driverLastName"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="driverDOB" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="driverDOB" className="block text-sm font-medium text-muted-foreground mb-1">
                     Date of Birth
                   </label>
                   <input
@@ -1385,14 +1385,14 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                     id="driverDOB"
                     name="driverDOB"
                     placeholder="MM/DD/YYYY"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                 <div>
-                  <label htmlFor="driverHireDate" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="driverHireDate" className="block text-sm font-medium text-muted-foreground mb-1">
                     Hire Date
                   </label>
                   <input
@@ -1400,30 +1400,30 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                     id="driverHireDate"
                     name="driverHireDate"
                     placeholder="MM/DD/YYYY"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="driverLicenseNumber" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="driverLicenseNumber" className="block text-sm font-medium text-muted-foreground mb-1">
                     License Number
                   </label>
                   <input
                     type="text"
                     id="driverLicenseNumber"
                     name="driverLicenseNumber"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="driverLicenseState" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="driverLicenseState" className="block text-sm font-medium text-muted-foreground mb-1">
                     License State
                   </label>
                   <select
                     id="driverLicenseState"
                     name="driverLicenseState"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="">Select...</option>
                     {US_STATES.map((state) => (
@@ -1437,7 +1437,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                 <div>
-                  <label htmlFor="driverExperience" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="driverExperience" className="block text-sm font-medium text-muted-foreground mb-1">
                     Experience (years)
                   </label>
                   <input
@@ -1445,19 +1445,19 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                     id="driverExperience"
                     name="driverExperience"
                     min="0"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="driverViolations" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="driverViolations" className="block text-sm font-medium text-muted-foreground mb-1">
                     Violations
                   </label>
                   <select
                     id="driverViolations"
                     name="driverViolations"
                     multiple
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     size={4}
                   >
                     <option value="Speeding">Speeding</option>
@@ -1467,7 +1467,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                     <option value="Hit and Run">Hit and Run</option>
                     <option value="Other">Other</option>
                   </select>
-                  <p className="text-xs text-gray-500 mt-1">Hold Ctrl/Cmd to select multiple options</p>
+                  <p className="text-xs text-muted-foreground mt-1">Hold Ctrl/Cmd to select multiple options</p>
                 </div>
               </div>
 
@@ -1486,7 +1486,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
               <button
                 type="button"
                 onClick={handlePrevious}
-                className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="px-4 py-2 border border-border rounded-md shadow-sm text-sm font-medium text-muted-foreground bg-card hover:bg-muted focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 Previous
               </button>
@@ -1505,7 +1505,7 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
         {currentStep === 5 && (
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-2">ACORD Questions</h2>
-            <p className="text-gray-600 mb-6">Standard questions required for workers compensation coverage</p>
+            <p className="text-muted-foreground mb-6">Standard questions required for workers compensation coverage</p>
 
             <div className="mb-6">
               <div className="flex items-center">
@@ -1515,9 +1515,9 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                   name="defaultNoAnswers"
                   checked={defaultNoAnswers}
                   onChange={(e) => setDefaultNoAnswers(e.target.checked)}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                 />
-                <label htmlFor="defaultNoAnswers" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="defaultNoAnswers" className="ml-2 block text-sm text-muted-foreground">
                   Please check here to default all answers below to 'No'. You may then edit each response to a 'Yes' if
                   applicable.
                 </label>
@@ -1525,8 +1525,8 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
             </div>
 
             <div className="space-y-6">
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   1. Does applicant own, operate or lease aircraft/watercraft?
                 </p>
                 <div className="flex gap-4">
@@ -1536,10 +1536,10 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="aircraft_yes"
                       name="aircraft"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("aircraft_yes")?.checked}
                     />
-                    <label htmlFor="aircraft_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="aircraft_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1549,18 +1549,18 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="aircraft_no"
                       name="aircraft"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || !(document as any).getElementById("aircraft_yes")?.checked}
                     />
-                    <label htmlFor="aircraft_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="aircraft_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   2. Do/have past, present or discontinued operations involve(d) storing, treating, discharging,
                   applying, disposing, or transporting of hazardous material?
                 </p>
@@ -1571,10 +1571,10 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="hazardous_yes"
                       name="hazardous"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("hazardous_yes")?.checked}
                     />
-                    <label htmlFor="hazardous_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="hazardous_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1584,18 +1584,18 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="hazardous_no"
                       name="hazardous"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || !(document as any).getElementById("hazardous_yes")?.checked}
                     />
-                    <label htmlFor="hazardous_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="hazardous_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   3. Any work performed underground or above 15 feet?
                 </p>
                 <div className="flex gap-4">
@@ -1605,10 +1605,10 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="underground_yes"
                       name="underground"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("underground_yes")?.checked}
                     />
-                    <label htmlFor="underground_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="underground_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1618,18 +1618,18 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="underground_no"
                       name="underground"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || !(document as any).getElementById("underground_yes")?.checked}
                     />
-                    <label htmlFor="underground_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="underground_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   4. Any work performed on barges, vessels, docks, bridges over water?
                 </p>
                 <div className="flex gap-4">
@@ -1639,10 +1639,10 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="barges_yes"
                       name="barges"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("barges_yes")?.checked}
                     />
-                    <label htmlFor="barges_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="barges_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1652,18 +1652,18 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="barges_no"
                       name="barges"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || !(document as any).getElementById("barges_yes")?.checked}
                     />
-                    <label htmlFor="barges_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="barges_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   5. Is applicant engaged in any other type of business?
                 </p>
                 <div className="flex gap-4">
@@ -1673,10 +1673,10 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="otherBusiness_yes"
                       name="otherBusiness"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("otherBusiness_yes")?.checked}
                     />
-                    <label htmlFor="otherBusiness_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="otherBusiness_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1686,18 +1686,18 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="otherBusiness_no"
                       name="otherBusiness"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || !(document as any).getElementById("otherBusiness_yes")?.checked}
                     />
-                    <label htmlFor="otherBusiness_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="otherBusiness_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   6. Are sub-contractors used? (if yes, give % of work subcontracted)
                 </p>
                 <div className="flex gap-4">
@@ -1707,10 +1707,10 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="subcontractors_yes"
                       name="subcontractors"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("subcontractors_yes")?.checked}
                     />
-                    <label htmlFor="subcontractors_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="subcontractors_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1720,18 +1720,18 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="subcontractors_no"
                       name="subcontractors"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || !(document as any).getElementById("subcontractors_yes")?.checked}
                     />
-                    <label htmlFor="subcontractors_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="subcontractors_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   7. Any work sublet without certificates of insurance?
                 </p>
                 <div className="flex gap-4">
@@ -1741,10 +1741,10 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="workSublet_yes"
                       name="workSublet"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("workSublet_yes")?.checked}
                     />
-                    <label htmlFor="workSublet_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="workSublet_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1754,18 +1754,18 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="workSublet_no"
                       name="workSublet"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || !(document as any).getElementById("workSublet_yes")?.checked}
                     />
-                    <label htmlFor="workSublet_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="workSublet_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">8. Is a written safety program in operation?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">8. Is a written safety program in operation?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -1773,10 +1773,10 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="safetyProgram_yes"
                       name="safetyProgram"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("safetyProgram_yes")?.checked}
                     />
-                    <label htmlFor="safetyProgram_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="safetyProgram_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1786,18 +1786,18 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="safetyProgram_no"
                       name="safetyProgram"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || !(document as any).getElementById("safetyProgram_yes")?.checked}
                     />
-                    <label htmlFor="safetyProgram_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="safetyProgram_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">9. Any group transportation provided?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">9. Any group transportation provided?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -1805,10 +1805,10 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="groupTransportation_yes"
                       name="groupTransportation"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("groupTransportation_yes")?.checked}
                     />
-                    <label htmlFor="groupTransportation_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="groupTransportation_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1818,18 +1818,18 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="groupTransportation_no"
                       name="groupTransportation"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || !(document as any).getElementById("groupTransportation_yes")?.checked}
                     />
-                    <label htmlFor="groupTransportation_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="groupTransportation_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">10. Any seasonal employees?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">10. Any seasonal employees?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -1837,10 +1837,10 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="seasonalEmployees_yes"
                       name="seasonalEmployees"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("seasonalEmployees_yes")?.checked}
                     />
-                    <label htmlFor="seasonalEmployees_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="seasonalEmployees_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1850,18 +1850,18 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="seasonalEmployees_no"
                       name="seasonalEmployees"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || !(document as any).getElementById("seasonalEmployees_yes")?.checked}
                     />
-                    <label htmlFor="seasonalEmployees_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="seasonalEmployees_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">11. Is there any volunteer or donated labor?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">11. Is there any volunteer or donated labor?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -1869,10 +1869,10 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="volunteerLabor_yes"
                       name="volunteerLabor"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("volunteerLabor_yes")?.checked}
                     />
-                    <label htmlFor="volunteerLabor_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="volunteerLabor_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1882,18 +1882,18 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="volunteerLabor_no"
                       name="volunteerLabor"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || !(document as any).getElementById("volunteerLabor_yes")?.checked}
                     />
-                    <label htmlFor="volunteerLabor_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="volunteerLabor_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">12. Do employees travel out of state?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">12. Do employees travel out of state?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -1901,10 +1901,10 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="travelOutOfState_yes"
                       name="travelOutOfState"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("travelOutOfState_yes")?.checked}
                     />
-                    <label htmlFor="travelOutOfState_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="travelOutOfState_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1914,18 +1914,18 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="travelOutOfState_no"
                       name="travelOutOfState"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || !(document as any).getElementById("travelOutOfState_yes")?.checked}
                     />
-                    <label htmlFor="travelOutOfState_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="travelOutOfState_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">13. Are athletic teams sponsored?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">13. Are athletic teams sponsored?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -1933,10 +1933,10 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="athleticTeams_yes"
                       name="athleticTeams"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("athleticTeams_yes")?.checked}
                     />
-                    <label htmlFor="athleticTeams_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="athleticTeams_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1946,18 +1946,18 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="athleticTeams_no"
                       name="athleticTeams"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || !(document as any).getElementById("athleticTeams_yes")?.checked}
                     />
-                    <label htmlFor="athleticTeams_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="athleticTeams_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   14. Are physicals required after offers of employment are made?
                 </p>
                 <div className="flex gap-4">
@@ -1967,10 +1967,10 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="physicals_yes"
                       name="physicals"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("physicals_yes")?.checked}
                     />
-                    <label htmlFor="physicals_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="physicals_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1980,10 +1980,10 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
                       id="physicals_no"
                       name="physicals"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || !(document as any).getElementById("physicals_yes")?.checked}
                     />
-                    <label htmlFor="physicals_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="physicals_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
@@ -1994,12 +1994,12 @@ export default function PublicAutoForm({ insuranceType }: PublicAutoFormProps) {
         )}
 
         {/* Navigation Buttons */}
-        <div className="flex justify-between p-6 border-t border-gray-200">
+        <div className="flex justify-between p-6 border-t border-border">
           {currentStep > 1 && (
             <button
               type="button"
               onClick={handlePrevious}
-              className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="px-4 py-2 border border-border rounded-md shadow-sm text-sm font-medium text-muted-foreground bg-card hover:bg-muted focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               Previous
             </button>

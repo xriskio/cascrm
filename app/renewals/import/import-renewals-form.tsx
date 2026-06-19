@@ -275,7 +275,7 @@ export default function ImportRenewalsForm() {
           )}
 
           {importSuccess && (
-            <Alert className="mb-6 bg-green-50 border-green-200 text-green-800">
+            <Alert className="mb-6 bg-green-500/10 border-border text-green-300">
               <CheckCircle className="h-4 w-4" />
               <AlertTitle>Success!</AlertTitle>
               <AlertDescription>
@@ -294,7 +294,7 @@ export default function ImportRenewalsForm() {
                 onChange={handleFileChange}
                 disabled={isUploading || isImporting}
               />
-              <p className="text-sm text-gray-500">Upload a CSV file containing renewal information</p>
+              <p className="text-sm text-muted-foreground">Upload a CSV file containing renewal information</p>
             </div>
           </TabsContent>
 
@@ -308,7 +308,7 @@ export default function ImportRenewalsForm() {
                 onChange={handleFileChange}
                 disabled={isUploading || isImporting}
               />
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-muted-foreground">
                 Upload an Excel file (.xlsx or .xls) containing renewal information
               </p>
             </div>
@@ -318,7 +318,7 @@ export default function ImportRenewalsForm() {
             <div className="space-y-2">
               <Label htmlFor="pdf-file">Select PDF File</Label>
               <Input id="pdf-file" type="file" accept=".pdf" disabled={true} />
-              <p className="text-sm text-gray-500">PDF import functionality is coming soon</p>
+              <p className="text-sm text-muted-foreground">PDF import functionality is coming soon</p>
             </div>
           </TabsContent>
 
@@ -361,7 +361,7 @@ export default function ImportRenewalsForm() {
 
               <div>
                 <h3 className="text-lg font-medium mb-4">Column Mappings (Auto-detected)</h3>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-sm text-muted-foreground mb-4">
                   Columns have been automatically mapped based on the renewal report format. You can adjust if needed.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -374,7 +374,7 @@ export default function ImportRenewalsForm() {
                         id={`mapping-${header}`}
                         value={columnMappings[header] || ""}
                         onChange={(e) => handleMappingChange(header, e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        className="w-full px-3 py-2 border border-border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       >
                         <option value="">-- Skip this column --</option>
                         {allFields.map((field) => (

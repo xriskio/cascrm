@@ -130,7 +130,7 @@ export default function SQLQueriesPage() {
 
       {/* Results */}
       {error && (
-        <Card className="mb-6 border-red-200">
+        <Card className="mb-6 border-border">
           <CardContent className="pt-6">
             <p className="text-red-600">{error}</p>
           </CardContent>

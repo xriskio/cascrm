@@ -215,7 +215,7 @@ export default function ImportQuotesPage() {
         </Button>
         <div>
           <h1 className="text-2xl font-bold">Import Quotes</h1>
-          <p className="text-gray-600">Upload and map CSV/Excel files to import quotes</p>
+          <p className="text-muted-foreground">Upload and map CSV/Excel files to import quotes</p>
         </div>
       </div>
 
@@ -226,12 +226,12 @@ export default function ImportQuotesPage() {
             <div key={stepNum} className="flex items-center">
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-                  step >= stepNum ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-600"
+                  step >= stepNum ? "bg-blue-600 text-white" : "bg-muted text-muted-foreground"
                 }`}
               >
                 {stepNum}
               </div>
-              {stepNum < 4 && <div className={`w-16 h-1 ${step > stepNum ? "bg-blue-600" : "bg-gray-200"}`} />}
+              {stepNum < 4 && <div className={`w-16 h-1 ${step > stepNum ? "bg-blue-600" : "bg-muted"}`} />}
             </div>
           ))}
         </div>
@@ -246,7 +246,7 @@ export default function ImportQuotesPage() {
             <div className="flex justify-between items-center">
               <div>
                 <h3 className="font-medium mb-2">Download Template</h3>
-                <p className="text-sm text-gray-600">Download a sample CSV template with the correct format</p>
+                <p className="text-sm text-muted-foreground">Download a sample CSV template with the correct format</p>
               </div>
               <Button variant="outline" onClick={downloadTemplate}>
                 <Download className="h-4 w-4 mr-2" />
@@ -254,11 +254,11 @@ export default function ImportQuotesPage() {
               </Button>
             </div>
 
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-              <FileSpreadsheet className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <div className="border-2 border-dashed border-border rounded-lg p-8 text-center">
+              <FileSpreadsheet className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
               <div className="space-y-2">
                 <p className="text-lg font-medium">Upload your quotes file</p>
-                <p className="text-sm text-gray-600">Supports CSV and Excel files (.csv, .xlsx, .xls)</p>
+                <p className="text-sm text-muted-foreground">Supports CSV and Excel files (.csv, .xlsx, .xls)</p>
               </div>
               <div className="mt-4">
                 <Input type="file" accept=".csv,.xlsx,.xls" onChange={handleFileUpload} className="max-w-xs mx-auto" />
@@ -266,10 +266,10 @@ export default function ImportQuotesPage() {
             </div>
 
             {file && (
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <div className="bg-green-500/10 border border-border rounded-lg p-4">
                 <div className="flex items-center">
                   <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
-                  <span className="text-green-800">
+                  <span className="text-green-300">
                     File uploaded: {file.name} ({(file.size / 1024).toFixed(1)} KB)
                   </span>
                 </div>
@@ -285,10 +285,10 @@ export default function ImportQuotesPage() {
             <CardTitle>Step 2: Map Columns</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-500/10 border border-border rounded-lg p-4">
               <div className="flex items-center">
                 <AlertCircle className="h-5 w-5 text-blue-600 mr-2" />
-                <span className="text-blue-800">
+                <span className="text-blue-300">
                   Map your CSV columns to database fields. Columns can be skipped if not needed.
                 </span>
               </div>
@@ -299,9 +299,9 @@ export default function ImportQuotesPage() {
                 <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
                   <div>
                     <Label className="text-sm font-medium">CSV Column</Label>
-                    <div className="p-2 bg-gray-100 rounded border">{mapping.csvColumn}</div>
+                    <div className="p-2 bg-muted rounded border">{mapping.csvColumn}</div>
                   </div>
-                  <div className="text-center text-gray-400">→</div>
+                  <div className="text-center text-muted-foreground">→</div>
                   <div>
                     <Label className="text-sm font-medium">Database Field</Label>
                     <Select value={mapping.dbField} onValueChange={(value) => updateMapping(mapping.csvColumn, value)}>
@@ -337,18 +337,18 @@ export default function ImportQuotesPage() {
             <CardTitle>Step 3: Preview Import</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <div className="bg-yellow-500/10 border border-border rounded-lg p-4">
               <div className="flex items-center">
                 <AlertCircle className="h-5 w-5 text-yellow-600 mr-2" />
-                <span className="text-yellow-800">
+                <span className="text-yellow-300">
                   Review the data below before importing. {importData.rows.length} quotes will be imported.
                 </span>
               </div>
             </div>
 
             <div className="overflow-x-auto max-h-96">
-              <table className="w-full border border-gray-200">
-                <thead className="bg-gray-50">
+              <table className="w-full border border-border">
+                <thead className="bg-muted">
                   <tr>
                     {columnMappings
                       .filter((m) => m.dbField)
@@ -379,7 +379,7 @@ export default function ImportQuotesPage() {
             </div>
 
             {importData.rows.length > 10 && (
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-muted-foreground">
                 Showing first 10 rows. {importData.rows.length - 10} more rows will be imported.
               </p>
             )}
@@ -402,19 +402,19 @@ export default function ImportQuotesPage() {
             <CardTitle>Step 4: Import Complete</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-green-500/10 border border-border rounded-lg p-4">
               <div className="flex items-center">
                 <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
-                <span className="text-green-800">
+                <span className="text-green-300">
                   Import completed successfully! {importResults.imported} quotes imported.
                 </span>
               </div>
             </div>
 
             {importResults.errors && importResults.errors.length > 0 && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                <h4 className="font-medium text-red-800 mb-2">Errors:</h4>
-                <ul className="text-sm text-red-700 space-y-1">
+              <div className="bg-red-500/10 border border-border rounded-lg p-4">
+                <h4 className="font-medium text-red-300 mb-2">Errors:</h4>
+                <ul className="text-sm text-red-400 space-y-1">
                   {importResults.errors.map((error: string, index: number) => (
                     <li key={index}>• {error}</li>
                   ))}

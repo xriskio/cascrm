@@ -37,15 +37,15 @@ export default function ServiceRequestListPage() {
   const getStatusBadgeClass = (status: any) => {
     switch (status) {
       case "pending":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-500/15 text-yellow-300"
       case "in_progress":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-500/15 text-blue-300"
       case "completed":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       case "cancelled":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -79,7 +79,7 @@ export default function ServiceRequestListPage() {
   return (
     <div className="p-6">
       <div className="mb-6">
-        <Link href="/service-requests" className="inline-flex items-center text-orange-500 hover:text-orange-700">
+        <Link href="/service-requests" className="inline-flex items-center text-orange-500 hover:text-orange-400">
           <ArrowLeft className="h-4 w-4 mr-1" />
           Back to Service Requests
         </Link>
@@ -87,14 +87,14 @@ export default function ServiceRequestListPage() {
 
       <h1 className="text-2xl font-bold mb-6">All Service Requests</h1>
 
-      <div className="bg-white border border-gray-200 rounded-lg p-6 mb-6">
+      <div className="bg-card border border-border rounded-lg p-6 mb-6">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 gap-4">
           <div className="relative w-full md:w-64">
-            <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+            <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
             <input
               type="text"
               placeholder="Search by client, policy..."
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md"
+              className="w-full pl-10 pr-4 py-2 border border-border rounded-md"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -103,7 +103,7 @@ export default function ServiceRequestListPage() {
           <div className="flex flex-col md:flex-row gap-2">
             <div className="relative">
               <select
-                className="appearance-none w-full pl-4 pr-10 py-2 border border-gray-300 rounded-md bg-white"
+                className="appearance-none w-full pl-4 pr-10 py-2 border border-border rounded-md bg-card"
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
               >
@@ -113,12 +113,12 @@ export default function ServiceRequestListPage() {
                 <option value="completed">Completed</option>
                 <option value="cancelled">Cancelled</option>
               </select>
-              <ChevronDown className="absolute right-3 top-2.5 h-4 w-4 text-gray-400 pointer-events-none" />
+              <ChevronDown className="absolute right-3 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
             </div>
 
             <div className="relative">
               <select
-                className="appearance-none w-full pl-4 pr-10 py-2 border border-gray-300 rounded-md bg-white"
+                className="appearance-none w-full pl-4 pr-10 py-2 border border-border rounded-md bg-card"
                 value={typeFilter}
                 onChange={(e) => setTypeFilter(e.target.value)}
               >
@@ -132,7 +132,7 @@ export default function ServiceRequestListPage() {
                 <option value="billing">Billing</option>
                 <option value="cancel">Cancellation</option>
               </select>
-              <ChevronDown className="absolute right-3 top-2.5 h-4 w-4 text-gray-400 pointer-events-none" />
+              <ChevronDown className="absolute right-3 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
             </div>
           </div>
         </div>
@@ -140,58 +140,58 @@ export default function ServiceRequestListPage() {
         {loading ? (
           <div className="text-center py-8">
             <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-orange-500 border-r-transparent"></div>
-            <p className="mt-2 text-gray-500">Loading service requests...</p>
+            <p className="mt-2 text-muted-foreground">Loading service requests...</p>
           </div>
         ) : error ? (
-          <div className="bg-red-50 border-l-4 border-red-400 p-4">
+          <div className="bg-red-500/10 border-l-4 border-red-400 p-4">
             <div className="flex">
               <div className="ml-3">
-                <p className="text-sm text-red-700">{error}</p>
+                <p className="text-sm text-red-400">{error}</p>
               </div>
             </div>
           </div>
         ) : filteredRequests.length === 0 ? (
           <div className="text-center py-8">
-            <p className="text-gray-500">No service requests found.</p>
+            <p className="text-muted-foreground">No service requests found.</p>
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
+            <table className="min-w-full divide-y divide-border">
               <thead>
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Request ID
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Type
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Client
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Policy
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Date
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-card divide-y divide-border">
                 {filteredRequests.map((request) => (
                   <tr key={request.id}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{request.id}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-foreground">{request.id}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">
                       {getRequestTypeLabel(request.type)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{request.clientName}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{request.policyNumber}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{request.clientName}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{request.policyNumber}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">
                       {new Date(request.createdAt).toLocaleDateString()}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -201,10 +201,10 @@ export default function ServiceRequestListPage() {
                         {request.status.charAt(0).toUpperCase() + request.status.slice(1).replace("_", " ")}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">
                       <Link
                         href={`/service-requests/view/${request.id}`}
-                        className="text-orange-500 hover:text-orange-700"
+                        className="text-orange-500 hover:text-orange-400"
                       >
                         View
                       </Link>

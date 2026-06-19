@@ -154,8 +154,8 @@ export default function PolicyInfoPage() {
             <div
               className={`p-3 rounded-md ${
                 message.includes("Error") || message.includes("Failed")
-                  ? "bg-red-50 text-red-700 border border-red-200"
-                  : "bg-green-50 text-green-700 border border-green-200"
+                  ? "bg-red-500/10 text-red-400 border border-border"
+                  : "bg-green-500/10 text-green-400 border border-border"
               }`}
             >
               {message}
@@ -315,7 +315,7 @@ export default function PolicyInfoPage() {
                   <h3 className="font-semibold mb-3">Agency Fees</h3>
                   <div className="space-y-2">
                     {policyInfo.PolicyAgencyFees.map((fee: any, index: number) => (
-                      <div key={index} className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                      <div key={index} className="flex justify-between items-center p-2 bg-muted rounded">
                         <span className="font-medium">{fee.AgencyFeeName}</span>
                         <span>${fee.CalculatedAmount?.toFixed(2) || fee.Amount?.toFixed(2)}</span>
                       </div>
@@ -414,7 +414,7 @@ export default function PolicyInfoPage() {
                   <h3 className="font-semibold mb-3">Agency Fees</h3>
                   <div className="space-y-2">
                     {policySummary.PolicyAgencyFees.map((fee: any, index: number) => (
-                      <div key={index} className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                      <div key={index} className="flex justify-between items-center p-2 bg-muted rounded">
                         <span className="font-medium">{fee.AgencyFeeName}</span>
                         <span>${fee.CalculatedAmount?.toFixed(2) || fee.Amount?.toFixed(2)}</span>
                       </div>

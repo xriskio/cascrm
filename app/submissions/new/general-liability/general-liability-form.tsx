@@ -79,19 +79,19 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                     ? "bg-blue-600 border-blue-600 text-white"
                     : currentStep === step.id
                       ? "border-blue-600 text-blue-600"
-                      : "border-gray-300 text-gray-300"
+                      : "border-border text-gray-300"
                 }`}
               >
                 {currentStep > step.id ? <Check className="w-4 h-4" /> : <span>{step.id}</span>}
               </div>
               <span
-                className={`hidden md:block ml-2 text-sm ${currentStep >= step.id ? "text-blue-600" : "text-gray-400"}`}
+                className={`hidden md:block ml-2 text-sm ${currentStep >= step.id ? "text-blue-600" : "text-muted-foreground"}`}
               >
                 {step.name}
               </span>
               {index < steps.length - 1 && (
                 <div
-                  className={`hidden md:block w-12 h-0.5 mx-2 ${currentStep > step.id ? "bg-blue-600" : "bg-gray-300"}`}
+                  className={`hidden md:block w-12 h-0.5 mx-2 ${currentStep > step.id ? "bg-blue-600" : "bg-muted"}`}
                 ></div>
               )}
             </div>
@@ -99,16 +99,16 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-md">
+      <form onSubmit={handleSubmit} className="bg-card rounded-lg shadow-md">
         {/* Step 1: Business Information */}
         {currentStep === 1 && (
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-2">Business Information</h2>
-            <p className="text-gray-600 mb-6">Basic information about your business and operations</p>
+            <p className="text-muted-foreground mb-6">Basic information about your business and operations</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="companyName" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="companyName" className="block text-sm font-medium text-muted-foreground mb-1">
                   Company Name<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -116,12 +116,12 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                   id="companyName"
                   name="companyName"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="yearsInBusiness" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="yearsInBusiness" className="block text-sm font-medium text-muted-foreground mb-1">
                   Years in Business<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -130,13 +130,13 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                   name="yearsInBusiness"
                   min="0"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
 
             <div className="mt-6">
-              <label htmlFor="businessDescription" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="businessDescription" className="block text-sm font-medium text-muted-foreground mb-1">
                 Business Description<span className="text-red-500">*</span>
               </label>
               <textarea
@@ -145,14 +145,14 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                 rows={4}
                 placeholder="Describe the nature of your business operations"
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               ></textarea>
             </div>
 
             <h3 className="text-lg font-semibold mt-8 mb-4">Location & Contact Information</h3>
 
             <div className="mb-4">
-              <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="address" className="block text-sm font-medium text-muted-foreground mb-1">
                 Address<span className="text-red-500">*</span>
               </label>
               <input
@@ -160,13 +160,13 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                 id="address"
                 name="address"
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
-                <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="city" className="block text-sm font-medium text-muted-foreground mb-1">
                   City<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -174,19 +174,19 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                   id="city"
                   name="city"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="state" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="state" className="block text-sm font-medium text-muted-foreground mb-1">
                   State<span className="text-red-500">*</span>
                 </label>
                 <select
                   id="state"
                   name="state"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="">Select...</option>
                   {US_STATES.map((state) => (
@@ -198,7 +198,7 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
               </div>
 
               <div>
-                <label htmlFor="zipCode" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="zipCode" className="block text-sm font-medium text-muted-foreground mb-1">
                   ZIP Code<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -206,7 +206,7 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                   id="zipCode"
                   name="zipCode"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -215,7 +215,7 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="contactName" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="contactName" className="block text-sm font-medium text-muted-foreground mb-1">
                   Contact Name<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -223,12 +223,12 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                   id="contactName"
                   name="contactName"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="phoneNumber" className="block text-sm font-medium text-muted-foreground mb-1">
                   Phone Number<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -237,12 +237,12 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                   name="phoneNumber"
                   placeholder="(555) 555-5555"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-1">
                   Email<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -250,12 +250,12 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                   id="email"
                   name="email"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="website" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="website" className="block text-sm font-medium text-muted-foreground mb-1">
                   Website
                 </label>
                 <input
@@ -263,7 +263,7 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                   id="website"
                   name="website"
                   placeholder="https://example.com"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -272,7 +272,7 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <label htmlFor="annualGrossReceipts" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="annualGrossReceipts" className="block text-sm font-medium text-muted-foreground mb-1">
                   Annual Gross Receipts<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -281,12 +281,12 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                   name="annualGrossReceipts"
                   min="0"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="annualPayroll" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="annualPayroll" className="block text-sm font-medium text-muted-foreground mb-1">
                   Annual Payroll<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -295,12 +295,12 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                   name="annualPayroll"
                   min="0"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="numberOfEmployees" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="numberOfEmployees" className="block text-sm font-medium text-muted-foreground mb-1">
                   Number of Employees<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -309,7 +309,7 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                   name="numberOfEmployees"
                   min="0"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -337,7 +337,7 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
               <div>
-                <label htmlFor="currentInsuranceCarrier" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="currentInsuranceCarrier" className="block text-sm font-medium text-muted-foreground mb-1">
                   Current Insurance Carrier
                 </label>
                 <input
@@ -345,12 +345,12 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                   id="currentInsuranceCarrier"
                   name="currentInsuranceCarrier"
                   placeholder="Enter current carrier"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="currentPremium" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="currentPremium" className="block text-sm font-medium text-muted-foreground mb-1">
                   Current Premium
                 </label>
                 <input
@@ -359,7 +359,7 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                   name="currentPremium"
                   min="0"
                   placeholder="Enter current premium"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -370,12 +370,12 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
         {currentStep === 2 && (
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-2">Coverage Information</h2>
-            <p className="text-gray-600 mb-6">Details about the coverage you need</p>
+            <p className="text-muted-foreground mb-6">Details about the coverage you need</p>
 
             <h3 className="text-lg font-semibold mb-4">Coverages, Deductibles and Limits</h3>
 
             <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Coverage Type</label>
+              <label className="block text-sm font-medium text-muted-foreground mb-2">Coverage Type</label>
               <div className="flex flex-col gap-2">
                 <div className="flex items-center">
                   <input
@@ -384,9 +384,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                     name="coverageType"
                     value="occurrence"
                     defaultChecked
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                   />
-                  <label htmlFor="occurrenceCoverage" className="ml-2 block text-sm text-gray-700">
+                  <label htmlFor="occurrenceCoverage" className="ml-2 block text-sm text-muted-foreground">
                     Occurrence
                   </label>
                 </div>
@@ -396,9 +396,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                     id="claimsMadeCoverage"
                     name="coverageType"
                     value="claimsMade"
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                   />
-                  <label htmlFor="claimsMadeCoverage" className="ml-2 block text-sm text-gray-700">
+                  <label htmlFor="claimsMadeCoverage" className="ml-2 block text-sm text-muted-foreground">
                     Claims Made
                   </label>
                 </div>
@@ -406,12 +406,12 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
             </div>
 
             <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Liability Limit</label>
+              <label className="block text-sm font-medium text-muted-foreground mb-2">Liability Limit</label>
               <select
                 id="liabilityLimit"
                 name="liabilityLimit"
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Select liability limit</option>
                 <option value="$500,000">$500,000</option>
@@ -426,12 +426,12 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
             </div>
 
             <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">General Aggregate</label>
+              <label className="block text-sm font-medium text-muted-foreground mb-2">General Aggregate</label>
               <select
                 id="generalAggregate"
                 name="generalAggregate"
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Select general aggregate</option>
                 <option value="$1,000,000">$1,000,000</option>
@@ -445,14 +445,14 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
             </div>
 
             <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-muted-foreground mb-2">
                 Products & Completed Operations Aggregate
               </label>
               <select
                 id="productsCompletedOperationsAggregate"
                 name="productsCompletedOperationsAggregate"
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Select products & completed operations aggregate</option>
                 <option value="$1,000,000">$1,000,000</option>
@@ -466,23 +466,23 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
             </div>
 
             <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Personal & Advertising Injury</label>
+              <label className="block text-sm font-medium text-muted-foreground mb-2">Personal & Advertising Injury</label>
               <div className="flex items-center mb-2">
                 <input
                   type="checkbox"
                   id="includePersonalAdvertisingInjury"
                   name="includePersonalAdvertisingInjury"
                   defaultChecked
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                 />
-                <label htmlFor="includePersonalAdvertisingInjury" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="includePersonalAdvertisingInjury" className="ml-2 block text-sm text-muted-foreground">
                   Include
                 </label>
               </div>
               <select
                 id="personalAdvertisingInjuryLimit"
                 name="personalAdvertisingInjuryLimit"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Please choose</option>
                 <option value="$500,000">$500,000</option>
@@ -494,11 +494,11 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
             </div>
 
             <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Medical Expense</label>
+              <label className="block text-sm font-medium text-muted-foreground mb-2">Medical Expense</label>
               <select
                 id="medicalExpenseLimit"
                 name="medicalExpenseLimit"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Please choose</option>
                 <option value="$5,000">$5,000</option>
@@ -509,13 +509,13 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
             </div>
 
             <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-muted-foreground mb-2">
                 Damage to Rented Premises (each occurrence)
               </label>
               <select
                 id="damageToPremisesLimit"
                 name="damageToPremisesLimit"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Please choose</option>
                 <option value="$50,000" selected>
@@ -530,11 +530,11 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
             <h3 className="text-lg font-semibold mt-8 mb-4">Deductibles</h3>
 
             <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Property Damage Deductible</label>
+              <label className="block text-sm font-medium text-muted-foreground mb-2">Property Damage Deductible</label>
               <select
                 id="propertyDamageDeductible"
                 name="propertyDamageDeductible"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
               >
                 <option value="">Select deductible amount</option>
                 <option value="$500">$500</option>
@@ -552,9 +552,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                     name="deductibleBasis"
                     value="perClaim"
                     defaultChecked
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                   />
-                  <label htmlFor="perClaimDeductible" className="ml-2 block text-sm text-gray-700">
+                  <label htmlFor="perClaimDeductible" className="ml-2 block text-sm text-muted-foreground">
                     Per Claim
                   </label>
                 </div>
@@ -564,9 +564,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                     id="perOccurrenceDeductible"
                     name="deductibleBasis"
                     value="perOccurrence"
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                   />
-                  <label htmlFor="perOccurrenceDeductible" className="ml-2 block text-sm text-gray-700">
+                  <label htmlFor="perOccurrenceDeductible" className="ml-2 block text-sm text-muted-foreground">
                     Per Occurrence
                   </label>
                 </div>
@@ -581,9 +581,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                   type="checkbox"
                   id="productsCompletedOperations"
                   name="productsCompletedOperations"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                 />
-                <label htmlFor="productsCompletedOperations" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="productsCompletedOperations" className="ml-2 block text-sm text-muted-foreground">
                   Products/Completed Operations
                 </label>
               </div>
@@ -593,9 +593,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                   type="checkbox"
                   id="contractorsEquipment"
                   name="contractorsEquipment"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                 />
-                <label htmlFor="contractorsEquipment" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="contractorsEquipment" className="ml-2 block text-sm text-muted-foreground">
                   Contractors Equipment
                 </label>
               </div>
@@ -605,23 +605,23 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                   type="checkbox"
                   id="additionalInsured"
                   name="additionalInsured"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                 />
-                <label htmlFor="additionalInsured" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="additionalInsured" className="ml-2 block text-sm text-muted-foreground">
                   Additional Insured Endorsements
                 </label>
               </div>
             </div>
 
             <div className="mb-6">
-              <label htmlFor="otherCoverages" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="otherCoverages" className="block text-sm font-medium text-muted-foreground mb-1">
                 Other Coverages, Restrictions and/or Endorsements
               </label>
               <textarea
                 id="otherCoverages"
                 name="otherCoverages"
                 rows={3}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Describe any other coverages, restrictions or endorsements"
               ></textarea>
             </div>
@@ -632,10 +632,10 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
         {currentStep === 3 && (
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-2">Claims History & Additional Information</h2>
-            <p className="text-gray-600 mb-6">Details about past claims and additional information</p>
+            <p className="text-muted-foreground mb-6">Details about past claims and additional information</p>
 
             <div className="mb-6">
-              <label htmlFor="claimsHistory" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="claimsHistory" className="block text-sm font-medium text-muted-foreground mb-1">
                 Claims History (Last 5 Years)<span className="text-red-500">*</span>
               </label>
               <textarea
@@ -643,7 +643,7 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                 name="claimsHistory"
                 rows={5}
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Provide details of any liability claims in the last 5 years. If none, please state 'No claims'."
               ></textarea>
             </div>
@@ -654,9 +654,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                   type="checkbox"
                   id="noClaimsHistory"
                   name="noClaimsHistory"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                 />
-                <label htmlFor="noClaimsHistory" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="noClaimsHistory" className="ml-2 block text-sm text-muted-foreground">
                   No claims in the past 5 years
                 </label>
               </div>
@@ -665,13 +665,13 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
             <h3 className="text-lg font-semibold mt-8 mb-4">Schedule of Hazards</h3>
 
             <div className="mb-6">
-              <label htmlFor="hazardClassification" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="hazardClassification" className="block text-sm font-medium text-muted-foreground mb-1">
                 Hazard Classification
               </label>
               <select
                 id="hazardClassification"
                 name="hazardClassification"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Please choose</option>
                 <option value="Construction">Construction</option>
@@ -684,7 +684,7 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
             </div>
 
             <div className="mb-6">
-              <label htmlFor="totalGrossReceipts" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="totalGrossReceipts" className="block text-sm font-medium text-muted-foreground mb-1">
                 Total Gross Receipts
               </label>
               <input
@@ -692,34 +692,34 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                 id="totalGrossReceipts"
                 name="totalGrossReceipts"
                 min="0"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
             <div className="mb-6">
-              <label htmlFor="scheduleOfHazards" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="scheduleOfHazards" className="block text-sm font-medium text-muted-foreground mb-1">
                 Schedule of Hazards - Additional Details
               </label>
               <textarea
                 id="scheduleOfHazards"
                 name="scheduleOfHazards"
                 rows={3}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Please include owner and employee payroll per state guidelines"
               ></textarea>
             </div>
 
             <div className="mb-6">
-              <label htmlFor="lossRuns" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="lossRuns" className="block text-sm font-medium text-muted-foreground mb-1">
                 Upload Loss Runs
               </label>
-              <p className="text-xs text-gray-500 mb-2">Upload loss runs for the past 5 years</p>
+              <p className="text-xs text-muted-foreground mb-2">Upload loss runs for the past 5 years</p>
               <input
                 type="file"
                 id="lossRuns"
                 name="lossRuns"
                 multiple
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
           </div>
@@ -729,7 +729,7 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
         {currentStep === 4 && (
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-2">ACORD Questions</h2>
-            <p className="text-gray-600 mb-6">General information about your operations</p>
+            <p className="text-muted-foreground mb-6">General information about your operations</p>
 
             <div className="mb-6">
               <div className="flex items-center">
@@ -737,9 +737,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                   type="checkbox"
                   id="defaultNoAnswers"
                   name="defaultNoAnswers"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                 />
-                <label htmlFor="defaultNoAnswers" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="defaultNoAnswers" className="ml-2 block text-sm text-muted-foreground">
                   Please check here to default all answers below to 'No'. You may then edit each response to a 'Yes' if
                   applicable.
                 </label>
@@ -747,8 +747,8 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
             </div>
 
             <div className="space-y-6">
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   Any medical facilities provided or medical professionals employed or contracted?
                 </p>
                 <div className="flex gap-4">
@@ -758,9 +758,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       id="medicalFacilitiesYes"
                       name="medicalFacilities"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="medicalFacilitiesYes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="medicalFacilitiesYes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -771,17 +771,17 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       name="medicalFacilities"
                       value="no"
                       defaultChecked
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="medicalFacilitiesNo" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="medicalFacilitiesNo" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">Any exposure to radioactive/nuclear materials?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">Any exposure to radioactive/nuclear materials?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -789,9 +789,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       id="radioactiveExposureYes"
                       name="radioactiveExposure"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="radioactiveExposureYes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="radioactiveExposureYes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -802,17 +802,17 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       name="radioactiveExposure"
                       value="no"
                       defaultChecked
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="radioactiveExposureNo" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="radioactiveExposureNo" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   Do/have past, present or discontinued operations involve(d) storing, treating, discharging, applying,
                   disposing, or transporting of hazardous material?
                 </p>
@@ -823,9 +823,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       id="hazardousMaterialYes"
                       name="hazardousMaterial"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="hazardousMaterialYes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="hazardousMaterialYes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -836,17 +836,17 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       name="hazardousMaterial"
                       value="no"
                       defaultChecked
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="hazardousMaterialNo" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="hazardousMaterialNo" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   Any operations sold, acquired, or discontinued in last five (5) years?
                 </p>
                 <div className="flex gap-4">
@@ -856,9 +856,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       id="operationsChangedYes"
                       name="operationsChanged"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="operationsChangedYes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="operationsChangedYes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -869,17 +869,17 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       name="operationsChanged"
                       value="no"
                       defaultChecked
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="operationsChangedNo" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="operationsChangedNo" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">Do you rent or loan equipment to others?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">Do you rent or loan equipment to others?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -887,9 +887,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       id="equipmentRentalYes"
                       name="equipmentRental"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="equipmentRentalYes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="equipmentRentalYes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -900,17 +900,17 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       name="equipmentRental"
                       value="no"
                       defaultChecked
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="equipmentRentalNo" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="equipmentRentalNo" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   Any watercraft, docks, floats owned, hired or leased?
                 </p>
                 <div className="flex gap-4">
@@ -920,9 +920,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       id="watercraftYes"
                       name="watercraft"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="watercraftYes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="watercraftYes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -933,17 +933,17 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       name="watercraft"
                       value="no"
                       defaultChecked
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="watercraftNo" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="watercraftNo" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">Any parking facilities owned/rented?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">Any parking facilities owned/rented?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -951,9 +951,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       id="parkingFacilitiesYes"
                       name="parkingFacilities"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="parkingFacilitiesYes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="parkingFacilitiesYes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -964,17 +964,17 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       name="parkingFacilities"
                       value="no"
                       defaultChecked
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="parkingFacilitiesNo" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="parkingFacilitiesNo" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">Is there a swimming pool on the premises?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">Is there a swimming pool on the premises?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -982,9 +982,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       id="swimmingPoolYes"
                       name="swimmingPool"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="swimmingPoolYes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="swimmingPoolYes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -995,17 +995,17 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       name="swimmingPool"
                       value="no"
                       defaultChecked
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="swimmingPoolNo" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="swimmingPoolNo" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">Are social events sponsored?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">Are social events sponsored?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -1013,9 +1013,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       id="socialEventsYes"
                       name="socialEvents"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="socialEventsYes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="socialEventsYes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1026,17 +1026,17 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       name="socialEvents"
                       value="no"
                       defaultChecked
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="socialEventsNo" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="socialEventsNo" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">Are athletic teams sponsored?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">Are athletic teams sponsored?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -1044,9 +1044,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       id="athleticTeamsYes"
                       name="athleticTeams"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="athleticTeamsYes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="athleticTeamsYes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1057,17 +1057,17 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       name="athleticTeams"
                       value="no"
                       defaultChecked
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="athleticTeamsNo" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="athleticTeamsNo" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   Is there a formal, written safety and security policy in effect?
                 </p>
                 <div className="flex gap-4">
@@ -1077,9 +1077,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       id="safetyPolicyYes"
                       name="safetyPolicy"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="safetyPolicyYes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="safetyPolicyYes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1090,9 +1090,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                       name="safetyPolicy"
                       value="no"
                       defaultChecked
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="safetyPolicyNo" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="safetyPolicyNo" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
@@ -1106,9 +1106,9 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
         {currentStep === 5 && (
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-2">Review & Submit</h2>
-            <p className="text-gray-600 mb-6">Review and submit your application</p>
+            <p className="text-muted-foreground mb-6">Review and submit your application</p>
 
-            <div className="bg-blue-50 p-6 rounded-lg mb-8">
+            <div className="bg-blue-500/10 p-6 rounded-lg mb-8">
               <h3 className="text-xl font-semibold mb-4">Contact Information</h3>
               <p className="mb-2">Monday - Friday: 8:00 AM - 6:00 PM EST</p>
               <p className="text-lg font-bold">888-254-0089 ext. 1</p>
@@ -1118,11 +1118,11 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <p className="font-medium">New Business</p>
-                    <p className="text-sm text-gray-600">For new insurance inquiries</p>
+                    <p className="text-sm text-muted-foreground">For new insurance inquiries</p>
                   </div>
                   <div>
                     <p className="font-medium">Quotes</p>
-                    <p className="text-sm text-gray-600">quotes@insurelimos.com</p>
+                    <p className="text-sm text-muted-foreground">quotes@insurelimos.com</p>
                   </div>
                 </div>
               </div>
@@ -1130,13 +1130,13 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
 
             <div className="mb-8">
               <h3 className="text-lg font-semibold mb-4">Upload Supporting Documents</h3>
-              <p className="text-sm text-gray-600 mb-2">Upload any additional documents (PDF preferred)</p>
+              <p className="text-sm text-muted-foreground mb-2">Upload any additional documents (PDF preferred)</p>
               <input
                 type="file"
                 id="supportingDocuments"
                 name="supportingDocuments"
                 multiple
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
@@ -1153,12 +1153,12 @@ export default function GeneralLiabilityForm({ insuranceType }: GeneralLiability
         )}
 
         {/* Navigation Buttons */}
-        <div className="flex justify-between p-6 border-t border-gray-200">
+        <div className="flex justify-between p-6 border-t border-border">
           {currentStep > 1 && (
             <button
               type="button"
               onClick={handlePrevious}
-              className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="inline-flex items-center px-4 py-2 border border-border rounded-md shadow-sm text-sm font-medium text-muted-foreground bg-card hover:bg-muted focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               Previous
             </button>

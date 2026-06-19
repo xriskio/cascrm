@@ -34,7 +34,7 @@ export function Breadcrumb({ clientId, clientName }: BreadcrumbProps) {
   }
 
   return (
-    <nav className="flex items-center space-x-1 text-sm text-gray-500 mb-4">
+    <nav className="flex items-center space-x-1 text-sm text-muted-foreground mb-4">
       {breadcrumbs.map((breadcrumb, index) => (
         <div key={breadcrumb.href} className="flex items-center">
           {index > 0 && <ChevronRight className="h-4 w-4 mx-1 flex-shrink-0" />}

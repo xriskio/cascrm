@@ -125,10 +125,10 @@ export default function ServiceRequestsPage() {
 
   const getStatusBadge = (status: string) => {
     const statusMap: Record<string, { bg: string; text: string; label: string }> = {
-      pending: { bg: "bg-yellow-100", text: "text-yellow-800", label: "Pending" },
-      in_progress: { bg: "bg-blue-100", text: "text-blue-800", label: "In Progress" },
-      completed: { bg: "bg-green-100", text: "text-green-800", label: "Completed" },
-      cancelled: { bg: "bg-red-100", text: "text-red-800", label: "Cancelled" },
+      pending: { bg: "bg-yellow-500/15", text: "text-yellow-300", label: "Pending" },
+      in_progress: { bg: "bg-blue-500/15", text: "text-blue-300", label: "In Progress" },
+      completed: { bg: "bg-green-500/15", text: "text-green-300", label: "Completed" },
+      cancelled: { bg: "bg-red-500/15", text: "text-red-300", label: "Cancelled" },
     }
     const config = statusMap[status] || statusMap.pending
     return (
@@ -170,11 +170,11 @@ export default function ServiceRequestsPage() {
         {/* AI Search Bar */}
         <div className="mb-8">
           <div className="relative max-w-2xl mx-auto">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             <input
               type="text"
               placeholder="🤖 AI-powered search across all service requests..."
-              className="w-full pl-12 pr-4 py-4 bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all duration-200"
+              className="w-full pl-12 pr-4 py-4 bg-card backdrop-blur-sm border border-border/50 rounded-2xl shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all duration-200"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -190,7 +190,7 @@ export default function ServiceRequestsPage() {
             {serviceRequestTypes.map((type) => (
               <div
                 key={type.id}
-                className="group bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 flex flex-col items-center text-center cursor-pointer hover:shadow-xl hover:scale-105 transition-all duration-300"
+                className="group bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 flex flex-col items-center text-center cursor-pointer hover:shadow-xl hover:scale-105 transition-all duration-300"
                 onClick={() => handleRequestClick(type.id)}
               >
                 <div
@@ -198,51 +198,51 @@ export default function ServiceRequestsPage() {
                 >
                   <div className="text-white">{type.icon}</div>
                 </div>
-                <h3 className="font-semibold text-lg mb-2 text-gray-800">{type.name}</h3>
-                <p className="text-sm text-gray-600">{type.description}</p>
+                <h3 className="font-semibold text-lg mb-2 text-foreground">{type.name}</h3>
+                <p className="text-sm text-muted-foreground">{type.description}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Recent Requests Table */}
-        <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl shadow-lg overflow-hidden">
-          <div className="p-6 border-b border-gray-200/50">
+        <div className="bg-card backdrop-blur-sm border border-border/50 rounded-2xl shadow-lg overflow-hidden">
+          <div className="p-6 border-b border-border/50">
             <h2 className="text-xl font-semibold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
               Recent Service Requests
             </h2>
           </div>
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200/50">
-              <thead className="bg-gray-50/50">
+            <table className="min-w-full divide-y divide-border/50">
+              <thead className="bg-muted/50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Request ID
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Type
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Client
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Policy
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Date
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white/30 divide-y divide-gray-200/50">
+              <tbody className="bg-white/30 divide-y divide-border/50">
                 {loading ? (
                   <tr className="text-center">
-                    <td colSpan={7} className="px-6 py-16 text-gray-500">
+                    <td colSpan={7} className="px-6 py-16 text-muted-foreground">
                       <div className="flex flex-col items-center">
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
                         <p className="text-lg font-medium">Loading service requests...</p>
@@ -251,23 +251,23 @@ export default function ServiceRequestsPage() {
                   </tr>
                 ) : recentRequests.length > 0 ? (
                   recentRequests.map((request) => (
-                    <tr key={request.id} className="hover:bg-white/50 transition-colors duration-200">
+                    <tr key={request.id} className="hover:bg-card transition-colors duration-200">
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="font-mono text-sm text-gray-900">#{request.id.slice(0, 8)}</span>
+                        <span className="font-mono text-sm text-foreground">#{request.id.slice(0, 8)}</span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="text-sm font-medium text-gray-900">{getRequestTypeLabel(request.type)}</span>
+                        <span className="text-sm font-medium text-foreground">{getRequestTypeLabel(request.type)}</span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{request.clientName}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{request.policyNumber}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{request.clientName}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{request.policyNumber}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">
                         {formatDate(request.createdAt)}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">{getStatusBadge(request.status)}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm">
                         <button
                           onClick={() => router.push(`/service-requests/view/${request.id}`)}
-                          className="text-blue-600 hover:text-blue-900 font-medium"
+                          className="text-blue-600 hover:text-blue-300 font-medium"
                         >
                           View Details
                         </button>
@@ -276,9 +276,9 @@ export default function ServiceRequestsPage() {
                   ))
                 ) : (
                   <tr className="text-center">
-                    <td colSpan={7} className="px-6 py-16 text-gray-500">
+                    <td colSpan={7} className="px-6 py-16 text-muted-foreground">
                       <div className="flex flex-col items-center">
-                        <div className="p-4 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full mb-4">
+                        <div className="p-4 bg-card rounded-full mb-4">
                           <FileText className="h-8 w-8 text-blue-500" />
                         </div>
                         <p className="text-lg font-medium mb-2">No service requests found</p>

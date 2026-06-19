@@ -157,7 +157,7 @@ export default function IncomingCallForm({ onSaved }: { onSaved?: () => void }) 
   return (
     <Card className="w-full mb-6">
       <CardHeader
-        className={cn("cursor-pointer bg-blue-50", isExpanded ? "border-b" : "")}
+        className={cn("cursor-pointer bg-blue-500/10", isExpanded ? "border-b" : "")}
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <div className="flex items-center justify-between">

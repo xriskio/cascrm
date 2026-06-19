@@ -83,7 +83,7 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
         <p className="text-red-500">
           There was an unexpected error loading the client information. Please try again later.
         </p>
-        <p className="text-gray-500 mt-2">Error details: {error instanceof Error ? error.message : String(error)}</p>
+        <p className="text-muted-foreground mt-2">Error details: {error instanceof Error ? error.message : String(error)}</p>
       </div>
     )
   }

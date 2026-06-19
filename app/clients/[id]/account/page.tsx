@@ -59,7 +59,7 @@ export default async function ClientAccountPage({ params }: { params: { id: stri
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold">Account Information</h1>
-            <p className="text-gray-600">
+            <p className="text-muted-foreground">
               Manage account details for {client.first_name} {client.last_name}
             </p>
           </div>
@@ -80,16 +80,16 @@ export default async function ClientAccountPage({ params }: { params: { id: stri
                 <CardDescription>Common account management tasks</CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
-                <button className="w-full text-left p-3 rounded-lg border hover:bg-gray-50 transition-colors">
+                <button className="w-full text-left p-3 rounded-lg border hover:bg-muted transition-colors">
                   Update Contact Information
                 </button>
-                <button className="w-full text-left p-3 rounded-lg border hover:bg-gray-50 transition-colors">
+                <button className="w-full text-left p-3 rounded-lg border hover:bg-muted transition-colors">
                   Change Agent Assignment
                 </button>
-                <button className="w-full text-left p-3 rounded-lg border hover:bg-gray-50 transition-colors">
+                <button className="w-full text-left p-3 rounded-lg border hover:bg-muted transition-colors">
                   Modify Customer Priority
                 </button>
-                <button className="w-full text-left p-3 rounded-lg border hover:bg-gray-50 transition-colors">
+                <button className="w-full text-left p-3 rounded-lg border hover:bg-muted transition-colors">
                   Portal Access Settings
                 </button>
               </CardContent>
@@ -102,15 +102,15 @@ export default async function ClientAccountPage({ params }: { params: { id: stri
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-sm text-gray-600">Status</span>
+                  <span className="text-sm text-muted-foreground">Status</span>
                   <Badge variant="secondary">Active</Badge>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-sm text-gray-600">Last Updated</span>
+                  <span className="text-sm text-muted-foreground">Last Updated</span>
                   <span className="text-sm">Today</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-sm text-gray-600">Sync Status</span>
+                  <span className="text-sm text-muted-foreground">Sync Status</span>
                   <Badge variant="outline" className="text-green-600">
                     Synced
                   </Badge>

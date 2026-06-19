@@ -345,7 +345,7 @@ export default function FileUploadExtractor({ onDataExtracted }: FileUploadExtra
     } else if (ext === "pdf") {
       return <FileText className="h-8 w-8 text-red-600" />
     }
-    return <File className="h-8 w-8 text-gray-600" />
+    return <File className="h-8 w-8 text-muted-foreground" />
   }
 
   return (
@@ -355,21 +355,21 @@ export default function FileUploadExtractor({ onDataExtracted }: FileUploadExtra
           <Upload className="h-5 w-5" />
           Quick Fill from File
         </CardTitle>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-muted-foreground">
           Upload a CSV, Excel, or PDF file to automatically populate form fields
         </p>
       </CardHeader>
       <CardContent>
         {!file ? (
           <div
-            className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-500 transition-colors cursor-pointer"
+            className="border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-blue-500 transition-colors cursor-pointer"
             onDrop={handleDrop}
             onDragOver={(e) => e.preventDefault()}
             onClick={() => document.getElementById("file-input")?.click()}
           >
-            <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <p className="text-gray-600 mb-2">Drag and drop your file here, or click to browse</p>
-            <p className="text-sm text-gray-500">Supports CSV, Excel (XLSX/XLS), and PDF files</p>
+            <Upload className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+            <p className="text-muted-foreground mb-2">Drag and drop your file here, or click to browse</p>
+            <p className="text-sm text-muted-foreground">Supports CSV, Excel (XLSX/XLS), and PDF files</p>
             <input
               id="file-input"
               type="file"
@@ -380,11 +380,11 @@ export default function FileUploadExtractor({ onDataExtracted }: FileUploadExtra
           </div>
         ) : (
           <div className="space-y-4">
-            <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+            <div className="flex items-center gap-4 p-4 bg-muted rounded-lg">
               {getFileIcon(file.name)}
               <div className="flex-1">
                 <p className="font-medium">{file.name}</p>
-                <p className="text-sm text-gray-500">{(file.size / 1024).toFixed(2)} KB</p>
+                <p className="text-sm text-muted-foreground">{(file.size / 1024).toFixed(2)} KB</p>
               </div>
               <Button
                 variant="ghost"
@@ -417,20 +417,20 @@ export default function FileUploadExtractor({ onDataExtracted }: FileUploadExtra
 
             {success && extractedData && showMapping && (
               <div className="space-y-4">
-                <Alert className="bg-green-50 border-green-200">
+                <Alert className="bg-green-500/10 border-border">
                   <CheckCircle className="h-4 w-4 text-green-600" />
-                  <AlertDescription className="text-green-800">
+                  <AlertDescription className="text-green-300">
                     Successfully extracted {Object.keys(extractedData).length} fields from the file
                   </AlertDescription>
                 </Alert>
 
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <h4 className="font-medium text-blue-900 mb-3">Extracted Fields Preview:</h4>
+                <div className="bg-blue-500/10 border border-border rounded-lg p-4">
+                  <h4 className="font-medium text-blue-300 mb-3">Extracted Fields Preview:</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-60 overflow-y-auto">
                     {Object.entries(extractedData).map(([key, value]) => (
                       <div key={key} className="text-sm">
-                        <span className="font-medium text-blue-800">{key}:</span>{" "}
-                        <span className="text-gray-700">{String(value)}</span>
+                        <span className="font-medium text-blue-300">{key}:</span>{" "}
+                        <span className="text-muted-foreground">{String(value)}</span>
                       </div>
                     ))}
                   </div>

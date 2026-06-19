@@ -197,7 +197,7 @@ export default function PendingCompliancePage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6 mb-6">
+      <div className="bg-card rounded-lg shadow p-6 mb-6">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold">Missing Documentation</h2>
           <div className="flex items-center space-x-2">
@@ -220,7 +220,7 @@ export default function PendingCompliancePage() {
           <input
             type="text"
             placeholder="Search by client, policy number, or company..."
-            className="w-full px-4 py-2 border border-gray-300 rounded-md"
+            className="w-full px-4 py-2 border border-border rounded-md"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -229,7 +229,7 @@ export default function PendingCompliancePage() {
         <div className="overflow-x-auto">
           <table className="w-full border-collapse">
             <thead>
-              <tr className="bg-gray-100">
+              <tr className="bg-muted">
                 <th className="border px-4 py-2 text-left">Client</th>
                 <th className="border px-4 py-2 text-left">Policy Number</th>
                 <th className="border px-4 py-2 text-left">Effective Date</th>
@@ -245,7 +245,7 @@ export default function PendingCompliancePage() {
                 <tr
                   key={item.id}
                   className={`border-b ${
-                    item.priority === "high" ? "bg-red-50" : item.priority === "medium" ? "bg-yellow-50" : "bg-green-50"
+                    item.priority === "high" ? "bg-red-500/10" : item.priority === "medium" ? "bg-yellow-500/10" : "bg-green-500/10"
                   }`}
                 >
                   <td className="border px-4 py-2">{item.client}</td>
@@ -290,7 +290,7 @@ export default function PendingCompliancePage() {
                     <div className="flex flex-col gap-1">
                       {item.missingItems.photos && (
                         <button
-                          className="text-blue-500 hover:text-blue-700 flex items-center text-sm"
+                          className="text-blue-500 hover:text-blue-400 flex items-center text-sm"
                           onClick={() => handleUpload(item.id, "photos")}
                           disabled={processingId === item.id}
                         >
@@ -300,7 +300,7 @@ export default function PendingCompliancePage() {
                       )}
                       {item.missingItems.documents && (
                         <button
-                          className="text-blue-500 hover:text-blue-700 flex items-center text-sm"
+                          className="text-blue-500 hover:text-blue-400 flex items-center text-sm"
                           onClick={() => handleUpload(item.id, "documents")}
                           disabled={processingId === item.id}
                         >
@@ -310,7 +310,7 @@ export default function PendingCompliancePage() {
                       )}
                       {item.missingItems.certificates && (
                         <button
-                          className="text-blue-500 hover:text-blue-700 flex items-center text-sm"
+                          className="text-blue-500 hover:text-blue-400 flex items-center text-sm"
                           onClick={() => handleUpload(item.id, "certificates")}
                           disabled={processingId === item.id}
                         >
@@ -319,14 +319,14 @@ export default function PendingCompliancePage() {
                         </button>
                       )}
                       <button
-                        className="text-orange-500 hover:text-orange-700 text-sm"
+                        className="text-orange-500 hover:text-orange-400 text-sm"
                         onClick={() => handleSendReminder(item.id)}
                         disabled={processingId === item.id}
                       >
                         {processingId === item.id ? "Sending..." : "Send Reminder"}
                       </button>
                       <button
-                        className="text-gray-500 hover:text-gray-700 text-sm"
+                        className="text-muted-foreground hover:text-muted-foreground text-sm"
                         onClick={() => {
                           toast.info(`Viewing details for ${item.client}`)
                         }}
@@ -339,7 +339,7 @@ export default function PendingCompliancePage() {
               ))}
               {filteredItems.length === 0 && (
                 <tr>
-                  <td colSpan={8} className="border px-4 py-8 text-center text-gray-500">
+                  <td colSpan={8} className="border px-4 py-8 text-center text-muted-foreground">
                     No compliance issues found
                   </td>
                 </tr>

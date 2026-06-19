@@ -81,7 +81,7 @@ export default function AddResourcePage() {
   return (
     <div className="container mx-auto py-8">
       <div className="mb-6">
-        <Link href="/agency-resources" className="flex items-center text-gray-600 hover:text-gray-900">
+        <Link href="/agency-resources" className="flex items-center text-muted-foreground hover:text-foreground">
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back to Resources
         </Link>
@@ -144,7 +144,7 @@ export default function AddResourcePage() {
             <div className="space-y-2">
               <Label htmlFor="externalUrl">External URL *</Label>
               <div className="flex items-center space-x-2">
-                <ExternalLink className="h-4 w-4 text-gray-400" />
+                <ExternalLink className="h-4 w-4 text-muted-foreground" />
                 <Input
                   id="externalUrl"
                   type="url"
@@ -168,8 +168,8 @@ export default function AddResourcePage() {
         </form>
       </Card>
 
-      <div className="mt-8 p-4 bg-gray-50 border border-gray-200 rounded-md">
-        <h3 className="font-medium text-gray-700 mb-2">Recommended External Resources</h3>
+      <div className="mt-8 p-4 bg-muted border border-border rounded-md">
+        <h3 className="font-medium text-muted-foreground mb-2">Recommended External Resources</h3>
         <ul className="space-y-2 text-sm">
           <li>
             <a

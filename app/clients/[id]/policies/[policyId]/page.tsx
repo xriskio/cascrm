@@ -45,7 +45,7 @@ export default async function PolicyDetailPage({ params }: PolicyDetailPageProps
           </Link>
           <div>
             <h1 className="text-2xl font-bold">Policy Details</h1>
-            <p className="text-gray-600">{policy.policyNumber}</p>
+            <p className="text-muted-foreground">{policy.policyNumber}</p>
           </div>
         </div>
         <Badge variant={policy.status === "Active" ? "default" : "secondary"}>{policy.status}</Badge>

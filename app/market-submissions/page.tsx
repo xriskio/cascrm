@@ -53,17 +53,17 @@ export default async function MarketSubmissionsPage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "pending":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-500/15 text-yellow-300"
       case "quoted":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-500/15 text-blue-300"
       case "declined":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       case "bound":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       case "expired":
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -87,10 +87,10 @@ export default async function MarketSubmissionsPage() {
       <div className="container mx-auto py-6 px-6">
         {/* Statistics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
-          <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
+          <div className="bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Submissions</p>
+                <p className="text-sm font-medium text-muted-foreground">Total Submissions</p>
                 <p className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   {stats.total}
                 </p>
@@ -101,10 +101,10 @@ export default async function MarketSubmissionsPage() {
             </div>
           </div>
 
-          <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
+          <div className="bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Pending</p>
+                <p className="text-sm font-medium text-muted-foreground">Pending</p>
                 <p className="text-3xl font-bold bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">
                   {stats.pending}
                 </p>
@@ -115,10 +115,10 @@ export default async function MarketSubmissionsPage() {
             </div>
           </div>
 
-          <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
+          <div className="bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Quoted</p>
+                <p className="text-sm font-medium text-muted-foreground">Quoted</p>
                 <p className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
                   {stats.quoted}
                 </p>
@@ -129,10 +129,10 @@ export default async function MarketSubmissionsPage() {
             </div>
           </div>
 
-          <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
+          <div className="bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Declined</p>
+                <p className="text-sm font-medium text-muted-foreground">Declined</p>
                 <p className="text-3xl font-bold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent">
                   {stats.declined}
                 </p>
@@ -143,10 +143,10 @@ export default async function MarketSubmissionsPage() {
             </div>
           </div>
 
-          <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
+          <div className="bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Bound</p>
+                <p className="text-sm font-medium text-muted-foreground">Bound</p>
                 <p className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
                   {stats.bound}
                 </p>
@@ -164,7 +164,7 @@ export default async function MarketSubmissionsPage() {
             marketSubmissions.map((submission) => (
               <Card
                 key={submission.id}
-                className="bg-white/70 backdrop-blur-sm border border-gray-200/50 hover:shadow-xl transition-all duration-300"
+                className="bg-card backdrop-blur-sm border border-border/50 hover:shadow-xl transition-all duration-300"
               >
                 <CardHeader>
                   <div className="flex items-start justify-between">
@@ -182,7 +182,7 @@ export default async function MarketSubmissionsPage() {
                           {submission.quote_status || "pending"}
                         </Badge>
                       </div>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-muted-foreground">
                         {submission.tracking_number || "No tracking number"}
                       </p>
                     </div>
@@ -194,19 +194,19 @@ export default async function MarketSubmissionsPage() {
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
                     <div>
-                      <p className="text-gray-500">Market/Carrier</p>
+                      <p className="text-muted-foreground">Market/Carrier</p>
                       <p className="font-medium">{submission.market_name || submission.carrier_name || "Not specified"}</p>
                     </div>
                     <div>
-                      <p className="text-gray-500">Wholesaler</p>
+                      <p className="text-muted-foreground">Wholesaler</p>
                       <p className="font-medium">{submission.wholesaler_name || "Not specified"}</p>
                     </div>
                     <div>
-                      <p className="text-gray-500">Submitted Date</p>
+                      <p className="text-muted-foreground">Submitted Date</p>
                       <p className="font-medium">{formatDate(submission.submission_date)}</p>
                     </div>
                     <div>
-                      <p className="text-gray-500">Quote Amount</p>
+                      <p className="text-muted-foreground">Quote Amount</p>
                       <p className="font-medium">
                         {submission.quote_amount
                           ? `$${Number(submission.quote_amount).toLocaleString()}`
@@ -215,8 +215,8 @@ export default async function MarketSubmissionsPage() {
                     </div>
                   </div>
                   {submission.wholesaler_company && (
-                    <div className="mt-4 pt-4 border-t border-gray-200">
-                      <p className="text-sm text-gray-600">
+                    <div className="mt-4 pt-4 border-t border-border">
+                      <p className="text-sm text-muted-foreground">
                         <span className="font-medium">Company:</span> {submission.wholesaler_company}
                         {submission.wholesaler_email && (
                           <>
@@ -237,14 +237,14 @@ export default async function MarketSubmissionsPage() {
               </Card>
             ))
           ) : (
-            <Card className="bg-white/70 backdrop-blur-sm border border-gray-200/50">
+            <Card className="bg-card backdrop-blur-sm border border-border/50">
               <CardContent className="p-16 text-center">
                 <div className="flex flex-col items-center">
-                  <div className="p-4 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full mb-4">
+                  <div className="p-4 bg-card rounded-full mb-4">
                     <FileText className="h-8 w-8 text-blue-500" />
                   </div>
-                  <p className="text-lg font-medium mb-2 text-gray-800">No market submissions found</p>
-                  <p className="text-sm text-gray-600 mb-4">
+                  <p className="text-lg font-medium mb-2 text-foreground">No market submissions found</p>
+                  <p className="text-sm text-muted-foreground mb-4">
                     Get started by creating your first market submission.
                   </p>
                   <Button asChild>

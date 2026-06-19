@@ -1219,8 +1219,8 @@ export default function GarageKeepersForm() {
 
                 <div className="space-y-2">
                   <Label htmlFor="lossRunsUpload">Upload Loss Runs</Label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-md p-6 text-center">
-                    <p className="text-sm text-gray-500">Drag and drop your loss runs here or click to browse</p>
+                  <div className="border-2 border-dashed border-border rounded-md p-6 text-center">
+                    <p className="text-sm text-muted-foreground">Drag and drop your loss runs here or click to browse</p>
                     <input type="file" id="lossRunsUpload" className="hidden" />
                     <Button
                       type="button"
@@ -1235,8 +1235,8 @@ export default function GarageKeepersForm() {
 
                 <div className="space-y-2">
                   <Label htmlFor="acordFormsUpload">Upload ACORD Forms</Label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-md p-6 text-center">
-                    <p className="text-sm text-gray-500">Drag and drop your ACORD forms here or click to browse</p>
+                  <div className="border-2 border-dashed border-border rounded-md p-6 text-center">
+                    <p className="text-sm text-muted-foreground">Drag and drop your ACORD forms here or click to browse</p>
                     <input type="file" id="acordFormsUpload" className="hidden" />
                     <Button
                       type="button"
@@ -1251,8 +1251,8 @@ export default function GarageKeepersForm() {
 
                 <div className="space-y-2">
                   <Label htmlFor="propertyPhotosUpload">Upload Property Photos</Label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-md p-6 text-center">
-                    <p className="text-sm text-gray-500">Drag and drop your property photos here or click to browse</p>
+                  <div className="border-2 border-dashed border-border rounded-md p-6 text-center">
+                    <p className="text-sm text-muted-foreground">Drag and drop your property photos here or click to browse</p>
                     <input type="file" id="propertyPhotosUpload" className="hidden" multiple />
                     <Button
                       type="button"
@@ -1301,27 +1301,27 @@ export default function GarageKeepersForm() {
                     <h3 className="text-lg font-medium">Insured Information</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                       <div>
-                        <p className="text-sm font-medium text-gray-500">Insured Name</p>
+                        <p className="text-sm font-medium text-muted-foreground">Insured Name</p>
                         <p>{formData.insuredName || "Not provided"}</p>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-500">DBA</p>
+                        <p className="text-sm font-medium text-muted-foreground">DBA</p>
                         <p>{formData.dba || "Not provided"}</p>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-500">Contact Name</p>
+                        <p className="text-sm font-medium text-muted-foreground">Contact Name</p>
                         <p>{formData.contactName || "Not provided"}</p>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-500">Contact Email</p>
+                        <p className="text-sm font-medium text-muted-foreground">Contact Email</p>
                         <p>{formData.contactEmail || "Not provided"}</p>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-500">Contact Phone</p>
+                        <p className="text-sm font-medium text-muted-foreground">Contact Phone</p>
                         <p>{formData.contactPhone || "Not provided"}</p>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-500">Years in Business</p>
+                        <p className="text-sm font-medium text-muted-foreground">Years in Business</p>
                         <p>{formData.yearsInBusiness || "Not provided"}</p>
                       </div>
                     </div>
@@ -1331,19 +1331,19 @@ export default function GarageKeepersForm() {
                     <h3 className="text-lg font-medium">Business Information</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                       <div>
-                        <p className="text-sm font-medium text-gray-500">Business Type</p>
+                        <p className="text-sm font-medium text-muted-foreground">Business Type</p>
                         <p>{formData.businessType || "Not provided"}</p>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-500">Annual Revenue</p>
+                        <p className="text-sm font-medium text-muted-foreground">Annual Revenue</p>
                         <p>{formData.annualRevenue ? `$${formData.annualRevenue}` : "Not provided"}</p>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-500">Number of Employees</p>
+                        <p className="text-sm font-medium text-muted-foreground">Number of Employees</p>
                         <p>{formData.numberOfEmployees || "Not provided"}</p>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-500">Business Description</p>
+                        <p className="text-sm font-medium text-muted-foreground">Business Description</p>
                         <p>{formData.businessDescription || "Not provided"}</p>
                       </div>
                     </div>
@@ -1353,7 +1353,7 @@ export default function GarageKeepersForm() {
                     <h3 className="text-lg font-medium">Coverage Information</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                       <div>
-                        <p className="text-sm font-medium text-gray-500">Effective Date</p>
+                        <p className="text-sm font-medium text-muted-foreground">Effective Date</p>
                         <p>
                           {formData.effectiveDate
                             ? new Date(formData.effectiveDate).toLocaleDateString()
@@ -1361,15 +1361,15 @@ export default function GarageKeepersForm() {
                         </p>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-500">Garage Liability Limit</p>
+                        <p className="text-sm font-medium text-muted-foreground">Garage Liability Limit</p>
                         <p>{formData.garageLiabilityLimit ? `$${formData.garageLiabilityLimit}` : "Not provided"}</p>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-500">Garagekeepers Limit</p>
+                        <p className="text-sm font-medium text-muted-foreground">Garagekeepers Limit</p>
                         <p>{formData.garageKeepersLimit ? `$${formData.garageKeepersLimit}` : "Not provided"}</p>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-500">Coverage Type</p>
+                        <p className="text-sm font-medium text-muted-foreground">Coverage Type</p>
                         <p>{formData.coverageType || "Not provided"}</p>
                       </div>
                     </div>
@@ -1377,7 +1377,7 @@ export default function GarageKeepersForm() {
                 </div>
 
                 <div className="border-t pt-4 mt-6">
-                  <p className="text-sm text-gray-500 mb-4">
+                  <p className="text-sm text-muted-foreground mb-4">
                     Please review all information before submitting. By submitting this form, you certify that all
                     information provided is accurate and complete.
                   </p>

@@ -193,8 +193,8 @@ export default function RenewalDetailPage() {
     return (
       <div className="p-6">
         <div className="animate-pulse space-y-4">
-          <div className="h-8 bg-gray-200 rounded w-1/4"></div>
-          <div className="h-64 bg-gray-200 rounded"></div>
+          <div className="h-8 bg-muted rounded w-1/4"></div>
+          <div className="h-64 bg-muted rounded"></div>
         </div>
       </div>
     )
@@ -251,7 +251,7 @@ export default function RenewalDetailPage() {
             <Button
               onClick={() => setShowEmailDialog(true)}
               variant="outline"
-              className="bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100"
+              className="bg-blue-500/10 text-blue-600 border-border hover:bg-blue-500/15"
             >
               <Mail className="h-4 w-4 mr-2" />
               Begin Renewal Process
@@ -261,7 +261,7 @@ export default function RenewalDetailPage() {
           <Button
             onClick={() => setShowConvertDialog(true)}
             variant="outline"
-            className="bg-green-50 text-green-600 border-green-200 hover:bg-green-100"
+            className="bg-green-500/10 text-green-600 border-border hover:bg-green-500/15"
           >
             <FileCheck className="h-4 w-4 mr-2" />
             Convert to Policy
@@ -270,7 +270,7 @@ export default function RenewalDetailPage() {
           <Button
             onClick={() => setShowArchiveDialog(true)}
             variant="outline"
-            className="bg-amber-50 text-amber-600 border-amber-200 hover:bg-amber-100"
+            className="bg-amber-500/10 text-amber-600 border-border hover:bg-amber-500/15"
           >
             <Archive className="h-4 w-4 mr-2" />
             Archive
@@ -285,19 +285,19 @@ export default function RenewalDetailPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <label className="text-sm font-medium text-gray-500">Client Name</label>
+              <label className="text-sm font-medium text-muted-foreground">Client Name</label>
               <p className="text-lg">{renewal.named_insured || renewal.insured_name || renewal.client_name || "N/A"}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500">Policy Number</label>
+              <label className="text-sm font-medium text-muted-foreground">Policy Number</label>
               <p className="text-lg">{renewal.policy_number || "N/A"}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500">Tracking Number</label>
+              <label className="text-sm font-medium text-muted-foreground">Tracking Number</label>
               <p className="text-lg font-mono">{renewal.tracking_number || "N/A"}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500">Status</label>
+              <label className="text-sm font-medium text-muted-foreground">Status</label>
               <div className="mt-1">
                 <Badge variant={renewal.status === "bound" ? "default" : "secondary"}>
                   {renewal.status || "pending"}
@@ -313,21 +313,21 @@ export default function RenewalDetailPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <label className="text-sm font-medium text-gray-500">Policy Type</label>
+              <label className="text-sm font-medium text-muted-foreground">Policy Type</label>
               <p className="text-lg">{renewal.lob || renewal.policy_type || renewal.line_of_business || "N/A"}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500">Expiration Date</label>
+              <label className="text-sm font-medium text-muted-foreground">Expiration Date</label>
               <p className="text-lg">
                 {renewal.expiration_date ? new Date(renewal.expiration_date).toLocaleDateString() : "N/A"}
               </p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500">Carrier</label>
+              <label className="text-sm font-medium text-muted-foreground">Carrier</label>
               <p className="text-lg">{renewal.carrier || renewal.insurance_carrier || renewal.writing_carrier || "N/A"}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500">Premium</label>
+              <label className="text-sm font-medium text-muted-foreground">Premium</label>
               <p className="text-lg">
                 {renewal.premium || renewal.total_premium || renewal.expiring_premium
                   ? new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(
@@ -347,15 +347,15 @@ export default function RenewalDetailPage() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label className="text-sm font-medium text-gray-500">Created</label>
+              <label className="text-sm font-medium text-muted-foreground">Created</label>
               <p>{renewal.created_at ? new Date(renewal.created_at).toLocaleDateString() : "N/A"}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500">Last Updated</label>
+              <label className="text-sm font-medium text-muted-foreground">Last Updated</label>
               <p>{renewal.updated_at ? new Date(renewal.updated_at).toLocaleDateString() : "N/A"}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500">Archived</label>
+              <label className="text-sm font-medium text-muted-foreground">Archived</label>
               <p>{renewal.archived ? "Yes" : "No"}</p>
             </div>
           </div>
@@ -400,7 +400,7 @@ export default function RenewalDetailPage() {
               variant="outline"
               size="sm"
               disabled={renewal.status === "bound" || processing}
-              className="bg-green-50 text-green-600 border-green-200 hover:bg-green-100"
+              className="bg-green-500/10 text-green-600 border-border hover:bg-green-500/15"
             >
               <FileCheck className="h-3 w-3 mr-1" />
               Bound

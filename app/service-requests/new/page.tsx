@@ -178,7 +178,7 @@ export default function NewServiceRequestPage() {
       <>
         {currentTypeInfo.specificFields.includes("certificateHolder") && (
           <div className="mb-4">
-            <label htmlFor="certificateHolder" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="certificateHolder" className="block text-sm font-medium text-muted-foreground mb-1">
               Certificate Holder
             </label>
             <input
@@ -187,7 +187,7 @@ export default function NewServiceRequestPage() {
               name="certificateHolder"
               value={formData.certificateHolder}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md"
               placeholder="Enter certificate holder name and address"
             />
           </div>
@@ -195,7 +195,7 @@ export default function NewServiceRequestPage() {
 
         {currentTypeInfo.specificFields.includes("additionalInsured") && (
           <div className="mb-4">
-            <label htmlFor="additionalInsured" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="additionalInsured" className="block text-sm font-medium text-muted-foreground mb-1">
               Additional Insured Details
             </label>
             <input
@@ -204,7 +204,7 @@ export default function NewServiceRequestPage() {
               name="additionalInsured"
               value={formData.additionalInsured}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md"
               placeholder="Enter name and address of additional insured"
             />
           </div>
@@ -212,7 +212,7 @@ export default function NewServiceRequestPage() {
 
         {currentTypeInfo.specificFields.includes("locationAddress") && (
           <div className="mb-4">
-            <label htmlFor="locationAddress" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="locationAddress" className="block text-sm font-medium text-muted-foreground mb-1">
               Location Details
             </label>
             <textarea
@@ -220,7 +220,7 @@ export default function NewServiceRequestPage() {
               name="locationAddress"
               value={formData.locationAddress}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md"
               placeholder="Enter location details to add or remove"
               rows={3}
             />
@@ -229,7 +229,7 @@ export default function NewServiceRequestPage() {
 
         {currentTypeInfo.specificFields.includes("vehicleInfo") && (
           <div className="mb-4">
-            <label htmlFor="vehicleInfo" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="vehicleInfo" className="block text-sm font-medium text-muted-foreground mb-1">
               Vehicle Information
             </label>
             <textarea
@@ -237,7 +237,7 @@ export default function NewServiceRequestPage() {
               name="vehicleInfo"
               value={formData.vehicleInfo}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md"
               placeholder="Enter vehicle details (Year, Make, Model, VIN)"
               rows={3}
             />
@@ -246,7 +246,7 @@ export default function NewServiceRequestPage() {
 
         {currentTypeInfo.specificFields.includes("driverInfo") && (
           <div className="mb-4">
-            <label htmlFor="driverInfo" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="driverInfo" className="block text-sm font-medium text-muted-foreground mb-1">
               Driver Information
             </label>
             <textarea
@@ -254,7 +254,7 @@ export default function NewServiceRequestPage() {
               name="driverInfo"
               value={formData.driverInfo}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md"
               placeholder="Enter driver details (Name, DOB, License #)"
               rows={3}
             />
@@ -263,7 +263,7 @@ export default function NewServiceRequestPage() {
 
         {currentTypeInfo.specificFields.includes("billingDetails") && (
           <div className="mb-4">
-            <label htmlFor="billingDetails" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="billingDetails" className="block text-sm font-medium text-muted-foreground mb-1">
               Billing Issue Details
             </label>
             <textarea
@@ -271,7 +271,7 @@ export default function NewServiceRequestPage() {
               name="billingDetails"
               value={formData.billingDetails}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md"
               placeholder="Describe the billing issue in detail"
               rows={3}
             />
@@ -280,7 +280,7 @@ export default function NewServiceRequestPage() {
 
         {currentTypeInfo.specificFields.includes("cancellationReason") && (
           <div className="mb-4">
-            <label htmlFor="cancellationReason" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="cancellationReason" className="block text-sm font-medium text-muted-foreground mb-1">
               Reason for Cancellation
             </label>
             <textarea
@@ -288,7 +288,7 @@ export default function NewServiceRequestPage() {
               name="cancellationReason"
               value={formData.cancellationReason}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md"
               placeholder="Explain why you want to cancel the policy"
               rows={3}
             />
@@ -297,7 +297,7 @@ export default function NewServiceRequestPage() {
 
         {currentTypeInfo.specificFields.includes("cancellationDate") && (
           <div className="mb-4">
-            <label htmlFor="cancellationDate" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="cancellationDate" className="block text-sm font-medium text-muted-foreground mb-1">
               Requested Cancellation Date
             </label>
             <input
@@ -306,14 +306,14 @@ export default function NewServiceRequestPage() {
               name="cancellationDate"
               value={formData.cancellationDate}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md"
             />
           </div>
         )}
 
         {currentTypeInfo.specificFields.includes("airportDetails") && (
           <div className="mb-4">
-            <label htmlFor="airportDetails" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="airportDetails" className="block text-sm font-medium text-muted-foreground mb-1">
               Airport Details
             </label>
             <textarea
@@ -321,7 +321,7 @@ export default function NewServiceRequestPage() {
               name="airportDetails"
               value={formData.airportDetails}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md"
               placeholder="Enter airport name, location, and details"
               rows={3}
             />
@@ -330,7 +330,7 @@ export default function NewServiceRequestPage() {
 
         {currentTypeInfo.specificFields.includes("aircraftDetails") && (
           <div className="mb-4">
-            <label htmlFor="aircraftDetails" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="aircraftDetails" className="block text-sm font-medium text-muted-foreground mb-1">
               Aircraft Details
             </label>
             <textarea
@@ -338,7 +338,7 @@ export default function NewServiceRequestPage() {
               name="aircraftDetails"
               value={formData.aircraftDetails}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md"
               placeholder="Enter aircraft type, registration, and usage details"
               rows={3}
             />
@@ -347,7 +347,7 @@ export default function NewServiceRequestPage() {
 
         {currentTypeInfo.specificFields.includes("operationsDescription") && (
           <div className="mb-4">
-            <label htmlFor="operationsDescription" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="operationsDescription" className="block text-sm font-medium text-muted-foreground mb-1">
               Operations Description
             </label>
             <textarea
@@ -355,7 +355,7 @@ export default function NewServiceRequestPage() {
               name="operationsDescription"
               value={formData.operationsDescription}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md"
               placeholder="Describe the aviation operations requiring coverage"
               rows={3}
             />
@@ -364,7 +364,7 @@ export default function NewServiceRequestPage() {
 
         {currentTypeInfo.specificFields.includes("filingType") && (
           <div className="mb-4">
-            <label htmlFor="filingType" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="filingType" className="block text-sm font-medium text-muted-foreground mb-1">
               Filing Type
             </label>
             <select
@@ -372,7 +372,7 @@ export default function NewServiceRequestPage() {
               name="filingType"
               value={formData.filingType}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md"
             >
               <option value="">Select Filing Type</option>
               <option value="MCS-90">MCS-90 (Motor Carrier)</option>
@@ -387,7 +387,7 @@ export default function NewServiceRequestPage() {
 
         {currentTypeInfo.specificFields.includes("jurisdictions") && (
           <div className="mb-4">
-            <label htmlFor="jurisdictions" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="jurisdictions" className="block text-sm font-medium text-muted-foreground mb-1">
               Jurisdictions
             </label>
             <textarea
@@ -395,7 +395,7 @@ export default function NewServiceRequestPage() {
               name="jurisdictions"
               value={formData.jurisdictions}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md"
               placeholder="Enter states or jurisdictions where filing is needed"
               rows={3}
             />
@@ -404,7 +404,7 @@ export default function NewServiceRequestPage() {
 
         {currentTypeInfo.specificFields.includes("operatingAuthority") && (
           <div className="mb-4">
-            <label htmlFor="operatingAuthority" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="operatingAuthority" className="block text-sm font-medium text-muted-foreground mb-1">
               Operating Authority Number
             </label>
             <input
@@ -413,7 +413,7 @@ export default function NewServiceRequestPage() {
               name="operatingAuthority"
               value={formData.operatingAuthority}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md"
               placeholder="Enter MC, DOT, or other authority number"
             />
           </div>
@@ -425,7 +425,7 @@ export default function NewServiceRequestPage() {
   if (!requestType) {
     return (
       <div className="p-6">
-        <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+        <div className="bg-yellow-500/10 border-l-4 border-yellow-400 p-4 mb-6">
           <div className="flex">
             <div className="flex-shrink-0">
               <svg className="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
@@ -437,11 +437,11 @@ export default function NewServiceRequestPage() {
               </svg>
             </div>
             <div className="ml-3">
-              <p className="text-sm text-yellow-700">Please select a request type from the service requests page.</p>
+              <p className="text-sm text-yellow-400">Please select a request type from the service requests page.</p>
             </div>
           </div>
         </div>
-        <Link href="/service-requests" className="inline-flex items-center text-orange-500 hover:text-orange-700">
+        <Link href="/service-requests" className="inline-flex items-center text-orange-500 hover:text-orange-400">
           <ArrowLeft className="h-4 w-4 mr-1" />
           Back to Service Requests
         </Link>
@@ -452,26 +452,26 @@ export default function NewServiceRequestPage() {
   return (
     <div className="p-6">
       <div className="mb-6">
-        <Link href="/service-requests" className="inline-flex items-center text-orange-500 hover:text-orange-700">
+        <Link href="/service-requests" className="inline-flex items-center text-orange-500 hover:text-orange-400">
           <ArrowLeft className="h-4 w-4 mr-1" />
           Back to Service Requests
         </Link>
       </div>
 
-      <div className="bg-white border border-gray-200 rounded-lg p-6">
+      <div className="bg-card border border-border rounded-lg p-6">
         <div className="flex items-center mb-6">
-          <div className="bg-orange-100 p-3 rounded-full mr-4">{currentTypeInfo.icon}</div>
+          <div className="bg-orange-500/15 p-3 rounded-full mr-4">{currentTypeInfo.icon}</div>
           <div>
             <h1 className="text-2xl font-bold">{currentTypeInfo.title}</h1>
-            <p className="text-gray-600">{currentTypeInfo.description}</p>
+            <p className="text-muted-foreground">{currentTypeInfo.description}</p>
           </div>
         </div>
 
         {error && (
-          <div className="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
+          <div className="bg-red-500/10 border-l-4 border-red-400 p-4 mb-6">
             <div className="flex">
               <div className="ml-3">
-                <p className="text-sm text-red-700">{error}</p>
+                <p className="text-sm text-red-400">{error}</p>
               </div>
             </div>
           </div>
@@ -480,7 +480,7 @@ export default function NewServiceRequestPage() {
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
-              <label htmlFor="clientName" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="clientName" className="block text-sm font-medium text-muted-foreground mb-1">
                 Client Name
               </label>
               <input
@@ -489,14 +489,14 @@ export default function NewServiceRequestPage() {
                 name="clientName"
                 value={formData.clientName}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 border border-border rounded-md"
                 placeholder="Enter client name"
                 required
               />
             </div>
 
             <div>
-              <label htmlFor="policyNumber" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="policyNumber" className="block text-sm font-medium text-muted-foreground mb-1">
                 Policy Number
               </label>
               <input
@@ -505,7 +505,7 @@ export default function NewServiceRequestPage() {
                 name="policyNumber"
                 value={formData.policyNumber}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 border border-border rounded-md"
                 placeholder="Enter policy number"
                 required
               />
@@ -513,7 +513,7 @@ export default function NewServiceRequestPage() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="effectiveDate" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="effectiveDate" className="block text-sm font-medium text-muted-foreground mb-1">
               Effective Date
             </label>
             <input
@@ -522,7 +522,7 @@ export default function NewServiceRequestPage() {
               name="effectiveDate"
               value={formData.effectiveDate}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md"
               required
             />
           </div>
@@ -530,7 +530,7 @@ export default function NewServiceRequestPage() {
           {renderSpecificFields()}
 
           <div className="mb-4">
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="description" className="block text-sm font-medium text-muted-foreground mb-1">
               Additional Details
             </label>
             <textarea
@@ -538,7 +538,7 @@ export default function NewServiceRequestPage() {
               name="description"
               value={formData.description}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md"
               placeholder="Provide any additional details about your request"
               rows={4}
               required
@@ -546,7 +546,7 @@ export default function NewServiceRequestPage() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="urgency" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="urgency" className="block text-sm font-medium text-muted-foreground mb-1">
               Urgency
             </label>
             <select
@@ -554,7 +554,7 @@ export default function NewServiceRequestPage() {
               name="urgency"
               value={formData.urgency}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md"
               required
             >
               <option value="low">Low - Within 3-5 business days</option>
@@ -565,11 +565,11 @@ export default function NewServiceRequestPage() {
           </div>
 
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Attachments (Optional)</label>
-            <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+            <label className="block text-sm font-medium text-muted-foreground mb-1">Attachments (Optional)</label>
+            <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-border border-dashed rounded-md">
               <div className="space-y-1 text-center">
                 <svg
-                  className="mx-auto h-12 w-12 text-gray-400"
+                  className="mx-auto h-12 w-12 text-muted-foreground"
                   stroke="currentColor"
                   fill="none"
                   viewBox="0 0 48 48"
@@ -582,23 +582,23 @@ export default function NewServiceRequestPage() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <div className="flex text-sm text-gray-600">
+                <div className="flex text-sm text-muted-foreground">
                   <label
                     htmlFor="file-upload"
-                    className="relative cursor-pointer bg-white rounded-md font-medium text-orange-500 hover:text-orange-400"
+                    className="relative cursor-pointer bg-card rounded-md font-medium text-orange-500 hover:text-orange-400"
                   >
                     <span>Upload files</span>
                     <input id="file-upload" name="file-upload" type="file" className="sr-only" multiple />
                   </label>
                   <p className="pl-1">or drag and drop</p>
                 </div>
-                <p className="text-xs text-gray-500">PNG, JPG, PDF up to 10MB</p>
+                <p className="text-xs text-muted-foreground">PNG, JPG, PDF up to 10MB</p>
               </div>
             </div>
           </div>
 
           <div className="flex justify-end">
-            <Link href="/service-requests" className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md mr-2">
+            <Link href="/service-requests" className="bg-muted text-muted-foreground px-4 py-2 rounded-md mr-2">
               Cancel
             </Link>
             <button

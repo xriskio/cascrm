@@ -139,24 +139,24 @@ export default function BulkDeletePanel() {
         {/* Statistics */}
         {stats && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-blue-50 p-4 rounded-lg">
+            <div className="bg-blue-500/10 p-4 rounded-lg">
               <div className="flex items-center gap-2">
                 <BarChart3 className="h-5 w-5 text-blue-600" />
-                <span className="font-medium text-blue-900">Total Renewals</span>
+                <span className="font-medium text-blue-300">Total Renewals</span>
               </div>
               <div className="text-2xl font-bold text-blue-600">{stats.total}</div>
             </div>
-            <div className="bg-red-50 p-4 rounded-lg">
+            <div className="bg-red-500/10 p-4 rounded-lg">
               <div className="flex items-center gap-2">
                 <XCircle className="h-5 w-5 text-red-600" />
-                <span className="font-medium text-red-900">Bad Dates</span>
+                <span className="font-medium text-red-300">Bad Dates</span>
               </div>
               <div className="text-2xl font-bold text-red-600">{stats.badDates}</div>
             </div>
-            <div className="bg-green-50 p-4 rounded-lg">
+            <div className="bg-green-500/10 p-4 rounded-lg">
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-5 w-5 text-green-600" />
-                <span className="font-medium text-green-900">Good Dates</span>
+                <span className="font-medium text-green-300">Good Dates</span>
               </div>
               <div className="text-2xl font-bold text-green-600">{stats.goodDates}</div>
             </div>
@@ -175,11 +175,11 @@ export default function BulkDeletePanel() {
         {/* Action Buttons */}
         <div className="space-y-4">
           {/* Delete Bad Dates */}
-          <div className="border border-orange-200 rounded-lg p-4">
+          <div className="border border-border rounded-lg p-4">
             <div className="flex justify-between items-start">
               <div>
-                <h3 className="font-medium text-orange-900">Delete Renewals with Bad Dates</h3>
-                <p className="text-sm text-orange-700 mt-1">
+                <h3 className="font-medium text-orange-300">Delete Renewals with Bad Dates</h3>
+                <p className="text-sm text-orange-400 mt-1">
                   Remove all renewals with expiration date of "Dec 31, 1969" or null dates.
                 </p>
                 {stats && stats.badDates > 0 && (
@@ -190,7 +190,7 @@ export default function BulkDeletePanel() {
               </div>
               <Button
                 variant="outline"
-                className="border-orange-300 text-orange-700 hover:bg-orange-50"
+                className="border-orange-300 text-orange-400 hover:bg-orange-500/10"
                 onClick={handleDeleteBadDates}
                 disabled={isLoading || !stats || stats.badDates === 0}
               >
@@ -201,17 +201,17 @@ export default function BulkDeletePanel() {
           </div>
 
           {/* Delete Duplicates */}
-          <div className="border border-blue-200 rounded-lg p-4">
+          <div className="border border-border rounded-lg p-4">
             <div className="flex justify-between items-start">
               <div>
-                <h3 className="font-medium text-blue-900">Delete Duplicate Renewals</h3>
-                <p className="text-sm text-blue-700 mt-1">
+                <h3 className="font-medium text-blue-300">Delete Duplicate Renewals</h3>
+                <p className="text-sm text-blue-400 mt-1">
                   Remove duplicate renewals based on policy number and insured name (keeps the latest).
                 </p>
               </div>
               <Button
                 variant="outline"
-                className="border-blue-300 text-blue-700 hover:bg-blue-50"
+                className="border-blue-300 text-blue-400 hover:bg-blue-500/10"
                 onClick={handleDeleteDuplicates}
                 disabled={isLoading}
               >
@@ -222,11 +222,11 @@ export default function BulkDeletePanel() {
           </div>
 
           {/* Delete All */}
-          <div className="border border-red-200 rounded-lg p-4">
+          <div className="border border-border rounded-lg p-4">
             <div className="flex justify-between items-start">
               <div>
-                <h3 className="font-medium text-red-900">Delete All Renewals</h3>
-                <p className="text-sm text-red-700 mt-1">
+                <h3 className="font-medium text-red-300">Delete All Renewals</h3>
+                <p className="text-sm text-red-400 mt-1">
                   ⚠️ This will permanently delete ALL renewal records. This action cannot be undone.
                 </p>
                 {stats && stats.total > 0 && (

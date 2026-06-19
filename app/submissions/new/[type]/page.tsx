@@ -46,11 +46,11 @@ export default function InsuranceTypeFormPage({ params }: { params: { type: stri
           Back to insurance types
         </Link>
 
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
+        <div className="bg-card border border-border rounded-lg p-6">
           <h1 className="text-2xl font-bold mb-6">
             {type.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())} Application
           </h1>
-          <p className="text-gray-600">Commercial Auto form will be used for this insurance type.</p>
+          <p className="text-muted-foreground">Commercial Auto form will be used for this insurance type.</p>
         </div>
       </div>
     )

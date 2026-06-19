@@ -249,13 +249,13 @@ const ClientsPage = () => {
   const getStatusColor = (status?: string) => {
     switch (status?.toLowerCase()) {
       case "active":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       case "inactive":
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
       case "pending":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-500/15 text-yellow-300"
       default:
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-500/15 text-blue-300"
     }
   }
 
@@ -274,7 +274,7 @@ const ClientsPage = () => {
               <Badge className={getStatusColor(client.status)} variant="outline">
                 {client.status || "Unknown"}
               </Badge>
-              {client.qq_contact_id && <span className="text-xs text-gray-500">#{client.qq_contact_id}</span>}
+              {client.qq_contact_id && <span className="text-xs text-muted-foreground">#{client.qq_contact_id}</span>}
             </div>
           </div>
           <DropdownMenu>
@@ -303,19 +303,19 @@ const ClientsPage = () => {
       <CardContent className="pt-0">
         <div className="space-y-2">
           {client.email && (
-            <div className="flex items-center text-sm text-gray-600">
+            <div className="flex items-center text-sm text-muted-foreground">
               <Mail className="h-3 w-3 mr-2" />
               {client.email}
             </div>
           )}
           {client.phone && (
-            <div className="flex items-center text-sm text-gray-600">
+            <div className="flex items-center text-sm text-muted-foreground">
               <Phone className="h-3 w-3 mr-2" />
               {client.phone}
             </div>
           )}
           {(client.city || client.state) && (
-            <div className="flex items-center text-sm text-gray-600">
+            <div className="flex items-center text-sm text-muted-foreground">
               <MapPin className="h-3 w-3 mr-2" />
               {[client.city, client.state].filter(Boolean).join(", ")}
             </div>
@@ -324,7 +324,7 @@ const ClientsPage = () => {
       </CardContent>
       <CardFooter className="pt-0">
         <div className="flex justify-between items-center w-full">
-          <span className="text-xs text-gray-500">
+          <span className="text-xs text-muted-foreground">
             Added {client.created_at ? new Date(client.created_at).toLocaleDateString() : "Unknown"}
           </span>
           <Button variant="outline" size="sm" asChild>
@@ -341,7 +341,7 @@ const ClientsPage = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Client Dashboard</h1>
-          <p className="text-gray-600">Client management and insights</p>
+          <p className="text-muted-foreground">Client management and insights</p>
         </div>
         <div className="flex items-center space-x-2">
           <Button variant="outline" size="sm" onClick={refreshClientData} disabled={refreshing}>
@@ -375,10 +375,10 @@ const ClientsPage = () => {
 
       {/* Import Status Messages */}
       {importSuccess && (
-        <Alert className="bg-green-50 border-green-200">
+        <Alert className="bg-green-500/10 border-border">
           <CheckCircle className="h-4 w-4 text-green-600" />
-          <AlertTitle className="text-green-800">Import Successful</AlertTitle>
-          <AlertDescription className="text-green-700">{importSuccess}</AlertDescription>
+          <AlertTitle className="text-green-300">Import Successful</AlertTitle>
+          <AlertDescription className="text-green-400">{importSuccess}</AlertDescription>
         </Alert>
       )}
 
@@ -404,7 +404,7 @@ const ClientsPage = () => {
         <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-500">Total Clients</p>
+              <p className="text-sm text-muted-foreground">Total Clients</p>
               <p className="text-2xl font-bold">{totalClients}</p>
             </div>
             <Users className="h-8 w-8 text-blue-500" />
@@ -413,7 +413,7 @@ const ClientsPage = () => {
         <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-500">Active Clients</p>
+              <p className="text-sm text-muted-foreground">Active Clients</p>
               <p className="text-2xl font-bold">{activeClients}</p>
             </div>
             <Users className="h-8 w-8 text-green-500" />
@@ -422,7 +422,7 @@ const ClientsPage = () => {
         <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-500">Total Premium</p>
+              <p className="text-sm text-muted-foreground">Total Premium</p>
               <p className="text-2xl font-bold">
                 ${totalPremium.toLocaleString(undefined, { maximumFractionDigits: 0 })}
               </p>
@@ -433,7 +433,7 @@ const ClientsPage = () => {
         <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-500">Renewals Due</p>
+              <p className="text-sm text-muted-foreground">Renewals Due</p>
               <p className="text-2xl font-bold">{renewalsDue}</p>
             </div>
             <Calendar className="h-8 w-8 text-orange-500" />
@@ -442,7 +442,7 @@ const ClientsPage = () => {
         <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-500">High Value</p>
+              <p className="text-sm text-muted-foreground">High Value</p>
               <p className="text-2xl font-bold">{highValueClients}</p>
             </div>
             <TrendingUp className="h-8 w-8 text-purple-500" />
@@ -453,7 +453,7 @@ const ClientsPage = () => {
       {/* Search and Filters */}
       <div className="flex flex-col md:flex-row gap-4">
         <div className="flex-1 relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
           <Input
             placeholder="Search clients..."
             className="pl-10"
@@ -531,7 +531,7 @@ const ClientsPage = () => {
             </div>
           ) : sortedClients.length === 0 ? (
             <div className="text-center py-10">
-              <p className="text-gray-500 mb-4">
+              <p className="text-muted-foreground mb-4">
                 No clients found. Try adjusting your filters or import from QQCatalyst.
               </p>
               <div className="flex justify-center gap-4">
@@ -557,7 +557,7 @@ const ClientsPage = () => {
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-4">
-                        <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-medium">
+                        <div className="w-10 h-10 rounded-full bg-blue-500/15 flex items-center justify-center text-blue-600 font-medium">
                           {getInitials(client.name)}
                         </div>
                         <div>
@@ -576,19 +576,19 @@ const ClientsPage = () => {
                     </div>
                     <div className="grid grid-cols-3 gap-4 mt-4">
                       <div>
-                        <p className="text-xs text-gray-500">Contact</p>
+                        <p className="text-xs text-muted-foreground">Contact</p>
                         <p className="text-sm">
                           {client.email || "No email"} • {client.phone || "No phone"}
                         </p>
                       </div>
                       <div>
-                        <p className="text-xs text-gray-500">Location</p>
+                        <p className="text-xs text-muted-foreground">Location</p>
                         <p className="text-sm">
                           {[client.city, client.state].filter(Boolean).join(", ") || "No location"}
                         </p>
                       </div>
                       <div>
-                        <p className="text-xs text-gray-500">Added</p>
+                        <p className="text-xs text-muted-foreground">Added</p>
                         <p className="text-sm">{formatDate(client.created_at)}</p>
                       </div>
                     </div>

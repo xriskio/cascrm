@@ -284,14 +284,14 @@ export default function PolicyDetailView({ policy, client }: PolicyDetailProps) 
       case "active":
       case "current":
       case "bound":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       case "pending":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-500/15 text-yellow-300"
       case "expired":
       case "cancelled":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -324,7 +324,7 @@ export default function PolicyDetailView({ policy, client }: PolicyDetailProps) 
         return (
           <div className="space-y-6">
             {/* AI Policy Analytics */}
-            <Card className="border-l-4 border-l-blue-500 bg-gradient-to-r from-blue-50 to-purple-50">
+            <Card className="border-l-4 border-l-blue-500 bg-card">
               <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle className="flex items-center">
                   <Brain className="h-5 w-5 mr-2 text-blue-600" />
@@ -335,7 +335,7 @@ export default function PolicyDetailView({ policy, client }: PolicyDetailProps) 
                   size="sm"
                   onClick={() => setIsRefreshingInsights(true)}
                   disabled={isRefreshingInsights}
-                  className="text-blue-600 hover:bg-blue-100"
+                  className="text-blue-600 hover:bg-blue-500/15"
                 >
                   <RefreshCw className={`h-4 w-4 mr-2 ${isRefreshingInsights ? "animate-spin" : ""}`} />
                   {isRefreshingInsights ? "Analyzing..." : "Refresh"}
@@ -346,25 +346,25 @@ export default function PolicyDetailView({ policy, client }: PolicyDetailProps) 
                   <div className="text-center">
                     <Shield className="h-8 w-8 text-green-500 mx-auto mb-2" />
                     <div className="text-2xl font-bold text-green-600">A+</div>
-                    <div className="text-sm text-gray-600">Policy Rating</div>
+                    <div className="text-sm text-muted-foreground">Policy Rating</div>
                     <Progress value={92} className="mt-2" />
                   </div>
                   <div className="text-center">
                     <TrendingUp className="h-8 w-8 text-blue-500 mx-auto mb-2" />
                     <div className="text-2xl font-bold text-blue-600">88%</div>
-                    <div className="text-sm text-gray-600">Coverage Adequacy</div>
+                    <div className="text-sm text-muted-foreground">Coverage Adequacy</div>
                     <Progress value={88} className="mt-2" />
                   </div>
                   <div className="text-center">
                     <BarChart3 className="h-8 w-8 text-purple-500 mx-auto mb-2" />
                     <div className="text-2xl font-bold text-purple-600">Low</div>
-                    <div className="text-sm text-gray-600">Risk Level</div>
+                    <div className="text-sm text-muted-foreground">Risk Level</div>
                     <Progress value={25} className="mt-2" />
                   </div>
                   <div className="text-center">
                     <Activity className="h-8 w-8 text-orange-500 mx-auto mb-2" />
                     <div className="text-2xl font-bold text-orange-600">95%</div>
-                    <div className="text-sm text-gray-600">Compliance Score</div>
+                    <div className="text-sm text-muted-foreground">Compliance Score</div>
                     <Progress value={95} className="mt-2" />
                   </div>
                 </div>
@@ -373,24 +373,24 @@ export default function PolicyDetailView({ policy, client }: PolicyDetailProps) 
 
             {/* Policy Summary Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Card className="bg-gradient-to-br from-green-50 to-green-100 border-green-200">
+              <Card className="bg-card border-border">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-green-600 text-sm font-medium">Annual Premium</p>
-                      <p className="text-2xl font-bold text-green-800">{formatCurrency(policy.premium)}</p>
+                      <p className="text-2xl font-bold text-green-300">{formatCurrency(policy.premium)}</p>
                     </div>
                     <DollarSign className="h-8 w-8 text-green-600" />
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200">
+              <Card className="bg-card border-border">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-blue-600 text-sm font-medium">Total Coverage</p>
-                      <p className="text-2xl font-bold text-blue-800">
+                      <p className="text-2xl font-bold text-blue-300">
                         {formatCurrency(
                           policyData.coverageLimits.reduce(
                             (total, loc) => total + loc.coverages.reduce((sum, cov) => sum + cov.amount, 0),
@@ -404,12 +404,12 @@ export default function PolicyDetailView({ policy, client }: PolicyDetailProps) 
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200">
+              <Card className="bg-card border-border">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-purple-600 text-sm font-medium">Locations</p>
-                      <p className="text-2xl font-bold text-purple-800">{policyData.locations.length}</p>
+                      <p className="text-2xl font-bold text-purple-300">{policyData.locations.length}</p>
                     </div>
                     <MapPin className="h-8 w-8 text-purple-600" />
                   </div>
@@ -433,18 +433,18 @@ export default function PolicyDetailView({ policy, client }: PolicyDetailProps) 
               <CardContent>
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-blue-50">
-                      <TableHead className="font-semibold text-blue-800">Loc #</TableHead>
-                      <TableHead className="font-semibold text-blue-800">Bldg #</TableHead>
-                      <TableHead className="font-semibold text-blue-800">Street Address</TableHead>
-                      <TableHead className="font-semibold text-blue-800">City / State / Zip</TableHead>
-                      <TableHead className="font-semibold text-blue-800">County</TableHead>
-                      <TableHead className="font-semibold text-blue-800">Actions</TableHead>
+                    <TableRow className="bg-blue-500/10">
+                      <TableHead className="font-semibold text-blue-300">Loc #</TableHead>
+                      <TableHead className="font-semibold text-blue-300">Bldg #</TableHead>
+                      <TableHead className="font-semibold text-blue-300">Street Address</TableHead>
+                      <TableHead className="font-semibold text-blue-300">City / State / Zip</TableHead>
+                      <TableHead className="font-semibold text-blue-300">County</TableHead>
+                      <TableHead className="font-semibold text-blue-300">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {policyData.locations.map((location) => (
-                      <TableRow key={location.locNumber} className="hover:bg-gray-50">
+                      <TableRow key={location.locNumber} className="hover:bg-muted">
                         <TableCell className="font-medium">{location.locNumber}</TableCell>
                         <TableCell>{location.bldgNumber}</TableCell>
                         <TableCell className="text-blue-600 hover:underline cursor-pointer">
@@ -468,7 +468,7 @@ export default function PolicyDetailView({ policy, client }: PolicyDetailProps) 
             <div className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-gray-600">COVERAGE LIMITS</CardTitle>
+                  <CardTitle className="text-muted-foreground">COVERAGE LIMITS</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-8">
                   {policyData.coverageLimits.map((locationCoverage, index) => (
@@ -480,7 +480,7 @@ export default function PolicyDetailView({ policy, client }: PolicyDetailProps) 
                       </div>
                       <Table>
                         <TableHeader>
-                          <TableRow className="bg-gray-50">
+                          <TableRow className="bg-muted">
                             <TableHead className="font-semibold">Subject of Insurance</TableHead>
                             <TableHead className="font-semibold">Amount</TableHead>
                             <TableHead className="font-semibold">Coins %</TableHead>
@@ -493,7 +493,7 @@ export default function PolicyDetailView({ policy, client }: PolicyDetailProps) 
                         </TableHeader>
                         <TableBody>
                           {locationCoverage.coverages.map((coverage, covIndex) => (
-                            <TableRow key={covIndex} className="hover:bg-gray-50">
+                            <TableRow key={covIndex} className="hover:bg-muted">
                               <TableCell className="font-medium">{coverage.subjectOfInsurance}</TableCell>
                               <TableCell>{formatCurrency(coverage.amount)}</TableCell>
                               <TableCell>{coverage.coinsPercent || "-"}</TableCell>
@@ -531,17 +531,17 @@ export default function PolicyDetailView({ policy, client }: PolicyDetailProps) 
             <CardContent>
               <Table>
                 <TableHeader>
-                  <TableRow className="bg-blue-50">
-                    <TableHead className="font-semibold text-blue-800">Name</TableHead>
-                    <TableHead className="font-semibold text-blue-800">Address</TableHead>
-                    <TableHead className="font-semibold text-blue-800">City / State / Zip</TableHead>
-                    <TableHead className="font-semibold text-blue-800">Type</TableHead>
-                    <TableHead className="font-semibold text-blue-800">Location #</TableHead>
+                  <TableRow className="bg-blue-500/10">
+                    <TableHead className="font-semibold text-blue-300">Name</TableHead>
+                    <TableHead className="font-semibold text-blue-300">Address</TableHead>
+                    <TableHead className="font-semibold text-blue-300">City / State / Zip</TableHead>
+                    <TableHead className="font-semibold text-blue-300">Type</TableHead>
+                    <TableHead className="font-semibold text-blue-300">Location #</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {policyData.additionalInterests.map((interest, index) => (
-                    <TableRow key={index} className="hover:bg-gray-50">
+                    <TableRow key={index} className="hover:bg-muted">
                       <TableCell className="font-medium">{interest.name}</TableCell>
                       <TableCell className="text-blue-600">{interest.address}</TableCell>
                       <TableCell>{interest.cityStateZip}</TableCell>
@@ -573,12 +573,12 @@ export default function PolicyDetailView({ policy, client }: PolicyDetailProps) 
             <CardContent>
               <div className="space-y-4">
                 {policyData.namedInsureds.map((insured) => (
-                  <div key={insured.id} className="p-4 border rounded-lg hover:bg-gray-50">
+                  <div key={insured.id} className="p-4 border rounded-lg hover:bg-muted">
                     <div className="flex items-center justify-between">
                       <div>
                         <h4 className="font-medium">{insured.name}</h4>
-                        <p className="text-sm text-gray-600">{insured.relationship}</p>
-                        <p className="text-sm text-gray-500">{insured.address}</p>
+                        <p className="text-sm text-muted-foreground">{insured.relationship}</p>
+                        <p className="text-sm text-muted-foreground">{insured.address}</p>
                       </div>
                       <Badge variant={insured.type === "Primary" ? "default" : "secondary"}>{insured.type}</Badge>
                     </div>
@@ -601,38 +601,38 @@ export default function PolicyDetailView({ policy, client }: PolicyDetailProps) 
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <h4 className="font-medium text-gray-800">Premium Breakdown</h4>
+                  <h4 className="font-medium text-foreground">Premium Breakdown</h4>
                   <div className="space-y-3">
-                    <div className="flex justify-between p-3 bg-blue-50 rounded-lg">
-                      <span className="text-gray-600">Base Premium:</span>
+                    <div className="flex justify-between p-3 bg-blue-500/10 rounded-lg">
+                      <span className="text-muted-foreground">Base Premium:</span>
                       <span className="font-medium">{formatCurrency(policyData.premiumBreakdown.basePremium)}</span>
                     </div>
-                    <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                      <span className="text-gray-600">Policy Fee:</span>
+                    <div className="flex justify-between p-3 bg-muted rounded-lg">
+                      <span className="text-muted-foreground">Policy Fee:</span>
                       <span className="font-medium">{formatCurrency(policyData.premiumBreakdown.fees.policyFee)}</span>
                     </div>
-                    <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                      <span className="text-gray-600">Inspection Fee:</span>
+                    <div className="flex justify-between p-3 bg-muted rounded-lg">
+                      <span className="text-muted-foreground">Inspection Fee:</span>
                       <span className="font-medium">
                         {formatCurrency(policyData.premiumBreakdown.fees.inspectionFee)}
                       </span>
                     </div>
-                    <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                      <span className="text-gray-600">Carrier Fee:</span>
+                    <div className="flex justify-between p-3 bg-muted rounded-lg">
+                      <span className="text-muted-foreground">Carrier Fee:</span>
                       <span className="font-medium">{formatCurrency(policyData.premiumBreakdown.fees.carrierFee)}</span>
                     </div>
-                    <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                      <span className="text-gray-600">Taxes:</span>
+                    <div className="flex justify-between p-3 bg-muted rounded-lg">
+                      <span className="text-muted-foreground">Taxes:</span>
                       <span className="font-medium">{formatCurrency(policyData.premiumBreakdown.taxes)}</span>
                     </div>
                   </div>
                 </div>
                 <div className="space-y-4">
-                  <h4 className="font-medium text-gray-800">Total Premium</h4>
-                  <div className="p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200">
+                  <h4 className="font-medium text-foreground">Total Premium</h4>
+                  <div className="p-6 bg-card rounded-lg border border-border">
                     <div className="text-center">
                       <p className="text-green-600 text-sm font-medium">Annual Premium</p>
-                      <p className="text-3xl font-bold text-green-800">
+                      <p className="text-3xl font-bold text-green-300">
                         {formatCurrency(policyData.premiumBreakdown.totalPremium)}
                       </p>
                     </div>
@@ -659,7 +659,7 @@ export default function PolicyDetailView({ policy, client }: PolicyDetailProps) 
             <CardContent>
               <div className="space-y-4">
                 {policyData.underwritingQuestions.map((question, index) => (
-                  <div key={index} className="p-4 border rounded-lg hover:bg-gray-50">
+                  <div key={index} className="p-4 border rounded-lg hover:bg-muted">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <Badge variant="outline">{question.category}</Badge>
@@ -690,17 +690,17 @@ export default function PolicyDetailView({ policy, client }: PolicyDetailProps) 
             <CardContent>
               <Table>
                 <TableHeader>
-                  <TableRow className="bg-purple-50">
-                    <TableHead className="font-semibold text-purple-800">Form Number</TableHead>
-                    <TableHead className="font-semibold text-purple-800">Form Name</TableHead>
-                    <TableHead className="font-semibold text-purple-800">Edition</TableHead>
-                    <TableHead className="font-semibold text-purple-800">Type</TableHead>
-                    <TableHead className="font-semibold text-purple-800">Actions</TableHead>
+                  <TableRow className="bg-purple-500/10">
+                    <TableHead className="font-semibold text-purple-300">Form Number</TableHead>
+                    <TableHead className="font-semibold text-purple-300">Form Name</TableHead>
+                    <TableHead className="font-semibold text-purple-300">Edition</TableHead>
+                    <TableHead className="font-semibold text-purple-300">Type</TableHead>
+                    <TableHead className="font-semibold text-purple-300">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {policyData.policyForms.map((form, index) => (
-                    <TableRow key={index} className="hover:bg-gray-50">
+                    <TableRow key={index} className="hover:bg-muted">
                       <TableCell className="font-medium text-blue-600">{form.formNumber}</TableCell>
                       <TableCell>{form.formName}</TableCell>
                       <TableCell>{form.edition}</TableCell>
@@ -733,9 +733,9 @@ export default function PolicyDetailView({ policy, client }: PolicyDetailProps) 
             </CardHeader>
             <CardContent>
               <div className="text-center py-8">
-                <Brain className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600">This section is being enhanced with AI capabilities.</p>
-                <p className="text-sm text-gray-500 mt-2">More detailed information will be available soon.</p>
+                <Brain className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                <p className="text-muted-foreground">This section is being enhanced with AI capabilities.</p>
+                <p className="text-sm text-muted-foreground mt-2">More detailed information will be available soon.</p>
               </div>
             </CardContent>
           </Card>
@@ -766,7 +766,7 @@ export default function PolicyDetailView({ policy, client }: PolicyDetailProps) 
 
       {/* Policy Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-        <div className="bg-white p-4 rounded-lg border">
+        <div className="bg-card p-4 rounded-lg border">
           <ScrollArea className="w-full">
             <TabsList className="grid w-full grid-cols-10 lg:grid-cols-20 gap-1">
               {policyTabs.map((tab) => {

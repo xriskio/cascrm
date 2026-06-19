@@ -10,7 +10,7 @@ export default function TransportationPage() {
     <div className="container mx-auto py-6">
       <div className="mb-8">
         <h1 className="text-3xl font-bold">Trucker's Commercial Auto Application</h1>
-        <p className="text-gray-500 mt-2">
+        <p className="text-muted-foreground mt-2">
           Complete the form below to submit a new transportation insurance application.
         </p>
       </div>

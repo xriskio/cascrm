@@ -10,7 +10,7 @@ export default function GeneralLiabilityPage() {
         Back to insurance types
       </Link>
 
-      <div className="bg-white border border-gray-200 rounded-lg p-6">
+      <div className="bg-card border border-border rounded-lg p-6">
         <h1 className="text-2xl font-bold mb-6">General Liability Application</h1>
         <GeneralLiabilityForm insuranceType="general-liability" />
       </div>

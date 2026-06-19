@@ -21,7 +21,7 @@ export default async function ClientDocumentsPage({ params }: { params: { id: st
           <Folder className="h-6 w-6" />
           <div>
             <h1 className="text-2xl font-bold">Documents & Files</h1>
-            <p className="text-gray-600">
+            <p className="text-muted-foreground">
               {client.first_name} {client.last_name} - {client.company_name}
             </p>
           </div>

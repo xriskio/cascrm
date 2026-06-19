@@ -58,7 +58,7 @@ export default function GetTokenPage() {
           </Button>
 
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-800 p-3 rounded-md">
+            <div className="bg-red-500/10 border border-border text-red-300 p-3 rounded-md">
               {error}
             </div>
           )}

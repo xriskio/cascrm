@@ -625,9 +625,9 @@ export default function RenewalsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6">
+      <div className="bg-card text-foreground p-6">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold">Renewals Dashboard</h1>
@@ -683,7 +683,7 @@ export default function RenewalsPage() {
               <UserPlus className="h-4 w-4 mr-2" />
               Bulk Actions ({selectedRenewals.length})
             </Button>
-            <Button className="bg-white text-blue-600 hover:bg-gray-100" onClick={() => router.push("/renewals/new")}>
+            <Button className="bg-card text-blue-600 hover:bg-muted" onClick={() => router.push("/renewals/new")}>
               <Plus className="h-4 w-4 mr-2" />
               New Renewal
             </Button>
@@ -694,10 +694,10 @@ export default function RenewalsPage() {
       <div className="p-6 space-y-6">
         {/* Import Status Messages */}
         {importSuccess && (
-          <Alert className="bg-green-50 border-green-200">
+          <Alert className="bg-green-500/10 border-border">
             <CheckCircle className="h-4 w-4 text-green-600" />
-            <AlertTitle className="text-green-800">Import Successful</AlertTitle>
-            <AlertDescription className="text-green-700">{importSuccess}</AlertDescription>
+            <AlertTitle className="text-green-300">Import Successful</AlertTitle>
+            <AlertDescription className="text-green-400">{importSuccess}</AlertDescription>
           </Alert>
         )}
 
@@ -711,12 +711,12 @@ export default function RenewalsPage() {
 
         {/* Key Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Card className="bg-white">
+          <Card className="bg-card">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Total Renewals</p>
-                  <p className="text-3xl font-bold text-gray-900">{totalRenewals}</p>
+                  <p className="text-sm text-muted-foreground">Total Renewals</p>
+                  <p className="text-3xl font-bold text-foreground">{totalRenewals}</p>
                   <p className="text-sm text-blue-600 mt-1 flex items-center">
                     <FileText className="h-3 w-3 mr-1" />
                     All renewals in system
@@ -726,12 +726,12 @@ export default function RenewalsPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white">
+          <Card className="bg-card">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Upcoming Renewals</p>
-                  <p className="text-3xl font-bold text-gray-900">{upcomingRenewals}</p>
+                  <p className="text-sm text-muted-foreground">Upcoming Renewals</p>
+                  <p className="text-3xl font-bold text-foreground">{upcomingRenewals}</p>
                   <p className="text-sm text-orange-600 mt-1 flex items-center">
                     <Calendar className="h-3 w-3 mr-1" />
                     Next 90 days
@@ -741,12 +741,12 @@ export default function RenewalsPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white">
+          <Card className="bg-card">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Pending Quotes</p>
-                  <p className="text-3xl font-bold text-gray-900">{pendingQuotes}</p>
+                  <p className="text-sm text-muted-foreground">Pending Quotes</p>
+                  <p className="text-3xl font-bold text-foreground">{pendingQuotes}</p>
                   <p className="text-sm text-yellow-600 mt-1 flex items-center">
                     <Clock className="h-3 w-3 mr-1" />
                     Require attention
@@ -756,12 +756,12 @@ export default function RenewalsPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white">
+          <Card className="bg-card">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Total Premium</p>
-                  <p className="text-3xl font-bold text-gray-900">{formatCurrency(totalPremium)}</p>
+                  <p className="text-sm text-muted-foreground">Total Premium</p>
+                  <p className="text-3xl font-bold text-foreground">{formatCurrency(totalPremium)}</p>
                   <p className="text-sm text-green-600 mt-1 flex items-center">
                     <CheckCircle className="h-3 w-3 mr-1" />
                     Annual value
@@ -776,7 +776,7 @@ export default function RenewalsPage() {
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
               <Input
                 placeholder="Search renewals by name, policy number, or type..."
                 value={searchTerm}
@@ -812,11 +812,11 @@ export default function RenewalsPage() {
         </div>
 
         {/* Date Range Filter */}
-        <Card className="bg-white">
+        <Card className="bg-card">
           <CardContent className="p-4">
             <div className="flex flex-col md:flex-row gap-4 items-end">
               <div className="flex-1">
-                <label className="text-sm font-medium text-gray-700 mb-1 block">Filter by Expiration Date</label>
+                <label className="text-sm font-medium text-muted-foreground mb-1 block">Filter by Expiration Date</label>
                 <div className="flex gap-2">
                   <Input
                     type="date"
@@ -825,7 +825,7 @@ export default function RenewalsPage() {
                     className="flex-1"
                     placeholder="Start Date"
                   />
-                  <span className="self-center text-gray-500">to</span>
+                  <span className="self-center text-muted-foreground">to</span>
                   <Input
                     type="date"
                     value={dateRangeEnd}
@@ -860,12 +860,12 @@ export default function RenewalsPage() {
 
             {/* Date Range Import Section */}
             {showDateRangeImport && (
-              <div className="mt-4 pt-4 border-t border-gray-200">
-                <h4 className="text-sm font-semibold text-gray-900 mb-3">
+              <div className="mt-4 pt-4 border-t border-border">
+                <h4 className="text-sm font-semibold text-foreground mb-3">
                   Import Renewals from QQCatalyst by Date Range
                 </h4>
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <p className="text-sm text-gray-700 mb-3">
+                <div className="bg-blue-500/10 border border-border rounded-lg p-4">
+                  <p className="text-sm text-muted-foreground mb-3">
                     Select a date range above and click the button below to import renewals expiring within that period
                     from QQCatalyst.
                   </p>
@@ -884,13 +884,13 @@ export default function RenewalsPage() {
         </Card>
 
         {/* Tabs */}
-        <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg">
+        <div className="flex space-x-1 bg-muted p-1 rounded-lg">
           {["All Renewals", "Upcoming", "Pending", "Bound"].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
-                activeTab === tab ? "bg-white text-blue-600 shadow-sm" : "text-gray-600 hover:text-gray-900"
+                activeTab === tab ? "bg-card text-blue-600 shadow-sm" : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {tab}
@@ -899,34 +899,34 @@ export default function RenewalsPage() {
         </div>
 
         {/* Renewals Table */}
-        <Card className="bg-white">
+        <Card className="bg-card">
           <CardContent className="p-6">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-lg font-semibold text-gray-900">
+              <h3 className="text-lg font-semibold text-foreground">
                 All Renewals{" "}
-                <span className="text-sm font-normal text-gray-500">{filteredRenewals.length} renewals</span>
+                <span className="text-sm font-normal text-muted-foreground">{filteredRenewals.length} renewals</span>
               </h3>
             </div>
 
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-gray-200">
-                    <th className="text-left py-3 px-4 font-medium text-gray-600 text-sm">
+                  <tr className="border-b border-border">
+                    <th className="text-left py-3 px-4 font-medium text-muted-foreground text-sm">
                       <Checkbox checked={selectAll} onCheckedChange={handleSelectAll} />
                     </th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600 text-sm">CLIENT</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600 text-sm">POLICY INFO</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600 text-sm">EXPIRATION</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600 text-sm">PREMIUM</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600 text-sm">STATUS</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600 text-sm">ACTIONS</th>
+                    <th className="text-left py-3 px-4 font-medium text-muted-foreground text-sm">CLIENT</th>
+                    <th className="text-left py-3 px-4 font-medium text-muted-foreground text-sm">POLICY INFO</th>
+                    <th className="text-left py-3 px-4 font-medium text-muted-foreground text-sm">EXPIRATION</th>
+                    <th className="text-left py-3 px-4 font-medium text-muted-foreground text-sm">PREMIUM</th>
+                    <th className="text-left py-3 px-4 font-medium text-muted-foreground text-sm">STATUS</th>
+                    <th className="text-left py-3 px-4 font-medium text-muted-foreground text-sm">ACTIONS</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredRenewals.length === 0 ? (
                     <tr>
-                      <td colSpan={7} className="py-8 px-4 text-center text-gray-500">
+                      <td colSpan={7} className="py-8 px-4 text-center text-muted-foreground">
                         {loading ? (
                           "Loading renewals..."
                         ) : (
@@ -942,7 +942,7 @@ export default function RenewalsPage() {
                     </tr>
                   ) : (
                     filteredRenewals.map((renewal) => (
-                      <tr key={renewal.id} className="border-b border-gray-100 hover:bg-gray-50">
+                      <tr key={renewal.id} className="border-b border-border hover:bg-muted">
                         <td className="py-4 px-4">
                           <Checkbox
                             checked={selectedRenewals.includes(renewal.id)}
@@ -950,18 +950,18 @@ export default function RenewalsPage() {
                           />
                         </td>
                         <td className="py-4 px-4">
-                          <div className="font-medium text-gray-900">{renewal.named_insured || renewal.client_name || "Unknown Client"}</div>
+                          <div className="font-medium text-foreground">{renewal.named_insured || renewal.client_name || "Unknown Client"}</div>
                         </td>
                         <td className="py-4 px-4">
                           <div>
-                            <div className="font-medium text-gray-900">{renewal.policy_type || "Unknown Type"}</div>
-                            <div className="text-sm text-gray-500">Policy #: {renewal.policy_number || "N/A"}</div>
+                            <div className="font-medium text-foreground">{renewal.policy_type || "Unknown Type"}</div>
+                            <div className="text-sm text-muted-foreground">Policy #: {renewal.policy_number || "N/A"}</div>
                           </div>
                         </td>
                         <td className="py-4 px-4">
                           <div>
-                            <div className="font-medium text-gray-900">{formatDate(renewal.expiration_date)}</div>
-                            <div className="text-sm text-gray-500">
+                            <div className="font-medium text-foreground">{formatDate(renewal.expiration_date)}</div>
+                            <div className="text-sm text-muted-foreground">
                               {getDaysUntilExpiration(renewal.expiration_date) > 0
                                 ? `${getDaysUntilExpiration(renewal.expiration_date)} days left`
                                 : `Expired ${Math.abs(getDaysUntilExpiration(renewal.expiration_date))} days ago`}
@@ -969,7 +969,7 @@ export default function RenewalsPage() {
                           </div>
                         </td>
                         <td className="py-4 px-4">
-                          <div className="font-medium text-gray-900">{formatCurrency(renewal.policy_premium)}</div>
+                          <div className="font-medium text-foreground">{formatCurrency(renewal.policy_premium)}</div>
                         </td>
                         <td className="py-4 px-4">
                           <Select
@@ -992,7 +992,7 @@ export default function RenewalsPage() {
                             <Button
                               size="sm"
                               variant="outline"
-                              className="text-blue-600 border-blue-200 hover:bg-blue-50"
+                              className="text-blue-600 border-border hover:bg-blue-500/10"
                               onClick={() => handleView(renewal.id)}
                             >
                               View
@@ -1008,7 +1008,7 @@ export default function RenewalsPage() {
                               <Button
                                 size="sm"
                                 variant="outline"
-                                className="text-green-600 border-green-200 hover:bg-green-50"
+                                className="text-green-600 border-border hover:bg-green-500/10"
                                 onClick={() => handleArchive(renewal.id)}
                               >
                                 <Archive className="h-4 w-4 mr-1" />
@@ -1018,7 +1018,7 @@ export default function RenewalsPage() {
                             <Button
                               size="sm"
                               variant="outline"
-                              className="text-red-600 border-red-200 hover:bg-red-50"
+                              className="text-red-600 border-border hover:bg-red-500/10"
                               onClick={() => handleDelete(renewal.id)}
                             >
                               Delete
@@ -1038,15 +1038,15 @@ export default function RenewalsPage() {
       {/* Bulk Actions Modal */}
       {showBulkModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg max-w-md w-full mx-4">
+          <div className="bg-card p-6 rounded-lg max-w-md w-full mx-4">
             <h3 className="text-lg font-semibold mb-4">Bulk Actions</h3>
-            <p className="text-gray-600 mb-4">
+            <p className="text-muted-foreground mb-4">
               Perform actions on {selectedRenewals.length} selected renewal{selectedRenewals.length !== 1 ? "s" : ""}
             </p>
             <div className="space-y-3">
               {/* Bulk Status Change */}
-              <div className="border border-gray-200 rounded-lg p-3">
-                <label className="text-sm font-medium text-gray-700 mb-2 block">Change Status</label>
+              <div className="border border-border rounded-lg p-3">
+                <label className="text-sm font-medium text-muted-foreground mb-2 block">Change Status</label>
                 <div className="flex gap-2">
                   <Select value={bulkStatus} onValueChange={setBulkStatus}>
                     <SelectTrigger className="flex-1">
@@ -1073,7 +1073,7 @@ export default function RenewalsPage() {
                 variant="outline" 
                 onClick={handleBulkArchive} 
                 disabled={loading} 
-                className="w-full text-green-600 border-green-200 hover:bg-green-50"
+                className="w-full text-green-600 border-border hover:bg-green-500/10"
               >
                 <Archive className="h-4 w-4 mr-2" />
                 {loading ? "Archiving..." : `Archive ${selectedRenewals.length} Renewals`}

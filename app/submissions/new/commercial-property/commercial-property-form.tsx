@@ -908,7 +908,7 @@ export default function CommercialPropertyForm() {
         <div className="overflow-x-auto">
           <table className="min-w-full border">
             <thead>
-              <tr className="bg-gray-100">
+              <tr className="bg-muted">
                 <th className="border p-2 text-left">Date</th>
                 <th className="border p-2 text-left">Description</th>
                 <th className="border p-2 text-left">Amount Paid</th>
@@ -959,7 +959,7 @@ export default function CommercialPropertyForm() {
                   </select>
                 </td>
               </tr>
-              <tr className="bg-gray-50">
+              <tr className="bg-muted">
                 <td colSpan={2} className="border p-2 text-right font-medium">
                   Totals:
                 </td>
@@ -1326,7 +1326,7 @@ export default function CommercialPropertyForm() {
         <button
           type="button"
           onClick={() => router.back()}
-          className="px-4 py-2 border border-gray-300 rounded shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+          className="px-4 py-2 border border-border rounded shadow-sm text-sm font-medium text-muted-foreground bg-card hover:bg-muted"
         >
           Cancel
         </button>

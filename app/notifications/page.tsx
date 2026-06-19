@@ -44,7 +44,7 @@ export default async function NotificationsPage() {
           </TabsTrigger>
           <TabsTrigger value="unread">
             Unread
-            <span className="ml-2 rounded-full bg-blue-100 px-2 py-0.5 text-xs text-blue-600">
+            <span className="ml-2 rounded-full bg-blue-500/15 px-2 py-0.5 text-xs text-blue-600">
               {unreadNotifications.length}
             </span>
           </TabsTrigger>
@@ -103,7 +103,7 @@ function NotificationItem({ notification }: { notification: any }) {
 
   return (
     <div className="flex items-start gap-4 py-4">
-      <div className={`mt-1 h-2 w-2 rounded-full ${notification.is_read ? "bg-gray-300" : "bg-blue-500"}`} />
+      <div className={`mt-1 h-2 w-2 rounded-full ${notification.is_read ? "bg-muted" : "bg-blue-500"}`} />
       <div className="flex-1">
         <div className="flex items-start justify-between">
           <h4 className="font-semibold">{notification.title}</h4>

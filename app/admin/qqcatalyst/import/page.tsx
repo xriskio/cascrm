@@ -176,7 +176,7 @@ export default function QQCatalystImportPage() {
   const getStepIcon = (status: ImportStep["status"]) => {
     switch (status) {
       case "pending":
-        return <Clock className="h-4 w-4 text-gray-400" />
+        return <Clock className="h-4 w-4 text-muted-foreground" />
       case "running":
         return <Loader2 className="h-4 w-4 text-blue-600 animate-spin" />
       case "completed":
@@ -189,7 +189,7 @@ export default function QQCatalystImportPage() {
   const getStepColor = (status: ImportStep["status"]) => {
     switch (status) {
       case "pending":
-        return "text-gray-600"
+        return "text-muted-foreground"
       case "running":
         return "text-blue-600"
       case "completed":

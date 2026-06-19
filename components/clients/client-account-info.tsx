@@ -59,15 +59,15 @@ export function ClientAccountInfo({ clientId, contactId }: ClientAccountInfoProp
     switch (priority?.toLowerCase()) {
       case "high":
       case "premium":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       case "medium":
       case "standard":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-500/15 text-yellow-300"
       case "low":
       case "basic":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -92,9 +92,9 @@ export function ClientAccountInfo({ clientId, contactId }: ClientAccountInfoProp
         <CardContent>
           <div className="space-y-4">
             <div className="animate-pulse">
-              <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-              <div className="h-4 bg-gray-200 rounded w-1/2 mb-2"></div>
-              <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+              <div className="h-4 bg-muted rounded w-3/4 mb-2"></div>
+              <div className="h-4 bg-muted rounded w-1/2 mb-2"></div>
+              <div className="h-4 bg-muted rounded w-2/3"></div>
             </div>
           </div>
         </CardContent>
@@ -135,7 +135,7 @@ export function ClientAccountInfo({ clientId, contactId }: ClientAccountInfoProp
         </CardHeader>
         <CardContent>
           <div className="text-center py-8">
-            <p className="text-gray-500">No account information available</p>
+            <p className="text-muted-foreground">No account information available</p>
           </div>
         </CardContent>
       </Card>
@@ -181,11 +181,11 @@ export function ClientAccountInfo({ clientId, contactId }: ClientAccountInfoProp
               </Badge>
             </div>
             <p className="font-medium">{accountInfo.Name}</p>
-            <p className="text-sm text-gray-600">{accountInfo.Type}</p>
+            <p className="text-sm text-muted-foreground">{accountInfo.Type}</p>
           </div>
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-gray-500" />
+              <Calendar className="h-4 w-4 text-muted-foreground" />
               <span className="text-sm">Customer since {new Date(accountInfo.CustomerSince).toLocaleDateString()}</span>
             </div>
             {accountInfo.CPAccess && (
@@ -212,7 +212,7 @@ export function ClientAccountInfo({ clientId, contactId }: ClientAccountInfoProp
               </Avatar>
               <div>
                 <p className="font-medium">{accountInfo.Agent}</p>
-                <p className="text-sm text-gray-600">Agent ID: {accountInfo.AgentID}</p>
+                <p className="text-sm text-muted-foreground">Agent ID: {accountInfo.AgentID}</p>
               </div>
             </div>
           </div>
@@ -228,7 +228,7 @@ export function ClientAccountInfo({ clientId, contactId }: ClientAccountInfoProp
               </Avatar>
               <div>
                 <p className="font-medium">{accountInfo.CSR}</p>
-                <p className="text-sm text-gray-600">CSR ID: {accountInfo.CsrID}</p>
+                <p className="text-sm text-muted-foreground">CSR ID: {accountInfo.CsrID}</p>
               </div>
             </div>
           </div>
@@ -242,14 +242,14 @@ export function ClientAccountInfo({ clientId, contactId }: ClientAccountInfoProp
             <h4 className="font-medium">Customer Source</h4>
             <div className="space-y-1">
               <p className="text-sm">{accountInfo.CustomerSource}</p>
-              {accountInfo.SourceDetail && <p className="text-xs text-gray-600">{accountInfo.SourceDetail}</p>}
+              {accountInfo.SourceDetail && <p className="text-xs text-muted-foreground">{accountInfo.SourceDetail}</p>}
             </div>
           </div>
           <div className="space-y-2">
             <h4 className="font-medium">Created By</h4>
             <div className="space-y-1">
               <p className="text-sm">{accountInfo.CreatedByName}</p>
-              <p className="text-xs text-gray-600">ID: {accountInfo.CreatedByID}</p>
+              <p className="text-xs text-muted-foreground">ID: {accountInfo.CreatedByID}</p>
             </div>
           </div>
         </div>
@@ -259,7 +259,7 @@ export function ClientAccountInfo({ clientId, contactId }: ClientAccountInfoProp
           <>
             <Separator />
             <div className="flex items-center gap-2">
-              <Building className="h-4 w-4 text-gray-500" />
+              <Building className="h-4 w-4 text-muted-foreground" />
               <span className="text-sm">Office ID: {accountInfo.OfficeID}</span>
             </div>
           </>

@@ -351,11 +351,11 @@ export function HomeOwnersForm() {
             </div>
             <div>
               <Label className="text-sm font-medium">Agent</Label>
-              <p className="text-sm text-gray-600">{formData.agent}</p>
+              <p className="text-sm text-muted-foreground">{formData.agent}</p>
             </div>
             <div>
               <Label className="text-sm font-medium">Contract Term</Label>
-              <p className="text-sm text-gray-600">{formData.contractTerm}</p>
+              <p className="text-sm text-muted-foreground">{formData.contractTerm}</p>
             </div>
             <div>
               <Label className="text-sm font-medium">Status</Label>
@@ -435,7 +435,7 @@ export function HomeOwnersForm() {
                       <Label htmlFor="lastFourSSN">
                         Last 4 of SSN <span className="text-red-500">*</span>
                       </Label>
-                      <HelpCircle className="h-4 w-4 text-gray-400" />
+                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
                     </div>
                     <Input
                       id="lastFourSSN"
@@ -506,7 +506,7 @@ export function HomeOwnersForm() {
 
               {/* Co-Applicant Information */}
               {hasCoApplicant && (
-                <div className="border rounded-md p-4 bg-gray-50">
+                <div className="border rounded-md p-4 bg-muted">
                   <h3 className="text-lg font-medium mb-4">Co-Applicant Information</h3>
                   <div className="grid grid-cols-3 gap-4">
                     <div className="space-y-2">
@@ -639,7 +639,7 @@ export function HomeOwnersForm() {
                   <Label>
                     Primary Use <span className="text-red-500">*</span>
                   </Label>
-                  <HelpCircle className="h-4 w-4 text-gray-400" />
+                  <HelpCircle className="h-4 w-4 text-muted-foreground" />
                 </div>
 
                 <RadioGroup
@@ -653,7 +653,7 @@ export function HomeOwnersForm() {
                       <Label htmlFor="main-residence" className="font-medium">
                         Main Residence
                       </Label>
-                      <p className="text-sm text-gray-500">HO-5 Policy</p>
+                      <p className="text-sm text-muted-foreground">HO-5 Policy</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-2 border rounded-lg p-4">
@@ -662,7 +662,7 @@ export function HomeOwnersForm() {
                       <Label htmlFor="secondary-seasonal" className="font-medium">
                         Secondary/Seasonal
                       </Label>
-                      <p className="text-sm text-gray-500">HO-5 Policy</p>
+                      <p className="text-sm text-muted-foreground">HO-5 Policy</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-2 border rounded-lg p-4">
@@ -671,13 +671,13 @@ export function HomeOwnersForm() {
                       <Label htmlFor="long-term-rental" className="font-medium">
                         Long Term Rental
                       </Label>
-                      <p className="text-sm text-gray-500">HO-3 Policy</p>
+                      <p className="text-sm text-muted-foreground">HO-3 Policy</p>
                     </div>
                   </div>
                 </RadioGroup>
               </div>
 
-              <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-md text-sm">
+              <div className="bg-yellow-500/10 border border-border p-4 rounded-md text-sm">
                 <p>
                   <strong>Please note:</strong> As part of the quoting process we may use information from public
                   records and consumer reports to provide you a quote. This includes running claims loss history and
@@ -685,7 +685,7 @@ export function HomeOwnersForm() {
                 </p>
               </div>
 
-              <div className="bg-gray-50 border border-gray-200 p-4 rounded-md text-sm">
+              <div className="bg-muted border border-border p-4 rounded-md text-sm">
                 <p>
                   Before proceeding, please ensure that the applicable state disclosure has been read to the applicant.
                 </p>
@@ -717,9 +717,9 @@ export function HomeOwnersForm() {
                   <Label htmlFor="squareFootage">
                     Square Footage <span className="text-red-500">*</span>
                   </Label>
-                  <HelpCircle className="h-4 w-4 text-gray-400" />
+                  <HelpCircle className="h-4 w-4 text-muted-foreground" />
                 </div>
-                <p className="text-sm text-gray-500">This should not include the size of a basement.</p>
+                <p className="text-sm text-muted-foreground">This should not include the size of a basement.</p>
                 <Input
                   id="squareFootage"
                   name="squareFootage"
@@ -739,7 +739,7 @@ export function HomeOwnersForm() {
                     <Label htmlFor="stories">
                       Stories <span className="text-red-500">*</span>
                     </Label>
-                    <HelpCircle className="h-4 w-4 text-gray-400" />
+                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <Select value={formData.stories} onValueChange={(value) => handleSelectChange("stories", value)}>
                     <SelectTrigger>
@@ -758,7 +758,7 @@ export function HomeOwnersForm() {
                     <Label htmlFor="bathrooms">
                       Bathrooms <span className="text-red-500">*</span>
                     </Label>
-                    <HelpCircle className="h-4 w-4 text-gray-400" />
+                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <Select value={formData.bathrooms} onValueChange={(value) => handleSelectChange("bathrooms", value)}>
                     <SelectTrigger>
@@ -780,7 +780,7 @@ export function HomeOwnersForm() {
                     <Label htmlFor="yearBuilt">
                       Year Built <span className="text-red-500">*</span>
                     </Label>
-                    <HelpCircle className="h-4 w-4 text-gray-400" />
+                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <Input
                     id="yearBuilt"
@@ -801,7 +801,7 @@ export function HomeOwnersForm() {
                   <Label>
                     Building Material <span className="text-red-500">*</span>
                   </Label>
-                  <HelpCircle className="h-4 w-4 text-gray-400" />
+                  <HelpCircle className="h-4 w-4 text-muted-foreground" />
                 </div>
                 <Select
                   value={formData.buildingMaterial}
@@ -827,7 +827,7 @@ export function HomeOwnersForm() {
                     <Label htmlFor="roofYearBuilt">
                       Roof Year Built <span className="text-red-500">*</span>
                     </Label>
-                    <HelpCircle className="h-4 w-4 text-gray-400" />
+                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <Input
                     id="roofYearBuilt"
@@ -846,7 +846,7 @@ export function HomeOwnersForm() {
                     <Label>
                       Roof Material <span className="text-red-500">*</span>
                     </Label>
-                    <HelpCircle className="h-4 w-4 text-gray-400" />
+                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <Select
                     value={formData.roofMaterial}
@@ -869,7 +869,7 @@ export function HomeOwnersForm() {
                     <Label>
                       Roof Shape <span className="text-red-500">*</span>
                     </Label>
-                    <HelpCircle className="h-4 w-4 text-gray-400" />
+                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <Select value={formData.roofShape} onValueChange={(value) => handleSelectChange("roofShape", value)}>
                     <SelectTrigger>
@@ -891,7 +891,7 @@ export function HomeOwnersForm() {
                     <Label>
                       Foundation Type <span className="text-red-500">*</span>
                     </Label>
-                    <HelpCircle className="h-4 w-4 text-gray-400" />
+                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <Select
                     value={formData.foundationType}
@@ -913,7 +913,7 @@ export function HomeOwnersForm() {
                     <Label>
                       Building Quality <span className="text-red-500">*</span>
                     </Label>
-                    <HelpCircle className="h-4 w-4 text-gray-400" />
+                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <Select
                     value={formData.buildingQuality}
@@ -975,7 +975,7 @@ export function HomeOwnersForm() {
                   </div>
                 </div>
 
-                <div className="bg-blue-50 border border-blue-200 p-3 rounded-md text-sm">
+                <div className="bg-blue-500/10 border border-border p-3 rounded-md text-sm">
                   <p>
                     <strong>Please note:</strong> There are no Trampoline restrictions.
                   </p>
@@ -1026,7 +1026,7 @@ export function HomeOwnersForm() {
                     <Label>
                       Is this a single family home? <span className="text-red-500">*</span>
                     </Label>
-                    <HelpCircle className="h-4 w-4 text-gray-400" />
+                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <Select
                     value={formData.isSingleFamily ? "yes-detached" : "no"}
@@ -1047,9 +1047,9 @@ export function HomeOwnersForm() {
                     <Label>
                       Is this an unconventional home? <span className="text-red-500">*</span>
                     </Label>
-                    <HelpCircle className="h-4 w-4 text-gray-400" />
+                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
                   </div>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-muted-foreground">
                     Is the home mobile, on a historical registry, a log cabin, or built on stilts?
                   </p>
                   <Select
@@ -1071,7 +1071,7 @@ export function HomeOwnersForm() {
                     <Label>
                       Is the home currently insured? <span className="text-red-500">*</span>
                     </Label>
-                    <HelpCircle className="h-4 w-4 text-gray-400" />
+                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <div className="flex gap-2">
                     <Button
@@ -1097,7 +1097,7 @@ export function HomeOwnersForm() {
                       Has client had home, condo, or renters insurance cancelled in last 3 years?{" "}
                       <span className="text-red-500">*</span>
                     </Label>
-                    <HelpCircle className="h-4 w-4 text-gray-400" />
+                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <div className="flex gap-2">
                     <Button
@@ -1122,9 +1122,9 @@ export function HomeOwnersForm() {
                     <Label>
                       Any dogs? <span className="text-red-500">*</span>
                     </Label>
-                    <HelpCircle className="h-4 w-4 text-gray-400" />
+                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
                   </div>
-                  <p className="text-sm text-gray-500">There are no dog breed restrictions.</p>
+                  <p className="text-sm text-muted-foreground">There are no dog breed restrictions.</p>
                   <div className="flex gap-2">
                     <Button
                       type="button"
@@ -1148,9 +1148,9 @@ export function HomeOwnersForm() {
                     <Label>
                       Is primary heating a stove? <span className="text-red-500">*</span>
                     </Label>
-                    <HelpCircle className="h-4 w-4 text-gray-400" />
+                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
                   </div>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-muted-foreground">
                     Is a non-thermostatically controlled wood, kerosene, pellet, or similar stove used as the primary
                     heating source?
                   </p>
@@ -1178,9 +1178,9 @@ export function HomeOwnersForm() {
                       Is there a business with customers on site (including daycare)?{" "}
                       <span className="text-red-500">*</span>
                     </Label>
-                    <HelpCircle className="h-4 w-4 text-gray-400" />
+                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
                   </div>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-muted-foreground">
                     Only include businesses that involve customer foot traffic at the house.
                   </p>
                   <div className="flex gap-2">
@@ -1240,9 +1240,9 @@ export function HomeOwnersForm() {
                   <Label>
                     Auto in agency? <span className="text-red-500">*</span>
                   </Label>
-                  <HelpCircle className="h-4 w-4 text-gray-400" />
+                  <HelpCircle className="h-4 w-4 text-muted-foreground" />
                 </div>
-                <p className="text-sm text-gray-500">May be with a different carrier.</p>
+                <p className="text-sm text-muted-foreground">May be with a different carrier.</p>
                 <div className="flex gap-2">
                   <Button
                     type="button"
@@ -1261,11 +1261,11 @@ export function HomeOwnersForm() {
                 </div>
               </div>
 
-              <div className="bg-blue-50 border border-blue-200 p-4 rounded-md">
+              <div className="bg-blue-500/10 border border-border p-4 rounded-md">
                 <p className="text-sm">
                   <strong>Dwelling replacement cost is estimated</strong>
                 </p>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-muted-foreground">
                   Some of the coverages and deductibles are shown as percentage of replacement cost.
                 </p>
               </div>
@@ -1278,7 +1278,7 @@ export function HomeOwnersForm() {
                       <Label>
                         Main Dwelling <span className="text-red-500">*</span>
                       </Label>
-                      <HelpCircle className="h-4 w-4 text-gray-400" />
+                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
                     </div>
                     <div className="flex items-center gap-2">
                       <Checkbox
@@ -1291,7 +1291,7 @@ export function HomeOwnersForm() {
                       </Label>
                     </div>
                   </div>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-muted-foreground">
                     Guaranteed replacement of main dwelling structure up to $5 million.
                   </p>
 
@@ -1335,11 +1335,11 @@ export function HomeOwnersForm() {
                       <Label>
                         Other Structures <span className="text-red-500">*</span>
                       </Label>
-                      <HelpCircle className="h-4 w-4 text-gray-400" />
+                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
                     </div>
                     <span className="font-medium">${formData.otherStructures.toLocaleString()}</span>
                   </div>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-muted-foreground">
                     Typically 10% of dwelling coverage (detached garage, shed, fence, etc.)
                   </p>
                   <div className="flex justify-between text-sm mb-1">
@@ -1362,7 +1362,7 @@ export function HomeOwnersForm() {
                       <Label>
                         Personal Property <span className="text-red-500">*</span>
                       </Label>
-                      <HelpCircle className="h-4 w-4 text-gray-400" />
+                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
                     </div>
                     <div className="flex items-center gap-2">
                       <Checkbox
@@ -1375,7 +1375,7 @@ export function HomeOwnersForm() {
                       </Label>
                     </div>
                   </div>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-muted-foreground">
                     Typically 50% of dwelling coverage (furniture, clothing, appliances, etc.)
                   </p>
 
@@ -1419,11 +1419,11 @@ export function HomeOwnersForm() {
                       <Label>
                         Loss of Use <span className="text-red-500">*</span>
                       </Label>
-                      <HelpCircle className="h-4 w-4 text-gray-400" />
+                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
                     </div>
                     <span className="font-medium">${formData.lossOfUse.toLocaleString()}</span>
                   </div>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-muted-foreground">
                     Typically 20% of dwelling coverage (additional living expenses if home is uninhabitable)
                   </p>
                   <div className="flex justify-between text-sm mb-1">
@@ -1446,11 +1446,11 @@ export function HomeOwnersForm() {
                       <Label>
                         Liability <span className="text-red-500">*</span>
                       </Label>
-                      <HelpCircle className="h-4 w-4 text-gray-400" />
+                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
                     </div>
                     <span className="font-medium">${formData.liability.toLocaleString()}</span>
                   </div>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-muted-foreground">
                     Protection if you're legally responsible for injury or property damage
                   </p>
                   <Select
@@ -1475,11 +1475,11 @@ export function HomeOwnersForm() {
                       <Label>
                         Medical Payments <span className="text-red-500">*</span>
                       </Label>
-                      <HelpCircle className="h-4 w-4 text-gray-400" />
+                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
                     </div>
                     <span className="font-medium">${formData.medicalPayments.toLocaleString()}</span>
                   </div>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-muted-foreground">
                     Medical expenses for guests injured on your property, regardless of fault
                   </p>
                   <Select
@@ -1509,7 +1509,7 @@ export function HomeOwnersForm() {
                       <Label>
                         Standard Perils <span className="text-red-500">*</span>
                       </Label>
-                      <HelpCircle className="h-4 w-4 text-gray-400" />
+                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
                     </div>
                     <span className="font-medium">${formData.standardPerilsDeductible.toLocaleString()}</span>
                   </div>
@@ -1535,7 +1535,7 @@ export function HomeOwnersForm() {
                     <Label>
                       Wind/Hail <span className="text-red-500">*</span>
                     </Label>
-                    <HelpCircle className="h-4 w-4 text-gray-400" />
+                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <Select
                     value={formData.windHailDeductible.toString()}
@@ -1559,7 +1559,7 @@ export function HomeOwnersForm() {
                     <Label>
                       Wind/Hail Roof Settlement <span className="text-red-500">*</span>
                     </Label>
-                    <HelpCircle className="h-4 w-4 text-gray-400" />
+                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <Select
                     value={formData.windHailRoofSettlement}
@@ -1580,7 +1580,7 @@ export function HomeOwnersForm() {
                     <Label>
                       Roof Payment Schedule <span className="text-red-500">*</span>
                     </Label>
-                    <HelpCircle className="h-4 w-4 text-gray-400" />
+                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <Select
                     value={formData.roofPaymentSchedule}
@@ -1852,12 +1852,12 @@ export function HomeOwnersForm() {
               {/* Scheduled Items Section */}
               <div className="space-y-4 border-t pt-4">
                 <h3 className="text-lg font-semibold">Scheduled Items</h3>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-muted-foreground">
                   Add items such as jewelry, fine arts, or collectibles that require specific coverage.
                 </p>
 
                 {scheduledItems.map((item) => (
-                  <div key={item.id} className="border rounded-md p-4 bg-gray-50">
+                  <div key={item.id} className="border rounded-md p-4 bg-muted">
                     <div className="grid grid-cols-3 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor={`category-${item.id}`}>Category</Label>
@@ -1930,10 +1930,10 @@ export function HomeOwnersForm() {
               {/* Named Insureds Section */}
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold">Named Insureds</h3>
-                <p className="text-sm text-gray-500">List all individuals who are insured under this policy.</p>
+                <p className="text-sm text-muted-foreground">List all individuals who are insured under this policy.</p>
 
                 {formData.namedInsureds.map((insured) => (
-                  <div key={insured.id} className="border rounded-md p-4 bg-gray-50">
+                  <div key={insured.id} className="border rounded-md p-4 bg-muted">
                     <div className="grid grid-cols-3 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor={`name-${insured.id}`}>Name</Label>
@@ -2179,7 +2179,7 @@ export function HomeOwnersForm() {
                     }
                   }}
                 />
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-muted-foreground">
                   Upload any relevant documents, such as prior insurance policies or property appraisals.
                 </p>
               </div>

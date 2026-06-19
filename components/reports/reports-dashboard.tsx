@@ -88,13 +88,13 @@ export function ReportsDashboard({ initialStats, selectedRange }: ReportsDashboa
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-2xl font-bold">Reports & Analytics</h2>
-          <p className="text-gray-500">AI-powered insights and comprehensive business intelligence</p>
+          <p className="text-muted-foreground">AI-powered insights and comprehensive business intelligence</p>
         </div>
         <div className="flex gap-3">
           <select
             value={selectedRange}
             onChange={(e) => handleDateRangeChange(e.target.value)}
-            className="bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-card border border-border rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="7">Last 7 Days</option>
             <option value="30">Last 30 Days</option>
@@ -113,10 +113,10 @@ export function ReportsDashboard({ initialStats, selectedRange }: ReportsDashboa
 
       {/* Statistics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
+        <div className="bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Total Revenue</p>
+              <p className="text-sm font-medium text-muted-foreground">Total Revenue</p>
               <p className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
                 {formatCurrency(initialStats.totalRevenue)}
               </p>
@@ -130,10 +130,10 @@ export function ReportsDashboard({ initialStats, selectedRange }: ReportsDashboa
           </div>
         </div>
 
-        <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
+        <div className="bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Active Policies</p>
+              <p className="text-sm font-medium text-muted-foreground">Active Policies</p>
               <p className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 {initialStats.activePolicies.toLocaleString()}
               </p>
@@ -147,10 +147,10 @@ export function ReportsDashboard({ initialStats, selectedRange }: ReportsDashboa
           </div>
         </div>
 
-        <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
+        <div className="bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">New Clients</p>
+              <p className="text-sm font-medium text-muted-foreground">New Clients</p>
               <p className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
                 {initialStats.newClients}
               </p>
@@ -164,10 +164,10 @@ export function ReportsDashboard({ initialStats, selectedRange }: ReportsDashboa
           </div>
         </div>
 
-        <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
+        <div className="bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Conversion Rate</p>
+              <p className="text-sm font-medium text-muted-foreground">Conversion Rate</p>
               <p className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                 {initialStats.conversionRate.toFixed(1)}%
               </p>
@@ -185,14 +185,14 @@ export function ReportsDashboard({ initialStats, selectedRange }: ReportsDashboa
       {/* Report Categories */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Link href="/reports/submissions">
-          <div className="group bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-8 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+          <div className="group bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-8 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
             <div className="flex items-center mb-6">
               <div className="p-4 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl group-hover:scale-110 transition-transform duration-200">
                 <BarChart3 className="h-10 w-10 text-white" />
               </div>
-              <h2 className="text-xl font-semibold ml-4 text-gray-800">Submission Reports</h2>
+              <h2 className="text-xl font-semibold ml-4 text-foreground">Submission Reports</h2>
             </div>
-            <p className="text-gray-600 mb-4">
+            <p className="text-muted-foreground mb-4">
               Comprehensive analytics on submission trends, conversion rates, and performance metrics.
             </p>
             <div className="flex items-center text-blue-500 font-medium group-hover:text-blue-600 transition-colors duration-200">
@@ -202,14 +202,14 @@ export function ReportsDashboard({ initialStats, selectedRange }: ReportsDashboa
         </Link>
 
         <Link href="/reports/clients">
-          <div className="group bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-8 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+          <div className="group bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-8 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
             <div className="flex items-center mb-6">
               <div className="p-4 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl group-hover:scale-110 transition-transform duration-200">
                 <Users className="h-10 w-10 text-white" />
               </div>
-              <h2 className="text-xl font-semibold ml-4 text-gray-800">Client Reports</h2>
+              <h2 className="text-xl font-semibold ml-4 text-foreground">Client Reports</h2>
             </div>
-            <p className="text-gray-600 mb-4">
+            <p className="text-muted-foreground mb-4">
               Track client acquisition, retention rates, and growth trends over time.
             </p>
             <div className="flex items-center text-green-500 font-medium group-hover:text-green-600 transition-colors duration-200">
@@ -219,14 +219,14 @@ export function ReportsDashboard({ initialStats, selectedRange }: ReportsDashboa
         </Link>
 
         <Link href="/reports/policies">
-          <div className="group bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-8 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+          <div className="group bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-8 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
             <div className="flex items-center mb-6">
               <div className="p-4 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl group-hover:scale-110 transition-transform duration-200">
                 <FileText className="h-10 w-10 text-white" />
               </div>
-              <h2 className="text-xl font-semibold ml-4 text-gray-800">Policy Reports</h2>
+              <h2 className="text-xl font-semibold ml-4 text-foreground">Policy Reports</h2>
             </div>
-            <p className="text-gray-600 mb-4">
+            <p className="text-muted-foreground mb-4">
               Analyze policy distribution, premium trends, and carrier performance.
             </p>
             <div className="flex items-center text-orange-500 font-medium group-hover:text-orange-600 transition-colors duration-200">

@@ -64,7 +64,7 @@ export default function TestSuitePage() {
                   <div className="flex items-center justify-between">
                     <span
                       className={`text-sm px-2 py-1 rounded ${
-                        suite.status === "Ready" ? "bg-green-100 text-green-700" : "bg-yellow-100 text-yellow-700"
+                        suite.status === "Ready" ? "bg-green-500/15 text-green-400" : "bg-yellow-500/15 text-yellow-400"
                       }`}
                     >
                       {suite.status}
@@ -83,9 +83,9 @@ export default function TestSuitePage() {
           })}
         </div>
 
-        <div className="mt-8 p-6 bg-blue-50 rounded-lg border border-blue-200">
-          <h2 className="text-lg font-semibold text-blue-900 mb-2">How to Use</h2>
-          <ul className="text-blue-800 space-y-1 text-sm">
+        <div className="mt-8 p-6 bg-blue-500/10 rounded-lg border border-border">
+          <h2 className="text-lg font-semibold text-blue-300 mb-2">How to Use</h2>
+          <ul className="text-blue-300 space-y-1 text-sm">
             <li>• Run tests before and after deployment to verify functionality</li>
             <li>• Check authentication flows and data access permissions</li>
             <li>• Verify that all features work correctly in production environment</li>

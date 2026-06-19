@@ -498,7 +498,7 @@ export default function ImportClientsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-muted p-6">
       <div className="max-w-6xl mx-auto">
         <div className="mb-6">
           <Link href="/clients">
@@ -508,14 +508,14 @@ export default function ImportClientsPage() {
             </Button>
           </Link>
           <h1 className="text-2xl font-bold">Import Clients</h1>
-          <p className="text-gray-600">Import comprehensive client data from CSV or Excel files</p>
+          <p className="text-muted-foreground">Import comprehensive client data from CSV or Excel files</p>
         </div>
 
         {/* Progress */}
         <Card className="mb-6">
           <CardContent className="p-6">
             <Progress value={(currentStep / 4) * 100} className="w-full" />
-            <div className="flex justify-between mt-2 text-sm text-gray-600">
+            <div className="flex justify-between mt-2 text-sm text-muted-foreground">
               <span>Step {currentStep} of 4</span>
               <span>
                 {currentStep === 1 && "Upload File"}
@@ -536,14 +536,14 @@ export default function ImportClientsPage() {
                   <h3 className="text-lg font-semibold mb-4">Upload Your File</h3>
 
                   {error && (
-                    <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded text-red-600 text-sm">{error}</div>
+                    <div className="mb-4 p-3 bg-red-500/10 border border-border rounded text-red-600 text-sm">{error}</div>
                   )}
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
+                    <div className="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
                       <FileSpreadsheet className="h-12 w-12 text-blue-500 mx-auto mb-4" />
                       <h4 className="font-semibold mb-2">CSV File</h4>
-                      <p className="text-sm text-gray-600 mb-4">Upload a CSV file with client data</p>
+                      <p className="text-sm text-muted-foreground mb-4">Upload a CSV file with client data</p>
                       <input
                         ref={fileInputRef}
                         type="file"
@@ -563,10 +563,10 @@ export default function ImportClientsPage() {
                       </label>
                     </div>
 
-                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-green-400 transition-colors">
+                    <div className="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-green-400 transition-colors">
                       <File className="h-12 w-12 text-green-500 mx-auto mb-4" />
                       <h4 className="font-semibold mb-2">Excel File</h4>
-                      <p className="text-sm text-gray-600 mb-4">Upload an Excel file (.xlsx/.xls)</p>
+                      <p className="text-sm text-muted-foreground mb-4">Upload an Excel file (.xlsx/.xls)</p>
                       <input
                         type="file"
                         accept=".xlsx,.xls"
@@ -593,7 +593,7 @@ export default function ImportClientsPage() {
                     </Button>
                   </div>
 
-                  <div className="text-sm text-gray-600">
+                  <div className="text-sm text-muted-foreground">
                     <p className="mb-2">
                       <strong>Supported Fields:</strong> Account Name, UID, Customer Type, Contact Info, Address, Policy
                       Details, Financial Data, Business Info, Customer Tags, and more.
@@ -604,7 +604,7 @@ export default function ImportClientsPage() {
                   {isProcessing && (
                     <div className="mt-4 text-center">
                       <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-2"></div>
-                      <p className="text-sm text-gray-600">Processing file...</p>
+                      <p className="text-sm text-muted-foreground">Processing file...</p>
                     </div>
                   )}
                 </div>
@@ -616,7 +616,7 @@ export default function ImportClientsPage() {
               <div className="space-y-6">
                 <div>
                   <h3 className="text-lg font-semibold mb-2">Map Your Fields</h3>
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-muted-foreground mb-4">
                     Found {headers.length} columns and {fileData.length} rows. Map your columns to client fields:
                   </p>
 
@@ -625,7 +625,7 @@ export default function ImportClientsPage() {
                       <div key={header} className="flex items-center gap-4 p-3 border rounded">
                         <div className="flex-1 min-w-0">
                           <div className="font-medium truncate">{header}</div>
-                          <div className="text-sm text-gray-500 truncate">
+                          <div className="text-sm text-muted-foreground truncate">
                             Sample: {fileData[0]?.[header] || "No data"}
                           </div>
                         </div>
@@ -666,11 +666,11 @@ export default function ImportClientsPage() {
               <div className="space-y-6">
                 <div>
                   <h3 className="text-lg font-semibold mb-2">Preview Data</h3>
-                  <p className="text-gray-600 mb-4">Preview of first 5 records (importing {fileData.length} total):</p>
+                  <p className="text-muted-foreground mb-4">Preview of first 5 records (importing {fileData.length} total):</p>
 
                   <div className="overflow-x-auto border rounded">
                     <table className="w-full text-sm">
-                      <thead className="bg-gray-50">
+                      <thead className="bg-muted">
                         <tr>
                           {Object.keys(previewData[0] || {}).map((key) => (
                             <th key={key} className="text-left p-2 font-medium min-w-32">
@@ -699,7 +699,7 @@ export default function ImportClientsPage() {
                     </Button>
                     <div className="flex flex-col items-end gap-2">
                       {isProcessing && importResults && (
-                        <div className="text-sm text-gray-600">
+                        <div className="text-sm text-muted-foreground">
                           Progress: {importResults.success + importResults.errors + importResults.skipped} /{" "}
                           {importResults.total} processed
                         </div>
@@ -726,25 +726,25 @@ export default function ImportClientsPage() {
                         <Card>
                           <CardContent className="p-4 text-center">
                             <div className="text-2xl font-bold text-green-600">{importResults.success}</div>
-                            <div className="text-sm text-gray-600">Successful</div>
+                            <div className="text-sm text-muted-foreground">Successful</div>
                           </CardContent>
                         </Card>
                         <Card>
                           <CardContent className="p-4 text-center">
                             <div className="text-2xl font-bold text-red-600">{importResults.errors}</div>
-                            <div className="text-sm text-gray-600">Errors</div>
+                            <div className="text-sm text-muted-foreground">Errors</div>
                           </CardContent>
                         </Card>
                         <Card>
                           <CardContent className="p-4 text-center">
                             <div className="text-2xl font-bold text-yellow-600">{importResults.skipped || 0}</div>
-                            <div className="text-sm text-gray-600">Skipped</div>
+                            <div className="text-sm text-muted-foreground">Skipped</div>
                           </CardContent>
                         </Card>
                         <Card>
                           <CardContent className="p-4 text-center">
                             <div className="text-2xl font-bold text-blue-600">{importResults.total}</div>
-                            <div className="text-sm text-gray-600">Total</div>
+                            <div className="text-sm text-muted-foreground">Total</div>
                           </CardContent>
                         </Card>
                       </div>

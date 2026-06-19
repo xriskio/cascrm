@@ -95,7 +95,7 @@ export default function NewMarketSubmissionPage() {
 
       <div className="container mx-auto py-6 px-6">
         <form onSubmit={handleSubmit}>
-          <Card className="bg-white/70 backdrop-blur-sm border border-gray-200/50">
+          <Card className="bg-card backdrop-blur-sm border border-border/50">
             <CardHeader>
               <CardTitle>Submission Details</CardTitle>
               <CardDescription>Enter the details of the market submission</CardDescription>

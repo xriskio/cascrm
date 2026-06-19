@@ -112,7 +112,7 @@ export default function RestaurantForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      {formError && <div className="bg-red-50 border border-red-200 text-red-800 rounded-md p-4 mb-6">{formError}</div>}
+      {formError && <div className="bg-red-500/10 border border-border text-red-300 rounded-md p-4 mb-6">{formError}</div>}
 
       <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
         <TabsList className="grid grid-cols-5 md:grid-cols-10 mb-6">
@@ -133,7 +133,7 @@ export default function RestaurantForm() {
           <Card>
             <CardContent className="pt-6">
               <h2 className="text-xl font-semibold mb-4">Policyholder Information</h2>
-              <p className="text-gray-500 mb-6">
+              <p className="text-muted-foreground mb-6">
                 The Insured name (Legal entity) and contact information apply to all locations for this account.
               </p>
 
@@ -189,7 +189,7 @@ export default function RestaurantForm() {
           <Card>
             <CardContent className="pt-6">
               <h2 className="text-xl font-semibold mb-4">Location Information</h2>
-              <p className="text-gray-500 mb-6">
+              <p className="text-muted-foreground mb-6">
                 Start a single application, or add multiple locations to start multiple applications that share the same
                 Policyholder.
               </p>
@@ -301,7 +301,7 @@ export default function RestaurantForm() {
           <Card>
             <CardContent className="pt-6">
               <h2 className="text-xl font-semibold mb-4">Classification & Eligibility</h2>
-              <p className="text-gray-500 mb-6">Tell us a bit about the business.</p>
+              <p className="text-muted-foreground mb-6">Tell us a bit about the business.</p>
 
               <div className="space-y-6">
                 <div>
@@ -646,7 +646,7 @@ export default function RestaurantForm() {
           <Card>
             <CardContent className="pt-6">
               <h2 className="text-xl font-semibold mb-4">Liability Coverage</h2>
-              <p className="text-gray-500 mb-6">Tell us a bit about the business.</p>
+              <p className="text-muted-foreground mb-6">Tell us a bit about the business.</p>
 
               <div className="space-y-6">
                 <div>
@@ -798,7 +798,7 @@ export default function RestaurantForm() {
           <Card>
             <CardContent className="pt-6">
               <h2 className="text-xl font-semibold mb-4">Property Coverage</h2>
-              <p className="text-gray-500 mb-6">Tell us a bit about the business.</p>
+              <p className="text-muted-foreground mb-6">Tell us a bit about the business.</p>
 
               <div className="space-y-6">
                 <div>
@@ -1100,7 +1100,7 @@ export default function RestaurantForm() {
           <Card>
             <CardContent className="pt-6">
               <h2 className="text-xl font-semibold mb-4">Optional Coverages</h2>
-              <p className="text-gray-500 mb-6">Tell us a bit about the business.</p>
+              <p className="text-muted-foreground mb-6">Tell us a bit about the business.</p>
 
               <div className="space-y-6">
                 <div>
@@ -1181,15 +1181,15 @@ export default function RestaurantForm() {
           <Card>
             <CardContent className="pt-6">
               <h2 className="text-xl font-semibold mb-4">Additional Interests</h2>
-              <p className="text-gray-500 mb-6">Tell us a bit about the business.</p>
+              <p className="text-muted-foreground mb-6">Tell us a bit about the business.</p>
 
               <div className="space-y-6">
                 <div>
                   <Label className="mb-2 block">Would you like to schedule blanket Additional Insureds?</Label>
-                  <p className="text-sm text-gray-500 mb-2">
+                  <p className="text-sm text-muted-foreground mb-2">
                     The following forms will be added with "As required by contract" language included:
                   </p>
-                  <ul className="text-sm text-gray-500 list-disc pl-5 mb-4">
+                  <ul className="text-sm text-muted-foreground list-disc pl-5 mb-4">
                     <li>Additional Insured - Scheduled Person or Organization</li>
                     <li>Additional Insured - Managers or Lessors of Premises</li>
                     <li>Additional Insured - Controlling Interest</li>
@@ -1239,7 +1239,7 @@ export default function RestaurantForm() {
           <Card>
             <CardContent className="pt-6">
               <h2 className="text-xl font-semibold mb-4">Discounts</h2>
-              <p className="text-gray-500 mb-6">Tell us a bit about the business.</p>
+              <p className="text-muted-foreground mb-6">Tell us a bit about the business.</p>
 
               <div className="space-y-6">
                 <div>
@@ -1354,7 +1354,7 @@ export default function RestaurantForm() {
           <Card>
             <CardContent className="pt-6">
               <h2 className="text-xl font-semibold mb-4">Effective Date</h2>
-              <p className="text-gray-500 mb-6">Tell us a bit about the business.</p>
+              <p className="text-muted-foreground mb-6">Tell us a bit about the business.</p>
 
               <div className="space-y-6">
                 <div>
@@ -1382,7 +1382,7 @@ export default function RestaurantForm() {
           <Card>
             <CardContent className="pt-6">
               <h2 className="text-xl font-semibold mb-4">Payment</h2>
-              <p className="text-gray-500 mb-6">Tell us a bit about the business.</p>
+              <p className="text-muted-foreground mb-6">Tell us a bit about the business.</p>
 
               <div className="space-y-6">
                 <div>

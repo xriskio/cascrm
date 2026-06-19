@@ -17,7 +17,7 @@ export default async function ClientAcordPage({ params }: { params: { id: string
         <div className="p-8">
           <h1 className="text-2xl font-bold mb-4">Error Loading Client</h1>
           <p className="text-red-500">There was an error loading the client information. Please try again later.</p>
-          <p className="text-gray-500 mt-2">Error details (for development): {error.message}</p>
+          <p className="text-muted-foreground mt-2">Error details (for development): {error.message}</p>
         </div>
       )
     }
@@ -46,7 +46,7 @@ export default async function ClientAcordPage({ params }: { params: { id: string
         <p className="text-red-500">
           There was an unexpected error loading the client information. Please try again later.
         </p>
-        <p className="text-gray-500 mt-2">
+        <p className="text-muted-foreground mt-2">
           Error details (for development): {error instanceof Error ? error.message : String(error)}
         </p>
       </div>

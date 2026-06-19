@@ -86,21 +86,21 @@ export default function ContactDetailPage() {
   }
 
   const getStatusColor = (isProspect?: boolean) => {
-    return isProspect ? "bg-yellow-100 text-yellow-800" : "bg-green-100 text-green-800"
+    return isProspect ? "bg-yellow-500/15 text-yellow-300" : "bg-green-500/15 text-green-300"
   }
 
   const getPriorityColor = (priority?: string) => {
-    if (!priority) return "bg-gray-100 text-gray-800"
+    if (!priority) return "bg-muted text-foreground"
 
     switch (priority.toLowerCase()) {
       case "high":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       case "medium":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-500/15 text-yellow-300"
       case "low":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -115,8 +115,8 @@ export default function ContactDetailPage() {
   if (error || !contact) {
     return (
       <div className="text-center py-12">
-        <h3 className="text-lg font-medium text-gray-900 mb-2">Contact Not Found</h3>
-        <p className="text-gray-600 mb-4">{error || "The contact you're looking for doesn't exist."}</p>
+        <h3 className="text-lg font-medium text-foreground mb-2">Contact Not Found</h3>
+        <p className="text-muted-foreground mb-4">{error || "The contact you're looking for doesn't exist."}</p>
         <Button asChild>
           <Link href="/contacts">
             <ArrowLeft className="h-4 w-4 mr-2" />
@@ -140,7 +140,7 @@ export default function ContactDetailPage() {
           </Button>
           <div>
             <h1 className="text-3xl font-bold">{contact.display_name}</h1>
-            <p className="text-gray-600">
+            <p className="text-muted-foreground">
               {contact.company_name && `${contact.company_name} • `}
               Customer #{contact.customer_no || contact.entity_id}
             </p>
@@ -177,7 +177,7 @@ export default function ContactDetailPage() {
         <Badge className={getStatusColor(contact.prospect)} variant="outline">
           {contact.prospect ? "Prospect" : "Customer"}
         </Badge>
-        <Badge className="bg-blue-100 text-blue-800" variant="outline">
+        <Badge className="bg-blue-500/15 text-blue-300" variant="outline">
           {contact.is_person ? "Individual" : "Business"}
         </Badge>
         {contact.customer_priority && (
@@ -186,7 +186,7 @@ export default function ContactDetailPage() {
           </Badge>
         )}
         {contact.type && (
-          <Badge className="bg-purple-100 text-purple-800" variant="outline">
+          <Badge className="bg-purple-500/15 text-purple-300" variant="outline">
             {contact.type}
           </Badge>
         )}
@@ -207,27 +207,27 @@ export default function ContactDetailPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {contact.first_name && (
                   <div>
-                    <label className="text-sm font-medium text-gray-500">First Name</label>
+                    <label className="text-sm font-medium text-muted-foreground">First Name</label>
                     <p className="text-sm">{contact.first_name}</p>
                   </div>
                 )}
                 {contact.last_name && (
                   <div>
-                    <label className="text-sm font-medium text-gray-500">Last Name</label>
+                    <label className="text-sm font-medium text-muted-foreground">Last Name</label>
                     <p className="text-sm">{contact.last_name}</p>
                   </div>
                 )}
                 {contact.company_name && (
                   <div className="md:col-span-2">
-                    <label className="text-sm font-medium text-gray-500">Company</label>
+                    <label className="text-sm font-medium text-muted-foreground">Company</label>
                     <p className="text-sm font-medium">{contact.company_name}</p>
                   </div>
                 )}
                 {contact.email && (
                   <div>
-                    <label className="text-sm font-medium text-gray-500">Email</label>
+                    <label className="text-sm font-medium text-muted-foreground">Email</label>
                     <div className="flex items-center">
-                      <Mail className="h-4 w-4 mr-2 text-gray-400" />
+                      <Mail className="h-4 w-4 mr-2 text-muted-foreground" />
                       <a href={`mailto:${contact.email}`} className="text-sm text-blue-600 hover:underline">
                         {contact.email}
                       </a>
@@ -236,9 +236,9 @@ export default function ContactDetailPage() {
                 )}
                 {contact.phone && (
                   <div>
-                    <label className="text-sm font-medium text-gray-500">Phone</label>
+                    <label className="text-sm font-medium text-muted-foreground">Phone</label>
                     <div className="flex items-center">
-                      <Phone className="h-4 w-4 mr-2 text-gray-400" />
+                      <Phone className="h-4 w-4 mr-2 text-muted-foreground" />
                       <a href={`tel:${contact.phone}`} className="text-sm text-blue-600 hover:underline">
                         {contact.phone}
                       </a>
@@ -280,26 +280,26 @@ export default function ContactDetailPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <label className="text-sm font-medium text-gray-500">Customer Number</label>
+                <label className="text-sm font-medium text-muted-foreground">Customer Number</label>
                 <p className="text-sm font-mono">{contact.customer_no || contact.entity_id}</p>
               </div>
               {contact.agent_name && (
                 <div>
-                  <label className="text-sm font-medium text-gray-500">Agent</label>
+                  <label className="text-sm font-medium text-muted-foreground">Agent</label>
                   <p className="text-sm">{contact.agent_name}</p>
                 </div>
               )}
               {contact.csr_name && (
                 <div>
-                  <label className="text-sm font-medium text-gray-500">CSR</label>
+                  <label className="text-sm font-medium text-muted-foreground">CSR</label>
                   <p className="text-sm">{contact.csr_name}</p>
                 </div>
               )}
               {contact.customer_since && (
                 <div>
-                  <label className="text-sm font-medium text-gray-500">Customer Since</label>
+                  <label className="text-sm font-medium text-muted-foreground">Customer Since</label>
                   <div className="flex items-center">
-                    <Clock className="h-4 w-4 mr-2 text-gray-400" />
+                    <Clock className="h-4 w-4 mr-2 text-muted-foreground" />
                     <p className="text-sm">{formatDate(contact.customer_since)}</p>
                   </div>
                 </div>
@@ -341,15 +341,15 @@ export default function ContactDetailPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <label className="text-sm font-medium text-gray-500">Entity ID</label>
+                <label className="text-sm font-medium text-muted-foreground">Entity ID</label>
                 <p className="text-sm font-mono">{contact.entity_id}</p>
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-500">Created</label>
+                <label className="text-sm font-medium text-muted-foreground">Created</label>
                 <p className="text-sm">{formatDate(contact.created_at)}</p>
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-500">Last Updated</label>
+                <label className="text-sm font-medium text-muted-foreground">Last Updated</label>
                 <p className="text-sm">{formatDate(contact.updated_at)}</p>
               </div>
             </CardContent>

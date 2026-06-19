@@ -142,7 +142,7 @@ export default function QQCatalystApiStatusPage() {
                     <h3 className="text-lg font-medium mb-3">Endpoint Status</h3>
                     <div className="space-y-3">
                       {status.endpoints.map((endpoint, index) => (
-                        <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-md">
+                        <div key={index} className="flex items-center justify-between p-3 bg-muted rounded-md">
                           <div className="flex items-center">
                             {endpoint.status === "success" ? (
                               <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
@@ -151,7 +151,7 @@ export default function QQCatalystApiStatusPage() {
                             )}
                             <span>{endpoint.name}</span>
                           </div>
-                          <span className="text-sm text-gray-500">{endpoint.message}</span>
+                          <span className="text-sm text-muted-foreground">{endpoint.message}</span>
                         </div>
                       ))}
                     </div>
@@ -187,7 +187,7 @@ export default function QQCatalystApiStatusPage() {
           <CardContent>
             <div className="space-y-4">
               <div>
-                <h3 className="text-sm font-medium text-gray-500">Environment Variables</h3>
+                <h3 className="text-sm font-medium text-muted-foreground">Environment Variables</h3>
                 <ul className="mt-2 space-y-2">
                   <li className="flex items-center justify-between">
                     <span>QQ_CLIENT_ID</span>
@@ -209,15 +209,15 @@ export default function QQCatalystApiStatusPage() {
               </div>
 
               <div>
-                <h3 className="text-sm font-medium text-gray-500">API Endpoints</h3>
+                <h3 className="text-sm font-medium text-muted-foreground">API Endpoints</h3>
                 <ul className="mt-2 space-y-2">
                   <li className="flex items-center justify-between">
                     <span>Authentication</span>
-                    <span className="text-sm text-gray-500">https://login.qqcatalyst.com/oauth/token</span>
+                    <span className="text-sm text-muted-foreground">https://login.qqcatalyst.com/oauth/token</span>
                   </li>
                   <li className="flex items-center justify-between">
                     <span>Base API</span>
-                    <span className="text-sm text-gray-500">https://api.qqcatalyst.com/v1</span>
+                    <span className="text-sm text-muted-foreground">https://api.qqcatalyst.com/v1</span>
                   </li>
                 </ul>
               </div>

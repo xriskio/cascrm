@@ -77,17 +77,17 @@ export default function ScheduleInspectionPage() {
         <h1 className="text-2xl font-bold">Schedule New Inspection</h1>
         <button
           onClick={() => router.push("/inspections")}
-          className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded"
+          className="bg-muted hover:bg-muted text-muted-foreground px-4 py-2 rounded"
         >
           Back to Inspections
         </button>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
+      <div className="bg-card rounded-lg shadow p-6">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label htmlFor="namedInsured" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="namedInsured" className="block text-sm font-medium text-muted-foreground">
                 Named Insured *
               </label>
               <input
@@ -95,12 +95,12 @@ export default function ScheduleInspectionPage() {
                 name="namedInsured"
                 type="text"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
+                className="mt-1 block w-full px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="policyNumber" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="policyNumber" className="block text-sm font-medium text-muted-foreground">
                 Policy Number *
               </label>
               <input
@@ -108,12 +108,12 @@ export default function ScheduleInspectionPage() {
                 name="policyNumber"
                 type="text"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
+                className="mt-1 block w-full px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="effectiveDate" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="effectiveDate" className="block text-sm font-medium text-muted-foreground">
                 Effective Date *
               </label>
               <Popover>
@@ -122,8 +122,8 @@ export default function ScheduleInspectionPage() {
                     id="effectiveDate"
                     type="button"
                     className={cn(
-                      "w-full flex items-center justify-start px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500",
-                      !effectiveDate && "text-gray-400",
+                      "w-full flex items-center justify-start px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500",
+                      !effectiveDate && "text-muted-foreground",
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
@@ -137,7 +137,7 @@ export default function ScheduleInspectionPage() {
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="nocDate" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="nocDate" className="block text-sm font-medium text-muted-foreground">
                 NOC Date (Notice of Cancellation)
               </label>
               <Popover>
@@ -146,8 +146,8 @@ export default function ScheduleInspectionPage() {
                     id="nocDate"
                     type="button"
                     className={cn(
-                      "w-full flex items-center justify-start px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500",
-                      !nocDate && "text-gray-400",
+                      "w-full flex items-center justify-start px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500",
+                      !nocDate && "text-muted-foreground",
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
@@ -161,7 +161,7 @@ export default function ScheduleInspectionPage() {
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="insuranceCompany" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="insuranceCompany" className="block text-sm font-medium text-muted-foreground">
                 Insurance Company Name *
               </label>
               <input
@@ -169,19 +169,19 @@ export default function ScheduleInspectionPage() {
                 name="insuranceCompany"
                 type="text"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
+                className="mt-1 block w-full px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="policyType" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="policyType" className="block text-sm font-medium text-muted-foreground">
                 Type of Policy *
               </label>
               <select
                 id="policyType"
                 name="policyType"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
+                className="mt-1 block w-full px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
               >
                 <option value="">Select Policy Type</option>
                 {policyTypes.map((type) => (
@@ -193,11 +193,11 @@ export default function ScheduleInspectionPage() {
             </div>
           </div>
 
-          <div className="border-t border-gray-200 pt-6">
+          <div className="border-t border-border pt-6">
             <h2 className="text-lg font-medium mb-4">Inspection Contact Information</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label htmlFor="contactCompany" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="contactCompany" className="block text-sm font-medium text-muted-foreground">
                   Company Name *
                 </label>
                 <input
@@ -205,12 +205,12 @@ export default function ScheduleInspectionPage() {
                   name="contactCompany"
                   type="text"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
+                  className="mt-1 block w-full px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
                 />
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="contactName" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="contactName" className="block text-sm font-medium text-muted-foreground">
                   Contact Name *
                 </label>
                 <input
@@ -218,12 +218,12 @@ export default function ScheduleInspectionPage() {
                   name="contactName"
                   type="text"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
+                  className="mt-1 block w-full px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
                 />
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="contactPhone" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="contactPhone" className="block text-sm font-medium text-muted-foreground">
                   Phone Number *
                 </label>
                 <input
@@ -231,12 +231,12 @@ export default function ScheduleInspectionPage() {
                   name="contactPhone"
                   type="tel"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
+                  className="mt-1 block w-full px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
                 />
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="contactEmail" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="contactEmail" className="block text-sm font-medium text-muted-foreground">
                   Email Address *
                 </label>
                 <input
@@ -244,21 +244,21 @@ export default function ScheduleInspectionPage() {
                   name="contactEmail"
                   type="email"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
+                  className="mt-1 block w-full px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
                 />
               </div>
             </div>
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="notes" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="notes" className="block text-sm font-medium text-muted-foreground">
               Additional Notes
             </label>
             <textarea
               id="notes"
               name="notes"
               rows={4}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
+              className="mt-1 block w-full px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
             ></textarea>
           </div>
 
@@ -266,7 +266,7 @@ export default function ScheduleInspectionPage() {
             <button
               type="button"
               onClick={() => router.push("/inspections")}
-              className="bg-gray-200 text-gray-700 px-4 py-2 rounded mr-2"
+              className="bg-muted text-muted-foreground px-4 py-2 rounded mr-2"
             >
               Cancel
             </button>

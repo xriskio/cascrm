@@ -176,24 +176,24 @@ export default function RemarketingTracker({
       case "pending":
         return <Clock className="h-4 w-4 text-yellow-500" />
       default:
-        return <Calendar className="h-4 w-4 text-gray-500" />
+        return <Calendar className="h-4 w-4 text-muted-foreground" />
     }
   }
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case "pending":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-500/15 text-yellow-300"
       case "quoted":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-500/15 text-blue-300"
       case "declined":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       case "bound":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       case "completed":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -232,26 +232,26 @@ export default function RemarketingTracker({
       {/* Add error display in the CardContent: */}
       <CardContent className="space-y-6">
         {error && (
-          <div className="text-red-600 text-sm p-3 bg-red-50 border border-red-200 rounded">Error: {error}</div>
+          <div className="text-red-600 text-sm p-3 bg-red-500/10 border border-border rounded">Error: {error}</div>
         )}
         {/* Rest of the content */}
         {/* Status Summary */}
         {companies.length > 0 && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-center">
-              <div className="text-2xl font-bold text-yellow-800">{statusCounts.pending || 0}</div>
+            <div className="bg-yellow-500/10 border border-border rounded-lg p-3 text-center">
+              <div className="text-2xl font-bold text-yellow-300">{statusCounts.pending || 0}</div>
               <div className="text-sm text-yellow-600">Pending</div>
             </div>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-center">
-              <div className="text-2xl font-bold text-blue-800">{statusCounts.quoted || 0}</div>
+            <div className="bg-blue-500/10 border border-border rounded-lg p-3 text-center">
+              <div className="text-2xl font-bold text-blue-300">{statusCounts.quoted || 0}</div>
               <div className="text-sm text-blue-600">Quoted</div>
             </div>
-            <div className="bg-red-50 border border-red-200 rounded-lg p-3 text-center">
-              <div className="text-2xl font-bold text-red-800">{statusCounts.declined || 0}</div>
+            <div className="bg-red-500/10 border border-border rounded-lg p-3 text-center">
+              <div className="text-2xl font-bold text-red-300">{statusCounts.declined || 0}</div>
               <div className="text-sm text-red-600">Declined</div>
             </div>
-            <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-center">
-              <div className="text-2xl font-bold text-green-800">{statusCounts.bound || 0}</div>
+            <div className="bg-green-500/10 border border-border rounded-lg p-3 text-center">
+              <div className="text-2xl font-bold text-green-300">{statusCounts.bound || 0}</div>
               <div className="text-sm text-green-600">Bound</div>
             </div>
           </div>
@@ -269,10 +269,10 @@ export default function RemarketingTracker({
                     <h5 className="font-medium">{activity.activity}</h5>
                     <div className="flex items-center gap-2">
                       <Badge className={getStatusColor(activity.status)}>{activity.status}</Badge>
-                      <span className="text-sm text-gray-500">{activity.date}</span>
+                      <span className="text-sm text-muted-foreground">{activity.date}</span>
                     </div>
                   </div>
-                  {activity.notes && <p className="text-sm text-gray-600 mt-1">{activity.notes}</p>}
+                  {activity.notes && <p className="text-sm text-muted-foreground mt-1">{activity.notes}</p>}
                 </div>
               </div>
             ))}
@@ -350,7 +350,7 @@ export default function RemarketingTracker({
                   id="carrierName"
                   value={newCompany.name}
                   onChange={(e) => setNewCompany({ ...newCompany, name: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  className="w-full px-3 py-2 border border-border rounded-md"
                 >
                   <option value="">Select a carrier...</option>
                   {commonCarriers.map((carrier) => (
@@ -365,7 +365,7 @@ export default function RemarketingTracker({
                     id="otherCarrierName"
                     type="text"
                     placeholder="Enter carrier name"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md mt-2"
+                    className="w-full px-3 py-2 border border-border rounded-md mt-2"
                     onChange={(e) => setNewCompany({ ...newCompany, name: e.target.value })}
                   />
                 )}
@@ -377,7 +377,7 @@ export default function RemarketingTracker({
                   id="status"
                   value={newCompany.status}
                   onChange={(e) => setNewCompany({ ...newCompany, status: e.target.value as any })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  className="w-full px-3 py-2 border border-border rounded-md"
                 >
                   <option value="pending">Pending</option>
                   <option value="quoted">Quoted</option>
@@ -393,7 +393,7 @@ export default function RemarketingTracker({
                   type="date"
                   value={newCompany.submissionDate}
                   onChange={(e) => setNewCompany({ ...newCompany, submissionDate: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  className="w-full px-3 py-2 border border-border rounded-md"
                 />
               </div>
 
@@ -404,7 +404,7 @@ export default function RemarketingTracker({
                   type="text"
                   value={newCompany.notes}
                   onChange={(e) => setNewCompany({ ...newCompany, notes: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  className="w-full px-3 py-2 border border-border rounded-md"
                   placeholder="Optional notes..."
                 />
               </div>
@@ -424,7 +424,7 @@ export default function RemarketingTracker({
         {/* Companies List */}
         <div className="space-y-4">
           {companies.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-muted-foreground">
               <p>No carriers added yet.</p>
               <p className="text-sm">Click "Add Carrier" to start tracking remarketing submissions.</p>
             </div>
@@ -439,17 +439,17 @@ export default function RemarketingTracker({
                       <Badge className={getStatusColor(company.status)}>
                         {company.status.charAt(0).toUpperCase() + company.status.slice(1)}
                       </Badge>
-                      <span className="text-sm text-gray-500">{company.submissionDate}</span>
+                      <span className="text-sm text-muted-foreground">{company.submissionDate}</span>
                     </div>
                   </div>
-                  {company.notes && <p className="text-sm text-gray-600 mt-1">{company.notes}</p>}
+                  {company.notes && <p className="text-sm text-muted-foreground mt-1">{company.notes}</p>}
                 </div>
               </div>
             ))
           )}
         </div>
 
-        {isUpdating && <div className="text-center text-sm text-gray-500">Updating remarketing data...</div>}
+        {isUpdating && <div className="text-center text-sm text-muted-foreground">Updating remarketing data...</div>}
       </CardContent>
     </Card>
   )

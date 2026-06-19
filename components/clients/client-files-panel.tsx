@@ -156,8 +156,8 @@ export function ClientFilesPanel({ clientId, contactId }: ClientFilesPanelProps)
       </CardHeader>
       <CardContent>
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-3 mb-4">
-            <p className="text-red-800 text-sm">{error}</p>
+          <div className="bg-red-500/10 border border-border rounded-md p-3 mb-4">
+            <p className="text-red-300 text-sm">{error}</p>
           </div>
         )}
 
@@ -165,7 +165,7 @@ export function ClientFilesPanel({ clientId, contactId }: ClientFilesPanelProps)
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
           <div className="flex-1">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Search files..."
                 value={searchTerm}
@@ -191,7 +191,7 @@ export function ClientFilesPanel({ clientId, contactId }: ClientFilesPanelProps)
         {/* Files List */}
         <ScrollArea className="h-96">
           {filteredFiles.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-muted-foreground">
               <Folder className="h-12 w-12 mx-auto mb-4 text-gray-300" />
               <p>No files found</p>
               {searchTerm && <p className="text-sm">Try adjusting your search criteria</p>}
@@ -199,19 +199,19 @@ export function ClientFilesPanel({ clientId, contactId }: ClientFilesPanelProps)
           ) : (
             <div className="space-y-3">
               {filteredFiles.map((file) => (
-                <div key={file.Id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50">
+                <div key={file.Id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-muted">
                   <div className="flex items-center space-x-3 flex-1 min-w-0">
                     {getFileIcon(file.FileType)}
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-900 truncate">{file.DisplayName || file.FileName}</p>
-                      <div className="flex items-center space-x-4 text-xs text-gray-500">
+                      <p className="text-sm font-medium text-foreground truncate">{file.DisplayName || file.FileName}</p>
+                      <div className="flex items-center space-x-4 text-xs text-muted-foreground">
                         <span>{formatFileSize(file.FileSize)}</span>
                         <span>{file.FileType}</span>
                         {file.CreatedOn && (
                           <span>{formatDistanceToNow(new Date(file.CreatedOn), { addSuffix: true })}</span>
                         )}
                       </div>
-                      {file.Description && <p className="text-xs text-gray-600 mt-1 truncate">{file.Description}</p>}
+                      {file.Description && <p className="text-xs text-muted-foreground mt-1 truncate">{file.Description}</p>}
                     </div>
                   </div>
 
@@ -246,7 +246,7 @@ export function ClientFilesPanel({ clientId, contactId }: ClientFilesPanelProps)
         {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex items-center justify-between mt-4 pt-4 border-t">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-muted-foreground">
               Page {currentPage} of {totalPages}
             </p>
             <div className="flex space-x-2">

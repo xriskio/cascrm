@@ -70,11 +70,11 @@ export default function SupplementalsPage() {
           <input
             type="text"
             placeholder="Search supplementals..."
-            className="w-full px-4 py-2 pl-10 border border-gray-300 rounded-md"
+            className="w-full px-4 py-2 pl-10 border border-border rounded-md"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+          <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
         </div>
         <Link href="/agency-resources/add">
           <button className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md flex items-center">
@@ -85,18 +85,18 @@ export default function SupplementalsPage() {
       </div>
 
       {isLoading ? (
-        <div className="bg-white border border-gray-200 rounded-md p-8 text-center">
-          <p className="text-gray-500">Loading supplementals...</p>
+        <div className="bg-card border border-border rounded-md p-8 text-center">
+          <p className="text-muted-foreground">Loading supplementals...</p>
         </div>
       ) : filteredResources.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredResources.map((resource) => (
             <div
               key={resource.id}
-              className="bg-white border border-gray-200 rounded-md p-4 hover:shadow-md transition-shadow"
+              className="bg-card border border-border rounded-md p-4 hover:shadow-md transition-shadow"
             >
               <div className="flex items-start">
-                <div className="flex-shrink-0 bg-gray-100 p-2 rounded-full">
+                <div className="flex-shrink-0 bg-muted p-2 rounded-full">
                   {resource.resource_type === "link" || resource.external_url ? (
                     <ExternalLink className="h-5 w-5 text-blue-500" />
                   ) : (
@@ -127,9 +127,9 @@ export default function SupplementalsPage() {
                       <span>{resource.title}</span>
                     )}
                   </h3>
-                  <p className="text-sm text-gray-500 line-clamp-2">{resource.description}</p>
+                  <p className="text-sm text-muted-foreground line-clamp-2">{resource.description}</p>
                   <div className="mt-2 flex justify-between items-center">
-                    <span className="inline-block px-2 py-1 text-xs bg-gray-100 rounded-full">{resource.category}</span>
+                    <span className="inline-block px-2 py-1 text-xs bg-muted rounded-full">{resource.category}</span>
                     <SimpleDeleteButton id={resource.id} />
                   </div>
                 </div>
@@ -138,8 +138,8 @@ export default function SupplementalsPage() {
           ))}
         </div>
       ) : (
-        <div className="bg-white border border-gray-200 rounded-md p-8 text-center">
-          <p className="text-gray-500">No supplementals found. Add supplementals using the button above.</p>
+        <div className="bg-card border border-border rounded-md p-8 text-center">
+          <p className="text-muted-foreground">No supplementals found. Add supplementals using the button above.</p>
         </div>
       )}
     </div>

@@ -1279,7 +1279,7 @@ export default function BusinessOwnersPolicyForm() {
               </div>
 
               {formData.hasMortgageHolder === "Yes" && (
-                <div className="mb-4 p-4 border rounded bg-gray-50">
+                <div className="mb-4 p-4 border rounded bg-muted">
                   <h3 className="text-md font-medium mb-2">Mortgage Holder Information</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
@@ -1323,7 +1323,7 @@ export default function BusinessOwnersPolicyForm() {
                   value={formData.buildingPremium}
                   onChange={handleInputChange}
                   readOnly
-                  className="w-full p-2 border rounded bg-gray-100"
+                  className="w-full p-2 border rounded bg-muted"
                 />
               </div>
 
@@ -1408,7 +1408,7 @@ export default function BusinessOwnersPolicyForm() {
               </div>
 
               {formData.hasAdditionalInterest === "Yes" && (
-                <div className="mb-4 p-4 border rounded bg-gray-50">
+                <div className="mb-4 p-4 border rounded bg-muted">
                   <h3 className="text-md font-medium mb-2">Additional Interest Information</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
@@ -1452,7 +1452,7 @@ export default function BusinessOwnersPolicyForm() {
                   value={formData.bppPremium}
                   onChange={handleInputChange}
                   readOnly
-                  className="w-full p-2 border rounded bg-gray-100"
+                  className="w-full p-2 border rounded bg-muted"
                 />
               </div>
 
@@ -1690,7 +1690,7 @@ export default function BusinessOwnersPolicyForm() {
                   value={formData.additionalCoveragePremium}
                   onChange={handleInputChange}
                   readOnly
-                  className="w-full p-2 border rounded bg-gray-100"
+                  className="w-full p-2 border rounded bg-muted"
                 />
               </div>
 
@@ -1791,7 +1791,7 @@ export default function BusinessOwnersPolicyForm() {
                   value={formData.liabilityPremium}
                   onChange={handleInputChange}
                   readOnly
-                  className="w-full p-2 border rounded bg-gray-100"
+                  className="w-full p-2 border rounded bg-muted"
                 />
               </div>
 
@@ -1862,7 +1862,7 @@ export default function BusinessOwnersPolicyForm() {
 
               <div className="mb-6">
                 <h3 className="text-lg font-medium mb-2">Policy Information</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 p-4 rounded">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-muted p-4 rounded">
                   <div>
                     <p className="text-sm font-medium">Effective Date:</p>
                     <p>{formData.effectiveDate}</p>
@@ -1876,7 +1876,7 @@ export default function BusinessOwnersPolicyForm() {
 
               <div className="mb-6">
                 <h3 className="text-lg font-medium mb-2">Insured Information</h3>
-                <div className="bg-gray-50 p-4 rounded">
+                <div className="bg-muted p-4 rounded">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <p className="text-sm font-medium">Business Name:</p>
@@ -1901,7 +1901,7 @@ export default function BusinessOwnersPolicyForm() {
 
               <div className="mb-6">
                 <h3 className="text-lg font-medium mb-2">Location Information</h3>
-                <div className="bg-gray-50 p-4 rounded">
+                <div className="bg-muted p-4 rounded">
                   <div className="mt-2">
                     <p className="text-sm font-medium">Location Address:</p>
                     <p>
@@ -1930,7 +1930,7 @@ export default function BusinessOwnersPolicyForm() {
 
               <div className="mb-6">
                 <h3 className="text-lg font-medium mb-2">Coverage Information</h3>
-                <div className="bg-gray-50 p-4 rounded">
+                <div className="bg-muted p-4 rounded">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <p className="text-sm font-medium">Building Limit:</p>

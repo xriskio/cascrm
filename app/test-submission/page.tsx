@@ -82,7 +82,7 @@ export default function TestSubmissionPage() {
 
           {result && (
             <div
-              className={`p-4 rounded-md ${result.success ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
+              className={`p-4 rounded-md ${result.success ? "bg-green-500/15 text-green-300" : "bg-red-500/15 text-red-300"}`}
             >
               <p className="font-medium">{result.success ? "Success!" : "Error"}</p>
               <p>{result.message}</p>

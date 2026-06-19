@@ -43,7 +43,7 @@ export default async function SubmissionsPage() {
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
-                  <tr className="bg-gray-100">
+                  <tr className="bg-muted">
                     <th className="border px-4 py-2 text-left">Submission #</th>
                     <th className="border px-4 py-2 text-left">Insurance Type</th>
                     <th className="border px-4 py-2 text-left">Company</th>
@@ -54,7 +54,7 @@ export default async function SubmissionsPage() {
                 </thead>
                 <tbody>
                   {submissions!.map((submission) => (
-                    <tr key={submission.id} className="hover:bg-gray-50">
+                    <tr key={submission.id} className="hover:bg-muted">
                       <td className="border px-4 py-2">{submission.tracking_number}</td>
                       <td className="border px-4 py-2">{submission.policy_type}</td>
                       <td className="border px-4 py-2">{submission.json_raw?.companyName || submission.client_name || "N/A"}</td>
@@ -63,7 +63,7 @@ export default async function SubmissionsPage() {
                       <td className="border px-4 py-2">
                         <Link
                           href={`/submissions/view/${submission.tracking_number}`}
-                          className="text-blue-600 hover:text-blue-800 underline"
+                          className="text-blue-600 hover:text-blue-300 underline"
                         >
                           View
                         </Link>
@@ -76,9 +76,9 @@ export default async function SubmissionsPage() {
           ) : (
             <div className="text-center py-8">
               <div className="flex flex-col items-center justify-center space-y-3">
-                <FileText className="h-12 w-12 text-gray-400" />
+                <FileText className="h-12 w-12 text-muted-foreground" />
                 <h3 className="text-lg font-medium">No submissions found</h3>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-muted-foreground">
                   {error ? "There was an error loading submissions." : "Create your first submission to get started."}
                 </p>
                 <Button asChild>
@@ -95,7 +95,7 @@ export default async function SubmissionsPage() {
 
       {/* Debug section - only visible in development */}
       {process.env.NODE_ENV === "development" && (
-        <div className="mt-8 p-4 bg-gray-100 rounded-md">
+        <div className="mt-8 p-4 bg-muted rounded-md">
           <h3 className="font-bold mb-2">Debug Information</h3>
           <p>Number of submissions: {submissions?.length || 0}</p>
           {error && (
@@ -108,7 +108,7 @@ export default async function SubmissionsPage() {
           <div className="mt-2">
             <details>
               <summary className="cursor-pointer">Raw Submissions Data</summary>
-              <pre className="mt-2 p-2 bg-gray-200 rounded text-xs overflow-auto max-h-96">
+              <pre className="mt-2 p-2 bg-muted rounded text-xs overflow-auto max-h-96">
                 {JSON.stringify(submissions, null, 2)}
               </pre>
             </details>

@@ -112,15 +112,15 @@ export default async function MyTasksPage() {
   const getPriorityClass = (priority: string) => {
     switch (priority) {
       case "Low":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-500/15 text-blue-300"
       case "Medium":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-500/15 text-yellow-300"
       case "High":
-        return "bg-orange-100 text-orange-800"
+        return "bg-orange-500/15 text-orange-300"
       case "Urgent":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -159,10 +159,10 @@ export default async function MyTasksPage() {
       <div className="container mx-auto py-6 px-6">
         {/* AI Statistics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
+          <div className="bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Tasks</p>
+                <p className="text-sm font-medium text-muted-foreground">Total Tasks</p>
                 <p className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   {tasks?.length || 0}
                 </p>
@@ -173,10 +173,10 @@ export default async function MyTasksPage() {
             </div>
           </div>
 
-          <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
+          <div className="bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">In Progress</p>
+                <p className="text-sm font-medium text-muted-foreground">In Progress</p>
                 <p className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
                   {inProgress.length}
                 </p>
@@ -187,10 +187,10 @@ export default async function MyTasksPage() {
             </div>
           </div>
 
-          <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
+          <div className="bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Completed</p>
+                <p className="text-sm font-medium text-muted-foreground">Completed</p>
                 <p className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
                   {completed.length}
                 </p>
@@ -201,10 +201,10 @@ export default async function MyTasksPage() {
             </div>
           </div>
 
-          <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
+          <div className="bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">On Hold</p>
+                <p className="text-sm font-medium text-muted-foreground">On Hold</p>
                 <p className="text-3xl font-bold bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">
                   {onHold.length}
                 </p>
@@ -215,10 +215,10 @@ export default async function MyTasksPage() {
             </div>
           </div>
 
-          <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
+          <div className="bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Archived</p>
+                <p className="text-sm font-medium text-muted-foreground">Archived</p>
                 <p className="text-3xl font-bold bg-gradient-to-r from-gray-600 to-gray-800 bg-clip-text text-transparent">
                   {archived.length}
                 </p>
@@ -231,7 +231,7 @@ export default async function MyTasksPage() {
         </div>
 
         <Tabs defaultValue="all" className="w-full">
-          <TabsList className="mb-6 bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-xl p-1">
+          <TabsList className="mb-6 bg-card backdrop-blur-sm border border-border/50 rounded-xl p-1">
             <TabsTrigger value="all" className="rounded-lg">
               All ({tasks?.filter((t) => t.status !== "Archived").length || 0})
             </TabsTrigger>
@@ -326,13 +326,13 @@ export default async function MyTasksPage() {
 function TaskList({ tasks, formatUserName, formatClientName, formatDate, getPriorityClass, getStatusIcon }: any) {
   if (tasks.length === 0) {
     return (
-      <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-16 text-center">
+      <div className="bg-card backdrop-blur-sm border border-border/50 rounded-2xl p-16 text-center">
         <div className="flex flex-col items-center">
-          <div className="p-4 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full mb-4">
+          <div className="p-4 bg-card rounded-full mb-4">
             <CheckCircle2 className="h-8 w-8 text-blue-500" />
           </div>
-          <p className="text-lg font-medium mb-2 text-gray-800">No tasks found in this category</p>
-          <p className="text-sm text-gray-600">Tasks will appear here once created.</p>
+          <p className="text-lg font-medium mb-2 text-foreground">No tasks found in this category</p>
+          <p className="text-sm text-muted-foreground">Tasks will appear here once created.</p>
         </div>
       </div>
     )
@@ -343,7 +343,7 @@ function TaskList({ tasks, formatUserName, formatClientName, formatDate, getPrio
       {tasks.map((task: any) => (
         <div
           key={task.id}
-          className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-2xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
+          className="bg-card backdrop-blur-sm border border-border/50 rounded-2xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
         >
           <div className="p-6">
             <div className="flex items-start justify-between mb-4">
@@ -352,7 +352,7 @@ function TaskList({ tasks, formatUserName, formatClientName, formatDate, getPrio
                   {getStatusIcon(task.status)}
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800">
+                  <h3 className="text-lg font-semibold text-foreground">
                     <Link href={`/tasks/${task.id}`} className="hover:text-blue-600 transition-colors duration-200">
                       {task.title}
                     </Link>
@@ -365,47 +365,47 @@ function TaskList({ tasks, formatUserName, formatClientName, formatDate, getPrio
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm mb-4">
               <div className="flex items-center gap-2">
-                <CalendarDays className="h-4 w-4 text-gray-500" />
+                <CalendarDays className="h-4 w-4 text-muted-foreground" />
                 <div>
-                  <p className="text-gray-500">Due Date</p>
-                  <p className="font-medium text-gray-800">{formatDate(task.due_date)}</p>
+                  <p className="text-muted-foreground">Due Date</p>
+                  <p className="font-medium text-foreground">{formatDate(task.due_date)}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <User className="h-4 w-4 text-gray-500" />
+                <User className="h-4 w-4 text-muted-foreground" />
                 <div>
-                  <p className="text-gray-500">Created By</p>
-                  <p className="font-medium text-gray-800">
+                  <p className="text-muted-foreground">Created By</p>
+                  <p className="font-medium text-foreground">
                     {task.creator_id ? formatUserName(task.creator_id) : "Unknown"}
                   </p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <User className="h-4 w-4 text-gray-500" />
+                <User className="h-4 w-4 text-muted-foreground" />
                 <div>
-                  <p className="text-gray-500">Supervisor</p>
-                  <p className="font-medium text-gray-800">
+                  <p className="text-muted-foreground">Supervisor</p>
+                  <p className="font-medium text-foreground">
                     {task.supervisor_id ? formatUserName(task.supervisor_id) : "None"}
                   </p>
                 </div>
               </div>
               <div>
-                <p className="text-gray-500 mb-1">Completion</p>
+                <p className="text-muted-foreground mb-1">Completion</p>
                 <div className="flex items-center gap-2">
-                  <div className="flex-1 bg-gray-200 rounded-full h-2">
+                  <div className="flex-1 bg-muted rounded-full h-2">
                     <div
                       className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300"
                       style={{ width: `${task.completion_percentage || 0}%` }}
                     />
                   </div>
-                  <span className="text-sm font-medium text-gray-800">{task.completion_percentage || 0}%</span>
+                  <span className="text-sm font-medium text-foreground">{task.completion_percentage || 0}%</span>
                 </div>
               </div>
             </div>
 
             {task.description && (
               <div className="mb-4">
-                <p className="text-sm text-gray-600 line-clamp-2 bg-gray-50/50 p-3 rounded-lg">{task.description}</p>
+                <p className="text-sm text-muted-foreground line-clamp-2 bg-muted/50 p-3 rounded-lg">{task.description}</p>
               </div>
             )}
 
@@ -414,7 +414,7 @@ function TaskList({ tasks, formatUserName, formatClientName, formatDate, getPrio
                 asChild
                 variant="outline"
                 size="sm"
-                className="hover:bg-blue-50 hover:border-blue-300 transition-all duration-200 bg-transparent"
+                className="hover:bg-blue-500/10 hover:border-blue-300 transition-all duration-200 bg-transparent"
               >
                 <Link href={`/tasks/${task.id}`}>View Details</Link>
               </Button>

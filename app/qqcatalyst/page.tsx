@@ -86,7 +86,7 @@ export default function QQCatalystPage() {
 
       {/* Quick Start */}
       {authStatus === "not_authenticated" && (
-        <Card className="mb-6 border-blue-200 bg-blue-50">
+        <Card className="mb-6 border-border bg-blue-500/10">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Key className="h-5 w-5" />

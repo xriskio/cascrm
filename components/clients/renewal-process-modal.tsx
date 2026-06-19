@@ -77,7 +77,7 @@ export function RenewalProcessModal({ isOpen, onClose, client }: RenewalProcessM
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-4">
-            <div className="p-4 bg-gray-50 rounded-lg">
+            <div className="p-4 bg-muted rounded-lg">
               <h4 className="font-medium mb-2">Current Policy Information</h4>
               <div className="space-y-1 text-sm">
                 <div className="flex justify-between">
@@ -117,7 +117,7 @@ export function RenewalProcessModal({ isOpen, onClose, client }: RenewalProcessM
             <div className="space-y-2">
               <Label htmlFor="effective-date">New Effective Date</Label>
               <div className="flex items-center">
-                <Calendar className="mr-2 h-4 w-4 text-gray-500" />
+                <Calendar className="mr-2 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="effective-date"
                   type="date"
@@ -131,7 +131,7 @@ export function RenewalProcessModal({ isOpen, onClose, client }: RenewalProcessM
             <div className="space-y-2">
               <Label htmlFor="new-premium">Estimated New Premium</Label>
               <div className="flex items-center">
-                <DollarSign className="mr-2 h-4 w-4 text-gray-500" />
+                <DollarSign className="mr-2 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="new-premium"
                   type="number"

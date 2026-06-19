@@ -184,7 +184,7 @@ export default function QQCatalystAdminPage() {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold">QQCatalyst Integration</h1>
-          <p className="text-gray-500">Manage your QQCatalyst integration and data synchronization</p>
+          <p className="text-muted-foreground">Manage your QQCatalyst integration and data synchronization</p>
         </div>
       </div>
 
@@ -205,7 +205,7 @@ export default function QQCatalystAdminPage() {
               {apiStatus === "success" ? "Connected" : apiStatus === "error" ? "Connection Error" : "Checking..."}
             </span>
           </div>
-          {apiMessage && <p className="mt-2 text-sm text-gray-600">{apiMessage}</p>}
+          {apiMessage && <p className="mt-2 text-sm text-muted-foreground">{apiMessage}</p>}
 
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="border rounded-md p-4">
@@ -222,7 +222,7 @@ export default function QQCatalystAdminPage() {
                 </Badge>
               </div>
               {tokenStatus === "valid" && (
-                <p className="mt-2 text-sm text-gray-600">Your API token is valid and working correctly.</p>
+                <p className="mt-2 text-sm text-muted-foreground">Your API token is valid and working correctly.</p>
               )}
               {tokenStatus === "invalid" && (
                 <p className="mt-2 text-sm text-red-600">
@@ -236,7 +236,7 @@ export default function QQCatalystAdminPage() {
                 <Database className="h-5 w-5 mr-2 text-blue-500" />
                 <span className="font-medium">Database Connection</span>
               </div>
-              <p className="mt-2 text-sm text-gray-600">Database is configured and ready to store QQCatalyst data.</p>
+              <p className="mt-2 text-sm text-muted-foreground">Database is configured and ready to store QQCatalyst data.</p>
             </div>
           </div>
         </CardContent>
@@ -252,10 +252,10 @@ export default function QQCatalystAdminPage() {
       )}
 
       {importStats && (
-        <Alert className="bg-green-50 border-green-200">
+        <Alert className="bg-green-500/10 border-border">
           <CheckCircle className="h-4 w-4 text-green-600" />
-          <AlertTitle className="text-green-800">Import Successful</AlertTitle>
-          <AlertDescription className="text-green-700">
+          <AlertTitle className="text-green-300">Import Successful</AlertTitle>
+          <AlertDescription className="text-green-400">
             Successfully imported {importStats.contacts} contacts and {importStats.renewals} renewals from QQCatalyst.
           </AlertDescription>
         </Alert>
@@ -317,17 +317,17 @@ export default function QQCatalystAdminPage() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="border rounded-md p-3">
                   <h4 className="font-medium text-sm">Contacts (2014-2025)</h4>
-                  <p className="text-xs text-gray-600 mt-1">LastModifiedCreated endpoint</p>
+                  <p className="text-xs text-muted-foreground mt-1">LastModifiedCreated endpoint</p>
                   <p className="text-xs text-blue-600 mt-1">Up to 500 per page</p>
                 </div>
                 <div className="border rounded-md p-3">
                   <h4 className="font-medium text-sm">Policies (2017-2025)</h4>
-                  <p className="text-xs text-gray-600 mt-1">LastModifiedCreated endpoint</p>
+                  <p className="text-xs text-muted-foreground mt-1">LastModifiedCreated endpoint</p>
                   <p className="text-xs text-blue-600 mt-1">Up to 500 per page</p>
                 </div>
                 <div className="border rounded-md p-3">
                   <h4 className="font-medium text-sm">Advanced Search</h4>
-                  <p className="text-xs text-gray-600 mt-1">PoliciesWithDates endpoint</p>
+                  <p className="text-xs text-muted-foreground mt-1">PoliciesWithDates endpoint</p>
                   <p className="text-xs text-blue-600 mt-1">Date range filtering</p>
                 </div>
               </div>
@@ -381,11 +381,11 @@ export default function QQCatalystAdminPage() {
                   <h3 className="font-medium mb-2">API Credentials</h3>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="border rounded-md p-3">
-                      <p className="text-sm font-medium text-gray-500">Client ID</p>
+                      <p className="text-sm font-medium text-muted-foreground">Client ID</p>
                       <p className="font-mono text-sm truncate">44c42186-c1b7-49ae-afd4-73d77527acc1</p>
                     </div>
                     <div className="border rounded-md p-3">
-                      <p className="text-sm font-medium text-gray-500">Client Secret</p>
+                      <p className="text-sm font-medium text-muted-foreground">Client Secret</p>
                       <p className="font-mono text-sm truncate">f3f28807-ed94-409c-9e99-6e69cbec5e3e</p>
                     </div>
                   </div>
@@ -407,11 +407,11 @@ export default function QQCatalystAdminPage() {
                   </div>
                   
                   {generatedToken ? (
-                    <div className="border border-green-200 bg-green-50 rounded-md p-4 space-y-3">
+                    <div className="border border-border bg-green-500/10 rounded-md p-4 space-y-3">
                       <div className="flex items-start justify-between">
                         <div className="flex-1 mr-4">
-                          <p className="text-sm font-medium text-green-900 mb-1">Fresh OAuth Token Generated</p>
-                          <div className="bg-white border border-green-200 rounded p-2 font-mono text-xs break-all">
+                          <p className="text-sm font-medium text-green-300 mb-1">Fresh OAuth Token Generated</p>
+                          <div className="bg-card border border-border rounded p-2 font-mono text-xs break-all">
                             {generatedToken}
                           </div>
                         </div>
@@ -420,13 +420,13 @@ export default function QQCatalystAdminPage() {
                           Copy
                         </Button>
                       </div>
-                      <p className="text-xs text-green-700">
+                      <p className="text-xs text-green-400">
                         ✓ This token is freshly generated using OAuth and ready to use
                       </p>
                     </div>
                   ) : (
-                    <div className="border rounded-md p-3 bg-gray-50">
-                      <p className="text-sm text-gray-600">
+                    <div className="border rounded-md p-3 bg-muted">
+                      <p className="text-sm text-muted-foreground">
                         Click "Generate Fresh Token" above to create a new OAuth access token for QQCatalyst API
                       </p>
                     </div>
@@ -453,7 +453,7 @@ export default function QQCatalystAdminPage() {
               <CardDescription>Recent synchronization activity</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="text-center py-8 text-gray-500">
+              <div className="text-center py-8 text-muted-foreground">
                 <p>No sync logs available yet.</p>
                 <p className="text-sm mt-2">Logs will appear here after you run a synchronization.</p>
               </div>

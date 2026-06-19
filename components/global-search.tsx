@@ -183,19 +183,19 @@ export function GlobalSearch({
   const getTypeBadgeColor = (type: string) => {
     switch (type) {
       case "submission":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-500/15 text-blue-300"
       case "renewal":
-        return "bg-orange-100 text-orange-800"
+        return "bg-orange-500/15 text-orange-300"
       case "client":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       case "call":
-        return "bg-purple-100 text-purple-800"
+        return "bg-purple-500/15 text-purple-300"
       case "carrier":
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
       case "user":
-        return "bg-indigo-100 text-indigo-800"
+        return "bg-indigo-500/15 text-indigo-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -210,7 +210,7 @@ export function GlobalSearch({
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => query.length >= 2 && setIsOpen(true)}
-          className="pl-10 pr-20 py-3 w-full bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder:text-white/60 focus:bg-white focus:text-gray-900 focus:placeholder:text-gray-500 transition-all duration-200 rounded-full"
+          className="pl-10 pr-20 py-3 w-full bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder:text-white/60 focus:bg-card focus:text-foreground focus:placeholder:text-muted-foreground transition-all duration-200 rounded-full"
         />
         <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center space-x-1">
           {query && (
@@ -240,26 +240,26 @@ export function GlobalSearch({
       </form>
 
       {isOpen && (query.length >= 2 || results.length > 0) && (
-        <Card className="absolute top-full left-0 right-0 mt-2 z-50 max-h-96 overflow-y-auto shadow-2xl border-0 bg-white/95 backdrop-blur-lg">
+        <Card className="absolute top-full left-0 right-0 mt-2 z-50 max-h-96 overflow-y-auto shadow-2xl border-0 bg-card backdrop-blur-lg">
           <CardContent className="p-0">
             {isLoading && query.length >= 2 ? (
-              <div className="p-4 text-center text-gray-500">
+              <div className="p-4 text-center text-muted-foreground">
                 <Loader2 className="h-6 w-6 animate-spin mx-auto mb-2" />
                 Searching...
               </div>
             ) : results.length === 0 && query.length >= 2 ? (
-              <div className="p-4 text-center text-gray-500">
+              <div className="p-4 text-center text-muted-foreground">
                 No results found for "{query}"
                 <div className="text-xs mt-1">Try searching for client names, policy numbers, or email addresses</div>
               </div>
             ) : (
-              <div className="divide-y divide-gray-100">
+              <div className="divide-y divide-border">
                 {results.map((result, index) => (
                   <div
                     key={`${result.type}-${result.id}`}
                     className={cn(
                       "p-4 cursor-pointer transition-colors duration-150",
-                      selectedIndex === index ? "bg-blue-50 border-l-4 border-blue-500" : "hover:bg-gray-50",
+                      selectedIndex === index ? "bg-blue-500/10 border-l-4 border-blue-500" : "hover:bg-muted",
                     )}
                     onClick={() => handleResultClick(result)}
                   >
@@ -269,13 +269,13 @@ export function GlobalSearch({
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center space-x-2 mb-1">
-                          <h4 className="text-sm font-semibold text-gray-900 truncate">{result.title}</h4>
+                          <h4 className="text-sm font-semibold text-foreground truncate">{result.title}</h4>
                           <Badge variant="secondary" className={cn("text-xs", getTypeBadgeColor(result.type))}>
                             {result.type}
                           </Badge>
                         </div>
-                        <p className="text-sm text-gray-600 mb-1">{result.subtitle}</p>
-                        <p className="text-xs text-gray-500 truncate">{result.description}</p>
+                        <p className="text-sm text-muted-foreground mb-1">{result.subtitle}</p>
+                        <p className="text-xs text-muted-foreground truncate">{result.description}</p>
                       </div>
                     </div>
                   </div>
@@ -284,7 +284,7 @@ export function GlobalSearch({
             )}
 
             {query.length < 2 && (
-              <div className="p-4 text-center text-gray-500">
+              <div className="p-4 text-center text-muted-foreground">
                 <div className="text-sm mb-2">Quick search tips:</div>
                 <div className="text-xs space-y-1">
                   <div>• Search by client name, policy number, email, or phone</div>

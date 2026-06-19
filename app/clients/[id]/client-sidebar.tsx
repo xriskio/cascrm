@@ -69,7 +69,7 @@ export function ClientSidebar({ client }: ClientSidebarProps) {
 
   return (
     <div
-      className={cn("bg-white border-r h-full flex flex-col transition-all duration-300", collapsed ? "w-16" : "w-64")}
+      className={cn("bg-card border-r h-full flex flex-col transition-all duration-300", collapsed ? "w-16" : "w-64")}
     >
       <div className={cn("border-b flex items-center", collapsed ? "justify-center p-2" : "p-4")}>
         {!collapsed ? (
@@ -78,8 +78,8 @@ export function ClientSidebar({ client }: ClientSidebarProps) {
               <AvatarFallback className="bg-blue-500 text-white">{getInitials(client.name)}</AvatarFallback>
             </Avatar>
             <div>
-              <h2 className="font-semibold text-gray-900">{client.name}</h2>
-              <p className="text-sm text-gray-500">{client.business_name}</p>
+              <h2 className="font-semibold text-foreground">{client.name}</h2>
+              <p className="text-sm text-muted-foreground">{client.business_name}</p>
             </div>
           </div>
         ) : (
@@ -100,8 +100,8 @@ export function ClientSidebar({ client }: ClientSidebarProps) {
                     className={cn(
                       "flex items-center justify-center py-3 text-sm",
                       isActive
-                        ? "bg-blue-50 text-blue-600 font-medium border-l-4 border-blue-600"
-                        : "text-gray-700 hover:bg-gray-50",
+                        ? "bg-blue-500/10 text-blue-600 font-medium border-l-4 border-blue-600"
+                        : "text-muted-foreground hover:bg-muted",
                     )}
                   >
                     <item.icon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
@@ -116,15 +116,15 @@ export function ClientSidebar({ client }: ClientSidebarProps) {
                 className={cn(
                   "flex items-center justify-between px-4 py-3 text-sm",
                   isActive
-                    ? "bg-blue-50 text-blue-600 font-medium border-l-4 border-blue-600"
-                    : "text-gray-700 hover:bg-gray-50",
+                    ? "bg-blue-500/10 text-blue-600 font-medium border-l-4 border-blue-600"
+                    : "text-muted-foreground hover:bg-muted",
                 )}
               >
                 <div className="flex items-center">
                   <item.icon className="mr-3 h-5 w-5 flex-shrink-0" aria-hidden="true" />
                   {item.name}
                 </div>
-                <ChevronRight className="h-4 w-4 text-gray-400" />
+                <ChevronRight className="h-4 w-4 text-muted-foreground" />
               </Link>
             )
           })}

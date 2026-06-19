@@ -127,15 +127,15 @@ export function AcordForms({ client }: AcordFormsProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div>
-                <h3 className="text-sm font-medium text-gray-500">Client Name</h3>
+                <h3 className="text-sm font-medium text-muted-foreground">Client Name</h3>
                 <p className="mt-1 text-base">{client.name}</p>
               </div>
               <div>
-                <h3 className="text-sm font-medium text-gray-500">Business Name</h3>
+                <h3 className="text-sm font-medium text-muted-foreground">Business Name</h3>
                 <p className="mt-1 text-base">{client.business_name || "N/A"}</p>
               </div>
               <div>
-                <h3 className="text-sm font-medium text-gray-500">Address</h3>
+                <h3 className="text-sm font-medium text-muted-foreground">Address</h3>
                 <p className="mt-1 text-base">
                   {client.street_address || "N/A"}
                   <br />
@@ -147,19 +147,19 @@ export function AcordForms({ client }: AcordFormsProps) {
             </div>
             <div className="space-y-4">
               <div>
-                <h3 className="text-sm font-medium text-gray-500">Policy Type</h3>
+                <h3 className="text-sm font-medium text-muted-foreground">Policy Type</h3>
                 <p className="mt-1 text-base">{client.policy_type || "N/A"}</p>
               </div>
               <div>
-                <h3 className="text-sm font-medium text-gray-500">Policy Number</h3>
+                <h3 className="text-sm font-medium text-muted-foreground">Policy Number</h3>
                 <p className="mt-1 text-base">{client.policy_number || "N/A"}</p>
               </div>
               <div>
-                <h3 className="text-sm font-medium text-gray-500">Carrier</h3>
+                <h3 className="text-sm font-medium text-muted-foreground">Carrier</h3>
                 <p className="mt-1 text-base">{client.carrier || "N/A"}</p>
               </div>
               <div>
-                <h3 className="text-sm font-medium text-gray-500">Policy Period</h3>
+                <h3 className="text-sm font-medium text-muted-foreground">Policy Period</h3>
                 <p className="mt-1 text-base">
                   {client.effective_date && client.expiration_date
                     ? `${formatDate(client.effective_date)} to ${formatDate(client.expiration_date)}`
@@ -211,7 +211,7 @@ export function AcordForms({ client }: AcordFormsProps) {
         <TabsContent value="generated" className="space-y-4 mt-6">
           {generatedForms.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-gray-500">No forms have been generated yet.</p>
+              <p className="text-muted-foreground">No forms have been generated yet.</p>
               <Button variant="outline" className="mt-4" onClick={() => setActiveTab("available")}>
                 Generate Forms
               </Button>
@@ -234,12 +234,12 @@ export function AcordForms({ client }: AcordFormsProps) {
                           {form.type}
                         </Badge>
                         {form.status === "complete" ? (
-                          <Badge variant={"success" as any} className="bg-green-100 text-green-800 border-green-200">
+                          <Badge variant={"success" as any} className="bg-green-500/15 text-green-300 border-border">
                             <CheckCircle className="h-3 w-3 mr-1" />
                             Complete
                           </Badge>
                         ) : (
-                          <Badge variant={"warning" as any} className="bg-yellow-100 text-yellow-800 border-yellow-200">
+                          <Badge variant={"warning" as any} className="bg-yellow-500/15 text-yellow-300 border-border">
                             <AlertCircle className="h-3 w-3 mr-1" />
                             Pending
                           </Badge>
@@ -248,7 +248,7 @@ export function AcordForms({ client }: AcordFormsProps) {
                     </div>
                   </CardHeader>
                   <CardContent className="pb-2">
-                    <div className="flex items-center text-sm text-gray-500">
+                    <div className="flex items-center text-sm text-muted-foreground">
                       <Clock className="h-4 w-4 mr-1" />
                       Generated on {formatDate(form.lastGenerated)}
                     </div>

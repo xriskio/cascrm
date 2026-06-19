@@ -113,7 +113,7 @@ export function ContactModal({ isOpen, onClose, client }: ContactModalProps) {
               <div className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="to">To</Label>
-                  <Input id="to" value={client.email || "No email on file"} disabled className="bg-gray-50" />
+                  <Input id="to" value={client.email || "No email on file"} disabled className="bg-muted" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="subject">Subject</Label>
@@ -154,7 +154,7 @@ export function ContactModal({ isOpen, onClose, client }: ContactModalProps) {
               <div className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="phone">To</Label>
-                  <Input id="phone" value={client.phone || "No phone on file"} disabled className="bg-gray-50" />
+                  <Input id="phone" value={client.phone || "No phone on file"} disabled className="bg-muted" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="sms-message">Message</Label>
@@ -167,7 +167,7 @@ export function ContactModal({ isOpen, onClose, client }: ContactModalProps) {
                     maxLength={160}
                     required
                   />
-                  <div className="text-xs text-gray-500 text-right">{message.length}/160 characters</div>
+                  <div className="text-xs text-muted-foreground text-right">{message.length}/160 characters</div>
                 </div>
               </div>
               <DialogFooter className="mt-4">
@@ -186,7 +186,7 @@ export function ContactModal({ isOpen, onClose, client }: ContactModalProps) {
             <div className="text-center p-6">
               <Phone className="h-16 w-16 mx-auto text-green-500 mb-4" />
               <h3 className="text-lg font-semibold mb-2">Call {client.name}</h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-muted-foreground mb-4">
                 {client.phone ? `Ready to call ${client.phone}` : "No phone number on file"}
               </p>
               <div className="space-y-2">

@@ -75,7 +75,7 @@ export function NotificationBell() {
                     key={notification.id}
                     className={cn(
                       "flex flex-col gap-1 p-3 transition-colors hover:bg-muted/50",
-                      !notification.is_read && "bg-blue-50",
+                      !notification.is_read && "bg-blue-500/10",
                     )}
                   >
                     <div className="flex items-start justify-between gap-2">

@@ -98,7 +98,7 @@ export default function TokenTestPage() {
                         {test.success ? "✅ Success" : "❌ Failed"} ({test.status})
                       </span>
                     </div>
-                    <div className="text-sm text-gray-600 mb-2">URL: {test.url}</div>
+                    <div className="text-sm text-muted-foreground mb-2">URL: {test.url}</div>
                     {test.tokenData && (
                       <div className="text-sm">
                         <strong>Token Type:</strong> {test.tokenData.token_type} <br />
@@ -109,7 +109,7 @@ export default function TokenTestPage() {
                     {test.response && (
                       <details className="mt-2">
                         <summary className="cursor-pointer text-sm text-blue-600">View Response</summary>
-                        <pre className="text-xs bg-gray-100 p-2 mt-2 overflow-auto">{test.response}</pre>
+                        <pre className="text-xs bg-muted p-2 mt-2 overflow-auto">{test.response}</pre>
                       </details>
                     )}
                   </div>
@@ -142,7 +142,7 @@ export default function TokenTestPage() {
                       {test.response && (
                         <details className="mt-2">
                           <summary className="cursor-pointer text-sm text-blue-600">View Response</summary>
-                          <pre className="text-xs bg-gray-100 p-2 mt-2 overflow-auto">{test.response}</pre>
+                          <pre className="text-xs bg-muted p-2 mt-2 overflow-auto">{test.response}</pre>
                         </details>
                       )}
                     </div>

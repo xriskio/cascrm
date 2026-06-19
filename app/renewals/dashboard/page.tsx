@@ -82,21 +82,21 @@ export default function RenewalDashboard() {
   const getStatusColor = (status: string) => {
     switch (status?.toLowerCase()) {
       case "pending":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-500/15 text-yellow-300"
       case "contacted":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-500/15 text-blue-300"
       case "quoted":
-        return "bg-purple-100 text-purple-800"
+        return "bg-purple-500/15 text-purple-300"
       case "bound":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       case "declined":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       case "non-renewed":
-        return "bg-orange-100 text-orange-800"
+        return "bg-orange-500/15 text-orange-300"
       case "lost":
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -154,9 +154,9 @@ export default function RenewalDashboard() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6">
+      <div className="bg-card text-foreground p-6">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold">Renewals Dashboard</h1>
@@ -175,7 +175,7 @@ export default function RenewalDashboard() {
               <UserPlus className="h-4 w-4 mr-2" />
               Bulk Actions
             </Button>
-            <Button className="bg-white text-blue-600 hover:bg-gray-100">
+            <Button className="bg-card text-blue-600 hover:bg-muted">
               <Plus className="h-4 w-4 mr-2" />
               New Renewal
             </Button>
@@ -186,12 +186,12 @@ export default function RenewalDashboard() {
       <div className="p-6 space-y-6">
         {/* Key Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Card className="bg-white border-l-4 border-l-blue-500">
+          <Card className="bg-card border-l-4 border-l-blue-500">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Total Renewals</p>
-                  <p className="text-3xl font-bold text-gray-900">{dashboardData.totalRenewals}</p>
+                  <p className="text-sm text-muted-foreground">Total Renewals</p>
+                  <p className="text-3xl font-bold text-foreground">{dashboardData.totalRenewals}</p>
                   <p className="text-sm text-blue-600 mt-1">📊 Click to view all renewals</p>
                 </div>
                 <FileText className="h-8 w-8 text-blue-500" />
@@ -199,12 +199,12 @@ export default function RenewalDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white border-l-4 border-l-orange-500">
+          <Card className="bg-card border-l-4 border-l-orange-500">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Upcoming Renewals</p>
-                  <p className="text-3xl font-bold text-gray-900">{dashboardData.upcomingRenewals}</p>
+                  <p className="text-sm text-muted-foreground">Upcoming Renewals</p>
+                  <p className="text-3xl font-bold text-foreground">{dashboardData.upcomingRenewals}</p>
                   <p className="text-sm text-orange-600 mt-1">📅 Next 90 days</p>
                 </div>
                 <Calendar className="h-8 w-8 text-orange-500" />
@@ -212,12 +212,12 @@ export default function RenewalDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white border-l-4 border-l-yellow-500">
+          <Card className="bg-card border-l-4 border-l-yellow-500">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Pending Quotes</p>
-                  <p className="text-3xl font-bold text-gray-900">{dashboardData.pendingQuotes}</p>
+                  <p className="text-sm text-muted-foreground">Pending Quotes</p>
+                  <p className="text-3xl font-bold text-foreground">{dashboardData.pendingQuotes}</p>
                   <p className="text-sm text-yellow-600 mt-1">⚠️ Require attention</p>
                 </div>
                 <Clock className="h-8 w-8 text-yellow-500" />
@@ -225,12 +225,12 @@ export default function RenewalDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white border-l-4 border-l-green-500">
+          <Card className="bg-card border-l-4 border-l-green-500">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Bound Policies</p>
-                  <p className="text-3xl font-bold text-gray-900">{dashboardData.boundRenewals}</p>
+                  <p className="text-sm text-muted-foreground">Bound Policies</p>
+                  <p className="text-3xl font-bold text-foreground">{dashboardData.boundRenewals}</p>
                   <p className="text-sm text-green-600 mt-1">💰 Total: $1,258,821.41</p>
                 </div>
                 <CheckCircle className="h-8 w-8 text-green-500" />
@@ -240,12 +240,12 @@ export default function RenewalDashboard() {
         </div>
 
         {/* Search and Filters */}
-        <Card className="bg-white">
+        <Card className="bg-card">
           <CardContent className="p-6">
             <div className="flex flex-col md:flex-row gap-4 mb-6">
               <div className="flex-1">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                   <Input
                     placeholder="Search renewals by name, policy number, or type..."
                     value={searchTerm}
@@ -273,11 +273,11 @@ export default function RenewalDashboard() {
             </div>
 
             {/* Tabs */}
-            <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg mb-6">
+            <div className="flex space-x-1 bg-muted p-1 rounded-lg mb-6">
               <button
                 onClick={() => setActiveTab("all")}
                 className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
-                  activeTab === "all" ? "bg-white text-blue-600 shadow-sm" : "text-gray-600 hover:text-gray-900"
+                  activeTab === "all" ? "bg-card text-blue-600 shadow-sm" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 All Renewals
@@ -285,7 +285,7 @@ export default function RenewalDashboard() {
               <button
                 onClick={() => setActiveTab("upcoming")}
                 className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
-                  activeTab === "upcoming" ? "bg-white text-blue-600 shadow-sm" : "text-gray-600 hover:text-gray-900"
+                  activeTab === "upcoming" ? "bg-card text-blue-600 shadow-sm" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 Upcoming
@@ -293,7 +293,7 @@ export default function RenewalDashboard() {
               <button
                 onClick={() => setActiveTab("pending")}
                 className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
-                  activeTab === "pending" ? "bg-white text-blue-600 shadow-sm" : "text-gray-600 hover:text-gray-900"
+                  activeTab === "pending" ? "bg-card text-blue-600 shadow-sm" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 Pending
@@ -301,7 +301,7 @@ export default function RenewalDashboard() {
               <button
                 onClick={() => setActiveTab("bound")}
                 className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
-                  activeTab === "bound" ? "bg-white text-blue-600 shadow-sm" : "text-gray-600 hover:text-gray-900"
+                  activeTab === "bound" ? "bg-card text-blue-600 shadow-sm" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 Bound
@@ -311,52 +311,52 @@ export default function RenewalDashboard() {
             {/* Renewals Table */}
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold text-gray-900">
+                <h3 className="text-lg font-semibold text-foreground">
                   All Renewals{" "}
-                  <span className="text-sm font-normal text-gray-500">{filteredRenewals.length} renewals</span>
+                  <span className="text-sm font-normal text-muted-foreground">{filteredRenewals.length} renewals</span>
                 </h3>
               </div>
 
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
-                    <tr className="border-b border-gray-200">
-                      <th className="text-left py-3 px-4 font-medium text-gray-600">CLIENT</th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-600">POLICY INFO</th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-600">EXPIRATION</th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-600">PREMIUM</th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-600">STATUS</th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-600">ACTIONS</th>
+                    <tr className="border-b border-border">
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">CLIENT</th>
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">POLICY INFO</th>
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">EXPIRATION</th>
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">PREMIUM</th>
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">STATUS</th>
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">ACTIONS</th>
                     </tr>
                   </thead>
                   <tbody>
                     {filteredRenewals.map((renewal) => (
-                      <tr key={renewal.id} className="border-b border-gray-100 hover:bg-gray-50">
+                      <tr key={renewal.id} className="border-b border-border hover:bg-muted">
                         <td className="py-4 px-4">
-                          <div className="font-medium text-gray-900">{renewal.client_name}</div>
+                          <div className="font-medium text-foreground">{renewal.client_name}</div>
                         </td>
                         <td className="py-4 px-4">
                           <div>
-                            <div className="font-medium text-gray-900">{renewal.policy_type}</div>
-                            <div className="text-sm text-gray-500">Policy #: {renewal.policy_number}</div>
+                            <div className="font-medium text-foreground">{renewal.policy_type}</div>
+                            <div className="text-sm text-muted-foreground">Policy #: {renewal.policy_number}</div>
                           </div>
                         </td>
                         <td className="py-4 px-4">
                           <div>
-                            <div className="font-medium text-gray-900">
+                            <div className="font-medium text-foreground">
                               {new Date(renewal.expiration_date).toLocaleDateString("en-US", {
                                 month: "short",
                                 day: "numeric",
                                 year: "numeric",
                               })}
                             </div>
-                            <div className="text-sm text-gray-500">
+                            <div className="text-sm text-muted-foreground">
                               Expired {Math.abs(getDaysUntilExpiration(renewal.expiration_date))} days ago
                             </div>
                           </div>
                         </td>
                         <td className="py-4 px-4">
-                          <div className="font-medium text-gray-900">
+                          <div className="font-medium text-foreground">
                             ${renewal.policy_premium?.toLocaleString("en-US", { minimumFractionDigits: 2 })}
                           </div>
                         </td>
@@ -376,7 +376,7 @@ export default function RenewalDashboard() {
                             <Button
                               size="sm"
                               variant="outline"
-                              className="text-blue-600 border-blue-200 hover:bg-blue-50"
+                              className="text-blue-600 border-border hover:bg-blue-500/10"
                             >
                               View
                             </Button>
@@ -386,11 +386,11 @@ export default function RenewalDashboard() {
                             <Button
                               size="sm"
                               variant="outline"
-                              className="text-orange-600 border-orange-200 hover:bg-orange-50"
+                              className="text-orange-600 border-border hover:bg-orange-500/10"
                             >
                               Archive
                             </Button>
-                            <Button size="sm" variant="outline" className="text-red-600 border-red-200 hover:bg-red-50">
+                            <Button size="sm" variant="outline" className="text-red-600 border-border hover:bg-red-500/10">
                               Delete
                             </Button>
                           </div>

@@ -174,7 +174,7 @@ END:VCALENDAR`
       <CardContent>
         {hasFollowUpDate ? (
           <div className="space-y-4">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-muted-foreground">
               Add the follow-up date (
               {new Date(renewal.next_follow_up_date || renewal.expiration_date).toLocaleDateString()}) to your calendar
               to stay on top of this renewal.
@@ -276,7 +276,7 @@ END:VCALENDAR`
             </div>
           </div>
         ) : (
-          <div className="text-center py-6 text-gray-500">
+          <div className="text-center py-6 text-muted-foreground">
             <p>No follow-up date set for this renewal.</p>
             <p className="text-sm mt-2">Set a follow-up date to enable calendar integration.</p>
           </div>

@@ -97,12 +97,12 @@ export function ConvertToPolicyButton({ submissionId, quoteNumber, status, onCon
       <CardContent className="space-y-4">
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
-            <span className="text-gray-600">Quote Number:</span>
+            <span className="text-muted-foreground">Quote Number:</span>
             <span className="font-mono">{quoteNumber}</span>
           </div>
           {isConverted && (
             <div className="flex justify-between text-sm">
-              <span className="text-gray-600">Policy Number:</span>
+              <span className="text-muted-foreground">Policy Number:</span>
               <span className="font-mono text-green-600">{convertToPolicyNumber(quoteNumber)}</span>
             </div>
           )}
@@ -140,7 +140,7 @@ export function ConvertToPolicyButton({ submissionId, quoteNumber, status, onCon
           </div>
         )}
 
-        <div className="text-xs text-gray-500 space-y-1">
+        <div className="text-xs text-muted-foreground space-y-1">
           <p>• Quote numbers start with Q (e.g., HOQ01-0000625)</p>
           <p>• Policy numbers start with I (e.g., HOI01-0000625)</p>
           <p>• Conversion creates a client record and policy</p>

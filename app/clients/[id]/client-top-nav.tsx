@@ -63,7 +63,7 @@ export function ClientTopNav({ client }: ClientTopNavProps) {
   ]
 
   return (
-    <div className="bg-white border-b shadow-sm">
+    <div className="bg-card border-b shadow-sm">
       {/* Client Header */}
       <div className="px-6 py-4 border-b">
         <div className="flex items-center space-x-3">
@@ -71,8 +71,8 @@ export function ClientTopNav({ client }: ClientTopNavProps) {
             <AvatarFallback className="bg-blue-500 text-white">{getInitials(client.name)}</AvatarFallback>
           </Avatar>
           <div>
-            <h1 className="text-xl font-semibold text-gray-900">{client.name}</h1>
-            <p className="text-sm text-gray-500">{client.business_name}</p>
+            <h1 className="text-xl font-semibold text-foreground">{client.name}</h1>
+            <p className="text-sm text-muted-foreground">{client.business_name}</p>
           </div>
         </div>
       </div>
@@ -89,8 +89,8 @@ export function ClientTopNav({ client }: ClientTopNavProps) {
                 className={cn(
                   "flex items-center px-3 py-2 text-sm font-medium rounded-md whitespace-nowrap transition-colors",
                   isActive
-                    ? "bg-blue-100 text-blue-700 border border-blue-200"
-                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-100",
+                    ? "bg-blue-500/15 text-blue-400 border border-border"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted",
                 )}
               >
                 <item.icon className="mr-2 h-4 w-4 flex-shrink-0" aria-hidden="true" />

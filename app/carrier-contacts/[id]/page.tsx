@@ -136,18 +136,18 @@ export default function CarrierContactDetailPage() {
               <h2 className="text-lg font-semibold mb-4">Carrier Information</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
                 <div>
-                  <p className="text-sm text-gray-500">Insurance Carrier</p>
+                  <p className="text-sm text-muted-foreground">Insurance Carrier</p>
                   <p className="font-medium">{carrier.insurance_carrier}</p>
                 </div>
                 {carrier.producer_code && (
                   <div>
-                    <p className="text-sm text-gray-500">Producer Code</p>
+                    <p className="text-sm text-muted-foreground">Producer Code</p>
                     <p className="font-medium">{carrier.producer_code}</p>
                   </div>
                 )}
                 {carrier.website_link && (
                   <div>
-                    <p className="text-sm text-gray-500">Website</p>
+                    <p className="text-sm text-muted-foreground">Website</p>
                     <a
                       href={carrier.website_link}
                       target="_blank"
@@ -201,7 +201,7 @@ export default function CarrierContactDetailPage() {
                             <p className="font-medium">Lines of Business:</p>
                             <div className="flex flex-wrap gap-1 mt-1">
                               {underwriter.lines_of_business.map((line: string, lineIndex: number) => (
-                                <Badge key={lineIndex} variant="outline" className="bg-blue-50 text-blue-700">
+                                <Badge key={lineIndex} variant="outline" className="bg-blue-500/10 text-blue-400">
                                   {line}
                                 </Badge>
                               ))}

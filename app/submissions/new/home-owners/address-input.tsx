@@ -39,7 +39,7 @@ export function AddressInput({
           required={required}
           className="pr-10"
         />
-        <MapPin className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+        <MapPin className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
       </div>
 
       <div className="flex items-center gap-4">
@@ -52,14 +52,14 @@ export function AddressInput({
         <Card className="p-4">
           <div className="flex items-start gap-2">
             <AlertCircle className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-muted-foreground">
               <p className="font-medium mb-2">Please enter the complete property address including:</p>
               <ul className="list-disc list-inside space-y-1">
                 <li>Street number and name (e.g., 123 Main Street)</li>
                 <li>City, State, ZIP code (e.g., Anytown, CA 12345)</li>
                 <li>Any apartment or unit numbers (e.g., Apt 2B)</li>
               </ul>
-              <p className="mt-2 text-xs text-gray-500">Example: 123 Main Street, Apt 2B, Anytown, CA 12345</p>
+              <p className="mt-2 text-xs text-muted-foreground">Example: 123 Main Street, Apt 2B, Anytown, CA 12345</p>
             </div>
           </div>
         </Card>

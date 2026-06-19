@@ -216,8 +216,8 @@ export default function CallDetailPage({ params }: { params: { id: string } }) {
   if (!call) {
     return (
       <div className="text-center py-12">
-        <h2 className="text-2xl font-bold text-gray-700">Call Not Found</h2>
-        <p className="mt-2 text-gray-500">The call log entry you're looking for doesn't exist.</p>
+        <h2 className="text-2xl font-bold text-muted-foreground">Call Not Found</h2>
+        <p className="mt-2 text-muted-foreground">The call log entry you're looking for doesn't exist.</p>
         <Button asChild className="mt-4">
           <Link href="/call-log">Back to Call Log</Link>
         </Button>
@@ -363,12 +363,12 @@ export default function CallDetailPage({ params }: { params: { id: string } }) {
                           <Badge
                             className={`capitalize ${
                               option.value === "pending"
-                                ? "bg-yellow-100 text-yellow-800"
+                                ? "bg-yellow-500/15 text-yellow-300"
                                 : option.value === "called back"
-                                  ? "bg-green-100 text-green-800"
+                                  ? "bg-green-500/15 text-green-300"
                                   : option.value === "message left"
-                                    ? "bg-blue-100 text-blue-800"
-                                    : "bg-gray-100 text-gray-800"
+                                    ? "bg-blue-500/15 text-blue-300"
+                                    : "bg-muted text-foreground"
                             }`}
                           >
                             {option.label}
@@ -478,12 +478,12 @@ export default function CallDetailPage({ params }: { params: { id: string } }) {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            <div className="border-l-2 border-gray-200 pl-4 ml-2">
-              <div className="text-sm text-gray-500">
+            <div className="border-l-2 border-border pl-4 ml-2">
+              <div className="text-sm text-muted-foreground">
                 Created on {call.created_at ? format(parseISO(call.created_at), "PPpp") : "Unknown date"}
               </div>
               {call.updated_at && call.updated_at !== call.created_at && (
-                <div className="text-sm text-gray-500 mt-2">
+                <div className="text-sm text-muted-foreground mt-2">
                   Last updated on {format(parseISO(call.updated_at), "PPpp")}
                 </div>
               )}

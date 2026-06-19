@@ -228,21 +228,21 @@ export default function ContactsPage() {
   }
 
   const getStatusColor = (isProspect?: boolean) => {
-    return isProspect ? "bg-yellow-100 text-yellow-800" : "bg-green-100 text-green-800"
+    return isProspect ? "bg-yellow-500/15 text-yellow-300" : "bg-green-500/15 text-green-300"
   }
 
   const getPriorityColor = (priority?: string) => {
-    if (!priority) return "bg-gray-100 text-gray-800"
+    if (!priority) return "bg-muted text-foreground"
 
     switch (priority.toLowerCase()) {
       case "high":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       case "medium":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-500/15 text-yellow-300"
       case "low":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -268,7 +268,7 @@ export default function ContactsPage() {
               <Badge className={getStatusColor(contact.prospect)} variant="outline">
                 {contact.prospect ? "Prospect" : "Customer"}
               </Badge>
-              <Badge className="bg-blue-100 text-blue-800" variant="outline">
+              <Badge className="bg-blue-500/15 text-blue-300" variant="outline">
                 {contact.is_person ? "Individual" : "Business"}
               </Badge>
               {contact.customer_priority && (
@@ -276,7 +276,7 @@ export default function ContactsPage() {
                   {contact.customer_priority}
                 </Badge>
               )}
-              {contact.customer_no && <span className="text-xs text-gray-500">#{contact.customer_no}</span>}
+              {contact.customer_no && <span className="text-xs text-muted-foreground">#{contact.customer_no}</span>}
             </div>
           </div>
           <DropdownMenu>
@@ -305,50 +305,50 @@ export default function ContactsPage() {
       <CardContent className="pt-0">
         <div className="space-y-2">
           {contact.email && (
-            <div className="flex items-center text-sm text-gray-600">
+            <div className="flex items-center text-sm text-muted-foreground">
               <Mail className="h-3 w-3 mr-2" />
               {contact.email}
             </div>
           )}
           {contact.phone && (
-            <div className="flex items-center text-sm text-gray-600">
+            <div className="flex items-center text-sm text-muted-foreground">
               <Phone className="h-3 w-3 mr-2" />
               {contact.phone}
             </div>
           )}
           {(contact.city || contact.state) && (
-            <div className="flex items-center text-sm text-gray-600">
+            <div className="flex items-center text-sm text-muted-foreground">
               <MapPin className="h-3 w-3 mr-2" />
               {[contact.city, contact.state].filter(Boolean).join(", ")}
             </div>
           )}
         </div>
 
-        <div className="mt-4 pt-3 border-t border-gray-100">
-          <h4 className="text-xs font-medium text-gray-500 mb-2">Account Information</h4>
+        <div className="mt-4 pt-3 border-t border-border">
+          <h4 className="text-xs font-medium text-muted-foreground mb-2">Account Information</h4>
           <div className="grid grid-cols-2 gap-2">
             {contact.agent_name && (
               <div className="flex items-center text-xs">
                 <User className="h-3 w-3 mr-1 text-blue-500" />
-                <span className="text-gray-600">Agent: {contact.agent_name}</span>
+                <span className="text-muted-foreground">Agent: {contact.agent_name}</span>
               </div>
             )}
             {contact.csr_name && (
               <div className="flex items-center text-xs">
                 <Shield className="h-3 w-3 mr-1 text-green-500" />
-                <span className="text-gray-600">CSR: {contact.csr_name}</span>
+                <span className="text-muted-foreground">CSR: {contact.csr_name}</span>
               </div>
             )}
             {contact.customer_since && (
               <div className="flex items-center text-xs">
                 <Clock className="h-3 w-3 mr-1 text-purple-500" />
-                <span className="text-gray-600">Since: {formatDate(contact.customer_since)}</span>
+                <span className="text-muted-foreground">Since: {formatDate(contact.customer_since)}</span>
               </div>
             )}
             {contact.type && (
               <div className="flex items-center text-xs">
                 <Tag className="h-3 w-3 mr-1 text-orange-500" />
-                <span className="text-gray-600">Type: {contact.type}</span>
+                <span className="text-muted-foreground">Type: {contact.type}</span>
               </div>
             )}
           </div>
@@ -356,7 +356,7 @@ export default function ContactsPage() {
       </CardContent>
       <CardFooter className="pt-0">
         <div className="flex justify-between items-center w-full">
-          <span className="text-xs text-gray-500">
+          <span className="text-xs text-muted-foreground">
             Added {contact.created_at ? new Date(contact.created_at).toLocaleDateString() : "Unknown"}
           </span>
           <Button variant="outline" size="sm" asChild>
@@ -376,7 +376,7 @@ export default function ContactsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">QQCatalyst Contacts</h1>
-          <p className="text-gray-600">Imported contacts and customer data from QQCatalyst</p>
+          <p className="text-muted-foreground">Imported contacts and customer data from QQCatalyst</p>
         </div>
         <div className="flex items-center space-x-2">
           <Button variant="outline" size="sm" onClick={refreshContacts} disabled={refreshing}>
@@ -410,7 +410,7 @@ export default function ContactsPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{totalContacts}</div>
-            <p className="text-xs text-gray-600">From QQCatalyst</p>
+            <p className="text-xs text-muted-foreground">From QQCatalyst</p>
           </CardContent>
         </Card>
 
@@ -421,7 +421,7 @@ export default function ContactsPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{customers}</div>
-            <p className="text-xs text-gray-600">{prospects} prospects</p>
+            <p className="text-xs text-muted-foreground">{prospects} prospects</p>
           </CardContent>
         </Card>
 
@@ -432,7 +432,7 @@ export default function ContactsPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{businesses}</div>
-            <p className="text-xs text-gray-600">{individuals} individuals</p>
+            <p className="text-xs text-muted-foreground">{individuals} individuals</p>
           </CardContent>
         </Card>
 
@@ -443,7 +443,7 @@ export default function ContactsPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{totalContacts > 0 ? "Active" : "Empty"}</div>
-            <p className="text-xs text-gray-600">Data sync status</p>
+            <p className="text-xs text-muted-foreground">Data sync status</p>
           </CardContent>
         </Card>
       </div>
@@ -451,7 +451,7 @@ export default function ContactsPage() {
       {/* Search and Filters */}
       <div className="space-y-4">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
           <Input
             placeholder="Search by name, email, phone, customer number..."
             value={searchQuery}
@@ -519,7 +519,7 @@ export default function ContactsPage() {
           </TabsList>
 
           <div className="flex items-center space-x-2">
-            <span className="text-sm text-gray-600">
+            <span className="text-sm text-muted-foreground">
               Showing {sortedContacts.length} of {totalContacts} contacts
             </span>
             <Button variant="outline" size="sm">
@@ -532,13 +532,13 @@ export default function ContactsPage() {
         <TabsContent value="all" className="space-y-4">
           {loading ? (
             <div className="text-center py-12">
-              <div className="text-gray-500">Loading contacts...</div>
+              <div className="text-muted-foreground">Loading contacts...</div>
             </div>
           ) : sortedContacts.length === 0 ? (
             <div className="text-center py-12">
-              <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No Contacts Found</h3>
-              <p className="text-gray-600 mb-4">Import contact data from QQCatalyst to get started.</p>
+              <Users className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-foreground mb-2">No Contacts Found</h3>
+              <p className="text-muted-foreground mb-4">Import contact data from QQCatalyst to get started.</p>
               <Button asChild>
                 <Link href="/admin/qqcatalyst/sync">
                   <Upload className="h-4 w-4 mr-2" />

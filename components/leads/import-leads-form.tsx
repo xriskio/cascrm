@@ -130,17 +130,17 @@ export function ImportLeadsForm() {
           <div
             {...getRootProps()}
             className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
-              isDragActive ? "border-blue-500 bg-blue-50" : "border-gray-300 hover:border-gray-400"
+              isDragActive ? "border-blue-500 bg-blue-500/10" : "border-border hover:border-gray-400"
             }`}
           >
             <input {...getInputProps()} />
-            <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+            <Upload className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
             {isDragActive ? (
               <p className="text-blue-600">Drop the files here...</p>
             ) : (
               <div>
-                <p className="text-gray-600 mb-2">Drag & drop files here, or click to select files</p>
-                <p className="text-sm text-gray-500">Supports: CSV, Excel (.xlsx, .xls), PDF, Word (.docx)</p>
+                <p className="text-muted-foreground mb-2">Drag & drop files here, or click to select files</p>
+                <p className="text-sm text-muted-foreground">Supports: CSV, Excel (.xlsx, .xls), PDF, Word (.docx)</p>
               </div>
             )}
           </div>
@@ -150,12 +150,12 @@ export function ImportLeadsForm() {
             <div className="mt-4 space-y-2">
               <h4 className="font-medium">Selected Files:</h4>
               {files.map((file, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div key={index} className="flex items-center justify-between p-3 bg-muted rounded-lg">
                   <div className="flex items-center gap-3">
                     <span className="text-2xl">{getFileIcon(file)}</span>
                     <div>
                       <div className="font-medium">{file.name}</div>
-                      <div className="text-sm text-gray-500">{(file.size / 1024 / 1024).toFixed(2)} MB</div>
+                      <div className="text-sm text-muted-foreground">{(file.size / 1024 / 1024).toFixed(2)} MB</div>
                     </div>
                   </div>
                   <Badge variant="outline">{file.type || "Unknown"}</Badge>
@@ -187,14 +187,14 @@ export function ImportLeadsForm() {
           </CardHeader>
           <CardContent>
             <Progress value={progress} className="w-full" />
-            <p className="text-sm text-gray-600 mt-2">{progress}% complete</p>
+            <p className="text-sm text-muted-foreground mt-2">{progress}% complete</p>
           </CardContent>
         </Card>
       )}
 
       {/* Import Results */}
       {result && (
-        <Alert className={result.success ? "border-green-200 bg-green-50" : "border-red-200 bg-red-50"}>
+        <Alert className={result.success ? "border-border bg-green-500/10" : "border-border bg-red-500/10"}>
           {result.success ? (
             <CheckCircle className="h-4 w-4 text-green-600" />
           ) : (
@@ -203,11 +203,11 @@ export function ImportLeadsForm() {
           <AlertDescription>
             <div className="font-medium mb-2">{result.message}</div>
             {result.success && (
-              <div className="text-sm text-green-700">Successfully imported {result.imported} leads</div>
+              <div className="text-sm text-green-400">Successfully imported {result.imported} leads</div>
             )}
             {result.errors.length > 0 && (
               <div className="mt-2">
-                <div className="text-sm font-medium text-red-700 mb-1">Errors:</div>
+                <div className="text-sm font-medium text-red-400 mb-1">Errors:</div>
                 <ul className="text-sm text-red-600 list-disc list-inside">
                   {result.errors.map((error, index) => (
                     <li key={index}>{error}</li>

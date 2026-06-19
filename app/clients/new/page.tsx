@@ -525,16 +525,16 @@ export default function CreatePolicyPage() {
         return (
           <div className="space-y-6">
             <h2 className="text-xl font-semibold">{steps[currentStep].title}</h2>
-            <p className="text-gray-600">This section is under development.</p>
+            <p className="text-muted-foreground">This section is under development.</p>
           </div>
         )
     }
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-muted p-6">
       <div className="max-w-6xl mx-auto">
-        <div className="bg-white rounded-lg shadow-sm">
+        <div className="bg-card rounded-lg shadow-sm">
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b">
             <div className="flex items-center gap-4">
@@ -563,10 +563,10 @@ export default function CreatePolicyPage() {
 
           {/* Progress */}
           <div className="px-6 py-4 border-b">
-            <div className="flex items-center gap-2 text-sm text-gray-600">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <div className="flex items-center gap-1">
                 {Array.from({ length: 5 }, (_, i) => (
-                  <div key={i} className={`w-8 h-2 rounded ${i <= currentStep ? "bg-blue-500" : "bg-gray-200"}`} />
+                  <div key={i} className={`w-8 h-2 rounded ${i <= currentStep ? "bg-blue-500" : "bg-muted"}`} />
                 ))}
               </div>
               <span>{currentStep + 1}/5</span>
@@ -575,7 +575,7 @@ export default function CreatePolicyPage() {
 
           <div className="flex">
             {/* Sidebar */}
-            <div className="w-64 border-r bg-gray-50">
+            <div className="w-64 border-r bg-muted">
               <div className="p-4 space-y-2">
                 {steps.map((step, index) => (
                   <button
@@ -583,8 +583,8 @@ export default function CreatePolicyPage() {
                     onClick={() => setCurrentStep(index)}
                     className={`w-full text-left px-3 py-2 rounded text-sm ${
                       currentStep === index
-                        ? "bg-blue-100 text-blue-700 font-medium"
-                        : "text-gray-600 hover:bg-gray-100"
+                        ? "bg-blue-500/15 text-blue-400 font-medium"
+                        : "text-muted-foreground hover:bg-muted"
                     }`}
                   >
                     {step.title}

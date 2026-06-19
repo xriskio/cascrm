@@ -243,7 +243,7 @@ export default function ImportRenewalsPage() {
               )}
 
               {importResult && (
-                <Alert className={importResult.hitSafetyLimit ? "bg-yellow-50 border-yellow-500" : "bg-green-50 border-green-200"}>
+                <Alert className={importResult.hitSafetyLimit ? "bg-yellow-500/10 border-yellow-500" : "bg-green-500/10 border-border"}>
                   <AlertDescription>
                     {importResult.message || `Successfully imported ${importResult.imported} of ${importResult.total} renewals`}
                   </AlertDescription>
@@ -299,7 +299,7 @@ export default function ImportRenewalsPage() {
               )}
 
               {importResult && (
-                <Alert className="bg-green-50 border-green-200">
+                <Alert className="bg-green-500/10 border-border">
                   <AlertDescription>Successfully imported {importResult.imported} renewals from file</AlertDescription>
                 </Alert>
               )}

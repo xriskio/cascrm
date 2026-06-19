@@ -19,24 +19,24 @@ export default function ModernDetailsPage({ clientId, client }: ModernDetailsPag
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium">Name</label>
-            <p className="text-gray-900">{client.name}</p>
+            <p className="text-foreground">{client.name}</p>
           </div>
           {client.email && (
             <div>
               <label className="block text-sm font-medium">Email</label>
-              <p className="text-gray-900">{client.email}</p>
+              <p className="text-foreground">{client.email}</p>
             </div>
           )}
           {client.phone && (
             <div>
               <label className="block text-sm font-medium">Phone</label>
-              <p className="text-gray-900">{client.phone}</p>
+              <p className="text-foreground">{client.phone}</p>
             </div>
           )}
           {client.address && (
             <div>
               <label className="block text-sm font-medium">Address</label>
-              <p className="text-gray-900">{client.address}</p>
+              <p className="text-foreground">{client.address}</p>
             </div>
           )}
         </div>

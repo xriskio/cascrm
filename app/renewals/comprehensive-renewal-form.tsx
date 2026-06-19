@@ -761,7 +761,7 @@ export default function ComprehensiveRenewalForm() {
                       })
                     }
                   />
-                  <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                  <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                 </div>
               </div>
               <div>
@@ -779,7 +779,7 @@ export default function ComprehensiveRenewalForm() {
                       })
                     }
                   />
-                  <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                  <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                 </div>
               </div>
             </div>
@@ -819,7 +819,7 @@ export default function ComprehensiveRenewalForm() {
                       })
                     }
                   />
-                  <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                  <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                 </div>
               </div>
               <div>
@@ -954,7 +954,7 @@ export default function ComprehensiveRenewalForm() {
                         })
                       }
                     />
-                    <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                    <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                   </div>
                 </div>
                 <div>
@@ -972,7 +972,7 @@ export default function ComprehensiveRenewalForm() {
                         })
                       }
                     />
-                    <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                    <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                   </div>
                 </div>
                 <div>
@@ -990,7 +990,7 @@ export default function ComprehensiveRenewalForm() {
                         })
                       }
                     />
-                    <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                    <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                   </div>
                 </div>
               </div>
@@ -1181,7 +1181,7 @@ export default function ComprehensiveRenewalForm() {
                         })
                       }
                     />
-                    <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                    <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                   </div>
                 </div>
                 <div>
@@ -1199,7 +1199,7 @@ export default function ComprehensiveRenewalForm() {
                         })
                       }
                     />
-                    <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                    <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                   </div>
                 </div>
                 <div>
@@ -1217,7 +1217,7 @@ export default function ComprehensiveRenewalForm() {
                         })
                       }
                     />
-                    <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                    <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                   </div>
                 </div>
                 <div>
@@ -1235,7 +1235,7 @@ export default function ComprehensiveRenewalForm() {
                         })
                       }
                     />
-                    <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                    <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                   </div>
                 </div>
                 <div>
@@ -1253,7 +1253,7 @@ export default function ComprehensiveRenewalForm() {
                         })
                       }
                     />
-                    <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                    <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                   </div>
                 </div>
                 <div>
@@ -1271,7 +1271,7 @@ export default function ComprehensiveRenewalForm() {
                         })
                       }
                     />
-                    <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                    <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                   </div>
                 </div>
               </div>
@@ -1293,7 +1293,7 @@ export default function ComprehensiveRenewalForm() {
                         })
                       }
                     />
-                    <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                    <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                   </div>
                 </div>
               </div>
@@ -1433,7 +1433,7 @@ export default function ComprehensiveRenewalForm() {
                       })
                     }
                   />
-                  <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                  <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                 </div>
               </div>
               <div>
@@ -1451,7 +1451,7 @@ export default function ComprehensiveRenewalForm() {
                       })
                     }
                   />
-                  <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                  <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                 </div>
               </div>
               <div>
@@ -1469,7 +1469,7 @@ export default function ComprehensiveRenewalForm() {
                       })
                     }
                   />
-                  <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                  <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                 </div>
               </div>
               <div>
@@ -1487,7 +1487,7 @@ export default function ComprehensiveRenewalForm() {
                       })
                     }
                   />
-                  <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                  <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                 </div>
               </div>
             </div>
@@ -1513,7 +1513,7 @@ export default function ComprehensiveRenewalForm() {
                       setAutoLiability({ ...autoLiability, otherLimit: Number.parseFloat(e.target.value) || 0 })
                     }
                   />
-                  <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                  <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                 </div>
               </div>
             </div>
@@ -1568,7 +1568,7 @@ export default function ComprehensiveRenewalForm() {
                       })
                     }
                   />
-                  <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                  <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                 </div>
               </div>
               <div>
@@ -1686,7 +1686,7 @@ export default function ComprehensiveRenewalForm() {
                         })
                       }
                     />
-                    <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                    <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                   </div>
                 </div>
                 <div>
@@ -1704,7 +1704,7 @@ export default function ComprehensiveRenewalForm() {
                         })
                       }
                     />
-                    <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                    <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                   </div>
                 </div>
                 <div>
@@ -1722,7 +1722,7 @@ export default function ComprehensiveRenewalForm() {
                         })
                       }
                     />
-                    <div className="bg-gray-100 px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
+                    <div className="bg-muted px-3 flex items-center border border-l-0 rounded-r-md">USD</div>
                   </div>
                 </div>
               </div>
@@ -2441,11 +2441,11 @@ export default function ComprehensiveRenewalForm() {
   return (
     <div className="container mx-auto p-6">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Create New Renewal</h1>
-        <p className="text-gray-600">Comprehensive renewal management with multiple policies</p>
+        <h1 className="text-3xl font-bold text-foreground">Create New Renewal</h1>
+        <p className="text-muted-foreground">Comprehensive renewal management with multiple policies</p>
       </div>
 
-      {error && <div className="bg-red-50 border border-red-200 text-red-800 rounded-md p-4 mb-6">{error}</div>}
+      {error && <div className="bg-red-500/10 border border-border text-red-300 rounded-md p-4 mb-6">{error}</div>}
 
       <form onSubmit={handleSubmit}>
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
@@ -2546,7 +2546,7 @@ export default function ComprehensiveRenewalForm() {
                     <Label htmlFor="customerSearch">Search for customer</Label>
                     <div className="relative">
                       <Input id="customerSearch" placeholder="Search..." />
-                      <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     </div>
                   </div>
                 </div>
@@ -2814,7 +2814,7 @@ export default function ComprehensiveRenewalForm() {
               </Button>
 
               {policies.length > 0 && (
-                <Card className="bg-blue-50 border-blue-200">
+                <Card className="bg-blue-500/10 border-border">
                   <CardContent className="p-4">
                     <div className="flex justify-between items-center">
                       <span className="font-semibold">Total Premium:</span>

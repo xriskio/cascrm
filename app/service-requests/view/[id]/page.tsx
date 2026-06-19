@@ -58,15 +58,15 @@ export default function ServiceRequestViewPage({ params }: { params: { id: strin
   const getStatusBadgeClass = (status: string) => {
     switch (status) {
       case "pending":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-500/15 text-yellow-300"
       case "in_progress":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-500/15 text-blue-300"
       case "completed":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       case "cancelled":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -100,7 +100,7 @@ export default function ServiceRequestViewPage({ params }: { params: { id: strin
       <div className="p-6">
         <div className="flex justify-center items-center h-64">
           <Loader2 className="h-8 w-8 animate-spin text-orange-500" />
-          <p className="ml-2 text-gray-500">Loading service request...</p>
+          <p className="ml-2 text-muted-foreground">Loading service request...</p>
         </div>
       </div>
     )
@@ -110,16 +110,16 @@ export default function ServiceRequestViewPage({ params }: { params: { id: strin
     return (
       <div className="p-6">
         <div className="mb-6">
-          <Link href="/service-requests" className="inline-flex items-center text-orange-500 hover:text-orange-700">
+          <Link href="/service-requests" className="inline-flex items-center text-orange-500 hover:text-orange-400">
             <ArrowLeft className="h-4 w-4 mr-1" />
             Back to Service Requests
           </Link>
         </div>
-        <Card className="bg-red-50 border-red-200">
+        <Card className="bg-red-500/10 border-border">
           <CardContent className="pt-6">
             <div className="flex items-center">
               <AlertTriangle className="h-5 w-5 text-red-500 mr-2" />
-              <p className="text-red-700">{error}</p>
+              <p className="text-red-400">{error}</p>
             </div>
           </CardContent>
         </Card>
@@ -131,14 +131,14 @@ export default function ServiceRequestViewPage({ params }: { params: { id: strin
     return (
       <div className="p-6">
         <div className="mb-6">
-          <Link href="/service-requests" className="inline-flex items-center text-orange-500 hover:text-orange-700">
+          <Link href="/service-requests" className="inline-flex items-center text-orange-500 hover:text-orange-400">
             <ArrowLeft className="h-4 w-4 mr-1" />
             Back to Service Requests
           </Link>
         </div>
         <Card>
           <CardContent className="pt-6">
-            <p className="text-gray-500">Service request not found.</p>
+            <p className="text-muted-foreground">Service request not found.</p>
           </CardContent>
         </Card>
       </div>
@@ -148,7 +148,7 @@ export default function ServiceRequestViewPage({ params }: { params: { id: strin
   return (
     <div className="p-6">
       <div className="mb-6">
-        <Link href="/service-requests" className="inline-flex items-center text-orange-500 hover:text-orange-700">
+        <Link href="/service-requests" className="inline-flex items-center text-orange-500 hover:text-orange-400">
           <ArrowLeft className="h-4 w-4 mr-1" />
           Back to Service Requests
         </Link>
@@ -179,22 +179,22 @@ export default function ServiceRequestViewPage({ params }: { params: { id: strin
                 <TabsContent value="details">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     <div>
-                      <h3 className="text-sm font-medium text-gray-500">Client</h3>
+                      <h3 className="text-sm font-medium text-muted-foreground">Client</h3>
                       <p className="mt-1 text-base">{request.clientName || "N/A"}</p>
                     </div>
                     <div>
-                      <h3 className="text-sm font-medium text-gray-500">Policy Number</h3>
+                      <h3 className="text-sm font-medium text-muted-foreground">Policy Number</h3>
                       <p className="mt-1 text-base">{request.policyNumber || "N/A"}</p>
                     </div>
                     <div>
-                      <h3 className="text-sm font-medium text-gray-500">Effective Date</h3>
+                      <h3 className="text-sm font-medium text-muted-foreground">Effective Date</h3>
                       <p className="mt-1 text-base flex items-center">
-                        <Calendar className="h-4 w-4 mr-1 text-gray-400" />
+                        <Calendar className="h-4 w-4 mr-1 text-muted-foreground" />
                         {formatDate(request.effectiveDate)}
                       </p>
                     </div>
                     <div>
-                      <h3 className="text-sm font-medium text-gray-500">Urgency</h3>
+                      <h3 className="text-sm font-medium text-muted-foreground">Urgency</h3>
                       <p className="mt-1 text-base">
                         {request.urgency === "high" ? (
                           <span className="text-red-600 font-medium">High</span>
@@ -208,8 +208,8 @@ export default function ServiceRequestViewPage({ params }: { params: { id: strin
                   </div>
 
                   <div className="mb-6">
-                    <h3 className="text-sm font-medium text-gray-500 mb-2">Description</h3>
-                    <div className="p-3 bg-gray-50 rounded-md">
+                    <h3 className="text-sm font-medium text-muted-foreground mb-2">Description</h3>
+                    <div className="p-3 bg-muted rounded-md">
                       <p className="text-base whitespace-pre-wrap">
                         {request.description || "No description provided."}
                       </p>
@@ -218,8 +218,8 @@ export default function ServiceRequestViewPage({ params }: { params: { id: strin
 
                   {request.specificData && (
                     <div className="mb-6">
-                      <h3 className="text-sm font-medium text-gray-500 mb-2">Additional Information</h3>
-                      <div className="p-3 bg-gray-50 rounded-md">
+                      <h3 className="text-sm font-medium text-muted-foreground mb-2">Additional Information</h3>
+                      <div className="p-3 bg-muted rounded-md">
                         <p className="text-base whitespace-pre-wrap">{request.specificData}</p>
                       </div>
                     </div>
@@ -230,11 +230,11 @@ export default function ServiceRequestViewPage({ params }: { params: { id: strin
                     <div className="flex">
                       <div className="mr-4 flex flex-col items-center">
                         <div className="h-4 w-4 rounded-full bg-green-500"></div>
-                        <div className="h-full w-0.5 bg-gray-200"></div>
+                        <div className="h-full w-0.5 bg-muted"></div>
                       </div>
                       <div className="pb-4">
                         <p className="text-sm font-medium">Request Created</p>
-                        <p className="text-xs text-gray-500 flex items-center mt-1">
+                        <p className="text-xs text-muted-foreground flex items-center mt-1">
                           <Clock className="h-3 w-3 mr-1" />
                           {new Date(request.createdAt).toLocaleString()}
                         </p>
@@ -245,11 +245,11 @@ export default function ServiceRequestViewPage({ params }: { params: { id: strin
                       <div className="flex">
                         <div className="mr-4 flex flex-col items-center">
                           <div className="h-4 w-4 rounded-full bg-blue-500"></div>
-                          <div className="h-full w-0.5 bg-gray-200"></div>
+                          <div className="h-full w-0.5 bg-muted"></div>
                         </div>
                         <div className="pb-4">
                           <p className="text-sm font-medium">Status Updated to In Progress</p>
-                          <p className="text-xs text-gray-500 flex items-center mt-1">
+                          <p className="text-xs text-muted-foreground flex items-center mt-1">
                             <Clock className="h-3 w-3 mr-1" />
                             {request.updatedAt ? new Date(request.updatedAt).toLocaleString() : "N/A"}
                           </p>
@@ -270,7 +270,7 @@ export default function ServiceRequestViewPage({ params }: { params: { id: strin
                           <p className="text-sm font-medium">
                             Request {request.status === "completed" ? "Completed" : "Cancelled"}
                           </p>
-                          <p className="text-xs text-gray-500 flex items-center mt-1">
+                          <p className="text-xs text-muted-foreground flex items-center mt-1">
                             <Clock className="h-3 w-3 mr-1" />
                             {request.updatedAt ? new Date(request.updatedAt).toLocaleString() : "N/A"}
                           </p>
@@ -333,7 +333,7 @@ export default function ServiceRequestViewPage({ params }: { params: { id: strin
               {(request.status === "pending" || request.status === "in_progress") && (
                 <Button
                   variant="outline"
-                  className="w-full border-red-200 text-red-600 hover:bg-red-50"
+                  className="w-full border-border text-red-600 hover:bg-red-500/10"
                   onClick={() => handleStatusUpdate("cancelled")}
                   disabled={updating}
                 >
@@ -373,24 +373,24 @@ export default function ServiceRequestViewPage({ params }: { params: { id: strin
               )}
             </CardContent>
             <CardFooter className="border-t pt-4 flex flex-col items-start">
-              <p className="text-sm text-gray-500 mb-2">Quick Links</p>
+              <p className="text-sm text-muted-foreground mb-2">Quick Links</p>
               <div className="space-y-2 w-full">
                 <Link
                   href={`/service-requests/edit/${params.id}`}
-                  className="text-sm text-blue-600 hover:text-blue-800 flex items-center"
+                  className="text-sm text-blue-600 hover:text-blue-300 flex items-center"
                 >
                   Edit Request Details
                 </Link>
                 <Link
                   href={`/clients?search=${encodeURIComponent(request.clientName || "")}`}
-                  className="text-sm text-blue-600 hover:text-blue-800 flex items-center"
+                  className="text-sm text-blue-600 hover:text-blue-300 flex items-center"
                 >
                   View Client Profile
                 </Link>
                 {request.policyNumber && (
                   <Link
                     href={`/policies?search=${encodeURIComponent(request.policyNumber)}`}
-                    className="text-sm text-blue-600 hover:text-blue-800 flex items-center"
+                    className="text-sm text-blue-600 hover:text-blue-300 flex items-center"
                   >
                     View Policy Details
                   </Link>

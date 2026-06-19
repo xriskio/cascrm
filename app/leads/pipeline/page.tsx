@@ -161,7 +161,7 @@ export default function LeadsPipelinePage() {
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading pipeline...</p>
+          <p className="text-muted-foreground">Loading pipeline...</p>
         </div>
       </div>
     )
@@ -170,7 +170,7 @@ export default function LeadsPipelinePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       {/* Header */}
-      <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200/50 sticky top-0 z-40">
+      <div className="bg-card backdrop-blur-sm border-b border-border/50 sticky top-0 z-40">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-6">
@@ -182,23 +182,23 @@ export default function LeadsPipelinePage() {
                   <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
                     AI Pipeline
                   </h1>
-                  <p className="text-sm text-gray-500">Intelligent lead management</p>
+                  <p className="text-sm text-muted-foreground">Intelligent lead management</p>
                 </div>
               </div>
 
               <Tabs value={activeTab} onValueChange={setActiveTab} className="ml-8">
-                <TabsList className="bg-gray-100/50 backdrop-blur-sm">
-                  <TabsTrigger value="pipeline" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">
+                <TabsList className="bg-muted/50 backdrop-blur-sm">
+                  <TabsTrigger value="pipeline" className="data-[state=active]:bg-card data-[state=active]:shadow-sm">
                     <Target className="w-4 h-4 mr-2" />
                     Pipeline
                   </TabsTrigger>
-                  <TabsTrigger value="leads" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">
+                  <TabsTrigger value="leads" className="data-[state=active]:bg-card data-[state=active]:shadow-sm">
                     <User className="w-4 h-4 mr-2" />
                     Leads
                   </TabsTrigger>
                   <TabsTrigger
                     value="opportunities"
-                    className="data-[state=active]:bg-white data-[state=active]:shadow-sm"
+                    className="data-[state=active]:bg-card data-[state=active]:shadow-sm"
                   >
                     <TrendingUp className="w-4 h-4 mr-2" />
                     Opportunities
@@ -211,7 +211,7 @@ export default function LeadsPipelinePage() {
               <Button
                 variant="outline"
                 onClick={() => setShowSmartCycle(true)}
-                className="bg-white/50 backdrop-blur-sm border-gray-200/50 hover:bg-white/80"
+                className="bg-card backdrop-blur-sm border-border/50 hover:bg-card"
               >
                 <Sparkles className="w-4 h-4 mr-2" />
                 Smart Cycle
@@ -225,7 +225,7 @@ export default function LeadsPipelinePage() {
                     <ChevronDown className="w-4 h-4 ml-2" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56 bg-white/95 backdrop-blur-sm">
+                <DropdownMenuContent align="end" className="w-56 bg-card backdrop-blur-sm">
                   <DropdownMenuItem onClick={() => setShowAddModal(true)}>
                     <User className="w-4 h-4 mr-2" />
                     Add a Lead
@@ -268,15 +268,15 @@ export default function LeadsPipelinePage() {
               </DropdownMenu>
 
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                 <Input
                   placeholder="⌘K to search"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 pr-16 w-80 bg-white/50 backdrop-blur-sm border-gray-200/50"
+                  className="pl-10 pr-16 w-80 bg-card backdrop-blur-sm border-border/50"
                 />
                 <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                  <kbd className="px-2 py-1 text-xs bg-gray-100 rounded border">⌘K</kbd>
+                  <kbd className="px-2 py-1 text-xs bg-muted rounded border">⌘K</kbd>
                 </div>
               </div>
             </div>
@@ -285,7 +285,7 @@ export default function LeadsPipelinePage() {
       </div>
 
       {/* Stats Bar */}
-      <div className="bg-white/60 backdrop-blur-sm border-b border-gray-200/30">
+      <div className="bg-card backdrop-blur-sm border-b border-border/30">
         <div className="container mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-8">
@@ -308,7 +308,7 @@ export default function LeadsPipelinePage() {
 
             <div className="flex items-center gap-4">
               <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-48 bg-white/50 backdrop-blur-sm border-gray-200/50">
+                <SelectTrigger className="w-48 bg-card backdrop-blur-sm border-border/50">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -324,12 +324,12 @@ export default function LeadsPipelinePage() {
 
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" size="sm" className="bg-white/50 backdrop-blur-sm border-gray-200/50">
+                  <Button variant="outline" size="sm" className="bg-card backdrop-blur-sm border-border/50">
                     Actions
                     <ChevronDown className="w-4 h-4 ml-2" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="bg-white/95 backdrop-blur-sm">
+                <DropdownMenuContent align="end" className="bg-card backdrop-blur-sm">
                   <DropdownMenuItem>
                     <Upload className="w-4 h-4 mr-2" />
                     Import Leads
@@ -371,29 +371,29 @@ export default function LeadsPipelinePage() {
               return (
                 <div key={stage.id} className="flex flex-col">
                   {/* Stage Header */}
-                  <div className="bg-white/80 backdrop-blur-sm rounded-t-xl border border-gray-200/50 p-4 shadow-sm">
+                  <div className="bg-card backdrop-blur-sm rounded-t-xl border border-border/50 p-4 shadow-sm">
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
                         <div className={`w-3 h-3 rounded-full ${stage.color}`}></div>
-                        <h3 className="font-semibold text-gray-900">{stage.name}</h3>
+                        <h3 className="font-semibold text-foreground">{stage.name}</h3>
                       </div>
-                      <Badge variant="secondary" className="bg-gray-100/80 text-gray-700">
+                      <Badge variant="secondary" className="bg-muted/80 text-muted-foreground">
                         {stageLeads.length}
                       </Badge>
                     </div>
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-muted-foreground">
                       ${stageLeads.reduce((sum, lead) => sum + (lead.value || 0), 0).toLocaleString()}
                     </div>
                   </div>
 
                   {/* Stage Content */}
                   <div
-                    className={`flex-1 bg-white/40 backdrop-blur-sm rounded-b-xl border-x border-b border-gray-200/50 p-2 space-y-2 min-h-[400px] transition-colors`}
+                    className={`flex-1 bg-card backdrop-blur-sm rounded-b-xl border-x border-b border-border/50 p-2 space-y-2 min-h-[400px] transition-colors`}
                   >
                     {stageLeads.map((lead) => (
                       <div
                         key={lead.id}
-                        className={`bg-white rounded-lg border border-gray-200/50 p-3 shadow-sm hover:shadow-md transition-all cursor-pointer border-l-4 ${getPriorityColor(
+                        className={`bg-card rounded-lg border border-border/50 p-3 shadow-sm hover:shadow-md transition-all cursor-pointer border-l-4 ${getPriorityColor(
                           lead.priority,
                         )}`}
                         onClick={() => {
@@ -404,7 +404,7 @@ export default function LeadsPipelinePage() {
                         <div className="flex items-start justify-between mb-2">
                           <div className="flex items-center gap-2">
                             <span className="text-lg">{getLeadTypeIcon(lead.lead_type)}</span>
-                            <div className="text-xs font-medium text-gray-500">{lead.lead_id}</div>
+                            <div className="text-xs font-medium text-muted-foreground">{lead.lead_id}</div>
                           </div>
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
@@ -412,7 +412,7 @@ export default function LeadsPipelinePage() {
                                 <MoreVertical className="w-3 h-3" />
                               </Button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end" className="bg-white/95 backdrop-blur-sm">
+                            <DropdownMenuContent align="end" className="bg-card backdrop-blur-sm">
                               <DropdownMenuItem>
                                 <Phone className="w-4 h-4 mr-2" />
                                 Call
@@ -430,13 +430,13 @@ export default function LeadsPipelinePage() {
                         </div>
 
                         <div className="space-y-1">
-                          <div className="font-medium text-gray-900 text-sm truncate">{lead.contact_name}</div>
-                          <div className="text-xs text-gray-600 truncate">{lead.company_name}</div>
-                          <div className="text-xs text-gray-500 truncate">{lead.email}</div>
+                          <div className="font-medium text-foreground text-sm truncate">{lead.contact_name}</div>
+                          <div className="text-xs text-muted-foreground truncate">{lead.company_name}</div>
+                          <div className="text-xs text-muted-foreground truncate">{lead.email}</div>
                         </div>
 
-                        <div className="flex items-center justify-between mt-3 pt-2 border-t border-gray-100">
-                          <Badge variant="outline" className="text-xs px-2 py-0.5 bg-gray-50/80">
+                        <div className="flex items-center justify-between mt-3 pt-2 border-t border-border">
+                          <Badge variant="outline" className="text-xs px-2 py-0.5 bg-muted/80">
                             {lead.source}
                           </Badge>
                           {lead.value && (
@@ -446,8 +446,8 @@ export default function LeadsPipelinePage() {
 
                         {lead.assigned_to && (
                           <div className="flex items-center gap-1 mt-2">
-                            <User className="w-3 h-3 text-gray-400" />
-                            <div className="text-xs text-gray-500 truncate">{lead.assigned_to}</div>
+                            <User className="w-3 h-3 text-muted-foreground" />
+                            <div className="text-xs text-muted-foreground truncate">{lead.assigned_to}</div>
                           </div>
                         )}
                         <Button onClick={() => handleStatusChange(lead.id, "sold")}>Move to Sold</Button>
@@ -461,16 +461,16 @@ export default function LeadsPipelinePage() {
         </TabsContent>
 
         <TabsContent value="leads" className="mt-0">
-          <div className="bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200/50 p-6">
+          <div className="bg-card backdrop-blur-sm rounded-xl border border-border/50 p-6">
             <h2 className="text-xl font-semibold mb-4">All Leads</h2>
-            <p className="text-gray-600">Lead list view will be implemented here.</p>
+            <p className="text-muted-foreground">Lead list view will be implemented here.</p>
           </div>
         </TabsContent>
 
         <TabsContent value="opportunities" className="mt-0">
-          <div className="bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200/50 p-6">
+          <div className="bg-card backdrop-blur-sm rounded-xl border border-border/50 p-6">
             <h2 className="text-xl font-semibold mb-4">Opportunities</h2>
-            <p className="text-gray-600">Opportunities view will be implemented here.</p>
+            <p className="text-muted-foreground">Opportunities view will be implemented here.</p>
           </div>
         </TabsContent>
       </div>

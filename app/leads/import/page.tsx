@@ -45,43 +45,43 @@ export default function ImportLeadsPage() {
           </Button>
         </Link>
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Import Leads</h1>
-          <p className="text-gray-600 mt-1">Import leads from various sources and formats</p>
+          <h1 className="text-3xl font-bold text-foreground">Import Leads</h1>
+          <p className="text-muted-foreground mt-1">Import leads from various sources and formats</p>
         </div>
       </div>
 
       {/* Import Methods */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card
-          className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 hover:shadow-lg transition-shadow cursor-pointer"
+          className="bg-card border-border hover:shadow-lg transition-shadow cursor-pointer"
           onClick={() => setShowPasteModal(true)}
         >
           <CardHeader className="text-center">
             <Copy className="w-12 h-12 text-blue-600 mx-auto mb-2" />
-            <CardTitle className="text-blue-900">Cut & Paste</CardTitle>
-            <CardDescription className="text-blue-700">Paste data directly from clipboard</CardDescription>
+            <CardTitle className="text-blue-300">Cut & Paste</CardTitle>
+            <CardDescription className="text-blue-400">Paste data directly from clipboard</CardDescription>
           </CardHeader>
           <CardContent className="text-center">
             <Button className="bg-blue-600 hover:bg-blue-700 text-white">Paste Data</Button>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-green-50 to-green-100 border-green-200 hover:shadow-lg transition-shadow">
+        <Card className="bg-card border-border hover:shadow-lg transition-shadow">
           <CardHeader className="text-center">
             <Upload className="w-12 h-12 text-green-600 mx-auto mb-2" />
-            <CardTitle className="text-green-900">File Upload</CardTitle>
-            <CardDescription className="text-green-700">Upload CSV, Excel, PDF, or Word files</CardDescription>
+            <CardTitle className="text-green-300">File Upload</CardTitle>
+            <CardDescription className="text-green-400">Upload CSV, Excel, PDF, or Word files</CardDescription>
           </CardHeader>
           <CardContent className="text-center">
             <Button className="bg-green-600 hover:bg-green-700 text-white">Upload Files</Button>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200 hover:shadow-lg transition-shadow cursor-pointer" onClick={downloadTemplate}>
+        <Card className="bg-card border-border hover:shadow-lg transition-shadow cursor-pointer" onClick={downloadTemplate}>
           <CardHeader className="text-center">
             <Download className="w-12 h-12 text-purple-600 mx-auto mb-2" />
-            <CardTitle className="text-purple-900">Download Template</CardTitle>
-            <CardDescription className="text-purple-700">Get CSV template for lead imports</CardDescription>
+            <CardTitle className="text-purple-300">Download Template</CardTitle>
+            <CardDescription className="text-purple-400">Get CSV template for lead imports</CardDescription>
           </CardHeader>
           <CardContent className="text-center">
             <Button className="bg-purple-600 hover:bg-purple-700 text-white" onClick={downloadTemplate}>Download Template</Button>
@@ -111,9 +111,9 @@ export default function ImportLeadsPage() {
 
             <TabsContent value="paste" className="mt-6">
               <div className="text-center py-8">
-                <Copy className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Paste Your Data</h3>
-                <p className="text-gray-600 mb-4">Click the button below to open the paste import dialog</p>
+                <Copy className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-foreground mb-2">Paste Your Data</h3>
+                <p className="text-muted-foreground mb-4">Click the button below to open the paste import dialog</p>
                 <Button onClick={() => setShowPasteModal(true)}>
                   <Copy className="w-4 h-4 mr-2" />
                   Open Paste Dialog
@@ -135,27 +135,27 @@ export default function ImportLeadsPage() {
             <div className="text-center p-4 border rounded-lg">
               <FileText className="w-8 h-8 text-blue-600 mx-auto mb-2" />
               <div className="font-medium">CSV</div>
-              <div className="text-sm text-gray-500">Comma-separated</div>
+              <div className="text-sm text-muted-foreground">Comma-separated</div>
             </div>
             <div className="text-center p-4 border rounded-lg">
               <FileText className="w-8 h-8 text-green-600 mx-auto mb-2" />
               <div className="font-medium">Excel</div>
-              <div className="text-sm text-gray-500">.xlsx, .xls</div>
+              <div className="text-sm text-muted-foreground">.xlsx, .xls</div>
             </div>
             <div className="text-center p-4 border rounded-lg">
               <FileText className="w-8 h-8 text-red-600 mx-auto mb-2" />
               <div className="font-medium">PDF</div>
-              <div className="text-sm text-gray-500">Text extraction</div>
+              <div className="text-sm text-muted-foreground">Text extraction</div>
             </div>
             <div className="text-center p-4 border rounded-lg">
               <FileText className="w-8 h-8 text-purple-600 mx-auto mb-2" />
               <div className="font-medium">Word</div>
-              <div className="text-sm text-gray-500">.docx</div>
+              <div className="text-sm text-muted-foreground">.docx</div>
             </div>
             <div className="text-center p-4 border rounded-lg">
               <Copy className="w-8 h-8 text-orange-600 mx-auto mb-2" />
               <div className="font-medium">Text</div>
-              <div className="text-sm text-gray-500">Copy & paste</div>
+              <div className="text-sm text-muted-foreground">Copy & paste</div>
             </div>
           </div>
         </CardContent>

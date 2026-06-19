@@ -89,8 +89,8 @@ export function ProfileForm({ user }: ProfileFormProps) {
           <h3 className="text-xl font-medium">
             {user.first_name} {user.last_name}
           </h3>
-          <p className="text-sm text-gray-500">{user.email}</p>
-          <p className="text-sm text-gray-500 capitalize">Role: {user.role}</p>
+          <p className="text-sm text-muted-foreground">{user.email}</p>
+          <p className="text-sm text-muted-foreground capitalize">Role: {user.role}</p>
         </div>
       </div>
 
@@ -130,7 +130,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
               <p className="text-sm font-medium">Email</p>
             </div>
             <Input value={user.email} disabled />
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-muted-foreground">
               Your email address is associated with your account and cannot be changed.
             </p>
           </div>

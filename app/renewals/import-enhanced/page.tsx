@@ -244,7 +244,7 @@ export default function RenewalsImportPage() {
           <div className="space-y-6">
             <div className="border-t pt-6">
               <h3 className="text-lg font-semibold mb-4">Field Mapping</h3>
-              <p className="text-sm text-gray-600 mb-4">
+              <p className="text-sm text-muted-foreground mb-4">
                 Map QQCatalyst API fields to your renewal database fields. Required fields are marked with *.
               </p>
 
@@ -253,11 +253,11 @@ export default function RenewalsImportPage() {
                   type="button"
                   variant="outline"
                   onClick={autoMapFields}
-                  className="text-blue-600 border-blue-200 hover:bg-blue-50"
+                  className="text-blue-600 border-border hover:bg-blue-500/10"
                 >
                   Auto-Map Fields
                 </Button>
-                <span className="text-sm text-gray-500">
+                <span className="text-sm text-muted-foreground">
                   {Object.keys(fieldMappings).length} of {qqApiFields.length} fields mapped
                 </span>
               </div>
@@ -265,7 +265,7 @@ export default function RenewalsImportPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-96 overflow-y-auto border rounded-lg p-4">
                 {qqApiFields.map((qqField) => (
                   <div key={qqField} className="space-y-2">
-                    <Label className="text-sm font-medium text-gray-700">
+                    <Label className="text-sm font-medium text-muted-foreground">
                       QQ Field: <span className="font-mono text-blue-600">{qqField}</span>
                     </Label>
                     <Select
@@ -286,7 +286,7 @@ export default function RenewalsImportPage() {
                       </SelectContent>
                     </Select>
                     {sampleData[0] && sampleData[0][qqField] && (
-                      <div className="text-xs text-gray-500 bg-gray-50 p-2 rounded">
+                      <div className="text-xs text-muted-foreground bg-muted p-2 rounded">
                         Sample: {String(sampleData[0][qqField]).substring(0, 50)}
                         {String(sampleData[0][qqField]).length > 50 ? "..." : ""}
                       </div>
@@ -295,14 +295,14 @@ export default function RenewalsImportPage() {
                 ))}
               </div>
 
-              <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                <h4 className="font-medium text-blue-900 mb-2">Preview Sample Data</h4>
+              <div className="mt-6 p-4 bg-blue-500/10 rounded-lg">
+                <h4 className="font-medium text-blue-300 mb-2">Preview Sample Data</h4>
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-blue-200">
+                      <tr className="border-b border-border">
                         {qqApiFields.slice(0, 6).map((field) => (
-                          <th key={field} className="text-left py-2 px-2 text-blue-700">
+                          <th key={field} className="text-left py-2 px-2 text-blue-400">
                             {field}
                           </th>
                         ))}
@@ -310,9 +310,9 @@ export default function RenewalsImportPage() {
                     </thead>
                     <tbody>
                       {sampleData.slice(0, 3).map((row, index) => (
-                        <tr key={index} className="border-b border-blue-100">
+                        <tr key={index} className="border-b border-border">
                           {qqApiFields.slice(0, 6).map((field) => (
-                            <td key={field} className="py-2 px-2 text-gray-700">
+                            <td key={field} className="py-2 px-2 text-muted-foreground">
                               {String(row[field] || "").substring(0, 20)}
                               {String(row[field] || "").length > 20 ? "..." : ""}
                             </td>

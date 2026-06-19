@@ -911,7 +911,7 @@ export default function LessorsRiskOnlyForm() {
         <div className="overflow-x-auto">
           <table className="min-w-full border">
             <thead>
-              <tr className="bg-gray-100">
+              <tr className="bg-muted">
                 <th className="border p-2 text-left">Date</th>
                 <th className="border p-2 text-left">Description</th>
                 <th className="border p-2 text-left">Amount Paid</th>
@@ -962,7 +962,7 @@ export default function LessorsRiskOnlyForm() {
                   </select>
                 </td>
               </tr>
-              <tr className="bg-gray-50">
+              <tr className="bg-muted">
                 <td colSpan={2} className="border p-2 text-right font-medium">
                   Totals:
                 </td>
@@ -1476,7 +1476,7 @@ export default function LessorsRiskOnlyForm() {
         <div className="overflow-x-auto">
           <table className="min-w-full border">
             <thead>
-              <tr className="bg-gray-100">
+              <tr className="bg-muted">
                 <th className="border p-2 text-left">#</th>
                 <th className="border p-2 text-left">Loc</th>
                 <th className="border p-2 text-left">Bldg</th>
@@ -1527,7 +1527,7 @@ export default function LessorsRiskOnlyForm() {
         <button
           type="button"
           onClick={() => router.push("/submissions/new")}
-          className="bg-gray-300 text-gray-800 px-6 py-3 rounded hover:bg-gray-400"
+          className="bg-muted text-foreground px-6 py-3 rounded hover:bg-gray-400"
         >
           Back
         </button>

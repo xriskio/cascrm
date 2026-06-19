@@ -166,8 +166,8 @@ export default function PolicySyncPage() {
             <div
               className={`p-3 rounded-md ${
                 message.includes("Error") || message.includes("Failed")
-                  ? "bg-red-50 text-red-700 border border-red-200"
-                  : "bg-green-50 text-green-700 border border-green-200"
+                  ? "bg-red-500/10 text-red-400 border border-border"
+                  : "bg-green-500/10 text-green-400 border border-border"
               }`}
             >
               {message}
@@ -175,22 +175,22 @@ export default function PolicySyncPage() {
           )}
 
           {syncStats && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-blue-50 rounded-lg">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-blue-500/10 rounded-lg">
               <div className="text-center">
                 <div className="text-2xl font-bold text-green-600">{syncStats.imported}</div>
-                <div className="text-sm text-gray-600">Imported</div>
+                <div className="text-sm text-muted-foreground">Imported</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-blue-600">{syncStats.updated}</div>
-                <div className="text-sm text-gray-600">Updated</div>
+                <div className="text-sm text-muted-foreground">Updated</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-red-600">{syncStats.errors}</div>
-                <div className="text-sm text-gray-600">Errors</div>
+                <div className="text-sm text-muted-foreground">Errors</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-gray-600">{syncStats.totalFetched || syncStats.total}</div>
-                <div className="text-sm text-gray-600">Total</div>
+                <div className="text-2xl font-bold text-muted-foreground">{syncStats.totalFetched || syncStats.total}</div>
+                <div className="text-sm text-muted-foreground">Total</div>
               </div>
             </div>
           )}
@@ -216,7 +216,7 @@ export default function PolicySyncPage() {
                   <div className="flex justify-between items-start mb-2">
                     <div>
                       <h3 className="font-semibold">{policy.PolicyNumber}</h3>
-                      <p className="text-sm text-gray-600">{policy.CustomerName}</p>
+                      <p className="text-sm text-muted-foreground">{policy.CustomerName}</p>
                     </div>
                     <div className="text-right">
                       <Badge variant={policy.IsDeleted ? "destructive" : "default"}>{policy.Status}</Badge>
@@ -237,13 +237,13 @@ export default function PolicySyncPage() {
                       <span className="font-medium">Premium:</span> ${policy.TotalPremium?.toFixed(2)}
                     </div>
                   </div>
-                  <div className="mt-2 text-xs text-gray-500">
+                  <div className="mt-2 text-xs text-muted-foreground">
                     Created: {policy.CreatedOn} | Modified: {policy.DateLastModified}
                   </div>
                 </div>
               ))}
               {previewData.data.length > 5 && (
-                <div className="text-center text-gray-500">... and {previewData.data.length - 5} more policies</div>
+                <div className="text-center text-muted-foreground">... and {previewData.data.length - 5} more policies</div>
               )}
             </div>
           </CardContent>

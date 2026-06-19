@@ -242,19 +242,19 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                     ? "bg-blue-600 border-blue-600 text-white"
                     : currentStep === step.id
                       ? "border-blue-600 text-blue-600"
-                      : "border-gray-300 text-gray-300"
+                      : "border-border text-gray-300"
                 }`}
               >
                 {currentStep > step.id ? <Check className="w-4 h-4" /> : <span>{step.id}</span>}
               </div>
               <span
-                className={`hidden md:block ml-2 text-sm ${currentStep >= step.id ? "text-blue-600" : "text-gray-400"}`}
+                className={`hidden md:block ml-2 text-sm ${currentStep >= step.id ? "text-blue-600" : "text-muted-foreground"}`}
               >
                 {step.name}
               </span>
               {index < steps.length - 1 && (
                 <div
-                  className={`hidden md:block w-12 h-0.5 mx-2 ${currentStep > step.id ? "bg-blue-600" : "bg-gray-300"}`}
+                  className={`hidden md:block w-12 h-0.5 mx-2 ${currentStep > step.id ? "bg-blue-600" : "bg-muted"}`}
                 ></div>
               )}
             </div>
@@ -262,16 +262,16 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-md">
+      <form onSubmit={handleSubmit} className="bg-card rounded-lg shadow-md">
         {/* Step 1: General Information */}
         {currentStep === 1 && (
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-2">General Information</h2>
-            <p className="text-gray-600 mb-6">Basic information about your business</p>
+            <p className="text-muted-foreground mb-6">Basic information about your business</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="companyName" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="companyName" className="block text-sm font-medium text-muted-foreground mb-1">
                   Company Name<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -279,19 +279,19 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   id="companyName"
                   name="companyName"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="dba" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="dba" className="block text-sm font-medium text-muted-foreground mb-1">
                   DBA (if applicable)
                 </label>
                 <input
                   type="text"
                   id="dba"
                   name="dba"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -300,7 +300,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="street1" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="street1" className="block text-sm font-medium text-muted-foreground mb-1">
                   Street 1<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -308,26 +308,26 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   id="street1"
                   name="street1"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="street2" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="street2" className="block text-sm font-medium text-muted-foreground mb-1">
                   Street 2
                 </label>
                 <input
                   type="text"
                   id="street2"
                   name="street2"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
               <div>
-                <label htmlFor="zipCode" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="zipCode" className="block text-sm font-medium text-muted-foreground mb-1">
                   ZIP Code<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -335,12 +335,12 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   id="zipCode"
                   name="zipCode"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="city" className="block text-sm font-medium text-muted-foreground mb-1">
                   City<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -348,19 +348,19 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   id="city"
                   name="city"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="state" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="state" className="block text-sm font-medium text-muted-foreground mb-1">
                   State<span className="text-red-500">*</span>
                 </label>
                 <select
                   id="state"
                   name="state"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="">Select...</option>
                   {US_STATES.map((state) => (
@@ -373,7 +373,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
             </div>
 
             <div className="mt-4">
-              <label htmlFor="county" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="county" className="block text-sm font-medium text-muted-foreground mb-1">
                 County<span className="text-red-500">*</span>
               </label>
               <input
@@ -381,7 +381,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                 id="county"
                 name="county"
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
@@ -389,7 +389,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <label htmlFor="officePhone" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="officePhone" className="block text-sm font-medium text-muted-foreground mb-1">
                   Office Phone<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -397,24 +397,24 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   id="officePhone"
                   name="officePhone"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="mobilePhone" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="mobilePhone" className="block text-sm font-medium text-muted-foreground mb-1">
                   Mobile Phone
                 </label>
                 <input
                   type="tel"
                   id="mobilePhone"
                   name="mobilePhone"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-1">
                   Email Address<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -422,7 +422,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   id="email"
                   name="email"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -455,11 +455,11 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
         {currentStep === 2 && (
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-2">Business Details</h2>
-            <p className="text-gray-600 mb-6">Information about your business operations</p>
+            <p className="text-muted-foreground mb-6">Information about your business operations</p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <label htmlFor="yearsInBusiness" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="yearsInBusiness" className="block text-sm font-medium text-muted-foreground mb-1">
                   Years in Business<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -468,45 +468,45 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   name="yearsInBusiness"
                   min="0"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="sicCode" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="sicCode" className="block text-sm font-medium text-muted-foreground mb-1">
                   SIC Code
                 </label>
                 <input
                   type="text"
                   id="sicCode"
                   name="sicCode"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="naicsCode" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="naicsCode" className="block text-sm font-medium text-muted-foreground mb-1">
                   NAICS Code
                 </label>
                 <input
                   type="text"
                   id="naicsCode"
                   name="naicsCode"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
               <div>
-                <label htmlFor="legalEntity" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="legalEntity" className="block text-sm font-medium text-muted-foreground mb-1">
                   Legal Entity<span className="text-red-500">*</span>
                 </label>
                 <select
                   id="legalEntity"
                   name="legalEntity"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="">Select...</option>
                   {legalEntityOptions.map((option) => (
@@ -518,7 +518,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
               </div>
 
               <div>
-                <label htmlFor="fein" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="fein" className="block text-sm font-medium text-muted-foreground mb-1">
                   FEIN (Federal Employer Identification Number)<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -526,25 +526,25 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   id="fein"
                   name="fein"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="bureauId" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="bureauId" className="block text-sm font-medium text-muted-foreground mb-1">
                   Bureau ID
                 </label>
                 <input
                   type="text"
                   id="bureauId"
                   name="bureauId"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
 
             <div className="mt-6">
-              <label htmlFor="website" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="website" className="block text-sm font-medium text-muted-foreground mb-1">
                 Website
               </label>
               <input
@@ -552,12 +552,12 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                 id="website"
                 name="website"
                 placeholder="https://example.com"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
             <div className="mt-6">
-              <label htmlFor="businessDescription" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="businessDescription" className="block text-sm font-medium text-muted-foreground mb-1">
                 Nature of Business / Description of Operations<span className="text-red-500">*</span>
               </label>
               <textarea
@@ -566,7 +566,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                 rows={4}
                 required
                 placeholder="Please be as detailed as possible"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               ></textarea>
             </div>
 
@@ -580,9 +580,9 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                     id={`natureOfBusiness_${option}`}
                     name="natureOfBusiness"
                     value={option}
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                   />
-                  <label htmlFor={`natureOfBusiness_${option}`} className="ml-2 block text-sm text-gray-700">
+                  <label htmlFor={`natureOfBusiness_${option}`} className="ml-2 block text-sm text-muted-foreground">
                     {option}
                   </label>
                 </div>
@@ -591,70 +591,70 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
 
             <h3 className="text-lg font-semibold mt-8 mb-4">Contact Information</h3>
 
-            <div className="border border-gray-200 rounded-md p-4 mb-6">
+            <div className="border border-border rounded-md p-4 mb-6">
               <h4 className="text-md font-medium mb-4">Inspection Contact</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
-                  <label htmlFor="inspectionName" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="inspectionName" className="block text-sm font-medium text-muted-foreground mb-1">
                     Name
                   </label>
                   <input
                     type="text"
                     id="inspectionName"
                     name="inspectionName"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
                 <div>
-                  <label htmlFor="inspectionPhone" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="inspectionPhone" className="block text-sm font-medium text-muted-foreground mb-1">
                     Phone
                   </label>
                   <input
                     type="tel"
                     id="inspectionPhone"
                     name="inspectionPhone"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <label htmlFor="inspectionExt" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="inspectionExt" className="block text-sm font-medium text-muted-foreground mb-1">
                     Ext.
                   </label>
                   <input
                     type="text"
                     id="inspectionExt"
                     name="inspectionExt"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
                 <div>
-                  <label htmlFor="inspectionMobile" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="inspectionMobile" className="block text-sm font-medium text-muted-foreground mb-1">
                     Mobile Phone
                   </label>
                   <input
                     type="tel"
                     id="inspectionMobile"
                     name="inspectionMobile"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
                 <div>
-                  <label htmlFor="inspectionEmail" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="inspectionEmail" className="block text-sm font-medium text-muted-foreground mb-1">
                     Email
                   </label>
                   <input
                     type="email"
                     id="inspectionEmail"
                     name="inspectionEmail"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
               </div>
             </div>
 
-            <div className="border border-gray-200 rounded-md p-4 mb-6">
+            <div className="border border-border rounded-md p-4 mb-6">
               <div className="flex items-center justify-between mb-4">
                 <h4 className="text-md font-medium">Accounting Contact</h4>
                 <div className="flex items-center">
@@ -662,75 +662,75 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                     type="checkbox"
                     id="sameAsInspection"
                     name="sameAsInspection"
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                   />
-                  <label htmlFor="sameAsInspection" className="ml-2 block text-sm text-gray-700">
+                  <label htmlFor="sameAsInspection" className="ml-2 block text-sm text-muted-foreground">
                     Same as Inspection
                   </label>
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
-                  <label htmlFor="accountingName" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="accountingName" className="block text-sm font-medium text-muted-foreground mb-1">
                     Name
                   </label>
                   <input
                     type="text"
                     id="accountingName"
                     name="accountingName"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
                 <div>
-                  <label htmlFor="accountingPhone" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="accountingPhone" className="block text-sm font-medium text-muted-foreground mb-1">
                     Phone
                   </label>
                   <input
                     type="tel"
                     id="accountingPhone"
                     name="accountingPhone"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <label htmlFor="accountingExt" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="accountingExt" className="block text-sm font-medium text-muted-foreground mb-1">
                     Ext.
                   </label>
                   <input
                     type="text"
                     id="accountingExt"
                     name="accountingExt"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
                 <div>
-                  <label htmlFor="accountingMobile" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="accountingMobile" className="block text-sm font-medium text-muted-foreground mb-1">
                     Mobile Phone
                   </label>
                   <input
                     type="tel"
                     id="accountingMobile"
                     name="accountingMobile"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
                 <div>
-                  <label htmlFor="accountingEmail" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="accountingEmail" className="block text-sm font-medium text-muted-foreground mb-1">
                     Email
                   </label>
                   <input
                     type="email"
                     id="accountingEmail"
                     name="accountingEmail"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
               </div>
             </div>
 
-            <div className="border border-gray-200 rounded-md p-4 mb-6">
+            <div className="border border-border rounded-md p-4 mb-6">
               <div className="flex items-center justify-between mb-4">
                 <h4 className="text-md font-medium">Claims Contact</h4>
                 <div className="flex items-center">
@@ -738,83 +738,83 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                     type="checkbox"
                     id="claimsSameAsInspection"
                     name="claimsSameAsInspection"
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                   />
-                  <label htmlFor="claimsSameAsInspection" className="ml-2 block text-sm text-gray-700">
+                  <label htmlFor="claimsSameAsInspection" className="ml-2 block text-sm text-muted-foreground">
                     Same as Inspection
                   </label>
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
-                  <label htmlFor="claimsName" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="claimsName" className="block text-sm font-medium text-muted-foreground mb-1">
                     Name
                   </label>
                   <input
                     type="text"
                     id="claimsName"
                     name="claimsName"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
                 <div>
-                  <label htmlFor="claimsPhone" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="claimsPhone" className="block text-sm font-medium text-muted-foreground mb-1">
                     Phone
                   </label>
                   <input
                     type="tel"
                     id="claimsPhone"
                     name="claimsPhone"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <label htmlFor="claimsExt" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="claimsExt" className="block text-sm font-medium text-muted-foreground mb-1">
                     Ext.
                   </label>
                   <input
                     type="text"
                     id="claimsExt"
                     name="claimsExt"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
                 <div>
-                  <label htmlFor="claimsMobile" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="claimsMobile" className="block text-sm font-medium text-muted-foreground mb-1">
                     Mobile Phone
                   </label>
                   <input
                     type="tel"
                     id="claimsMobile"
                     name="claimsMobile"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
                 <div>
-                  <label htmlFor="claimsEmail" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="claimsEmail" className="block text-sm font-medium text-muted-foreground mb-1">
                     Email
                   </label>
                   <input
                     type="email"
                     id="claimsEmail"
                     name="claimsEmail"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
               </div>
             </div>
 
             <div className="mt-6">
-              <label htmlFor="remarks" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="remarks" className="block text-sm font-medium text-muted-foreground mb-1">
                 Remarks / Process Instructions
               </label>
               <textarea
                 id="remarks"
                 name="remarks"
                 rows={3}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Additional remarks or special instructions"
               ></textarea>
             </div>
@@ -825,7 +825,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
         {currentStep === 3 && (
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-2">Locations & Class Codes</h2>
-            <p className="text-gray-600 mb-6">Enter your business locations and applicable class codes</p>
+            <p className="text-muted-foreground mb-6">Enter your business locations and applicable class codes</p>
 
             <div className="mb-4">
               <div className="flex items-center">
@@ -833,23 +833,23 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   type="checkbox"
                   id="useMailingAddress"
                   name="useMailingAddress"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                 />
-                <label htmlFor="useMailingAddress" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="useMailingAddress" className="ml-2 block text-sm text-muted-foreground">
                   Set first location to Insured's mailing address
                 </label>
               </div>
             </div>
 
             {locations.map((location, locationIndex) => (
-              <div key={locationIndex} className="border border-gray-200 rounded-md p-4 mb-6">
+              <div key={locationIndex} className="border border-border rounded-md p-4 mb-6">
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-lg font-semibold">Location {locationIndex + 1}</h3>
                   {locationIndex > 0 && (
                     <button
                       type="button"
                       onClick={() => removeLocation(locationIndex)}
-                      className="text-red-500 hover:text-red-700"
+                      className="text-red-500 hover:text-red-400"
                     >
                       <Trash className="h-5 w-5" />
                     </button>
@@ -860,7 +860,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   <div>
                     <label
                       htmlFor={`location_${locationIndex}_street1`}
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-muted-foreground mb-1"
                     >
                       Street 1<span className="text-red-500">*</span>
                     </label>
@@ -871,13 +871,13 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       value={location.street1 || ""}
                       onChange={(e) => updateLocation(locationIndex, "street1", e.target.value)}
                       required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                   <div>
                     <label
                       htmlFor={`location_${locationIndex}_street2`}
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-muted-foreground mb-1"
                     >
                       Street 2
                     </label>
@@ -887,7 +887,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       name={`location_${locationIndex}_street2`}
                       value={location.street2 || ""}
                       onChange={(e) => updateLocation(locationIndex, "street2", e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                 </div>
@@ -896,7 +896,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   <div>
                     <label
                       htmlFor={`location_${locationIndex}_city`}
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-muted-foreground mb-1"
                     >
                       City<span className="text-red-500">*</span>
                     </label>
@@ -907,13 +907,13 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       value={location.city || ""}
                       onChange={(e) => updateLocation(locationIndex, "city", e.target.value)}
                       required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                   <div>
                     <label
                       htmlFor={`location_${locationIndex}_state`}
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-muted-foreground mb-1"
                     >
                       State<span className="text-red-500">*</span>
                     </label>
@@ -923,7 +923,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       value={location.state || ""}
                       onChange={(e) => updateLocation(locationIndex, "state", e.target.value)}
                       required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                       <option value="">Select...</option>
                       {US_STATES.map((state) => (
@@ -936,7 +936,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   <div>
                     <label
                       htmlFor={`location_${locationIndex}_zipCode`}
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-muted-foreground mb-1"
                     >
                       ZIP Code<span className="text-red-500">*</span>
                     </label>
@@ -947,7 +947,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       value={location.zipCode || ""}
                       onChange={(e) => updateLocation(locationIndex, "zipCode", e.target.value)}
                       required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                 </div>
@@ -955,14 +955,14 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                 <h4 className="text-md font-medium mb-4">Class Codes</h4>
 
                 {location.classCodes.map((classCode: any, classIndex: number) => (
-                  <div key={classIndex} className="border border-gray-100 rounded p-4 mb-4 bg-gray-50">
+                  <div key={classIndex} className="border border-border rounded p-4 mb-4 bg-muted">
                     <div className="flex justify-between items-center mb-4">
                       <h5 className="text-sm font-medium">Class Code {classIndex + 1}</h5>
                       {classIndex > 0 && (
                         <button
                           type="button"
                           onClick={() => removeClassCode(locationIndex, classIndex)}
-                          className="text-red-500 hover:text-red-700"
+                          className="text-red-500 hover:text-red-400"
                         >
                           <Trash className="h-4 w-4" />
                         </button>
@@ -973,7 +973,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       <div>
                         <label
                           htmlFor={`location_${locationIndex}_class_${classIndex}_code`}
-                          className="block text-sm font-medium text-gray-700 mb-1"
+                          className="block text-sm font-medium text-muted-foreground mb-1"
                         >
                           Class Code<span className="text-red-500">*</span>
                         </label>
@@ -984,13 +984,13 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                           value={classCode.code || ""}
                           onChange={(e) => updateClassCode(locationIndex, classIndex, "code", e.target.value)}
                           required
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
                       <div>
                         <label
                           htmlFor={`location_${locationIndex}_class_${classIndex}_description`}
-                          className="block text-sm font-medium text-gray-700 mb-1"
+                          className="block text-sm font-medium text-muted-foreground mb-1"
                         >
                           Description
                         </label>
@@ -1000,13 +1000,13 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                           name={`location_${locationIndex}_class_${classIndex}_description`}
                           value={classCode.description || ""}
                           onChange={(e) => updateClassCode(locationIndex, classIndex, "description", e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
                       <div>
                         <label
                           htmlFor={`location_${locationIndex}_class_${classIndex}_remuneration`}
-                          className="block text-sm font-medium text-gray-700 mb-1"
+                          className="block text-sm font-medium text-muted-foreground mb-1"
                         >
                           Estimated Annual Remuneration<span className="text-red-500">*</span>
                         </label>
@@ -1018,7 +1018,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                           onChange={(e) => updateClassCode(locationIndex, classIndex, "remuneration", e.target.value)}
                           required
                           min="0"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
                     </div>
@@ -1055,7 +1055,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
         {currentStep === 4 && (
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-2">Policy Information</h2>
-            <p className="text-gray-600 mb-6">Coverage details and policy information</p>
+            <p className="text-muted-foreground mb-6">Coverage details and policy information</p>
 
             <h3 className="text-lg font-semibold mb-4">Rating Bureau Information</h3>
 
@@ -1071,26 +1071,26 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="ncciId" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="ncciId" className="block text-sm font-medium text-muted-foreground mb-1">
                   NCCI ID
                 </label>
                 <input
                   type="text"
                   id="ncciId"
                   name="ncciId"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="californiaWcirbId" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="californiaWcirbId" className="block text-sm font-medium text-muted-foreground mb-1">
                   California WCIRB ID
                 </label>
                 <input
                   type="text"
                   id="californiaWcirbId"
                   name="californiaWcirbId"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -1098,14 +1098,14 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
             <h3 className="text-lg font-semibold mt-8 mb-4">Coverage Information</h3>
 
             <div className="mb-6">
-              <label htmlFor="part1States" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="part1States" className="block text-sm font-medium text-muted-foreground mb-1">
                 Part 1 - Workers' Compensation (States)
               </label>
               <select
                 id="part1States"
                 name="part1States"
                 multiple
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 size={4}
               >
                 {US_STATES.map((state) => (
@@ -1114,18 +1114,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   </option>
                 ))}
               </select>
-              <p className="text-xs text-gray-500 mt-1">Hold Ctrl/Cmd to select multiple states</p>
+              <p className="text-xs text-muted-foreground mt-1">Hold Ctrl/Cmd to select multiple states</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
-                <label htmlFor="employersLiabilityLimit" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="employersLiabilityLimit" className="block text-sm font-medium text-muted-foreground mb-1">
                   Part 2 - Employer's Liability
                 </label>
                 <select
                   id="employersLiabilityLimit"
                   name="employersLiabilityLimit"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="">Select...</option>
                   <option value="100/100/500">$100,000/$100,000/$500,000</option>
@@ -1141,9 +1141,9 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   type="checkbox"
                   id="part3OtherStates"
                   name="part3OtherStates"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                 />
-                <label htmlFor="part3OtherStates" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="part3OtherStates" className="ml-2 block text-sm text-muted-foreground">
                   Part 3 - Other States Insurance (All states except those listed in Item 3.A and ND, OH, WA and WY)
                 </label>
               </div>
@@ -1152,7 +1152,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
             <h3 className="text-lg font-semibold mt-8 mb-4">Plan Information</h3>
 
             <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Plan Type</label>
+              <label className="block text-sm font-medium text-muted-foreground mb-2">Plan Type</label>
               <div className="flex flex-col gap-2">
                 <div className="flex items-center">
                   <input
@@ -1161,9 +1161,9 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                     name="planType"
                     value="Guaranteed Cost"
                     defaultChecked
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                   />
-                  <label htmlFor="guaranteedCost" className="ml-2 block text-sm text-gray-700">
+                  <label htmlFor="guaranteedCost" className="ml-2 block text-sm text-muted-foreground">
                     Guaranteed Cost
                   </label>
                 </div>
@@ -1173,9 +1173,9 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                     id="participating"
                     name="planType"
                     value="Participating"
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                   />
-                  <label htmlFor="participating" className="ml-2 block text-sm text-gray-700">
+                  <label htmlFor="participating" className="ml-2 block text-sm text-muted-foreground">
                     Participating
                   </label>
                 </div>
@@ -1185,9 +1185,9 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                     id="nonParticipating"
                     name="planType"
                     value="Non-Participating"
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                   />
-                  <label htmlFor="nonParticipating" className="ml-2 block text-sm text-gray-700">
+                  <label htmlFor="nonParticipating" className="ml-2 block text-sm text-muted-foreground">
                     Non-Participating
                   </label>
                 </div>
@@ -1197,7 +1197,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
             <h3 className="text-lg font-semibold mt-8 mb-4">Billing & Audit Information</h3>
 
             <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Billing Type</label>
+              <label className="block text-sm font-medium text-muted-foreground mb-2">Billing Type</label>
               <div className="flex gap-4">
                 <div className="flex items-center">
                   <input
@@ -1206,9 +1206,9 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                     name="billingType"
                     value="Direct Bill"
                     defaultChecked
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                   />
-                  <label htmlFor="directBill" className="ml-2 block text-sm text-gray-700">
+                  <label htmlFor="directBill" className="ml-2 block text-sm text-muted-foreground">
                     Direct Bill
                   </label>
                 </div>
@@ -1218,9 +1218,9 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                     id="agencyBill"
                     name="billingType"
                     value="Agency/Broker Bill"
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                   />
-                  <label htmlFor="agencyBill" className="ml-2 block text-sm text-gray-700">
+                  <label htmlFor="agencyBill" className="ml-2 block text-sm text-muted-foreground">
                     Agency/Broker Bill
                   </label>
                 </div>
@@ -1229,13 +1229,13 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <label htmlFor="paymentPlan" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="paymentPlan" className="block text-sm font-medium text-muted-foreground mb-1">
                   Payment Plan
                 </label>
                 <select
                   id="paymentPlan"
                   name="paymentPlan"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="">Select...</option>
                   <option value="Annual">Annual</option>
@@ -1246,7 +1246,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
               </div>
 
               <div>
-                <label htmlFor="percentDown" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="percentDown" className="block text-sm font-medium text-muted-foreground mb-1">
                   Percent Down
                 </label>
                 <div className="flex items-center">
@@ -1256,20 +1256,20 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                     name="percentDown"
                     min="0"
                     max="100"
-                    className="w-24 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-24 px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                   <span className="ml-2">%</span>
                 </div>
               </div>
 
               <div>
-                <label htmlFor="auditType" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="auditType" className="block text-sm font-medium text-muted-foreground mb-1">
                   Audit
                 </label>
                 <select
                   id="auditType"
                   name="auditType"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="">Select...</option>
                   <option value="Annual">Annual</option>
@@ -1284,7 +1284,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <label htmlFor="indemnityDeductible" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="indemnityDeductible" className="block text-sm font-medium text-muted-foreground mb-1">
                   Indemnity
                 </label>
                 <input
@@ -1292,12 +1292,12 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   id="indemnityDeductible"
                   name="indemnityDeductible"
                   min="0"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="medicalDeductible" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="medicalDeductible" className="block text-sm font-medium text-muted-foreground mb-1">
                   Medical
                 </label>
                 <input
@@ -1305,12 +1305,12 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   id="medicalDeductible"
                   name="medicalDeductible"
                   min="0"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="otherDeductible" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="otherDeductible" className="block text-sm font-medium text-muted-foreground mb-1">
                   Other
                 </label>
                 <input
@@ -1318,21 +1318,21 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   id="otherDeductible"
                   name="otherDeductible"
                   min="0"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
               <div>
-                <label htmlFor="otherDeductibleType" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="otherDeductibleType" className="block text-sm font-medium text-muted-foreground mb-1">
                   Other deductible type
                 </label>
                 <input
                   type="text"
                   id="otherDeductibleType"
                   name="otherDeductibleType"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -1345,9 +1345,9 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   type="checkbox"
                   id="uslAndH"
                   name="uslAndH"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                 />
-                <label htmlFor="uslAndH" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="uslAndH" className="ml-2 block text-sm text-muted-foreground">
                   U.S.L. & H.
                 </label>
               </div>
@@ -1357,9 +1357,9 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   type="checkbox"
                   id="voluntaryComp"
                   name="voluntaryComp"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                 />
-                <label htmlFor="voluntaryComp" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="voluntaryComp" className="ml-2 block text-sm text-muted-foreground">
                   Voluntary Comp
                 </label>
               </div>
@@ -1369,9 +1369,9 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   type="checkbox"
                   id="foreignCoverage"
                   name="foreignCoverage"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                 />
-                <label htmlFor="foreignCoverage" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="foreignCoverage" className="ml-2 block text-sm text-muted-foreground">
                   Foreign Coverage
                 </label>
               </div>
@@ -1381,9 +1381,9 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   type="checkbox"
                   id="managedCareOption"
                   name="managedCareOption"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                 />
-                <label htmlFor="managedCareOption" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="managedCareOption" className="ml-2 block text-sm text-muted-foreground">
                   Managed Care Option
                 </label>
               </div>
@@ -1393,23 +1393,23 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   type="checkbox"
                   id="otherCoverage"
                   name="otherCoverage"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                 />
-                <label htmlFor="otherCoverage" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="otherCoverage" className="ml-2 block text-sm text-muted-foreground">
                   Other (must specify)
                 </label>
               </div>
             </div>
 
             <div className="mb-6">
-              <label htmlFor="additionalCoverages" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="additionalCoverages" className="block text-sm font-medium text-muted-foreground mb-1">
                 Specify Additional Coverages / Endorsements
               </label>
               <textarea
                 id="additionalCoverages"
                 name="additionalCoverages"
                 rows={3}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Describe any additional coverages or endorsements needed"
               ></textarea>
             </div>
@@ -1422,27 +1422,27 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   type="checkbox"
                   id="isTrust"
                   name="isTrust"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                 />
-                <label htmlFor="isTrust" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="isTrust" className="ml-2 block text-sm text-muted-foreground">
                   Is this a Revocable/Irrevocable Trust or Non-Profit?
                 </label>
               </div>
 
-              <p className="text-sm text-gray-600 mb-4">
+              <p className="text-sm text-muted-foreground mb-4">
                 Partners, Officers, Relatives to be Included or Excluded. (Remuneration to be included must be part of
                 payroll section.)
               </p>
 
               {officers.map((officer, index) => (
-                <div key={index} className="border border-gray-200 rounded-md p-4 mb-4">
+                <div key={index} className="border border-border rounded-md p-4 mb-4">
                   <div className="flex justify-between items-center mb-4">
                     <h4 className="text-md font-medium">Officer/Partner {index + 1}</h4>
                     {index > 0 && (
                       <button
                         type="button"
                         onClick={() => removeOfficer(index)}
-                        className="text-red-500 hover:text-red-700"
+                        className="text-red-500 hover:text-red-400"
                       >
                         <Trash className="h-5 w-5" />
                       </button>
@@ -1451,7 +1451,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
-                      <label htmlFor={`officer_${index}_name`} className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor={`officer_${index}_name`} className="block text-sm font-medium text-muted-foreground mb-1">
                         Name<span className="text-red-500">*</span>
                       </label>
                       <input
@@ -1461,13 +1461,13 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                         value={officer.name || ""}
                         onChange={(e) => updateOfficer(index, "name", e.target.value)}
                         required
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
                     <div>
                       <label
                         htmlFor={`officer_${index}_title`}
-                        className="block text-sm font-medium text-gray-700 mb-1"
+                        className="block text-sm font-medium text-muted-foreground mb-1"
                       >
                         Title<span className="text-red-500">*</span>
                       </label>
@@ -1478,7 +1478,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                         value={officer.title || ""}
                         onChange={(e) => updateOfficer(index, "title", e.target.value)}
                         required
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
                   </div>
@@ -1487,7 +1487,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                     <div>
                       <label
                         htmlFor={`officer_${index}_ownership`}
-                        className="block text-sm font-medium text-gray-700 mb-1"
+                        className="block text-sm font-medium text-muted-foreground mb-1"
                       >
                         Ownership %
                       </label>
@@ -1499,13 +1499,13 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                         onChange={(e) => updateOfficer(index, "ownership", e.target.value)}
                         min="0"
                         max="100"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
                     <div>
                       <label
                         htmlFor={`officer_${index}_includeExclude`}
-                        className="block text-sm font-medium text-gray-700 mb-1"
+                        className="block text-sm font-medium text-muted-foreground mb-1"
                       >
                         Include/Exclude<span className="text-red-500">*</span>
                       </label>
@@ -1515,7 +1515,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                         value={officer.includeExclude || "Include"}
                         onChange={(e) => updateOfficer(index, "includeExclude", e.target.value)}
                         required
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       >
                         <option value="Include">Include</option>
                         <option value="Exclude">Exclude</option>
@@ -1543,7 +1543,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
         {currentStep === 5 && (
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-2">ACORD Questions</h2>
-            <p className="text-gray-600 mb-6">Standard questions required for workers compensation coverage</p>
+            <p className="text-muted-foreground mb-6">Standard questions required for workers compensation coverage</p>
 
             <div className="mb-6">
               <div className="flex items-center">
@@ -1553,9 +1553,9 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   name="defaultNoAnswers"
                   checked={defaultNoAnswers}
                   onChange={handleDefaultNoAnswers}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                 />
-                <label htmlFor="defaultNoAnswers" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="defaultNoAnswers" className="ml-2 block text-sm text-muted-foreground">
                   Please check here to default all answers below to 'No'. You may then edit each response to a 'Yes' if
                   applicable.
                 </label>
@@ -1563,8 +1563,8 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
             </div>
 
             <div className="space-y-6">
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   1. Does applicant own, operate or lease aircraft/watercraft?
                 </p>
                 <div className="flex gap-4">
@@ -1574,10 +1574,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="aircraft_yes"
                       name="aircraft"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("aircraft_yes")?.checked}
                     />
-                    <label htmlFor="aircraft_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="aircraft_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1587,18 +1587,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="aircraft_no"
                       name="aircraft"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("aircraft_no")?.checked}
                     />
-                    <label htmlFor="aircraft_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="aircraft_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   2. Do/have past, present or discontinued operations involve(d) storing, treating, discharging,
                   applying, disposing, or transporting of hazardous material?
                 </p>
@@ -1609,10 +1609,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="hazardous_yes"
                       name="hazardous"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("hazardous_yes")?.checked}
                     />
-                    <label htmlFor="hazardous_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="hazardous_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1622,18 +1622,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="hazardous_no"
                       name="hazardous"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("hazardous_no")?.checked}
                     />
-                    <label htmlFor="hazardous_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="hazardous_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   3. Any work performed underground or above 15 feet?
                 </p>
                 <div className="flex gap-4">
@@ -1643,10 +1643,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="underground_yes"
                       name="underground"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("underground_yes")?.checked}
                     />
-                    <label htmlFor="underground_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="underground_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1656,18 +1656,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="underground_no"
                       name="underground"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("underground_no")?.checked}
                     />
-                    <label htmlFor="underground_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="underground_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   4. Any work performed on barges, vessels, docks, bridges over water?
                 </p>
                 <div className="flex gap-4">
@@ -1677,10 +1677,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="barges_yes"
                       name="barges"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("barges_yes")?.checked}
                     />
-                    <label htmlFor="barges_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="barges_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1690,18 +1690,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="barges_no"
                       name="barges"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("barges_no")?.checked}
                     />
-                    <label htmlFor="barges_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="barges_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   5. Is applicant engaged in any other type of business?
                 </p>
                 <div className="flex gap-4">
@@ -1711,10 +1711,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="otherBusiness_yes"
                       name="otherBusiness"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("otherBusiness_yes")?.checked}
                     />
-                    <label htmlFor="otherBusiness_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="otherBusiness_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1724,18 +1724,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="otherBusiness_no"
                       name="otherBusiness"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("otherBusiness_no")?.checked}
                     />
-                    <label htmlFor="otherBusiness_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="otherBusiness_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   6. Are sub-contractors used? (if yes, give % of work subcontracted)
                 </p>
                 <div className="flex gap-4">
@@ -1745,10 +1745,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="subcontractors_yes"
                       name="subcontractors"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("subcontractors_yes")?.checked}
                     />
-                    <label htmlFor="subcontractors_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="subcontractors_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1758,18 +1758,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="subcontractors_no"
                       name="subcontractors"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("subcontractors_no")?.checked}
                     />
-                    <label htmlFor="subcontractors_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="subcontractors_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   7. Any work sublet without certificates of insurance?
                 </p>
                 <div className="flex gap-4">
@@ -1779,10 +1779,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="workSublet_yes"
                       name="workSublet"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("workSublet_yes")?.checked}
                     />
-                    <label htmlFor="workSublet_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="workSublet_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1792,18 +1792,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="workSublet_no"
                       name="workSublet"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("workSublet_no")?.checked}
                     />
-                    <label htmlFor="workSublet_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="workSublet_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">8. Is a written safety program in operation?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">8. Is a written safety program in operation?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -1811,10 +1811,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="safetyProgram_yes"
                       name="safetyProgram"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("safetyProgram_yes")?.checked}
                     />
-                    <label htmlFor="safetyProgram_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="safetyProgram_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1824,18 +1824,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="safetyProgram_no"
                       name="safetyProgram"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("safetyProgram_no")?.checked}
                     />
-                    <label htmlFor="safetyProgram_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="safetyProgram_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">9. Any group transportation provided?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">9. Any group transportation provided?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -1843,10 +1843,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="groupTransportation_yes"
                       name="groupTransportation"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("groupTransportation_yes")?.checked}
                     />
-                    <label htmlFor="groupTransportation_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="groupTransportation_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1856,18 +1856,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="groupTransportation_no"
                       name="groupTransportation"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("groupTransportation_no")?.checked}
                     />
-                    <label htmlFor="groupTransportation_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="groupTransportation_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">10. Any seasonal employees?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">10. Any seasonal employees?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -1875,10 +1875,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="seasonalEmployees_yes"
                       name="seasonalEmployees"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("seasonalEmployees_yes")?.checked}
                     />
-                    <label htmlFor="seasonalEmployees_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="seasonalEmployees_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1888,18 +1888,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="seasonalEmployees_no"
                       name="seasonalEmployees"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("seasonalEmployees_no")?.checked}
                     />
-                    <label htmlFor="seasonalEmployees_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="seasonalEmployees_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">11. Is there any volunteer or donated labor?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">11. Is there any volunteer or donated labor?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -1907,10 +1907,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="volunteerLabor_yes"
                       name="volunteerLabor"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("volunteerLabor_yes")?.checked}
                     />
-                    <label htmlFor="volunteerLabor_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="volunteerLabor_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1920,18 +1920,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="volunteerLabor_no"
                       name="volunteerLabor"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("volunteerLabor_no")?.checked}
                     />
-                    <label htmlFor="volunteerLabor_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="volunteerLabor_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">12. Do employees travel out of state?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">12. Do employees travel out of state?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -1939,10 +1939,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="travelOutOfState_yes"
                       name="travelOutOfState"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("travelOutOfState_yes")?.checked}
                     />
-                    <label htmlFor="travelOutOfState_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="travelOutOfState_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1952,18 +1952,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="travelOutOfState_no"
                       name="travelOutOfState"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("travelOutOfState_no")?.checked}
                     />
-                    <label htmlFor="travelOutOfState_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="travelOutOfState_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">13. Are athletic teams sponsored?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">13. Are athletic teams sponsored?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -1971,10 +1971,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="athleticTeams_yes"
                       name="athleticTeams"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("athleticTeams_yes")?.checked}
                     />
-                    <label htmlFor="athleticTeams_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="athleticTeams_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -1984,18 +1984,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="athleticTeams_no"
                       name="athleticTeams"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("athleticTeams_no")?.checked}
                     />
-                    <label htmlFor="athleticTeams_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="athleticTeams_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   14. Are physicals required after offers of employment are made?
                 </p>
                 <div className="flex gap-4">
@@ -2005,10 +2005,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="physicals_yes"
                       name="physicals"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("physicals_yes")?.checked}
                     />
-                    <label htmlFor="physicals_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="physicals_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -2018,18 +2018,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="physicals_no"
                       name="physicals"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("physicals_no")?.checked}
                     />
-                    <label htmlFor="physicals_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="physicals_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">15. Any other insurance with this insurer?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">15. Any other insurance with this insurer?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -2037,10 +2037,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="otherInsurance_yes"
                       name="otherInsurance"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("otherInsurance_yes")?.checked}
                     />
-                    <label htmlFor="otherInsurance_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="otherInsurance_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -2050,18 +2050,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="otherInsurance_no"
                       name="otherInsurance"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("otherInsurance_no")?.checked}
                     />
-                    <label htmlFor="otherInsurance_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="otherInsurance_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   16. Any prior coverage declined / cancelled / non-renewed in last 3 years? (not applicable in MO)
                 </p>
                 <div className="flex gap-4">
@@ -2071,10 +2071,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="priorCoverage_yes"
                       name="priorCoverage"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("priorCoverage_yes")?.checked}
                     />
-                    <label htmlFor="priorCoverage_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="priorCoverage_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -2084,18 +2084,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="priorCoverage_no"
                       name="priorCoverage"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("priorCoverage_no")?.checked}
                     />
-                    <label htmlFor="priorCoverage_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="priorCoverage_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">17. Are employee health plans provided?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">17. Are employee health plans provided?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -2103,10 +2103,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="healthPlans_yes"
                       name="healthPlans"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("healthPlans_yes")?.checked}
                     />
-                    <label htmlFor="healthPlans_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="healthPlans_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -2116,18 +2116,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="healthPlans_no"
                       name="healthPlans"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("healthPlans_no")?.checked}
                     />
-                    <label htmlFor="healthPlans_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="healthPlans_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   18. Is there a labor interchange with any other business/subsidiary?
                 </p>
                 <div className="flex gap-4">
@@ -2137,10 +2137,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="laborInterchange_yes"
                       name="laborInterchange"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("laborInterchange_yes")?.checked}
                     />
-                    <label htmlFor="laborInterchange_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="laborInterchange_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -2150,18 +2150,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="laborInterchange_no"
                       name="laborInterchange"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("laborInterchange_no")?.checked}
                     />
-                    <label htmlFor="laborInterchange_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="laborInterchange_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   19. Do you lease employees to or from other employers?
                 </p>
                 <div className="flex gap-4">
@@ -2171,10 +2171,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="leaseEmployees_yes"
                       name="leaseEmployees"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("leaseEmployees_yes")?.checked}
                     />
-                    <label htmlFor="leaseEmployees_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="leaseEmployees_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -2184,18 +2184,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="leaseEmployees_no"
                       name="leaseEmployees"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("leaseEmployees_no")?.checked}
                     />
-                    <label htmlFor="leaseEmployees_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="leaseEmployees_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   20. Do any employees predominantly work at home?
                 </p>
                 <div className="flex gap-4">
@@ -2205,10 +2205,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="workAtHome_yes"
                       name="workAtHome"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("workAtHome_yes")?.checked}
                     />
-                    <label htmlFor="workAtHome_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="workAtHome_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -2218,18 +2218,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="workAtHome_no"
                       name="workAtHome"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("workAtHome_no")?.checked}
                     />
-                    <label htmlFor="workAtHome_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="workAtHome_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   21. Any tax liens or bankruptcy within the last 5 years?
                 </p>
                 <div className="flex gap-4">
@@ -2239,10 +2239,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="taxLiens_yes"
                       name="taxLiens"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("taxLiens_yes")?.checked}
                     />
-                    <label htmlFor="taxLiens_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="taxLiens_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -2252,18 +2252,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="taxLiens_no"
                       name="taxLiens"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("taxLiens_no")?.checked}
                     />
-                    <label htmlFor="taxLiens_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="taxLiens_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
                   22. Any undisputed and unpaid workers compensation premium due from you or any commonly managed or
                   owned enterprises? If yes, explain including entity name(s) and policy number(s).
                 </p>
@@ -2274,10 +2274,10 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="unpaidPremium_yes"
                       name="unpaidPremium"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={!defaultNoAnswers && (document as any).getElementById("unpaidPremium_yes")?.checked}
                     />
-                    <label htmlFor="unpaidPremium_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="unpaidPremium_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -2287,18 +2287,18 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="unpaidPremium_no"
                       name="unpaidPremium"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                       checked={defaultNoAnswers || (document as any).getElementById("unpaidPremium_no")?.checked}
                     />
-                    <label htmlFor="unpaidPremium_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="unpaidPremium_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">Is the expiring premium less than $25,000?</p>
+              <div className="border-b border-border pb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-2">Is the expiring premium less than $25,000?</p>
                 <div className="flex gap-4">
                   <div className="flex items-center">
                     <input
@@ -2306,9 +2306,9 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="expiringPremium_yes"
                       name="expiringPremium"
                       value="yes"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="expiringPremium_yes" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="expiringPremium_yes" className="ml-2 block text-sm text-muted-foreground">
                       Yes
                     </label>
                   </div>
@@ -2318,24 +2318,24 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       id="expiringPremium_no"
                       name="expiringPremium"
                       value="no"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border"
                     />
-                    <label htmlFor="expiringPremium_no" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="expiringPremium_no" className="ml-2 block text-sm text-muted-foreground">
                       No
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="border-b border-gray-200 pb-4">
+              <div className="border-b border-border pb-4">
                 <div className="flex items-center">
                   <input
                     type="checkbox"
                     id="newVenture"
                     name="newVenture"
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-border rounded"
                   />
-                  <label htmlFor="newVenture" className="ml-2 block text-sm text-gray-700">
+                  <label htmlFor="newVenture" className="ml-2 block text-sm text-muted-foreground">
                     New Venture
                   </label>
                 </div>
@@ -2348,7 +2348,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
         {currentStep === 6 && (
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-2">Review & Submit</h2>
-            <p className="text-gray-600 mb-6">Review your application and submit</p>
+            <p className="text-muted-foreground mb-6">Review your application and submit</p>
 
             <Tabs defaultValue="prior-carrier" className="w-full">
               <TabsList className="grid w-full grid-cols-2">
@@ -2359,14 +2359,14 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                 <h3 className="text-lg font-semibold mb-4">Prior Carrier Information</h3>
 
                 {priorPolicies.map((policy, index) => (
-                  <div key={index} className="border border-gray-200 rounded-md p-4 mb-4">
+                  <div key={index} className="border border-border rounded-md p-4 mb-4">
                     <div className="flex justify-between items-center mb-4">
                       <h4 className="text-md font-medium">Prior Policy {index + 1}</h4>
                       {index > 0 && (
                         <button
                           type="button"
                           onClick={() => removePriorPolicy(index)}
-                          className="text-red-500 hover:text-red-700"
+                          className="text-red-500 hover:text-red-400"
                         >
                           <Trash className="h-5 w-5" />
                         </button>
@@ -2377,7 +2377,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       <div>
                         <label
                           htmlFor={`policy_${index}_carrier`}
-                          className="block text-sm font-medium text-gray-700 mb-1"
+                          className="block text-sm font-medium text-muted-foreground mb-1"
                         >
                           Carrier
                         </label>
@@ -2387,13 +2387,13 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                           name={`policy_${index}_carrier`}
                           value={policy.carrier || ""}
                           onChange={(e) => updatePriorPolicy(index, "carrier", e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
                       <div>
                         <label
                           htmlFor={`policy_${index}_policyNumber`}
-                          className="block text-sm font-medium text-gray-700 mb-1"
+                          className="block text-sm font-medium text-muted-foreground mb-1"
                         >
                           Policy Number
                         </label>
@@ -2403,7 +2403,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                           name={`policy_${index}_policyNumber`}
                           value={policy.policyNumber || ""}
                           onChange={(e) => updatePriorPolicy(index, "policyNumber", e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
                     </div>
@@ -2429,7 +2429,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       <div>
                         <label
                           htmlFor={`policy_${index}_premium`}
-                          className="block text-sm font-medium text-gray-700 mb-1"
+                          className="block text-sm font-medium text-muted-foreground mb-1"
                         >
                           Premium
                         </label>
@@ -2440,13 +2440,13 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                           value={policy.premium || ""}
                           onChange={(e) => updatePriorPolicy(index, "premium", e.target.value)}
                           min="0"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
                       <div>
                         <label
                           htmlFor={`policy_${index}_losses`}
-                          className="block text-sm font-medium text-gray-700 mb-1"
+                          className="block text-sm font-medium text-muted-foreground mb-1"
                         >
                           Losses
                         </label>
@@ -2457,13 +2457,13 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                           value={policy.losses || ""}
                           onChange={(e) => updatePriorPolicy(index, "losses", e.target.value)}
                           min="0"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
                       <div>
                         <label
                           htmlFor={`policy_${index}_numberOfClaims`}
-                          className="block text-sm font-medium text-gray-700 mb-1"
+                          className="block text-sm font-medium text-muted-foreground mb-1"
                         >
                           Number of Claims
                         </label>
@@ -2474,7 +2474,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                           value={policy.numberOfClaims || ""}
                           onChange={(e) => updatePriorPolicy(index, "numberOfClaims", e.target.value)}
                           min="0"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
                     </div>
@@ -2492,26 +2492,26 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                   </button>
 
                   <div className="text-right">
-                    <p className="text-sm font-medium text-gray-700">Total Premium: ${calculateTotalPremium()}</p>
-                    <p className="text-sm font-medium text-gray-700">Total Losses: ${calculateTotalLosses()}</p>
+                    <p className="text-sm font-medium text-muted-foreground">Total Premium: ${calculateTotalPremium()}</p>
+                    <p className="text-sm font-medium text-muted-foreground">Total Losses: ${calculateTotalLosses()}</p>
                   </div>
                 </div>
               </TabsContent>
               <TabsContent value="loss-history" className="p-4 border rounded-md mt-4">
                 <h3 className="text-lg font-semibold mb-4">Large Claims History</h3>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-sm text-muted-foreground mb-4">
                   List each loss with an incurred value of $100,000 or greater within the last 5 years
                 </p>
 
                 {largeClaimsHistory.map((claim, index) => (
-                  <div key={index} className="border border-gray-200 rounded-md p-4 mb-4">
+                  <div key={index} className="border border-border rounded-md p-4 mb-4">
                     <div className="flex justify-between items-center mb-4">
                       <h4 className="text-md font-medium">Large Claim {index + 1}</h4>
                       {index > 0 && (
                         <button
                           type="button"
                           onClick={() => removeLargeClaim(index)}
-                          className="text-red-500 hover:text-red-700"
+                          className="text-red-500 hover:text-red-400"
                         >
                           <Trash className="h-5 w-5" />
                         </button>
@@ -2529,7 +2529,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       <div>
                         <label
                           htmlFor={`claim_${index}_claimType`}
-                          className="block text-sm font-medium text-gray-700 mb-1"
+                          className="block text-sm font-medium text-muted-foreground mb-1"
                         >
                           Claim Type
                         </label>
@@ -2539,7 +2539,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                           name={`claim_${index}_claimType`}
                           value={claim.claimType || ""}
                           onChange={(e) => updateLargeClaim(index, "claimType", e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
                     </div>
@@ -2548,7 +2548,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       <div>
                         <label
                           htmlFor={`claim_${index}_status`}
-                          className="block text-sm font-medium text-gray-700 mb-1"
+                          className="block text-sm font-medium text-muted-foreground mb-1"
                         >
                           Status
                         </label>
@@ -2557,7 +2557,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                           name={`claim_${index}_status`}
                           value={claim.status || "Open"}
                           onChange={(e) => updateLargeClaim(index, "status", e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
                           <option value="Open">Open</option>
                           <option value="Closed">Closed</option>
@@ -2567,7 +2567,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                       <div>
                         <label
                           htmlFor={`claim_${index}_totalIncurred`}
-                          className="block text-sm font-medium text-gray-700 mb-1"
+                          className="block text-sm font-medium text-muted-foreground mb-1"
                         >
                           Total Incurred
                         </label>
@@ -2578,7 +2578,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                           value={claim.totalIncurred || ""}
                           onChange={(e) => updateLargeClaim(index, "totalIncurred", e.target.value)}
                           min="0"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
                     </div>
@@ -2586,7 +2586,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                     <div>
                       <label
                         htmlFor={`claim_${index}_description`}
-                        className="block text-sm font-medium text-gray-700 mb-1"
+                        className="block text-sm font-medium text-muted-foreground mb-1"
                       >
                         Description
                       </label>
@@ -2596,7 +2596,7 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
                         value={claim.description || ""}
                         onChange={(e) => updateLargeClaim(index, "description", e.target.value)}
                         rows={2}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       ></textarea>
                     </div>
                   </div>
@@ -2616,27 +2616,27 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
             </Tabs>
 
             <div className="mt-8">
-              <label htmlFor="agentRemarks" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="agentRemarks" className="block text-sm font-medium text-muted-foreground mb-1">
                 Agent Remarks
               </label>
               <textarea
                 id="agentRemarks"
                 name="agentRemarks"
                 rows={4}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Additional remarks regarding exposures, coverages, marketing, pricing, loss prevention, claims, etc."
               ></textarea>
             </div>
 
             <div className="mt-8 mb-6">
               <h3 className="text-lg font-semibold mb-4">Upload Supporting Documents</h3>
-              <p className="text-sm text-gray-600 mb-2">Upload any additional documents (PDF preferred)</p>
+              <p className="text-sm text-muted-foreground mb-2">Upload any additional documents (PDF preferred)</p>
               <input
                 type="file"
                 id="supportingDocuments"
                 name="supportingDocuments"
                 multiple
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
@@ -2653,12 +2653,12 @@ export default function WorkersCompForm({ insuranceType }: WorkersCompFormProps)
         )}
 
         {/* Navigation Buttons */}
-        <div className="flex justify-between p-6 border-t border-gray-200">
+        <div className="flex justify-between p-6 border-t border-border">
           {currentStep > 1 && (
             <button
               type="button"
               onClick={handlePrevious}
-              className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="inline-flex items-center px-4 py-2 border border-border rounded-md shadow-sm text-sm font-medium text-muted-foreground bg-card hover:bg-muted focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               Previous
             </button>

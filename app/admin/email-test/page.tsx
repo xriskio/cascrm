@@ -8,7 +8,7 @@ export default function EmailTestPage() {
         <Mail className="h-8 w-8 text-orange-500" />
         <div>
           <h1 className="text-3xl font-bold">Email Notification Testing</h1>
-          <p className="text-gray-600">Email functionality has been disabled</p>
+          <p className="text-muted-foreground">Email functionality has been disabled</p>
         </div>
       </div>
 
@@ -22,12 +22,12 @@ export default function EmailTestPage() {
           <CardDescription>Email service has been removed from the system</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+          <div className="p-4 bg-red-500/10 border border-border rounded-lg">
             <div className="flex items-center gap-2 mb-2">
               <XCircle className="h-4 w-4 text-red-600" />
-              <span className="font-medium text-red-800">Email Service Disabled</span>
+              <span className="font-medium text-red-300">Email Service Disabled</span>
             </div>
-            <p className="text-red-700">
+            <p className="text-red-400">
               All email functionality has been removed from the system. Email notifications are no longer available.
             </p>
           </div>
@@ -38,16 +38,16 @@ export default function EmailTestPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <XCircle className="h-5 w-5 text-gray-400" />
+            <XCircle className="h-5 w-5 text-muted-foreground" />
             Email Testing (Disabled)
           </CardTitle>
           <CardDescription>Email testing is no longer available</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="p-8 text-center bg-gray-50 rounded-lg">
-            <XCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-600 mb-2">Email Functionality Removed</h3>
-            <p className="text-gray-500">
+          <div className="p-8 text-center bg-muted rounded-lg">
+            <XCircle className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-muted-foreground mb-2">Email Functionality Removed</h3>
+            <p className="text-muted-foreground">
               All email services and testing capabilities have been disabled and removed from the system.
             </p>
           </div>

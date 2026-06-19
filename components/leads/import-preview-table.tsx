@@ -10,7 +10,7 @@ interface ImportPreviewTableProps {
 
 export function ImportPreviewTable({ data }: ImportPreviewTableProps) {
   if (!data || data.length === 0) {
-    return <div className="text-center py-4 text-gray-500">No data to preview</div>
+    return <div className="text-center py-4 text-muted-foreground">No data to preview</div>
   }
 
   const headers = Object.keys(data[0])
@@ -48,7 +48,7 @@ export function ImportPreviewTable({ data }: ImportPreviewTableProps) {
     <div className="border rounded-lg overflow-hidden">
       <Table>
         <TableHeader>
-          <TableRow className="bg-gray-50">
+          <TableRow className="bg-muted">
             {headers.map((header) => (
               <TableHead key={header} className="font-medium">
                 {header}
@@ -63,7 +63,7 @@ export function ImportPreviewTable({ data }: ImportPreviewTableProps) {
             const rowWarnings = headers.filter((header) => validateField(header, row[header]) === "empty").length
 
             return (
-              <TableRow key={index} className={rowErrors > 0 ? "bg-red-50" : rowWarnings > 0 ? "bg-yellow-50" : ""}>
+              <TableRow key={index} className={rowErrors > 0 ? "bg-red-500/10" : rowWarnings > 0 ? "bg-yellow-500/10" : ""}>
                 {headers.map((header) => {
                   const validation = validateField(header, row[header])
                   return (

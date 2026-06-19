@@ -204,7 +204,7 @@ export default function NewQuotePage() {
         </Button>
         <div>
           <h1 className="text-2xl font-bold">Create New Quote</h1>
-          <p className="text-gray-600">Enter quote details and track through the process</p>
+          <p className="text-muted-foreground">Enter quote details and track through the process</p>
         </div>
       </div>
 
@@ -542,10 +542,10 @@ export default function NewQuotePage() {
 
                   <div>
                     <Label>Upload Quote File</Label>
-                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                      <Upload className="h-8 w-8 text-gray-400 mx-auto mb-2" />
-                      <p className="text-sm text-gray-600">Click to upload or drag and drop</p>
-                      <p className="text-xs text-gray-500">.pdf, .csv, .xlsx, .docx (Max 10MB)</p>
+                    <div className="border-2 border-dashed border-border rounded-lg p-6 text-center">
+                      <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
+                      <p className="text-sm text-muted-foreground">Click to upload or drag and drop</p>
+                      <p className="text-xs text-muted-foreground">.pdf, .csv, .xlsx, .docx (Max 10MB)</p>
                     </div>
                   </div>
                 </div>

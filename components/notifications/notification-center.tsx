@@ -114,15 +114,15 @@ export default function NotificationCenter() {
   const getNotificationColor = (type: string) => {
     switch (type) {
       case "renewal_status_change":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-500/15 text-blue-300"
       case "lead_assignment":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       case "task_assignment":
-        return "bg-purple-100 text-purple-800"
+        return "bg-purple-500/15 text-purple-300"
       case "service_request":
-        return "bg-orange-100 text-orange-800"
+        return "bg-orange-500/15 text-orange-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -183,7 +183,7 @@ export default function NotificationCenter() {
       </CardHeader>
       <CardContent>
         {notifications.length === 0 ? (
-          <div className="text-center py-8 text-gray-500">
+          <div className="text-center py-8 text-muted-foreground">
             <Bell className="h-12 w-12 mx-auto mb-4 text-gray-300" />
             <p>No notifications yet</p>
           </div>
@@ -193,7 +193,7 @@ export default function NotificationCenter() {
               <div
                 key={notification.id}
                 className={`p-4 rounded-lg border transition-colors ${
-                  notification.is_read ? "bg-gray-50 border-gray-200" : "bg-white border-orange-200 shadow-sm"
+                  notification.is_read ? "bg-muted border-border" : "bg-card border-border shadow-sm"
                 }`}
               >
                 <div className="flex items-start justify-between">
@@ -206,12 +206,12 @@ export default function NotificationCenter() {
                       {!notification.is_read && <div className="w-2 h-2 bg-orange-500 rounded-full"></div>}
                     </div>
 
-                    <h4 className="font-medium text-gray-900 mb-1">{notification.title || "No title"}</h4>
+                    <h4 className="font-medium text-foreground mb-1">{notification.title || "No title"}</h4>
 
-                    <p className="text-sm text-gray-600 mb-2">{notification.message || "No message"}</p>
+                    <p className="text-sm text-muted-foreground mb-2">{notification.message || "No message"}</p>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-gray-500">{formatDate(notification.created_at)}</span>
+                      <span className="text-xs text-muted-foreground">{formatDate(notification.created_at)}</span>
 
                       <div className="flex gap-2">
                         {notification.link && (

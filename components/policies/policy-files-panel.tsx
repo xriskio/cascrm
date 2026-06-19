@@ -121,18 +121,18 @@ export function PolicyFilesPanel({ contactId, policyId, policyNumber }: PolicyFi
     const fileName = file.FileName?.toLowerCase() || ""
 
     if (category.includes("policy") || fileName.includes("policy")) {
-      return { label: "Policy Document", color: "bg-blue-100 text-blue-800" }
+      return { label: "Policy Document", color: "bg-blue-500/15 text-blue-300" }
     }
     if (category.includes("certificate") || fileName.includes("certificate")) {
-      return { label: "Certificate", color: "bg-green-100 text-green-800" }
+      return { label: "Certificate", color: "bg-green-500/15 text-green-300" }
     }
     if (category.includes("endorsement") || fileName.includes("endorsement")) {
-      return { label: "Endorsement", color: "bg-purple-100 text-purple-800" }
+      return { label: "Endorsement", color: "bg-purple-500/15 text-purple-300" }
     }
     if (category.includes("claim") || fileName.includes("claim")) {
-      return { label: "Claim Document", color: "bg-red-100 text-red-800" }
+      return { label: "Claim Document", color: "bg-red-500/15 text-red-300" }
     }
-    return { label: "Document", color: "bg-gray-100 text-gray-800" }
+    return { label: "Document", color: "bg-muted text-foreground" }
   }
 
   const filteredFiles = files.filter((file) => {
@@ -191,8 +191,8 @@ export function PolicyFilesPanel({ contactId, policyId, policyNumber }: PolicyFi
       </CardHeader>
       <CardContent>
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-3 mb-4">
-            <p className="text-red-800 text-sm">{error}</p>
+          <div className="bg-red-500/10 border border-border rounded-md p-3 mb-4">
+            <p className="text-red-300 text-sm">{error}</p>
           </div>
         )}
 
@@ -200,7 +200,7 @@ export function PolicyFilesPanel({ contactId, policyId, policyNumber }: PolicyFi
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
           <div className="flex-1">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Search policy documents..."
                 value={searchTerm}
@@ -226,7 +226,7 @@ export function PolicyFilesPanel({ contactId, policyId, policyNumber }: PolicyFi
         {/* Files List */}
         <ScrollArea className="h-96">
           {filteredFiles.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-muted-foreground">
               <Shield className="h-12 w-12 mx-auto mb-4 text-gray-300" />
               <p>No policy documents found</p>
               {searchTerm && <p className="text-sm">Try adjusting your search criteria</p>}
@@ -238,18 +238,18 @@ export function PolicyFilesPanel({ contactId, policyId, policyNumber }: PolicyFi
                 return (
                   <div
                     key={file.Id}
-                    className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50"
+                    className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted"
                   >
                     <div className="flex items-center space-x-3 flex-1 min-w-0">
                       {getFileIcon(file.FileType)}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <p className="text-sm font-medium text-gray-900 truncate">
+                          <p className="text-sm font-medium text-foreground truncate">
                             {file.DisplayName || file.FileName}
                           </p>
                           <Badge className={`text-xs ${category.color}`}>{category.label}</Badge>
                         </div>
-                        <div className="flex items-center space-x-4 text-xs text-gray-500">
+                        <div className="flex items-center space-x-4 text-xs text-muted-foreground">
                           <span>{formatFileSize(file.FileSize)}</span>
                           <span>{file.FileType}</span>
                           {file.CreatedOn && (
@@ -259,7 +259,7 @@ export function PolicyFilesPanel({ contactId, policyId, policyNumber }: PolicyFi
                             </span>
                           )}
                         </div>
-                        {file.Description && <p className="text-xs text-gray-600 mt-1 truncate">{file.Description}</p>}
+                        {file.Description && <p className="text-xs text-muted-foreground mt-1 truncate">{file.Description}</p>}
                         {file.Tags && <p className="text-xs text-blue-600 mt-1">Tags: {file.Tags}</p>}
                       </div>
                     </div>
@@ -296,7 +296,7 @@ export function PolicyFilesPanel({ contactId, policyId, policyNumber }: PolicyFi
         {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex items-center justify-between mt-4 pt-4 border-t">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-muted-foreground">
               Page {currentPage} of {totalPages}
             </p>
             <div className="flex space-x-2">

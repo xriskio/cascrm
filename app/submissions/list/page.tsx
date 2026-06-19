@@ -102,17 +102,17 @@ export default function SubmissionsListPage() {
 
   const getStatusBadge = (status: string) => {
     const statusColors: Record<string, string> = {
-      pending: "bg-yellow-100 text-yellow-800 border-yellow-300",
-      submitted: "bg-blue-100 text-blue-800 border-blue-300",
-      approved: "bg-green-100 text-green-800 border-green-300",
-      rejected: "bg-red-100 text-red-800 border-red-300",
-      under_review: "bg-purple-100 text-purple-800 border-purple-300",
-      quoted: "bg-cyan-100 text-cyan-800 border-cyan-300",
+      pending: "bg-yellow-500/15 text-yellow-300 border-yellow-300",
+      submitted: "bg-blue-500/15 text-blue-300 border-blue-300",
+      approved: "bg-green-500/15 text-green-300 border-green-300",
+      rejected: "bg-red-500/15 text-red-300 border-red-300",
+      under_review: "bg-purple-500/15 text-purple-300 border-purple-300",
+      quoted: "bg-cyan-500/15 text-cyan-300 border-cyan-300",
     }
 
     return (
       <Badge
-        className={`${statusColors[status.toLowerCase()] || "bg-gray-100 text-gray-800 border-gray-300"} capitalize`}
+        className={`${statusColors[status.toLowerCase()] || "bg-muted text-foreground border-border"} capitalize`}
         variant="outline"
       >
         {status.replace("_", " ")}
@@ -180,7 +180,7 @@ export default function SubmissionsListPage() {
         <div className="flex items-center justify-center min-h-[400px]">
           <div className="flex flex-col items-center space-y-4">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-            <p className="text-gray-600">Loading submissions...</p>
+            <p className="text-muted-foreground">Loading submissions...</p>
           </div>
         </div>
       </div>
@@ -191,7 +191,7 @@ export default function SubmissionsListPage() {
     <div className="container mx-auto py-6 space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-900">Applications</h1>
+        <h1 className="text-3xl font-bold text-foreground">Applications</h1>
         <div className="flex gap-3">
           <Button
             variant="outline"
@@ -232,7 +232,7 @@ export default function SubmissionsListPage() {
             </div>
             <div className="flex-1">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   placeholder="Search Application Name"
                   value={searchTerm}
@@ -251,7 +251,7 @@ export default function SubmissionsListPage() {
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
-                <TableRow className="bg-gray-50">
+                <TableRow className="bg-muted">
                   <TableHead className="font-semibold">Application Name</TableHead>
                   <TableHead className="font-semibold">Created By</TableHead>
                   <TableHead className="font-semibold">Application Date</TableHead>
@@ -266,7 +266,7 @@ export default function SubmissionsListPage() {
               <TableBody>
                 {paginatedSubmissions.length > 0 ? (
                   paginatedSubmissions.map((submission) => (
-                    <TableRow key={submission.id} className="hover:bg-gray-50">
+                    <TableRow key={submission.id} className="hover:bg-muted">
                       <TableCell className="font-medium">
                         {submission.json_raw?.companyName ||
                           submission.json_raw?.businessName ||
@@ -285,7 +285,7 @@ export default function SubmissionsListPage() {
                         {extractDriverCount(submission.json_raw)}
                       </TableCell>
                       <TableCell>
-                        <span className="text-gray-600">
+                        <span className="text-muted-foreground">
                           {submission.status === "approved"
                             ? "Approved"
                             : submission.status === "rejected"
@@ -313,10 +313,10 @@ export default function SubmissionsListPage() {
                       <div className="flex flex-col items-center space-y-4">
                         <FileText className="h-12 w-12 text-gray-300" />
                         <div>
-                          <h3 className="text-lg font-medium text-gray-900">
+                          <h3 className="text-lg font-medium text-foreground">
                             No submissions found
                           </h3>
-                          <p className="text-sm text-gray-500 mt-1">
+                          <p className="text-sm text-muted-foreground mt-1">
                             {searchTerm || statusFilter !== "all"
                               ? "Try adjusting your filters"
                               : "Create your first application to get started"}
@@ -339,7 +339,7 @@ export default function SubmissionsListPage() {
           {/* Pagination */}
           {totalPages > 1 && (
             <div className="flex items-center justify-between px-6 py-4 border-t">
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-muted-foreground">
                 Items per page:{" "}
                 <Select value={String(itemsPerPage)} disabled>
                   <SelectTrigger className="inline-flex w-16 h-8">
@@ -351,7 +351,7 @@ export default function SubmissionsListPage() {
                 </Select>
               </div>
               <div className="flex items-center gap-4">
-                <span className="text-sm text-gray-600">
+                <span className="text-sm text-muted-foreground">
                   {(currentPage - 1) * itemsPerPage + 1}-
                   {Math.min(currentPage * itemsPerPage, filteredSubmissions.length)} of{" "}
                   {filteredSubmissions.length}

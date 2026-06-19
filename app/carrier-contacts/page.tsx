@@ -164,15 +164,15 @@ export default function CarrierContactsPage() {
         </div>
 
         {/* Search and Filters */}
-        <Card className="bg-white/70 backdrop-blur-sm border-0 shadow-xl">
+        <Card className="bg-card backdrop-blur-sm border-0 shadow-xl">
           <CardContent className="p-6">
             <div className="flex flex-col md:flex-row justify-between gap-4 mb-6">
               <div className="relative w-full md:w-96">
-                <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
                   type="text"
                   placeholder="🔍 Search carriers, contacts, emails, or phone numbers..."
-                  className="pl-10 bg-white/80 backdrop-blur-sm border-gray-200/50"
+                  className="pl-10 bg-card backdrop-blur-sm border-border/50"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -180,7 +180,7 @@ export default function CarrierContactsPage() {
 
               <Button
                 variant="outline"
-                className="flex items-center bg-white/80 backdrop-blur-sm"
+                className="flex items-center bg-card backdrop-blur-sm"
                 onClick={() => setShowFilters(!showFilters)}
               >
                 <Filter className="mr-2 h-4 w-4" />
@@ -189,7 +189,7 @@ export default function CarrierContactsPage() {
             </div>
 
             {showFilters && (
-              <div className="p-4 border rounded-md bg-gradient-to-r from-gray-50 to-slate-50">
+              <div className="p-4 border rounded-md bg-gradient-to-r from-muted to-slate-50">
                 <h3 className="font-medium mb-2 flex items-center">
                   <Sparkles className="h-4 w-4 mr-2 text-blue-600" />
                   Filter by Insurance Type:
@@ -204,7 +204,7 @@ export default function CarrierContactsPage() {
                       className={
                         activeFilters.includes(specialty)
                           ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-                          : "bg-white/80 backdrop-blur-sm"
+                          : "bg-card backdrop-blur-sm"
                       }
                     >
                       {specialty}
@@ -217,15 +217,15 @@ export default function CarrierContactsPage() {
         </Card>
 
         <Tabs defaultValue="all" className="w-full">
-          <TabsList className="mb-4 bg-white/70 backdrop-blur-sm">
+          <TabsList className="mb-4 bg-card backdrop-blur-sm">
             <TabsTrigger value="all">All Carriers</TabsTrigger>
             <TabsTrigger value="favorites">Favorites</TabsTrigger>
             <TabsTrigger value="recent">Recently Contacted</TabsTrigger>
           </TabsList>
 
           <TabsContent value="all" className="mt-0">
-            <Card className="bg-white/70 backdrop-blur-sm border-0 shadow-xl">
-              <CardHeader className="bg-gradient-to-r from-slate-50 to-blue-50 border-b border-gray-200/50">
+            <Card className="bg-card backdrop-blur-sm border-0 shadow-xl">
+              <CardHeader className="bg-gradient-to-r from-slate-50 to-blue-50 border-b border-border/50">
                 <div className="flex items-center gap-2">
                   <Sparkles className="h-5 w-5 text-blue-600" />
                   <CardTitle className="bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
@@ -252,7 +252,7 @@ export default function CarrierContactsPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                       <thead>
-                        <tr className="bg-gradient-to-r from-gray-50 to-slate-50">
+                        <tr className="bg-gradient-to-r from-muted to-slate-50">
                           <th className="px-4 py-3 text-left font-semibold">Insurance Carrier</th>
                           <th className="px-4 py-3 text-left font-semibold">Producer Code</th>
                           <th className="px-4 py-3 text-left font-semibold">Agency Contact</th>
@@ -262,17 +262,17 @@ export default function CarrierContactsPage() {
                           <th className="px-4 py-3 text-left font-semibold">Actions</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-gray-200">
+                      <tbody className="divide-y divide-border">
                         {filteredCarriers.map((carrier, index) => (
                           <tr
                             key={carrier.id}
-                            className={`hover:bg-blue-50/50 transition-colors ${index % 2 === 0 ? "bg-white/50" : "bg-gray-50/30"}`}
+                            className={`hover:bg-blue-50/50 transition-colors ${index % 2 === 0 ? "bg-card" : "bg-muted/30"}`}
                           >
                             <td className="px-4 py-3 font-medium text-blue-600">{carrier.insurance_carrier}</td>
                             <td className="px-4 py-3 font-mono text-sm">{carrier.producer_code}</td>
                             <td className="px-4 py-3">
                               <div className="font-medium">{carrier.agency_contact || carrier.agency_contact_name}</div>
-                              <div className="text-gray-500 text-xs flex items-center">
+                              <div className="text-muted-foreground text-xs flex items-center">
                                 {carrier.agency_contact_email && (
                                   <>
                                     <Mail className="h-3 w-3 mr-1" />
@@ -285,7 +285,7 @@ export default function CarrierContactsPage() {
                               <div className="font-medium">
                                 {carrier.underwriter_contact || carrier.underwriter_name}
                               </div>
-                              <div className="text-gray-500 text-xs flex items-center">
+                              <div className="text-muted-foreground text-xs flex items-center">
                                 {carrier.underwriter_email && (
                                   <>
                                     <Mail className="h-3 w-3 mr-1" />
@@ -309,13 +309,13 @@ export default function CarrierContactsPage() {
                                     <Badge
                                       key={specialty}
                                       variant="outline"
-                                      className="text-xs bg-blue-50 text-blue-700 border-blue-200"
+                                      className="text-xs bg-blue-500/10 text-blue-400 border-border"
                                     >
                                       {specialty}
                                     </Badge>
                                   ))}
                                 {carrier.specialties && carrier.specialties.length > 2 && (
-                                  <Badge variant="outline" className="text-xs bg-gray-100 text-gray-600">
+                                  <Badge variant="outline" className="text-xs bg-muted text-muted-foreground">
                                     +{carrier.specialties.length - 2}
                                   </Badge>
                                 )}
@@ -328,7 +328,7 @@ export default function CarrierContactsPage() {
                                     variant="ghost"
                                     size="icon"
                                     title="View Details"
-                                    className="h-8 w-8 hover:bg-blue-100"
+                                    className="h-8 w-8 hover:bg-blue-500/15"
                                   >
                                     <Eye className="h-4 w-4" />
                                   </Button>
@@ -338,7 +338,7 @@ export default function CarrierContactsPage() {
                                     variant="ghost"
                                     size="icon"
                                     title="Edit"
-                                    className="h-8 w-8 hover:bg-green-100"
+                                    className="h-8 w-8 hover:bg-green-500/15"
                                   >
                                     <Edit className="h-4 w-4" />
                                   </Button>
@@ -348,7 +348,7 @@ export default function CarrierContactsPage() {
                                   size="icon"
                                   title="Delete"
                                   onClick={() => handleDeleteCarrier(carrier.id)}
-                                  className="h-8 w-8 hover:bg-red-100"
+                                  className="h-8 w-8 hover:bg-red-500/15"
                                 >
                                   <Trash2 className="h-4 w-4 text-red-500" />
                                 </Button>
@@ -362,12 +362,12 @@ export default function CarrierContactsPage() {
                 ) : (
                   <div className="p-12 text-center">
                     <Building className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-                    <p className="text-gray-500 text-lg">
+                    <p className="text-muted-foreground text-lg">
                       {activeFilters.length > 0 || searchTerm
                         ? "No carrier contacts found matching your criteria."
                         : "No carrier contacts found."}
                     </p>
-                    <p className="text-gray-400 mb-4">
+                    <p className="text-muted-foreground mb-4">
                       {activeFilters.length > 0 || searchTerm
                         ? "Try adjusting your search or filters."
                         : "Add your first carrier contact using the 'Add Carrier' button."}
@@ -387,21 +387,21 @@ export default function CarrierContactsPage() {
           </TabsContent>
 
           <TabsContent value="favorites">
-            <Card className="bg-white/70 backdrop-blur-sm border-0 shadow-xl">
+            <Card className="bg-card backdrop-blur-sm border-0 shadow-xl">
               <CardContent className="p-12 text-center">
                 <Users className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-                <p className="text-gray-500 text-lg">No favorite carriers yet.</p>
-                <p className="text-gray-400">Mark carriers as favorites to see them here.</p>
+                <p className="text-muted-foreground text-lg">No favorite carriers yet.</p>
+                <p className="text-muted-foreground">Mark carriers as favorites to see them here.</p>
               </CardContent>
             </Card>
           </TabsContent>
 
           <TabsContent value="recent">
-            <Card className="bg-white/70 backdrop-blur-sm border-0 shadow-xl">
+            <Card className="bg-card backdrop-blur-sm border-0 shadow-xl">
               <CardContent className="p-12 text-center">
                 <Phone className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-                <p className="text-gray-500 text-lg">Recently contacted carriers will appear here.</p>
-                <p className="text-gray-400">Contact history will be tracked automatically.</p>
+                <p className="text-muted-foreground text-lg">Recently contacted carriers will appear here.</p>
+                <p className="text-muted-foreground">Contact history will be tracked automatically.</p>
               </CardContent>
             </Card>
           </TabsContent>

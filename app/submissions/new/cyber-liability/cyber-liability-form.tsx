@@ -64,17 +64,17 @@ export default function CyberLiabilityForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="p-6 space-y-6 bg-white rounded-lg shadow">
+    <form onSubmit={handleSubmit} className="p-6 space-y-6 bg-card rounded-lg shadow">
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">Cyber Liability Submission</h1>
-        <Link href="/submissions/new" className="text-blue-600 hover:text-blue-800">
+        <Link href="/submissions/new" className="text-blue-600 hover:text-blue-300">
           Change Insurance Type
         </Link>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
-          <label htmlFor="effectiveDate" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="effectiveDate" className="block text-sm font-medium text-muted-foreground">
             Effective Date *
           </label>
           <input
@@ -88,7 +88,7 @@ export default function CyberLiabilityForm() {
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="expirationDate" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="expirationDate" className="block text-sm font-medium text-muted-foreground">
             Expiration Date (if applicable)
           </label>
           <input
@@ -103,7 +103,7 @@ export default function CyberLiabilityForm() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
-          <label htmlFor="currentCarrier" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="currentCarrier" className="block text-sm font-medium text-muted-foreground">
             Current Cyber Liability Carrier
           </label>
           <input
@@ -116,7 +116,7 @@ export default function CyberLiabilityForm() {
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="currentPremium" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="currentPremium" className="block text-sm font-medium text-muted-foreground">
             Current Premium
           </label>
           <input
@@ -136,7 +136,7 @@ export default function CyberLiabilityForm() {
 
         <div className="space-y-4">
           <div className="space-y-2">
-            <label htmlFor="businessDescription" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="businessDescription" className="block text-sm font-medium text-muted-foreground">
               Business Description *
             </label>
             <textarea
@@ -151,7 +151,7 @@ export default function CyberLiabilityForm() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-2">
-              <label htmlFor="yearsInBusiness" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="yearsInBusiness" className="block text-sm font-medium text-muted-foreground">
                 Years in Business *
               </label>
               <input
@@ -166,7 +166,7 @@ export default function CyberLiabilityForm() {
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="annualRevenue" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="annualRevenue" className="block text-sm font-medium text-muted-foreground">
                 Annual Revenue *
               </label>
               <input
@@ -182,7 +182,7 @@ export default function CyberLiabilityForm() {
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="numberOfEmployees" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="numberOfEmployees" className="block text-sm font-medium text-muted-foreground">
                 Number of Employees *
               </label>
               <input
@@ -204,7 +204,7 @@ export default function CyberLiabilityForm() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label htmlFor="coverageLimit" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="coverageLimit" className="block text-sm font-medium text-muted-foreground">
               Coverage Limit *
             </label>
             <select id="coverageLimit" name="coverageLimit" required className="w-full p-2 border rounded">
@@ -219,7 +219,7 @@ export default function CyberLiabilityForm() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="deductible" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="deductible" className="block text-sm font-medium text-muted-foreground">
               Deductible *
             </label>
             <select id="deductible" name="deductible" required className="w-full p-2 border rounded">
@@ -240,7 +240,7 @@ export default function CyberLiabilityForm() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label htmlFor="dataEncryption" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="dataEncryption" className="block text-sm font-medium text-muted-foreground">
               Data Encryption *
             </label>
             <select id="dataEncryption" name="dataEncryption" required className="w-full p-2 border rounded">
@@ -252,7 +252,7 @@ export default function CyberLiabilityForm() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="multiFactorAuth" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="multiFactorAuth" className="block text-sm font-medium text-muted-foreground">
               Multi-Factor Authentication *
             </label>
             <select id="multiFactorAuth" name="multiFactorAuth" required className="w-full p-2 border rounded">
@@ -264,7 +264,7 @@ export default function CyberLiabilityForm() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="securityTraining" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="securityTraining" className="block text-sm font-medium text-muted-foreground">
               Employee Security Training *
             </label>
             <select id="securityTraining" name="securityTraining" required className="w-full p-2 border rounded">
@@ -277,7 +277,7 @@ export default function CyberLiabilityForm() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="incidentResponsePlan" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="incidentResponsePlan" className="block text-sm font-medium text-muted-foreground">
               Incident Response Plan *
             </label>
             <select
@@ -295,7 +295,7 @@ export default function CyberLiabilityForm() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="dataBackupFrequency" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="dataBackupFrequency" className="block text-sm font-medium text-muted-foreground">
               Data Backup Frequency *
             </label>
             <select id="dataBackupFrequency" name="dataBackupFrequency" required className="w-full p-2 border rounded">
@@ -309,7 +309,7 @@ export default function CyberLiabilityForm() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="sensitiveDataStored" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="sensitiveDataStored" className="block text-sm font-medium text-muted-foreground">
               Sensitive Data Stored *
             </label>
             <select id="sensitiveDataStored" name="sensitiveDataStored" required className="w-full p-2 border rounded">
@@ -329,7 +329,7 @@ export default function CyberLiabilityForm() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label htmlFor="pciCompliant" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="pciCompliant" className="block text-sm font-medium text-muted-foreground">
               PCI DSS Compliant *
             </label>
             <select id="pciCompliant" name="pciCompliant" required className="w-full p-2 border rounded">
@@ -341,7 +341,7 @@ export default function CyberLiabilityForm() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="hipaaCompliant" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="hipaaCompliant" className="block text-sm font-medium text-muted-foreground">
               HIPAA Compliant *
             </label>
             <select id="hipaaCompliant" name="hipaaCompliant" required className="w-full p-2 border rounded">
@@ -358,7 +358,7 @@ export default function CyberLiabilityForm() {
         <legend className="font-semibold px-2">Claims History</legend>
 
         <div className="space-y-2">
-          <label htmlFor="claimsHistory" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="claimsHistory" className="block text-sm font-medium text-muted-foreground">
             Claims History (Last 5 Years)
           </label>
           <textarea
@@ -372,7 +372,7 @@ export default function CyberLiabilityForm() {
       </fieldset>
 
       <div className="space-y-2">
-        <label htmlFor="additionalInfo" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="additionalInfo" className="block text-sm font-medium text-muted-foreground">
           Additional Information
         </label>
         <textarea
@@ -387,7 +387,7 @@ export default function CyberLiabilityForm() {
       <div className="flex justify-between">
         <Link
           href="/submissions/new"
-          className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+          className="px-4 py-2 border border-border rounded-md text-muted-foreground hover:bg-muted"
         >
           Back
         </Link>

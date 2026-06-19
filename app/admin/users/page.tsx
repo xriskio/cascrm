@@ -59,8 +59,8 @@ export default function UsersPage() {
   if (error) {
     return (
       <div className="p-6">
-        <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-6">
-          <p className="text-red-700">{error}</p>
+        <div className="bg-red-500/10 border-l-4 border-red-500 p-4 mb-6">
+          <p className="text-red-400">{error}</p>
         </div>
         <Link href="/admin">
           <span className="text-blue-500 hover:underline">Back to Admin</span>
@@ -82,45 +82,45 @@ export default function UsersPage() {
       </div>
 
       {users.length === 0 ? (
-        <div className="text-center p-8 bg-gray-50 rounded-md">
-          <p className="text-gray-500">No users found. Click "Add User" to create a new user.</p>
+        <div className="text-center p-8 bg-muted rounded-md">
+          <p className="text-muted-foreground">No users found. Click "Add User" to create a new user.</p>
         </div>
       ) : (
-        <div className="bg-white rounded-md shadow overflow-hidden">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+        <div className="bg-card rounded-md shadow overflow-hidden">
+          <table className="min-w-full divide-y divide-border">
+            <thead className="bg-muted">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Name</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Email
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Role</th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-card divide-y divide-border">
               {users.map((user) => (
                 <tr key={user.id}>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm font-medium text-gray-900">{user.name}</div>
+                    <div className="text-sm font-medium text-foreground">{user.name}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-500">{user.email}</div>
+                    <div className="text-sm text-muted-foreground">{user.email}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-500/15 text-blue-300">
                       {user.role}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <Link href={`/admin/users/${user.id}/edit`} className="text-blue-600 hover:text-blue-900 mr-4">
+                    <Link href={`/admin/users/${user.id}/edit`} className="text-blue-600 hover:text-blue-300 mr-4">
                       Edit
                     </Link>
                     <button
                       onClick={() => handleDelete(user.id)}
-                      className={`text-red-600 hover:text-red-900 ${
+                      className={`text-red-600 hover:text-red-300 ${
                         deleteId === user.id ? "opacity-50 cursor-not-allowed" : ""
                       }`}
                       disabled={deleteId === user.id}

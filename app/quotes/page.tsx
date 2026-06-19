@@ -57,17 +57,17 @@ export default function QuotesPage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "draft":
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
       case "pending":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-500/15 text-yellow-300"
       case "quoted":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-500/15 text-blue-300"
       case "bound":
-        return "bg-green-100 text-green-800"
+        return "bg-green-500/15 text-green-300"
       case "declined":
-        return "bg-red-100 text-red-800"
+        return "bg-red-500/15 text-red-300"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-muted text-foreground"
     }
   }
 
@@ -75,9 +75,9 @@ export default function QuotesPage() {
     return (
       <div className="p-6">
         <div className="animate-pulse space-y-4">
-          <div className="h-8 bg-gray-200 rounded w-1/4"></div>
-          <div className="h-32 bg-gray-200 rounded"></div>
-          <div className="h-32 bg-gray-200 rounded"></div>
+          <div className="h-8 bg-muted rounded w-1/4"></div>
+          <div className="h-32 bg-muted rounded"></div>
+          <div className="h-32 bg-muted rounded"></div>
         </div>
       </div>
     )
@@ -88,7 +88,7 @@ export default function QuotesPage() {
       <div className="flex justify-between items-center mb-6">
         <div>
           <h1 className="text-2xl font-bold">Quotes</h1>
-          <p className="text-gray-600">Manage and track insurance quotes</p>
+          <p className="text-muted-foreground">Manage and track insurance quotes</p>
         </div>
         <Button asChild>
           <Link href="/quotes/new">
@@ -102,7 +102,7 @@ export default function QuotesPage() {
         <CardContent className="p-4">
           <div className="flex gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
               <Input
                 placeholder="Search quotes..."
                 value={searchTerm}
@@ -132,21 +132,21 @@ export default function QuotesPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                     <div>
-                      <p className="text-gray-500">Contact</p>
+                      <p className="text-muted-foreground">Contact</p>
                       <p className="font-medium">{quote.contact_name}</p>
-                      <p className="text-gray-600">{quote.contact_email}</p>
+                      <p className="text-muted-foreground">{quote.contact_email}</p>
                     </div>
                     <div>
-                      <p className="text-gray-500">Insured</p>
+                      <p className="text-muted-foreground">Insured</p>
                       <p className="font-medium">{quote.insured_name}</p>
-                      <p className="text-gray-600">{quote.insurance_type}</p>
+                      <p className="text-muted-foreground">{quote.insurance_type}</p>
                     </div>
                     <div>
-                      <p className="text-gray-500">Premium</p>
+                      <p className="text-muted-foreground">Premium</p>
                       <p className="font-medium">
                         {quote.total_premium ? `$${quote.total_premium.toLocaleString()}` : "TBD"}
                       </p>
-                      <p className="text-gray-600">Created {new Date(quote.created_at).toLocaleDateString()}</p>
+                      <p className="text-muted-foreground">Created {new Date(quote.created_at).toLocaleDateString()}</p>
                     </div>
                   </div>
                 </div>
@@ -171,7 +171,7 @@ export default function QuotesPage() {
       {filteredQuotes.length === 0 && (
         <Card>
           <CardContent className="p-12 text-center">
-            <p className="text-gray-500 mb-4">No quotes found</p>
+            <p className="text-muted-foreground mb-4">No quotes found</p>
             <Button asChild>
               <Link href="/quotes/new">
                 <Plus className="h-4 w-4 mr-2" />
