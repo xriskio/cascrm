@@ -121,9 +121,8 @@ export default async function SetupPage() {
       <div className="mt-8 p-4 bg-blue-500/10 rounded-lg">
         <h3 className="font-semibold text-blue-300 mb-2">Why is the database empty?</h3>
         <p className="text-blue-300 text-sm">
-          When you migrated from Vercel to Replit, the database migrations weren't automatically applied to your
-          Supabase cloud database. These migrations create all the tables (renewals, clients, submissions, etc.) that
-          your app needs to function.
+          If the database migrations haven't been applied yet, your Supabase database will have no tables. These
+          migrations create all the tables (renewals, clients, submissions, etc.) that your app needs to function.
         </p>
       </div>
     </div>
