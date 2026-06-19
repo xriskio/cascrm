@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
+import CopilotPanel from '@/components/ai/CopilotPanel';
 
 const BG1  = '#0F0F11';
 const BG2  = '#141416';
@@ -24,6 +25,7 @@ export default function Topbar({ onNewSubmission }: TopbarProps) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [dateStr, setDateStr]       = useState('');
   const [notifHover, setNotifHover] = useState(false);
+  const [copilotOpen, setCopilotOpen] = useState(false);
   const inputRef  = useRef<HTMLInputElement>(null);
   const searchRef = useRef<HTMLDivElement>(null);
 
@@ -132,19 +134,23 @@ export default function Topbar({ onNewSubmission }: TopbarProps) {
       {/* Right controls */}
       <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 6 }}>
         {/* AI Copilot pill */}
-        <div style={{
-          display: 'flex', alignItems: 'center', gap: 6,
-          padding: '5px 12px', borderRadius: 20,
-          background: BLUE_BG, border: `1px solid ${BLUE_BD}`,
-          fontSize: 11.5, fontWeight: 500, color: BLUE, cursor: 'pointer',
-          fontFamily: FONT,
-        }}>
+        <button
+          onClick={() => setCopilotOpen(true)}
+          title="Open AI Copilot"
+          style={{
+            display: 'flex', alignItems: 'center', gap: 6,
+            padding: '5px 12px', borderRadius: 20,
+            background: BLUE_BG, border: `1px solid ${BLUE_BD}`,
+            fontSize: 11.5, fontWeight: 500, color: BLUE, cursor: 'pointer',
+            fontFamily: FONT,
+          }}
+        >
           <span style={{
             width: 6, height: 6, borderRadius: '50%', background: BLUE,
             flexShrink: 0, display: 'inline-block', animation: 'aiPulse 2s ease infinite',
           }} />
           AI Copilot
-        </div>
+        </button>
 
         {/* Notification bell */}
         <button
@@ -186,6 +192,8 @@ export default function Topbar({ onNewSubmission }: TopbarProps) {
           New Submission
         </button>
       </div>
+
+      <CopilotPanel open={copilotOpen} onClose={() => setCopilotOpen(false)} />
     </div>
   );
 }

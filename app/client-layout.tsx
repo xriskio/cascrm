@@ -4,6 +4,7 @@ import type React from "react"
 
 import { usePathname } from "next/navigation"
 import { TopNavigation } from "@/components/top-navigation"
+import CopilotLauncher from "@/components/ai/CopilotLauncher"
 
 export default function ClientLayout({
   children,
@@ -23,6 +24,7 @@ export default function ClientLayout({
     <div className="flex flex-col h-screen bg-[#0A0A0B]">
       <TopNavigation />
       <main className="flex-1 overflow-auto">{children}</main>
+      <CopilotLauncher />
     </div>
   )
 }
