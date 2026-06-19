@@ -3,11 +3,11 @@ WORKDIR /app
 
 # Install client dependencies
 COPY client/package.json client/package-lock.json* ./client/
-RUN cd client && npm install
+RUN cd client && npm install --registry https://registry.npmjs.org/
 
 # Install server dependencies
 COPY server/package.json server/package-lock.json* ./server/
-RUN cd server && npm install
+RUN cd server && npm install --registry https://registry.npmjs.org/
 
 # Copy all source
 COPY client/ ./client/
