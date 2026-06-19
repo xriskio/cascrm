@@ -1,0 +1,13 @@
+node_modules
+.next
+.git
+.github
+*.log
+npm-debug.log*
+.env
+.env.*
+.DS_Store
+coverage
+.vscode
+.idea
+attached_assets
