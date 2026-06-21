@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
+import { requireApiPermission } from "@/lib/api-auth"
 import { supabaseAdmin } from "@/lib/supabase/admin"
 
 export const runtime = 'nodejs'
@@ -6,6 +7,9 @@ export const dynamic = 'force-dynamic'
 
 export async function GET(request: NextRequest, { params }: { params: { renewalId: string } }) {
   try {
+    const auth = await requireApiPermission("read")
+    if (!auth.authorized) return auth.response
+
     const supabase = supabaseAdmin
     const { renewalId } = params
 
@@ -39,6 +43,9 @@ export async function GET(request: NextRequest, { params }: { params: { renewalI
 
 export async function PUT(request: NextRequest, { params }: { params: { renewalId: string } }) {
   try {
+    const auth = await requireApiPermission("write")
+    if (!auth.authorized) return auth.response
+
     const supabase = supabaseAdmin
     const { renewalId } = params
     const body = await request.json()
@@ -70,6 +77,9 @@ export async function PUT(request: NextRequest, { params }: { params: { renewalI
 
 export async function DELETE(request: NextRequest, { params }: { params: { renewalId: string } }) {
   try {
+    const auth = await requireApiPermission("delete")
+    if (!auth.authorized) return auth.response
+
     const supabase = supabaseAdmin
     const { renewalId } = params
 

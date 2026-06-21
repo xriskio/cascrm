@@ -3,9 +3,13 @@ import { type NextRequest, NextResponse } from "next/server"
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 import { createClient } from "@/lib/supabase/server"
+import { requireApiPermission } from "@/lib/api-auth"
 
 export async function POST(request: NextRequest) {
   try {
+    const auth = await requireApiPermission("delete")
+    if (!auth.authorized) return auth.response
+
     const supabase = await createClient()
     const { renewalIds } = await request.json()
 
