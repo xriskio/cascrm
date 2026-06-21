@@ -47,7 +47,7 @@ export default function RenewalsPage() {
   const [loading, setLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("All Statuses")
-  const [activeTab, setActiveTab] = useState("All Renewals")
+  const [activeTab, setActiveTab] = useState("Upcoming")
   const [selectedRenewals, setSelectedRenewals] = useState<string[]>([])
   const [showBulkModal, setShowBulkModal] = useState(false)
   const [selectAll, setSelectAll] = useState(false)
@@ -885,7 +885,7 @@ export default function RenewalsPage() {
 
         {/* Tabs */}
         <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg">
-          {["All Renewals", "Upcoming", "Pending", "Bound"].map((tab) => (
+          {["Upcoming", "Pending", "Bound", "All Renewals"].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
