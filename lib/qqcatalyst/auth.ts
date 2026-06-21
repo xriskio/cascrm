@@ -4,8 +4,9 @@
 const QQ_TOKEN_URL = process.env.QQ_TOKEN_URL || "https://login.qqcatalyst.com/oauth/token"
 
 // Try the new QQCATALYST_* credentials first, fallback to old QQ_* credentials
-const QQ_CLIENT_ID = process.env.QQCATALYST_CLIENT_ID || process.env.QQ_CLIENT_ID || ""
-const QQ_CLIENT_SECRET = process.env.QQCATALYST_CLIENT_SECRET || process.env.QQ_CLIENT_SECRET || ""
+const QQ_CLIENT_ID = process.env.|| process.env.QQ_CLIENT_ID || ""
+const QQ_CLIENT_SECRET = process.env.|| process.env.QQ_CLIENT_SECRET || ""
+const QQ_BEARER_TOKEN = process.env.QQ_BEARER_TOKEN || ""
 const QQ_USERNAME = process.env.QQ_USERNAME || ""
 const QQ_PASSWORD = process.env.QQ_PASSWORD || ""
 
@@ -18,6 +19,7 @@ class QQCatalystAuth {
    * Get a valid access token, refreshing if necessary
    */
   async getAccessToken(): Promise<string> {
+    if (QQ_BEARER_TOKEN) return QQ_BEARER_TOKEN
     // Check if we have a valid cached token
     if (cachedToken && tokenExpiry && Date.now() < tokenExpiry) {
       return cachedToken

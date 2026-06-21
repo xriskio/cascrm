@@ -2,14 +2,14 @@ import { NextResponse } from "next/server"
 import { supabaseAdmin } from "@/lib/supabase/admin"
 
 const QQ_API_URL = process.env.QQCATALYST_API_URL
-const QQ_BEARER_TOKEN = process.env.QQCATALYST_BEARER_TOKEN
+const QQ_BEARER_TOKEN = process.env.QQ_BEARER_TOKEN
 
 async function fetchQQData(endpoint: string, page: number = 1) {
   if (!QQ_API_URL || !QQ_BEARER_TOKEN) {
     throw new Error("QQCatalyst API credentials not configured")
   }
 
-  const url = `${QQ_API_URL}${endpoint}?page=${page}&pageSize=100`
+  const url = `${QQ_API_URL}${endpoint}?pageNumber=${page}&startDate=2000-01-01&endDate=2030-01-01&pageSize=100`
   const response = await fetch(url, {
     headers: {
       "Authorization": `Bearer ${QQ_BEARER_TOKEN}`,
@@ -31,18 +31,18 @@ export async function POST() {
     // Fetch contacts
     const allContacts: any[] = []
     for (let page = 1; page <= 5; page++) {
-      const data = await fetchQQData("/contacts", page)
-      if (!data?.data || data.data.length === 0) break
-      allContacts.push(...data.data)
+      const data = await fetchQQData("Contacts/LastModifiedCreated", page)
+      if (!data?.Data || data.Data.length === 0) break
+      allContacts.push(...Data.Data)
     }
     console.log(`✅ Fetched ${allContacts.length} contacts`)
 
     // Fetch policies
     const allPolicies: any[] = []
     for (let page = 1; page <= 5; page++) {
-      const data = await fetchQQData("/policies", page)
-      if (!data?.data || data.data.length === 0) break
-      allPolicies.push(...data.data)
+      const data = await fetchQQData("Policies/LastModifiedCreated", page)
+      if (!data?.Data || data.Data.length === 0) break
+      allPolicies.push(...Data.Data)
     }
     console.log(`✅ Fetched ${allPolicies.length} policies`)
 
