@@ -103,15 +103,7 @@ export default function Topbar({ onNewSubmission }: TopbarProps) {
           )}
         </div>
 
-        {searchOpen && searchQ.length > 1 && (
-          <div style={{
-            position: 'absolute', top: 'calc(100% + 6px)', left: 0, right: 0,
-            background: BG2, border: `1px solid ${BDM}`,
-            borderRadius: 12, boxShadow: '0 16px 48px rgba(0,0,0,0.7)',
-            zIndex: 200, overflow: 'hidden',
-          }}>
-            {[
-              { href: `/clients?search=${encodeURIComponent(searchQ)}`,     label: `Clients matching "${searchQ}"`,     icon: '◉', bg: 'rgba(34,197,94,0.10)',   color: '#22C55E' },
+        <SearchResults query={searchQ} open={searchOpen && searchQ.length > 1} onClose={()=>{setSearchOpen(false);setSearchQ("")}} />`,     label: `Clients matching "${searchQ}"`,     icon: '◉', bg: 'rgba(34,197,94,0.10)',   color: '#22C55E' },
               { href: `/renewals?search=${encodeURIComponent(searchQ)}`,    label: `Renewals matching "${searchQ}"`,    icon: '↻', bg: 'rgba(245,158,11,0.10)', color: '#F59E0B' },
               { href: `/submissions?search=${encodeURIComponent(searchQ)}`, label: `Submissions matching "${searchQ}"`, icon: '◻', bg: 'rgba(59,130,246,0.10)',  color: '#3B82F6' },
             ].map(item => (
