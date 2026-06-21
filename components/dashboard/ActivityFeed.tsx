@@ -4,11 +4,11 @@ import { useState } from 'react';
 
 const BG2  = '#141416';
 const BG3  = '#1A1A1E';
-const BD   = 'rgba(255,255,255,0.06)';
+const BD   = 'rgba(192,192,200,0.10)';
 const BDM  = 'rgba(255,255,255,0.10)';
-const TEXT = '#F0F0F2';
-const T2   = '#8A8A96';
-const T3   = '#52525E';
+const TEXT = '#E2E2E8';
+const T2   = '#9A9AAA';
+const T3   = '#62626E';
 const FONT = 'Inter, DM Sans, system-ui, sans-serif';
 
 const TABS = ['All', 'Tasks', 'Renewals', 'Calls'];
