@@ -1,157 +1,112 @@
-import { NextResponse } from "next/server"
-import { supabaseAdmin } from "@/lib/supabase/admin"
-
-const QQ_API_URL = process.env.QQCATALYST_API_URL
-const QQ_BEARER_TOKEN = process.env.QQCATALYST_BEARER_TOKEN
-
-async function fetchQQData(endpoint: string, page: number = 1) {
-  if (!QQ_API_URL || !QQ_BEARER_TOKEN) {
-    throw new Error("QQCatalyst API credentials not configured")
-  }
-
-  const url = `${QQ_API_URL}${endpoint}?page=${page}&pageSize=100`
-  const response = await fetch(url, {
-    headers: {
-      "Authorization": `Bearer ${QQ_BEARER_TOKEN}`,
-      "Content-Type": "application/json",
-    },
-  })
-
-  if (!response.ok) {
-    throw new Error(`QQ API error: ${response.status} ${response.statusText}`)
-  }
-
-  return response.json()
-}
-
-export async function POST() {
-  try {
-    console.log("🚀 Starting QQCatalyst import...")
-
-    // Fetch contacts
-    const allContacts: any[] = []
-    for (let page = 1; page <= 5; page++) {
-      const data = await fetchQQData("/contacts", page)
-      if (!data?.data || data.data.length === 0) break
-      allContacts.push(...data.data)
-    }
-    console.log(`✅ Fetched ${allContacts.length} contacts`)
-
-    // Fetch policies
-    const allPolicies: any[] = []
-    for (let page = 1; page <= 5; page++) {
-      const data = await fetchQQData("/policies", page)
-      if (!data?.data || data.data.length === 0) break
-      allPolicies.push(...data.data)
-    }
-    console.log(`✅ Fetched ${allPolicies.length} policies`)
-
-    // Group policies by CustomerID
-    const policiesByCustomer = new Map<string, any[]>()
-    for (const policy of allPolicies) {
-      const customerId = policy.CustomerID || policy.PolicyID
-      if (!policiesByCustomer.has(customerId)) {
-        policiesByCustomer.set(customerId, [])
-      }
-      policiesByCustomer.get(customerId)!.push(policy)
-    }
-
-    // Process each contact
-    const clientRecords = []
-    for (const contact of allContacts) {
-      const customerId = contact.CustomerID || contact.ContactID
-      const contactPolicies = policiesByCustomer.get(customerId) || []
-
-      // Calculate metrics
-      let totalPremium = 0
-      let earliestRenewal: string | null = null
-
-      for (const policy of contactPolicies) {
-        const premium = typeof policy.Premium === 'number' 
-          ? policy.Premium 
-          : parseFloat(String(policy.Premium || 0))
-        const totalPrem = typeof policy.TotalPremium === 'number'
-          ? policy.TotalPremium
-          : parseFloat(String(policy.TotalPremium || 0))
-        
-        totalPremium += Math.max(premium, totalPrem) || 0
-
-        if (policy.RenewalDate) {
-          if (!earliestRenewal || new Date(policy.RenewalDate) < new Date(earliestRenewal)) {
-            earliestRenewal = policy.RenewalDate
-          }
-        }
-      }
-
-      // Create client record
-      clientRecords.push({
-        qq_contact_id: contact.ContactID,
-        customer_id: contact.CustomerID || null,
-        entity_id: contact.EntityID || null,
-        contact_name: contact.ContactName || null,
-        first_name: contact.FirstName || null,
-        last_name: contact.LastName || null,
-        name: contact.Name || contact.ContactName || null,
-        business_name: contact.BusinessName || null,
-        email: contact.Email || null,
-        phone: contact.Phone || null,
-        address: contact.Address || null,
-        city: contact.City || null,
-        state: contact.State || null,
-        zip: contact.Zip || contact.ZipCode || null,
-        zip_code: contact.ZipCode || contact.Zip || null,
-        policy_count: contactPolicies.length,
-        total_premium: totalPremium.toFixed(2),
-        renewal_date: earliestRenewal,
-        status: "active",
-        json_raw: {
-          contact: contact,
-          policies: contactPolicies,
-        },
-      })
-    }
-
-    console.log(`✅ Prepared ${clientRecords.length} client records`)
-
-    // Insert using Supabase (batch of 200)
-    let processed = 0
-    const batchSize = 200
-
-    for (let i = 0; i < clientRecords.length; i += batchSize) {
-      const batch = clientRecords.slice(i, i + batchSize)
-      
-      const { error } = await supabaseAdmin
-        .from("clients")
-        .upsert(batch, {
-          onConflict: "qq_contact_id",
-        })
-
-      if (error) {
-        console.error(`❌ Error in batch ${Math.floor(i / batchSize) + 1}:`, error)
-        throw error
-      }
-
-      processed += batch.length
-      console.log(`✅ Batch ${Math.floor(i / batchSize) + 1}: Processed ${batch.length} records`)
-    }
-
-    return NextResponse.json({
-      success: true,
-      message: `Successfully imported ${processed} clients`,
-      stats: {
-        contacts: allContacts.length,
-        policies: allPolicies.length,
-        clients_processed: processed,
-      },
-    })
-  } catch (error) {
-    console.error("❌ Import error:", error)
-    return NextResponse.json(
-      {
-        success: false,
-        error: error instanceof Error ? error.message : "Unknown error",
-      },
-      { status: 500 }
-    )
-  }
-}
+aW1wb3J0IHsgTmV4dFJlc3BvbnNlIH0gZnJvbSAibmV4dC9zZXJ2ZXIiCmlt
+cG9ydCB7IHN1cGFiYXNlQWRtaW4gfSBmcm9tICJAL2xpYi9zdXBhYmFzZS9h
+ZG1pbiIKCmNvbnN0IFFRX0FQSV9VUkwgPSBwcm9jZXNzLmVudi5RUUNBVEFM
+WVNUX0FQSV9VUkwKY29uc3QgUVFfQkVBUkVSX1RPS0VOID0gcHJvY2Vzcy5l
+bnYuUVFDQVRBTFlTVF9CRUFSRVJfVE9LRU4KCmFzeW5jIGZ1bmN0aW9uIGZl
+dGNoUVFEYXRhKGVuZHBvaW50OiBzdHJpbmcsIHBhZ2U6IG51bWJlciA9IDEp
+IHsKICBpZiAoIVFRX0FQSV9VUkwgfHwgIVFRX0JFQVJFUl9UT0tFTikgewog
+ICAgdGhyb3cgbmV3IEVycm9yKCJRUUNhdGFseXN0IEFQSSBjcmVkZW50aWFs
+cyBub3QgY29uZmlndXJlZCIpCiAgfQoKICBjb25zdCB1cmwgPSBgJHtRUV9B
+UElfVVJMfSR7ZW5kcG9pbnR9P3BhZ2U9JHtwYWdlfSZwYWdlU2l6ZT0xMDBg
+CiAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaCh1cmwsIHsKICAgIGhl
+YWRlcnM6IHsKICAgICAgIkF1dGhvcml6YXRpb24iOiBgQmVhcmVyICR7UVFf
+QkVBUkVSX1RPS0VOfWAsCiAgICAgICJDb250ZW50LVR5cGUiOiAiYXBwbGlj
+YXRpb24vanNvbiIsCiAgICB9LAogIH0pCgogIGlmICghcmVzcG9uc2Uub2sp
+IHsKICAgIHRocm93IG5ldyBFcnJvcihgUVEgQVBJIGVycm9yOiAke3Jlc3Bv
+bnNlLnN0YXR1c30gJHtyZXNwb25zZS5zdGF0dXNUZXh0fWApCiAgfQoKICBy
+ZXR1cm4gcmVzcG9uc2UuanNvbigpCn0KCmV4cG9ydCBhc3luYyBmdW5jdGlv
+biBQT1NUKCkgewogIHRyeSB7CiAgICBjb25zb2xlLmxvZygi8J+agCBTdGFy
+dGluZyBRUUNhdGFseXN0IGltcG9ydC4uLiIpCgogICAgLy8gRmV0Y2ggY29u
+dGFjdHMKICAgIGNvbnN0IGFsbENvbnRhY3RzOiBhbnlbXSA9IFtdCiAgICBm
+b3IgKGxldCBwYWdlID0gMTsgcGFnZSA8PSA1OyBwYWdlKyspIHsKICAgICAg
+Y29uc3QgZGF0YSA9IGF3YWl0IGZldGNoUVFEYXRhKCIvY29udGFjdHMiLCBw
+YWdlKQogICAgICBpZiAoIWRhdGE/LmRhdGEgfHwgZGF0YS5kYXRhLmxlbmd0
+aCA9PT0gMCkgYnJlYWsKICAgICAgYWxsQ29udGFjdHMucHVzaCguLi5kYXRh
+LmRhdGEpCiAgICB9CiAgICBjb25zb2xlLmxvZyhg4pyFIEZldGNoZWQgJHth
+bGxDb250YWN0cy5sZW5ndGh9IGNvbnRhY3RzYCkKCiAgICAvLyBGZXRjaCBw
+b2xpY2llcwogICAgY29uc3QgYWxsUG9saWNpZXM6IGFueVtdID0gW10KICAg
+IGZvciAobGV0IHBhZ2UgPSAxOyBwYWdlIDw9IDU7IHBhZ2UrKykgewogICAg
+ICBjb25zdCBkYXRhID0gYXdhaXQgZmV0Y2hRUURhdGEoIi9wb2xpY2llcyIs
+IHBhZ2UpCiAgICAgIGlmICghZGF0YT8uZGF0YSB8fCBkYXRhLmRhdGEubGVu
+Z3RoID09PSAwKSBicmVhawogICAgICBhbGxQb2xpY2llcy5wdXNoKC4uLmRh
+dGEuZGF0YSkKICAgIH0KICAgIGNvbnNvbGUubG9nKGDinIUgRmV0Y2hlZCAk
+e2FsbFBvbGljaWVzLmxlbmd0aH0gcG9saWNpZXNgKQoKICAgIC8vIEdyb3Vw
+IHBvbGljaWVzIGJ5IEN1c3RvbWVySUQKICAgIGNvbnN0IHBvbGljaWVzQnlD
+dXN0b21lciA9IG5ldyBNYXA8c3RyaW5nLCBhbnlbXT4oKQogICAgZm9yIChj
+b25zdCBwb2xpY3kgb2YgYWxsUG9saWNpZXMpIHsKICAgICAgY29uc3QgY3Vz
+dG9tZXJJZCA9IHBvbGljeS5DdXN0b21lcklEIHx8IHBvbGljeS5Qb2xpY3lJ
+RAogICAgICBpZiAoIXBvbGljaWVzQnlDdXN0b21lci5oYXMoY3VzdG9tZXJJ
+ZCkpIHsKICAgICAgICBwb2xpY2llc0J5Q3VzdG9tZXIuc2V0KGN1c3RvbWVy
+SWQsIFtdKQogICAgICB9CiAgICAgIHBvbGljaWVzQnlDdXN0b21lci5nZXQo
+Y3VzdG9tZXJJZCkhLnB1c2gocG9saWN5KQogICAgfQoKICAgIC8vIFByb2Nl
+c3MgZWFjaCBjb250YWN0CiAgICBjb25zdCBjbGllbnRSZWNvcmRzID0gW10K
+ICAgIGZvciAoY29uc3QgY29udGFjdCBvZiBhbGxDb250YWN0cykgewogICAg
+ICBjb25zdCBjdXN0b21lcklkID0gY29udGFjdC5DdXN0b21lcklEIHx8IGNv
+bnRhY3QuQ29udGFjdElECiAgICAgIGNvbnN0IGNvbnRhY3RQb2xpY2llcyA9
+IHBvbGljaWVzQnlDdXN0b21lci5nZXQoY3VzdG9tZXJJZCkgfHwgW10KCiAg
+ICAgIC8vIENhbGN1bGF0ZSBtZXRyaWNzCiAgICAgIGxldCB0b3RhbFByZW1p
+dW0gPSAwCiAgICAgIGxldCBlYXJsaWVzdFJlbmV3YWw6IHN0cmluZyB8IG51
+bGwgPSBudWxsCgogICAgICBmb3IgKGNvbnN0IHBvbGljeSBvZiBjb250YWN0
+UG9saWNpZXMpIHsKICAgICAgICBjb25zdCBwcmVtaXVtID0gdHlwZW9mIHBv
+bGljeS5QcmVtaXVtID09PSAnbnVtYmVyJyAKICAgICAgICAgID8gcG9saWN5
+LlByZW1pdW0gCiAgICAgICAgICA6IHBhcnNlRmxvYXQoU3RyaW5nKHBvbGlj
+eS5QcmVtaXVtIHx8IDApKQogICAgICAgIGNvbnN0IHRvdGFsUHJlbSA9IHR5
+cGVvZiBwb2xpY3kuVG90YWxQcmVtaXVtID09PSAnbnVtYmVyJwogICAgICAg
+ICAgPyBwb2xpY3kuVG90YWxQcmVtaXVtCiAgICAgICAgICA6IHBhcnNlRmxv
+YXQoU3RyaW5nKHBvbGljeS5Ub3RhbFByZW1pdW0gfHwgMCkpCiAgICAgICAg
+CiAgICAgICAgdG90YWxQcmVtaXVtICs9IE1hdGgubWF4KHByZW1pdW0sIHRv
+dGFsUHJlbSkgfHwgMAoKICAgICAgICBpZiAocG9saWN5LlJlbmV3YWxEYXRl
+KSB7CiAgICAgICAgICBpZiAoIWVhcmxpZXN0UmVuZXdhbCB8fCBuZXcgRGF0
+ZShwb2xpY3kuUmVuZXdhbERhdGUpIDwgbmV3IERhdGUoZWFybGllc3RSZW5l
+d2FsKSkgewogICAgICAgICAgICBlYXJsaWVzdFJlbmV3YWwgPSBwb2xpY3ku
+UmVuZXdhbERhdGUKICAgICAgICAgIH0KICAgICAgICB9CiAgICAgIH0KCiAg
+ICAgIC8vIENyZWF0ZSBjbGllbnQgcmVjb3JkCiAgICAgIGNsaWVudFJlY29y
+ZHMucHVzaCh7CiAgICAgICAgcXFfY29udGFjdF9pZDogY29udGFjdC5Db250
+YWN0SUQsCiAgICAgICAgY3VzdG9tZXJfaWQ6IGNvbnRhY3QuQ3VzdG9tZXJJ
+RCB8fCBudWxsLAogICAgICAgIGVudGl0eV9pZDogY29udGFjdC5FbnRpdHlJ
+RCB8fCBudWxsLAogICAgICAgIGNvbnRhY3RfbmFtZTogY29udGFjdC5Db250
+YWN0TmFtZSB8fCBudWxsLAogICAgICAgIGZpcnN0X25hbWU6IGNvbnRhY3Qu
+Rmlyc3ROYW1lIHx8IG51bGwsCiAgICAgICAgbGFzdF9uYW1lOiBjb250YWN0
+Lkxhc3ROYW1lIHx8IG51bGwsCiAgICAgICAgbmFtZTogY29udGFjdC5OYW1l
+IHx8IGNvbnRhY3QuQ29udGFjdE5hbWUgfHwgbnVsbCwKICAgICAgICBidXNp
+bmVzc19uYW1lOiBjb250YWN0LkJ1c2luZXNzTmFtZSB8fCBudWxsLAogICAg
+ICAgIGVtYWlsOiBjb250YWN0LkVtYWlsIHx8IG51bGwsCiAgICAgICAgcGhv
+bmU6IGNvbnRhY3QuUGhvbmUgfHwgbnVsbCwKICAgICAgICBhZGRyZXNzOiBj
+b250YWN0LkFkZHJlc3MgfHwgbnVsbCwKICAgICAgICBjaXR5OiBjb250YWN0
+LkNpdHkgfHwgbnVsbCwKICAgICAgICBzdGF0ZTogY29udGFjdC5TdGF0ZSB8
+fCBudWxsLAogICAgICAgIHppcDogY29udGFjdC5aaXAgfHwgY29udGFjdC5a
+aXBDb2RlIHx8IG51bGwsCiAgICAgICAgemlwX2NvZGU6IGNvbnRhY3QuWmlw
+Q29kZSB8fCBjb250YWN0LlppcCB8fCBudWxsLAogICAgICAgIHBvbGljeV9j
+b3VudDogY29udGFjdFBvbGljaWVzLmxlbmd0aCwKICAgICAgICB0b3RhbF9w
+cmVtaXVtOiB0b3RhbFByZW1pdW0udG9GaXhlZCgyKSwKICAgICAgICByZW5l
+d2FsX2RhdGU6IGVhcmxpZXN0UmVuZXdhbCwKICAgICAgICBzdGF0dXM6ICJh
+Y3RpdmUiLAogICAgICAgIGpzb25fcmF3OiB7CiAgICAgICAgICBjb250YWN0
+OiBjb250YWN0LAogICAgICAgICAgcG9saWNpZXM6IGNvbnRhY3RQb2xpY2ll
+cywKICAgICAgICB9LAogICAgICB9KQogICAgfQoKICAgIGNvbnNvbGUubG9n
+KGDinIUgUHJlcGFyZWQgJHtjbGllbnRSZWNvcmRzLmxlbmd0aH0gY2xpZW50
+IHJlY29yZHNgKQoKICAgIC8vIEluc2VydCB1c2luZyBTdXBhYmFzZSAoYmF0
+Y2ggb2YgMjAwKQogICAgbGV0IHByb2Nlc3NlZCA9IDAKICAgIGNvbnN0IGJh
+dGNoU2l6ZSA9IDIwMAoKICAgIGZvciAobGV0IGkgPSAwOyBpIDwgY2xpZW50
+UmVjb3Jkcy5sZW5ndGg7IGkgKz0gYmF0Y2hTaXplKSB7CiAgICAgIGNvbnN0
+IGJhdGNoID0gY2xpZW50UmVjb3Jkcy5zbGljZShpLCBpICsgYmF0Y2hTaXpl
+KQogICAgICAKICAgICAgY29uc3QgeyBlcnJvciB9ID0gYXdhaXQgc3VwYWJh
+c2VBZG1pbgogICAgICAgIC5mcm9tKCJjbGllbnRzIikKICAgICAgICAudXBz
+ZXJ0KGJhdGNoLCB7CiAgICAgICAgICBvbkNvbmZsaWN0OiAicXFfY29udGFj
+dF9pZCIsCiAgICAgICAgfSkKCiAgICAgIGlmIChlcnJvcikgewogICAgICAg
+IGNvbnNvbGUuZXJyb3IoYOKdjCBFcnJvciBpbiBiYXRjaCAke01hdGguZmxv
+b3IoaSAvIGJhdGNoU2l6ZSkgKyAxfTpgLCBlcnJvcikKICAgICAgICB0aHJv
+dyBlcnJvcgogICAgICB9CgogICAgICBwcm9jZXNzZWQgKz0gYmF0Y2gubGVu
+Z3RoCiAgICAgIGNvbnNvbGUubG9nKGDinIUgQmF0Y2ggJHtNYXRoLmZsb29y
+KGkgLyBiYXRjaFNpemUpICsgMX06IFByb2Nlc3NlZCAke2JhdGNoLmxlbmd0
+aH0gcmVjb3Jkc2ApCiAgICB9CgogICAgcmV0dXJuIE5leHRSZXNwb25zZS5q
+c29uKHsKICAgICAgc3VjY2VzczogdHJ1ZSwKICAgICAgbWVzc2FnZTogYFN1
+Y2Nlc3NmdWxseSBpbXBvcnRlZCAke3Byb2Nlc3NlZH0gY2xpZW50c2AsCiAg
+ICAgIHN0YXRzOiB7CiAgICAgICAgY29udGFjdHM6IGFsbENvbnRhY3RzLmxl
+bmd0aCwKICAgICAgICBwb2xpY2llczogYWxsUG9saWNpZXMubGVuZ3RoLAog
+ICAgICAgIGNsaWVudHNfcHJvY2Vzc2VkOiBwcm9jZXNzZWQsCiAgICAgIH0s
+CiAgICB9KQogIH0gY2F0Y2ggKGVycm9yKSB7CiAgICBjb25zb2xlLmVycm9y
+KCLinYwgSW1wb3J0IGVycm9yOiIsIGVycm9yKQogICAgcmV0dXJuIE5leHRS
+ZXNwb25zZS5qc29uKAogICAgICB7CiAgICAgICAgc3VjY2VzczogZmFsc2Us
+CiAgICAgICAgZXJyb3I6IGVycm9yIGluc3RhbmNlb2YgRXJyb3IgPyBlcnJv
+ci5tZXNzYWdlIDogIlVua25vd24gZXJyb3IiLAogICAgICB9LAogICAgICB7
+IHN0YXR1czogNTAwIH0KICAgICkKICB9Cn0K
