@@ -19,7 +19,15 @@ export async function POST(req: NextRequest) {
     status: 'new', stage: 'lead_capture', form_step: 1, form_completion: 0, lead_score: 0,
   }).select().single()
 
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+  if (error) {
+    // If columns missing (SQL not run), fall back to minimal insert
+    const { data: fallback, error: err2 } = await sb.from("leads").insert({
+      email, contact_name: (firstName + " " + lastName).trim(),
+      company_name: companyName, status: "new",
+    }).select().single()
+    if (err2) return NextResponse.json({ error: err2.message }, { status: 500 })
+    return NextResponse.json(fallback, { status: 201 })
+  }
 
   await sb.from('lead_progress_steps').insert({
     lead_id: lead.id, step_number: 1, step_name: 'Basic Information',
