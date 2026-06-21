@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Make API call to QQCatalyst (similar to the server implementation)
-    const apiHost = process.env.QQ_API_BASE || "http://api.qqcatalyst.com"
+    const apiHost = process.env.QQCATALYST_API_URL || "http://api.qqcatalyst.com"
     const apiUrl = `${apiHost}${endpoint}`
 
     console.log("Making API request to:", apiUrl)
@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
     }
 
     const token = tokenResult.data.access_token
-    const apiHost = process.env.QQ_API_BASE || "http://api.qqcatalyst.com"
+    const apiHost = process.env.QQCATALYST_API_URL || "http://api.qqcatalyst.com"
     const apiUrl = `${apiHost}${endpoint}`
 
     const response = await fetch(apiUrl, {
