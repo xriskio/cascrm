@@ -5,10 +5,10 @@ import type { WorkflowItem } from '@/types/workflow'
 
 const BG2 = '#141416'
 const BG3 = '#1A1A1E'
-const BD = 'rgba(255,255,255,0.06)'
-const TEXT = '#F0F0F2'
-const T2 = '#8A8A96'
-const T3 = '#52525E'
+const BD = 'rgba(192,192,200,0.10)'
+const TEXT = '#E2E2E8'
+const T2 = '#9A9AAA'
+const T3 = '#62626E'
 const FONT = 'Inter, DM Sans, system-ui, sans-serif'
 
 const STATUSES = [
@@ -123,7 +123,7 @@ function KanbanColumn({
         </div>
         <span style={{
           fontSize: 10, fontWeight: 600,
-          background: 'rgba(255,255,255,0.06)', color: T3,
+          background: 'rgba(192,192,200,0.10)', color: T3,
           padding: '2px 8px', borderRadius: 6,
         }}>
           {items.length}
