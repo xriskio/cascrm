@@ -61,3 +61,12 @@
 --   sendBindingConfirmation - on policy binding
 -- ============================================================
 SELECT 'Casurance 4-Workflow Setup Guide loaded' as message;
+
+-- APPLIED DIRECTLY VIA SUPABASE MCP (2026-06-21)
+-- All 21 workflow tables created and verified
+-- Extra columns added via ALTER TABLE:
+--   submissions: assigned_agent, tracking_number
+--   market_submissions: assigned_agent, carrier_email (FK to policy_management.submissions dropped)
+--   quotes: quote_status
+-- Test data verified end-to-end:
+--   lead (qualified) -> submission (draft+7 checklist) -> placement (submitted+timeline) -> quote (bound, policy GEICO-TEST-001)
