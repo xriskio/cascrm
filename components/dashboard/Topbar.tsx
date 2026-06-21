@@ -103,24 +103,7 @@ export default function Topbar({ onNewSubmission }: TopbarProps) {
           )}
         </div>
 
-        <SearchResults query={searchQ} open={searchOpen && searchQ.length > 1} onClose={()=>{setSearchOpen(false);setSearchQ("")}} />`,     label: `Clients matching "${searchQ}"`,     icon: '◉', bg: 'rgba(34,197,94,0.10)',   color: '#22C55E' },
-              { href: `/renewals?search=${encodeURIComponent(searchQ)}`,    label: `Renewals matching "${searchQ}"`,    icon: '↻', bg: 'rgba(245,158,11,0.10)', color: '#F59E0B' },
-              { href: `/submissions?search=${encodeURIComponent(searchQ)}`, label: `Submissions matching "${searchQ}"`, icon: '◻', bg: 'rgba(59,130,246,0.10)',  color: '#3B82F6' },
-            ].map(item => (
-              <Link key={item.href} href={item.href} onClick={() => { setSearchOpen(false); setSearchQ(''); }} style={{ textDecoration: 'none' }}>
-                <div
-                  style={{ display: 'flex', alignItems: 'center', gap: 11, padding: '9px 14px', cursor: 'pointer', transition: 'background 0.1s' }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.background = BG3; }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.background = 'transparent'; }}
-                >
-                  <div style={{ width: 30, height: 30, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 600, background: item.bg, color: item.color, flexShrink: 0 }}>{item.icon}</div>
-                  <div style={{ fontSize: 13, fontWeight: 500, color: TEXT, fontFamily: FONT }}>{item.label}</div>
-                  <span style={{ marginLeft: 'auto', color: T3, fontSize: 13 }}>→</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
+        <SearchResults query={searchQ} open={searchOpen && searchQ.length > 1} onClose={()=>{setSearchOpen(false);setSearchQ("")}} />
       </div>
 
       {/* Right controls */}

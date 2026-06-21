@@ -31,4 +31,27 @@ export default function PipelinePage(){
         <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:16,marginBottom:32}}>
           {STAGES.map((s,i)=>(
             <div key={s.id} style={{background:BG1,border:`1px solid ${BD}`,borderRadius:12,padding:20,position:"relative"}}>
-              {i<3&&<div style={{position:"absolute",right:-8,top:"50
+              {i<3&&<div style={{position:"absolute",right:-8,top:"50%",transform:"translateY(-50%)",zIndex:1,color:T3,fontSize:18,lineHeight:1}}>›</div>}
+              <div style={{fontSize:28,marginBottom:12}}>{s.icon}</div>
+              <div style={{fontSize:13,fontWeight:600,color:TEXT,marginBottom:4}}>{s.label}</div>
+              <div style={{fontSize:11,color:T2,marginBottom:16}}>{s.desc}</div>
+              <div style={{fontSize:28,fontWeight:700,color:s.color,marginBottom:4,fontVariantNumeric:"tabular-nums"}}>
+                {loading?"—":counts[i]??0}
+              </div>
+              <div style={{fontSize:10,color:T3,marginBottom:16}}>active records</div>
+              <Link href={s.href} style={{textDecoration:"none"}}>
+                <div style={{display:"inline-flex",alignItems:"center",gap:5,fontSize:11,fontWeight:500,color:s.color,padding:"5px 10px",borderRadius:6,border:`1px solid ${s.color}33`,background:`${s.color}11`,cursor:"pointer"}}>
+                  View {s.label} →
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+        <div style={{background:BG1,border:`1px solid ${BD}`,borderRadius:12,padding:24}}>
+          <div style={{fontSize:14,fontWeight:600,color:TEXT,marginBottom:4}}>Pipeline Overview</div>
+          <div style={{fontSize:12,color:T2}}>Track your deals from lead capture through to bound policy. Click any stage above to manage records in that phase.</div>
+        </div>
+      </div>
+    </div>
+  )
+}
