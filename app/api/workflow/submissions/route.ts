@@ -21,7 +21,16 @@ export async function POST(req: NextRequest) {
     policy_type: lead.lead_type || 'Commercial',
   }).select().single()
 
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+  if (error) {
+    // Columns not yet added - fall back to existing columns only
+    const { data: fb, error: e2 } = await sb.from("submissions").insert({
+      client_name: lead.company_name || lead.contact_name,
+      policy_type: lead.lead_type || "Commercial",
+      assigned_agent: assignedAgent, status: "draft",
+    }).select().single()
+    if (e2) return NextResponse.json({ error: e2.message }, { status: 500 })
+    return NextResponse.json(fb, { status: 201 })
+  }
 
   const items = [
     'Tax Returns (Last 3 Years)', 'Profit & Loss Statement', 'Loss Runs / Claims History',
