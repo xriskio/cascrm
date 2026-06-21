@@ -1,199 +1,140 @@
-// QQCatalyst OAuth authentication handler
-
-// Use the environment variables as provided by the user
-const QQ_TOKEN_URL = process.env.QQ_TOKEN_URL || "https://login.qqcatalyst.com/oauth/token"
-
-// Try the new QQCATALYST_* credentials first, fallback to old QQ_* credentials
-const QQ_CLIENT_ID = process.env.QQCATALYST_CLIENT_ID || process.env.QQ_CLIENT_ID || ""
-const QQ_CLIENT_SECRET = process.env.QQCATALYST_CLIENT_SECRET || process.env.QQ_CLIENT_SECRET || ""
-const QQ_USERNAME = process.env.QQ_USERNAME || ""
-const QQ_PASSWORD = process.env.QQ_PASSWORD || ""
-
-// In-memory token cache
-let cachedToken: string | null = null
-let tokenExpiry: number | null = null
-
-class QQCatalystAuth {
-  /**
-   * Get a valid access token, refreshing if necessary
-   */
-  async getAccessToken(): Promise<string> {
-    // Check if we have a valid cached token
-    if (cachedToken && tokenExpiry && Date.now() < tokenExpiry) {
-      return cachedToken
-    }
-
-    // Otherwise, get a new token
-    return await this.refreshToken()
-  }
-
-  /**
-   * Refresh the access token
-   */
-  async refreshToken(): Promise<string> {
-    try {
-      console.log("Refreshing QQCatalyst access token...")
-
-      // Check if client credentials are available
-      if (!QQ_CLIENT_ID || !QQ_CLIENT_SECRET) {
-        console.error("Missing QQCatalyst credentials in environment variables")
-        console.error(`QQ_CLIENT_ID: ${QQ_CLIENT_ID ? "Set" : "Missing"}`)
-        console.error(`QQ_CLIENT_SECRET: ${QQ_CLIENT_SECRET ? "Set" : "Missing"}`)
-        throw new Error("Missing QQCatalyst Client ID and Secret in environment variables")
-      }
-
-      // Create Basic Auth header with client credentials
-      const basicAuth = Buffer.from(`${QQ_CLIENT_ID}:${QQ_CLIENT_SECRET}`).toString("base64")
-
-      // Determine grant type: use client_credentials if no username/password, else use password
-      const grantType = QQ_USERNAME && QQ_PASSWORD ? "password" : "client_credentials"
-      
-      console.log(`Using grant_type: ${grantType}`)
-
-      const bodyParams: Record<string, string> = {
-        grant_type: grantType,
-      }
-
-      // Add username and password only if available (password grant)
-      if (grantType === "password") {
-        bodyParams.username = QQ_USERNAME
-        bodyParams.password = QQ_PASSWORD
-      }
-
-      const response = await fetch(QQ_TOKEN_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          Authorization: `Basic ${basicAuth}`,
-        },
-        body: new URLSearchParams(bodyParams),
-      })
-
-      if (!response.ok) {
-        const errorText = await response.text()
-        console.error(`Token refresh failed: ${response.status} - ${errorText}`)
-        throw new Error(`Token refresh failed: ${response.status} - ${errorText}`)
-      }
-
-      const data = await response.json()
-
-      if (!data.access_token) {
-        throw new Error("No access token returned from QQCatalyst")
-      }
-
-      // Cache the token and set expiry (default to 1 hour if expires_in not provided)
-      cachedToken = data.access_token
-      tokenExpiry = Date.now() + (data.expires_in || 3600) * 1000
-
-      console.log("QQCatalyst token refreshed successfully")
-      return data.access_token
-    } catch (error) {
-      console.error("Error refreshing QQCatalyst token:", error)
-      throw error
-    }
-  }
-
-  /**
-   * Get a client token directly (for testing)
-   */
-  async getClientToken(): Promise<any> {
-    try {
-      // Check if credentials are available
-      if (!QQ_CLIENT_ID || !QQ_CLIENT_SECRET) {
-        throw new Error("Missing QQCatalyst Client ID and Secret in environment variables")
-      }
-
-      // Create Basic Auth header with client credentials
-      const basicAuth = Buffer.from(`${QQ_CLIENT_ID}:${QQ_CLIENT_SECRET}`).toString("base64")
-
-      // Determine grant type
-      const grantType = QQ_USERNAME && QQ_PASSWORD ? "password" : "client_credentials"
-      
-      const bodyParams: Record<string, string> = {
-        grant_type: grantType,
-      }
-
-      if (grantType === "password") {
-        bodyParams.username = QQ_USERNAME
-        bodyParams.password = QQ_PASSWORD
-      }
-
-      const response = await fetch(QQ_TOKEN_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          Authorization: `Basic ${basicAuth}`,
-        },
-        body: new URLSearchParams(bodyParams),
-      })
-
-      if (!response.ok) {
-        const errorText = await response.text()
-        throw new Error(`Token request failed: ${response.status} - ${errorText}`)
-      }
-
-      return await response.json()
-    } catch (error) {
-      console.error("Error getting client token:", error)
-      throw error
-    }
-  }
-
-  /**
-   * Clear the token cache
-   */
-  clearTokenCache() {
-    cachedToken = null
-    tokenExpiry = null
-  }
-}
-
-// Export singleton instance
-export const qqAuth = new QQCatalystAuth()
-
-// Export helper functions for compatibility with the provided code
-export async function getQQCatalystToken() {
-  try {
-    // Check if credentials are available
-    if (!QQ_CLIENT_ID || !QQ_CLIENT_SECRET) {
-      throw new Error("Missing QQCatalyst Client ID and Secret in environment variables")
-    }
-
-    const basicAuth = Buffer.from(`${QQ_CLIENT_ID}:${QQ_CLIENT_SECRET}`).toString("base64")
-
-    // Determine grant type
-    const grantType = QQ_USERNAME && QQ_PASSWORD ? "password" : "client_credentials"
-    
-    const bodyParams: Record<string, string> = {
-      grant_type: grantType,
-    }
-
-    if (grantType === "password") {
-      bodyParams.username = QQ_USERNAME
-      bodyParams.password = QQ_PASSWORD
-    }
-
-    const response = await fetch(QQ_TOKEN_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Basic ${basicAuth}`,
-      },
-      body: new URLSearchParams(bodyParams),
-    })
-
-    if (!response.ok) {
-      const errorText = await response.text()
-      throw new Error(`Token request failed: ${response.status} - ${errorText}`)
-    }
-
-    return await response.json()
-  } catch (error) {
-    console.error("Error in getQQCatalystToken:", error)
-    throw error
-  }
-}
-
-export async function refreshQQCatalystToken() {
-  return await getQQCatalystToken()
-}
+Ly8gUVFDYXRhbHlzdCBPQXV0aCBhdXRoZW50aWNhdGlvbiBoYW5kbGVyCgov
+LyBVc2UgdGhlIGVudmlyb25tZW50IHZhcmlhYmxlcyBhcyBwcm92aWRlZCBi
+eSB0aGUgdXNlcgpjb25zdCBRUV9UT0tFTl9VUkwgPSBwcm9jZXNzLmVudi5R
+UV9UT0tFTl9VUkwgfHwgImh0dHBzOi8vbG9naW4ucXFjYXRhbHlzdC5jb20v
+b2F1dGgvdG9rZW4iCgovLyBUcnkgdGhlIG5ldyBRUUNBVEFMWVNUXyogY3Jl
+ZGVudGlhbHMgZmlyc3QsIGZhbGxiYWNrIHRvIG9sZCBRUV8qIGNyZWRlbnRp
+YWxzCmNvbnN0IFFRX0NMSUVOVF9JRCA9IHByb2Nlc3MuZW52LlFRQ0FUQUxZ
+U1RfQ0xJRU5UX0lEIHx8IHByb2Nlc3MuZW52LlFRX0NMSUVOVF9JRCB8fCAi
+Igpjb25zdCBRUV9DTElFTlRfU0VDUkVUID0gcHJvY2Vzcy5lbnYuUVFDQVRB
+TFlTVF9DTElFTlRfU0VDUkVUIHx8IHByb2Nlc3MuZW52LlFRX0NMSUVOVF9T
+RUNSRVQgfHwgIiIKY29uc3QgUVFfVVNFUk5BTUUgPSBwcm9jZXNzLmVudi5R
+UV9VU0VSTkFNRSB8fCAiIgpjb25zdCBRUV9QQVNTV09SRCA9IHByb2Nlc3Mu
+ZW52LlFRX1BBU1NXT1JEIHx8ICIiCgovLyBJbi1tZW1vcnkgdG9rZW4gY2Fj
+aGUKbGV0IGNhY2hlZFRva2VuOiBzdHJpbmcgfCBudWxsID0gbnVsbApsZXQg
+dG9rZW5FeHBpcnk6IG51bWJlciB8IG51bGwgPSBudWxsCgpjbGFzcyBRUUNh
+dGFseXN0QXV0aCB7CiAgLyoqCiAgICogR2V0IGEgdmFsaWQgYWNjZXNzIHRv
+a2VuLCByZWZyZXNoaW5nIGlmIG5lY2Vzc2FyeQogICAqLwogIGFzeW5jIGdl
+dEFjY2Vzc1Rva2VuKCk6IFByb21pc2U8c3RyaW5nPiB7CiAgICAvLyBDaGVj
+ayBpZiB3ZSBoYXZlIGEgdmFsaWQgY2FjaGVkIHRva2VuCiAgICBpZiAoY2Fj
+aGVkVG9rZW4gJiYgdG9rZW5FeHBpcnkgJiYgRGF0ZS5ub3coKSA8IHRva2Vu
+RXhwaXJ5KSB7CiAgICAgIHJldHVybiBjYWNoZWRUb2tlbgogICAgfQoKICAg
+IC8vIE90aGVyd2lzZSwgZ2V0IGEgbmV3IHRva2VuCiAgICByZXR1cm4gYXdh
+aXQgdGhpcy5yZWZyZXNoVG9rZW4oKQogIH0KCiAgLyoqCiAgICogUmVmcmVz
+aCB0aGUgYWNjZXNzIHRva2VuCiAgICovCiAgYXN5bmMgcmVmcmVzaFRva2Vu
+KCk6IFByb21pc2U8c3RyaW5nPiB7CiAgICB0cnkgewogICAgICBjb25zb2xl
+LmxvZygiUmVmcmVzaGluZyBRUUNhdGFseXN0IGFjY2VzcyB0b2tlbi4uLiIp
+CgogICAgICAvLyBDaGVjayBpZiBjbGllbnQgY3JlZGVudGlhbHMgYXJlIGF2
+YWlsYWJsZQogICAgICBpZiAoIVFRX0NMSUVOVF9JRCB8fCAhUVFfQ0xJRU5U
+X1NFQ1JFVCkgewogICAgICAgIGNvbnNvbGUuZXJyb3IoIk1pc3NpbmcgUVFD
+YXRhbHlzdCBjcmVkZW50aWFscyBpbiBlbnZpcm9ubWVudCB2YXJpYWJsZXMi
+KQogICAgICAgIGNvbnNvbGUuZXJyb3IoYFFRX0NMSUVOVF9JRDogJHtRUV9D
+TElFTlRfSUQgPyAiU2V0IiA6ICJNaXNzaW5nIn1gKQogICAgICAgIGNvbnNv
+bGUuZXJyb3IoYFFRX0NMSUVOVF9TRUNSRVQ6ICR7UVFfQ0xJRU5UX1NFQ1JF
+VCA/ICJTZXQiIDogIk1pc3NpbmcifWApCiAgICAgICAgdGhyb3cgbmV3IEVy
+cm9yKCJNaXNzaW5nIFFRQ2F0YWx5c3QgQ2xpZW50IElEIGFuZCBTZWNyZXQg
+aW4gZW52aXJvbm1lbnQgdmFyaWFibGVzIikKICAgICAgfQoKICAgICAgLy8g
+Q3JlYXRlIEJhc2ljIEF1dGggaGVhZGVyIHdpdGggY2xpZW50IGNyZWRlbnRp
+YWxzCiAgICAgIGNvbnN0IGJhc2ljQXV0aCA9IEJ1ZmZlci5mcm9tKGAke1FR
+X0NMSUVOVF9JRH06JHtRUV9DTElFTlRfU0VDUkVUfWApLnRvU3RyaW5nKCJi
+YXNlNjQiKQoKICAgICAgLy8gRGV0ZXJtaW5lIGdyYW50IHR5cGU6IHVzZSBj
+bGllbnRfY3JlZGVudGlhbHMgaWYgbm8gdXNlcm5hbWUvcGFzc3dvcmQsIGVs
+c2UgdXNlIHBhc3N3b3JkCiAgICAgIGNvbnN0IGdyYW50VHlwZSA9IFFRX1VT
+RVJOQU1FICYmIFFRX1BBU1NXT1JEID8gInBhc3N3b3JkIiA6ICJjbGllbnRf
+Y3JlZGVudGlhbHMiCiAgICAgIAogICAgICBjb25zb2xlLmxvZyhgVXNpbmcg
+Z3JhbnRfdHlwZTogJHtncmFudFR5cGV9YCkKCiAgICAgIGNvbnN0IGJvZHlQ
+YXJhbXM6IFJlY29yZDxzdHJpbmcsIHN0cmluZz4gPSB7CiAgICAgICAgZ3Jh
+bnRfdHlwZTogZ3JhbnRUeXBlLAogICAgICB9CgogICAgICAvLyBBZGQgdXNl
+cm5hbWUgYW5kIHBhc3N3b3JkIG9ubHkgaWYgYXZhaWxhYmxlIChwYXNzd29y
+ZCBncmFudCkKICAgICAgaWYgKGdyYW50VHlwZSA9PT0gInBhc3N3b3JkIikg
+ewogICAgICAgIGJvZHlQYXJhbXMudXNlcm5hbWUgPSBRUV9VU0VSTkFNRQog
+ICAgICAgIGJvZHlQYXJhbXMucGFzc3dvcmQgPSBRUV9QQVNTV09SRAogICAg
+ICB9CgogICAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IGZldGNoKFFRX1RP
+S0VOX1VSTCwgewogICAgICAgIG1ldGhvZDogIlBPU1QiLAogICAgICAgIGhl
+YWRlcnM6IHsKICAgICAgICAgICJDb250ZW50LVR5cGUiOiAiYXBwbGljYXRp
+b24veC13d3ctZm9ybS11cmxlbmNvZGVkIiwKICAgICAgICAgIEF1dGhvcml6
+YXRpb246IGBCYXNpYyAke2Jhc2ljQXV0aH1gLAogICAgICAgIH0sCiAgICAg
+ICAgYm9keTogbmV3IFVSTFNlYXJjaFBhcmFtcyhib2R5UGFyYW1zKSwKICAg
+ICAgfSkKCiAgICAgIGlmICghcmVzcG9uc2Uub2spIHsKICAgICAgICBjb25z
+dCBlcnJvclRleHQgPSBhd2FpdCByZXNwb25zZS50ZXh0KCkKICAgICAgICBj
+b25zb2xlLmVycm9yKGBUb2tlbiByZWZyZXNoIGZhaWxlZDogJHtyZXNwb25z
+ZS5zdGF0dXN9IC0gJHtlcnJvclRleHR9YCkKICAgICAgICB0aHJvdyBuZXcg
+RXJyb3IoYFRva2VuIHJlZnJlc2ggZmFpbGVkOiAke3Jlc3BvbnNlLnN0YXR1
+c30gLSAke2Vycm9yVGV4dH1gKQogICAgICB9CgogICAgICBjb25zdCBkYXRh
+ID0gYXdhaXQgcmVzcG9uc2UuanNvbigpCgogICAgICBpZiAoIWRhdGEuYWNj
+ZXNzX3Rva2VuKSB7CiAgICAgICAgdGhyb3cgbmV3IEVycm9yKCJObyBhY2Nl
+c3MgdG9rZW4gcmV0dXJuZWQgZnJvbSBRUUNhdGFseXN0IikKICAgICAgfQoK
+ICAgICAgLy8gQ2FjaGUgdGhlIHRva2VuIGFuZCBzZXQgZXhwaXJ5IChkZWZh
+dWx0IHRvIDEgaG91ciBpZiBleHBpcmVzX2luIG5vdCBwcm92aWRlZCkKICAg
+ICAgY2FjaGVkVG9rZW4gPSBkYXRhLmFjY2Vzc190b2tlbgogICAgICB0b2tl
+bkV4cGlyeSA9IERhdGUubm93KCkgKyAoZGF0YS5leHBpcmVzX2luIHx8IDM2
+MDApICogMTAwMAoKICAgICAgY29uc29sZS5sb2coIlFRQ2F0YWx5c3QgdG9r
+ZW4gcmVmcmVzaGVkIHN1Y2Nlc3NmdWxseSIpCiAgICAgIHJldHVybiBkYXRh
+LmFjY2Vzc190b2tlbgogICAgfSBjYXRjaCAoZXJyb3IpIHsKICAgICAgY29u
+c29sZS5lcnJvcigiRXJyb3IgcmVmcmVzaGluZyBRUUNhdGFseXN0IHRva2Vu
+OiIsIGVycm9yKQogICAgICB0aHJvdyBlcnJvcgogICAgfQogIH0KCiAgLyoq
+CiAgICogR2V0IGEgY2xpZW50IHRva2VuIGRpcmVjdGx5IChmb3IgdGVzdGlu
+ZykKICAgKi8KICBhc3luYyBnZXRDbGllbnRUb2tlbigpOiBQcm9taXNlPGFu
+eT4gewogICAgdHJ5IHsKICAgICAgLy8gQ2hlY2sgaWYgY3JlZGVudGlhbHMg
+YXJlIGF2YWlsYWJsZQogICAgICBpZiAoIVFRX0NMSUVOVF9JRCB8fCAhUVFf
+Q0xJRU5UX1NFQ1JFVCkgewogICAgICAgIHRocm93IG5ldyBFcnJvcigiTWlz
+c2luZyBRUUNhdGFseXN0IENsaWVudCBJRCBhbmQgU2VjcmV0IGluIGVudmly
+b25tZW50IHZhcmlhYmxlcyIpCiAgICAgIH0KCiAgICAgIC8vIENyZWF0ZSBC
+YXNpYyBBdXRoIGhlYWRlciB3aXRoIGNsaWVudCBjcmVkZW50aWFscwogICAg
+ICBjb25zdCBiYXNpY0F1dGggPSBCdWZmZXIuZnJvbShgJHtRUV9DTElFTlRf
+SUR9OiR7UVFfQ0xJRU5UX1NFQ1JFVH1gKS50b1N0cmluZygiYmFzZTY0IikK
+CiAgICAgIC8vIERldGVybWluZSBncmFudCB0eXBlCiAgICAgIGNvbnN0IGdy
+YW50VHlwZSA9IFFRX1VTRVJOQU1FICYmIFFRX1BBU1NXT1JEID8gInBhc3N3
+b3JkIiA6ICJjbGllbnRfY3JlZGVudGlhbHMiCiAgICAgIAogICAgICBjb25z
+dCBib2R5UGFyYW1zOiBSZWNvcmQ8c3RyaW5nLCBzdHJpbmc+ID0gewogICAg
+ICAgIGdyYW50X3R5cGU6IGdyYW50VHlwZSwKICAgICAgfQoKICAgICAgaWYg
+KGdyYW50VHlwZSA9PT0gInBhc3N3b3JkIikgewogICAgICAgIGJvZHlQYXJh
+bXMudXNlcm5hbWUgPSBRUV9VU0VSTkFNRQogICAgICAgIGJvZHlQYXJhbXMu
+cGFzc3dvcmQgPSBRUV9QQVNTV09SRAogICAgICB9CgogICAgICBjb25zdCBy
+ZXNwb25zZSA9IGF3YWl0IGZldGNoKFFRX1RPS0VOX1VSTCwgewogICAgICAg
+IG1ldGhvZDogIlBPU1QiLAogICAgICAgIGhlYWRlcnM6IHsKICAgICAgICAg
+ICJDb250ZW50LVR5cGUiOiAiYXBwbGljYXRpb24veC13d3ctZm9ybS11cmxl
+bmNvZGVkIiwKICAgICAgICAgIEF1dGhvcml6YXRpb246IGBCYXNpYyAke2Jh
+c2ljQXV0aH1gLAogICAgICAgIH0sCiAgICAgICAgYm9keTogbmV3IFVSTFNl
+YXJjaFBhcmFtcyhib2R5UGFyYW1zKSwKICAgICAgfSkKCiAgICAgIGlmICgh
+cmVzcG9uc2Uub2spIHsKICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2Fp
+dCByZXNwb25zZS50ZXh0KCkKICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYFRv
+a2VuIHJlcXVlc3QgZmFpbGVkOiAke3Jlc3BvbnNlLnN0YXR1c30gLSAke2Vy
+cm9yVGV4dH1gKQogICAgICB9CgogICAgICByZXR1cm4gYXdhaXQgcmVzcG9u
+c2UuanNvbigpCiAgICB9IGNhdGNoIChlcnJvcikgewogICAgICBjb25zb2xl
+LmVycm9yKCJFcnJvciBnZXR0aW5nIGNsaWVudCB0b2tlbjoiLCBlcnJvcikK
+ICAgICAgdGhyb3cgZXJyb3IKICAgIH0KICB9CgogIC8qKgogICAqIENsZWFy
+IHRoZSB0b2tlbiBjYWNoZQogICAqLwogIGNsZWFyVG9rZW5DYWNoZSgpIHsK
+ICAgIGNhY2hlZFRva2VuID0gbnVsbAogICAgdG9rZW5FeHBpcnkgPSBudWxs
+CiAgfQp9CgovLyBFeHBvcnQgc2luZ2xldG9uIGluc3RhbmNlCmV4cG9ydCBj
+b25zdCBxcUF1dGggPSBuZXcgUVFDYXRhbHlzdEF1dGgoKQoKLy8gRXhwb3J0
+IGhlbHBlciBmdW5jdGlvbnMgZm9yIGNvbXBhdGliaWxpdHkgd2l0aCB0aGUg
+cHJvdmlkZWQgY29kZQpleHBvcnQgYXN5bmMgZnVuY3Rpb24gZ2V0UVFDYXRh
+bHlzdFRva2VuKCkgewogIHRyeSB7CiAgICAvLyBDaGVjayBpZiBjcmVkZW50
+aWFscyBhcmUgYXZhaWxhYmxlCiAgICBpZiAoIVFRX0NMSUVOVF9JRCB8fCAh
+UVFfQ0xJRU5UX1NFQ1JFVCkgewogICAgICB0aHJvdyBuZXcgRXJyb3IoIk1p
+c3NpbmcgUVFDYXRhbHlzdCBDbGllbnQgSUQgYW5kIFNlY3JldCBpbiBlbnZp
+cm9ubWVudCB2YXJpYWJsZXMiKQogICAgfQoKICAgIGNvbnN0IGJhc2ljQXV0
+aCA9IEJ1ZmZlci5mcm9tKGAke1FRX0NMSUVOVF9JRH06JHtRUV9DTElFTlRf
+U0VDUkVUfWApLnRvU3RyaW5nKCJiYXNlNjQiKQoKICAgIC8vIERldGVybWlu
+ZSBncmFudCB0eXBlCiAgICBjb25zdCBncmFudFR5cGUgPSBRUV9VU0VSTkFN
+RSAmJiBRUV9QQVNTV09SRCA/ICJwYXNzd29yZCIgOiAiY2xpZW50X2NyZWRl
+bnRpYWxzIgogICAgCiAgICBjb25zdCBib2R5UGFyYW1zOiBSZWNvcmQ8c3Ry
+aW5nLCBzdHJpbmc+ID0gewogICAgICBncmFudF90eXBlOiBncmFudFR5cGUs
+CiAgICB9CgogICAgaWYgKGdyYW50VHlwZSA9PT0gInBhc3N3b3JkIikgewog
+ICAgICBib2R5UGFyYW1zLnVzZXJuYW1lID0gUVFfVVNFUk5BTUUKICAgICAg
+Ym9keVBhcmFtcy5wYXNzd29yZCA9IFFRX1BBU1NXT1JECiAgICB9CgogICAg
+Y29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChRUV9UT0tFTl9VUkwsIHsK
+ICAgICAgbWV0aG9kOiAiUE9TVCIsCiAgICAgIGhlYWRlcnM6IHsKICAgICAg
+ICAiQ29udGVudC1UeXBlIjogImFwcGxpY2F0aW9uL3gtd3d3LWZvcm0tdXJs
+ZW5jb2RlZCIsCiAgICAgICAgQXV0aG9yaXphdGlvbjogYEJhc2ljICR7YmFz
+aWNBdXRofWAsCiAgICAgIH0sCiAgICAgIGJvZHk6IG5ldyBVUkxTZWFyY2hQ
+YXJhbXMoYm9keVBhcmFtcyksCiAgICB9KQoKICAgIGlmICghcmVzcG9uc2Uu
+b2spIHsKICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcmVzcG9uc2Uu
+dGV4dCgpCiAgICAgIHRocm93IG5ldyBFcnJvcihgVG9rZW4gcmVxdWVzdCBm
+YWlsZWQ6ICR7cmVzcG9uc2Uuc3RhdHVzfSAtICR7ZXJyb3JUZXh0fWApCiAg
+ICB9CgogICAgcmV0dXJuIGF3YWl0IHJlc3BvbnNlLmpzb24oKQogIH0gY2F0
+Y2ggKGVycm9yKSB7CiAgICBjb25zb2xlLmVycm9yKCJFcnJvciBpbiBnZXRR
+UUNhdGFseXN0VG9rZW46IiwgZXJyb3IpCiAgICB0aHJvdyBlcnJvcgogIH0K
+fQoKZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIHJlZnJlc2hRUUNhdGFseXN0VG9r
+ZW4oKSB7CiAgcmV0dXJuIGF3YWl0IGdldFFRQ2F0YWx5c3RUb2tlbigpCn0K
