@@ -3,12 +3,12 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const BG1  = '#0F0F11';
+const BG1  = '#0C0C0E'; // deep silver-black
 const BG2  = '#141416';
-const BD   = 'rgba(255,255,255,0.06)';
-const TEXT = '#F0F0F2';
-const T2   = '#8A8A96';
-const T3   = '#52525E';
+const BD   = 'rgba(192,192,200,0.10)'; // silver border
+const TEXT = '#E2E2E8'; // silver-white
+const T2   = '#9A9AAA'; // mid silver
+const T3   = '#62626E'; // dark silver
 const FONT = 'Inter, DM Sans, system-ui, sans-serif';
 
 const NAV = [
