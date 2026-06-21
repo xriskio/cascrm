@@ -116,7 +116,7 @@ export async function GET(request: NextRequest) {
     // Insert renewals into our database
     const { data, error } = await supabaseAdmin
       .from("renewals")
-      .insert(transformedRenewals)
+      .upsert(transformedRenewals, { onConflict: "external_id" })
       .select()
 
     if (error) {
