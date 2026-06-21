@@ -4,6 +4,13 @@
 
 /* ── Silver + Black dark mode overrides ── */
 /* Forces dark theme on pages using white/gray Tailwind classes */
+/* Extended dark mode overrides - kill all light page backgrounds */
+.dark [class*="from-slate-50"], .dark [class*="via-blue-50"], .dark [class*="to-indigo-100"] { background: #0A0A0B !important; background-image: none !important; }
+.dark [class*="from-slate-50"] { --tw-gradient-from: #0A0A0B !important; }
+.dark [class*="via-blue-50"] { --tw-gradient-via: #0C0C0E !important; }
+.dark [class*="to-indigo-100"] { --tw-gradient-to: #0A0A0B !important; }
+.dark .bg-gradient-to-br { background: #0A0A0B !important; background-image: none !important; }
+.dark [class*="bg-gradient"] { background: #0A0A0B !important; background-image: none !important; }
 .dark .bg-white { background-color: #0C0C0E !important; }
 .dark .bg-gray-50 { background-color: #0A0A0B !important; }
 .dark .bg-gray-100 { background-color: #141416 !important; }
