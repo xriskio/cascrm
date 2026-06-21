@@ -150,7 +150,8 @@ export default function LeadsPage() {
               Import Leads
             </Button>
           </Link>
-          <Link href="/leads/new">
+          <Link href="/leads/new"
+          <Button variant="outline" className="bg-orange-50 border-orange-300 text-orange-700 hover:bg-orange-100" onClick={async()=>{try{const r=await fetch("/api/qqcatalyst/leads/import",{method:"POST"});const d=await r.json();alert(d.success?`Imported ${d.imported} leads from QQCatalyst`:d.error)}catch(e:any){alert(e.message)}}}>Import from QQCatalyst</Button>>
             <Button className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white">
               <Plus className="w-4 h-4 mr-2" />
               Add Lead
