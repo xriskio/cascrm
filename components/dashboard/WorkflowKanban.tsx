@@ -40,7 +40,7 @@ function WorkflowCard({ item, onClick }: { item: WorkflowItem; onClick?: () => v
         background: hovered ? BG3 : BG2,
         border: `1px solid ${hovered ? 'rgba(255,255,255,0.12)' : BD}`,
         borderRadius: 8,
-        padding: '10px 12px',
+        padding: "7px 10px",
         cursor: 'pointer',
         transition: 'all 0.15s',
         fontFamily: FONT,
