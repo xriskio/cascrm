@@ -90,8 +90,13 @@ export default function QuotesPage() {
           <h1 className="text-2xl font-bold">Quotes</h1>
           <p className="text-gray-600">Manage and track insurance quotes</p>
         </div>
-        <Button asChild>
-          <Link href="/quotes/new">
+        <Button asChild variant="outline">
+            <Link href="/quotes/compare">
+              <span>⚖ Compare Quotes</span>
+            </Link>
+          </Button>
+          <Button asChild>
+            <Link href="/quotes/new">
             <Plus className="h-4 w-4 mr-2" />
             New Quote
           </Link>
