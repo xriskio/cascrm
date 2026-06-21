@@ -67,10 +67,10 @@ export async function GET(request: NextRequest) {
 }
 
 async function exchangeCodeForToken(code: string) {
-  const clientId = process.env.QQ_CLIENT_ID || "fdc3c5d6-4bd4-40c0-b681-d2ad2f5db414"
+  const clientId = process.env.QQ_CLIENT_ID || ""
   const clientSecret = process.env.QQ_CLIENT_SECRET
   const tokenUrl = process.env.QQ_TOKEN_URL || "https://login.qqcatalyst.com/oauth/token"
-  const redirectUri = `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/api/auth/qqcatalyst/callback`
+  const redirectUri = `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:5000"}/api/auth/qqcatalyst/callback`
 
   console.log("Exchanging code for token...")
   console.log("Token URL:", tokenUrl)
