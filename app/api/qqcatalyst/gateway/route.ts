@@ -3,9 +3,13 @@ export const runtime = "nodejs"
 
 import { type NextRequest, NextResponse } from "next/server"
 import { getQQCatalystToken } from "@/app/actions/qqcatalyst-token-actions"
+import { requireApiPermission } from "@/lib/api-auth"
 
 export async function GET(request: NextRequest) {
   try {
+    const auth = await requireApiPermission("delete")
+    if (!auth.authorized) return auth.response
+
     const { searchParams } = new URL(request.url)
     const tokenId = searchParams.get("token_id")
     const endpoint = searchParams.get("endpoint") || "/v1/Carriers"
@@ -58,6 +62,9 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    const auth = await requireApiPermission("delete")
+    if (!auth.authorized) return auth.response
+
     const body = await request.json()
     const { tokenId, endpoint = "/v1/Carriers", data: postData } = body
 

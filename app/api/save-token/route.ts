@@ -3,10 +3,14 @@ export const dynamic = "force-dynamic"
 export const runtime = 'nodejs'
 
 import { type NextRequest, NextResponse } from "next/server"
+import { requireApiPermission } from "@/lib/api-auth"
 import { createClient } from "@/lib/supabase/server"
 
 export async function POST(request: NextRequest) {
   try {
+    const auth = await requireApiPermission("delete")
+    if (!auth.authorized) return auth.response
+
     const { token } = await request.json()
 
     if (!token) {
