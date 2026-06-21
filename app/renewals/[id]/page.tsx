@@ -249,12 +249,12 @@ export default function RenewalDetailPage() {
         <div className="flex gap-2">
           {renewal.status !== "contacted" && (
             <Button
-              onClick={() => setShowEmailDialog(true)}
+              onClick={() => router.push(`/renewals/${renewalId}/workflow`)}
               variant="outline"
               className="bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100"
             >
               <Mail className="h-4 w-4 mr-2" />
-              Begin Renewal Process
+              120-Day Workflow
             </Button>
           )}
 
@@ -455,11 +455,11 @@ export default function RenewalDetailPage() {
         </DialogContent>
       </Dialog>
 
-      {/* Begin Renewal Process Dialog */}
+      {/* 120-Day Workflow Dialog */}
       <Dialog open={showEmailDialog} onOpenChange={setShowEmailDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Begin Renewal Process</DialogTitle>
+            <DialogTitle>120-Day Workflow</DialogTitle>
             <DialogDescription>
               This will send an initial renewal notification to the client and update the status to "Contacted".
             </DialogDescription>
