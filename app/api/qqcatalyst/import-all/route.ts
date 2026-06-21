@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import { supabaseAdmin } from "@/lib/supabase/admin"
 
 const QQ_API_URL = process.env.QQCATALYST_API_URL
-const QQ_BEARER_TOKEN = process.env.QQCATALYST_BEARER_TOKEN
+const QQ_BEARER_TOKEN = process.env.QQ_BEARER_TOKEN
 
 async function fetchQQData(endpoint: string, page: number = 1) {
   if (!QQ_API_URL || !QQ_BEARER_TOKEN) {
@@ -31,7 +31,7 @@ export async function POST() {
     // Fetch contacts
     const allContacts: any[] = []
     for (let page = 1; page <= 5; page++) {
-      const data = await fetchQQData("/contacts", page)
+      const data = await fetchQQData("Contacts/LastModifiedCreated", page)
       if (!data?.data || data.data.length === 0) break
       allContacts.push(...data.data)
     }
@@ -40,7 +40,7 @@ export async function POST() {
     // Fetch policies
     const allPolicies: any[] = []
     for (let page = 1; page <= 5; page++) {
-      const data = await fetchQQData("/policies", page)
+      const data = await fetchQQData("Policies/LastModifiedCreated", page)
       if (!data?.data || data.data.length === 0) break
       allPolicies.push(...data.data)
     }
