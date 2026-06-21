@@ -23,7 +23,7 @@
 /* CSS Custom Properties — drives shadcn/ui components */
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: dark; color: #F0F0F2;
     --background: 0 0% 4%;
     --foreground: 220 10% 94%;
     --card: 220 8% 7%;
@@ -57,8 +57,8 @@
 
 @layer base {
   * { @apply border-border; }
-  html { color-scheme: dark; }
-  body { @apply bg-background text-foreground; font-size: 16px; line-height: 1.6; }
+  html { color-scheme: dark; color: #F0F0F2; }
+  body { @apply bg-background text-foreground; font-size: 16px; line-height: 1.6; color: #F0F0F2; }
   
   /* Minimum font size for accessibility */
   p, li, td, th, label, span { font-size: max(14px, 0.875rem); }
