@@ -1,98 +1,50 @@
-import { createServerClient, type CookieOptions } from "@supabase/ssr"
-import { NextResponse } from "next/server"
-import type { NextRequest } from "next/server"
-
-export async function middleware(req: NextRequest) {
-  let response = NextResponse.next({
-    request: {
-      headers: req.headers,
-    },
-  })
-
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return req.cookies.get(name)?.value
-        },
-        set(name: string, value: string, options: CookieOptions) {
-          req.cookies.set({
-            name,
-            value,
-            ...options,
-          })
-          response = NextResponse.next({
-            request: {
-              headers: req.headers,
-            },
-          })
-          response.cookies.set({
-            name,
-            value,
-            ...options,
-          })
-        },
-        remove(name: string, options: CookieOptions) {
-          req.cookies.set({
-            name,
-            value: "",
-            ...options,
-          })
-          response = NextResponse.next({
-            request: {
-              headers: req.headers,
-            },
-          })
-          response.cookies.set({
-            name,
-            value: "",
-            ...options,
-          })
-        },
-      },
-    }
-  )
-
-  const pathname = req.nextUrl.pathname
-
-  if (
-    pathname.startsWith("/_next") ||
-    pathname.startsWith("/api") ||
-    pathname.includes(".") ||
-    pathname === "/favicon.ico"
-  ) {
-    return response
-  }
-
-  const isPublicRoute = pathname === "/login" || pathname === "/" || pathname === "/setup" || pathname === "/clear-session"
-
-  if (!isPublicRoute) {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
-
-    if (!user) {
-      return NextResponse.redirect(new URL("/login", req.url))
-    }
-  }
-
-  if (pathname === "/login") {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
-
-    if (user) {
-      return NextResponse.redirect(new URL("/dashboard", req.url))
-    }
-  }
-
-  return response
-}
-
-export const config = {
-  matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|public/).*)",
-  ],
-}
+aW1wb3J0IHsgY3JlYXRlU2VydmVyQ2xpZW50LCB0eXBlIENvb2tpZU9wdGlv
+bnMgfSBmcm9tICJAc3VwYWJhc2Uvc3NyIgppbXBvcnQgeyBOZXh0UmVzcG9u
+c2UgfSBmcm9tICJuZXh0L3NlcnZlciIKaW1wb3J0IHR5cGUgeyBOZXh0UmVx
+dWVzdCB9IGZyb20gIm5leHQvc2VydmVyIgoKZXhwb3J0IGFzeW5jIGZ1bmN0
+aW9uIG1pZGRsZXdhcmUocmVxOiBOZXh0UmVxdWVzdCkgewogIGxldCByZXNw
+b25zZSA9IE5leHRSZXNwb25zZS5uZXh0KHsKICAgIHJlcXVlc3Q6IHsKICAg
+ICAgaGVhZGVyczogcmVxLmhlYWRlcnMsCiAgICB9LAogIH0pCgogIGNvbnN0
+IHN1cGFiYXNlID0gY3JlYXRlU2VydmVyQ2xpZW50KAogICAgcHJvY2Vzcy5l
+bnYuTkVYVF9QVUJMSUNfU1VQQUJBU0VfVVJMISwKICAgIHByb2Nlc3MuZW52
+Lk5FWFRfUFVCTElDX1NVUEFCQVNFX0FOT05fS0VZISwKICAgIHsKICAgICAg
+Y29va2llczogewogICAgICAgIGdldChuYW1lOiBzdHJpbmcpIHsKICAgICAg
+ICAgIHJldHVybiByZXEuY29va2llcy5nZXQobmFtZSk/LnZhbHVlCiAgICAg
+ICAgfSwKICAgICAgICBzZXQobmFtZTogc3RyaW5nLCB2YWx1ZTogc3RyaW5n
+LCBvcHRpb25zOiBDb29raWVPcHRpb25zKSB7CiAgICAgICAgICByZXEuY29v
+a2llcy5zZXQoewogICAgICAgICAgICBuYW1lLAogICAgICAgICAgICB2YWx1
+ZSwKICAgICAgICAgICAgLi4ub3B0aW9ucywKICAgICAgICAgIH0pCiAgICAg
+ICAgICByZXNwb25zZSA9IE5leHRSZXNwb25zZS5uZXh0KHsKICAgICAgICAg
+ICAgcmVxdWVzdDogewogICAgICAgICAgICAgIGhlYWRlcnM6IHJlcS5oZWFk
+ZXJzLAogICAgICAgICAgICB9LAogICAgICAgICAgfSkKICAgICAgICAgIHJl
+c3BvbnNlLmNvb2tpZXMuc2V0KHsKICAgICAgICAgICAgbmFtZSwKICAgICAg
+ICAgICAgdmFsdWUsCiAgICAgICAgICAgIC4uLm9wdGlvbnMsCiAgICAgICAg
+ICB9KQogICAgICAgIH0sCiAgICAgICAgcmVtb3ZlKG5hbWU6IHN0cmluZywg
+b3B0aW9uczogQ29va2llT3B0aW9ucykgewogICAgICAgICAgcmVxLmNvb2tp
+ZXMuc2V0KHsKICAgICAgICAgICAgbmFtZSwKICAgICAgICAgICAgdmFsdWU6
+ICIiLAogICAgICAgICAgICAuLi5vcHRpb25zLAogICAgICAgICAgfSkKICAg
+ICAgICAgIHJlc3BvbnNlID0gTmV4dFJlc3BvbnNlLm5leHQoewogICAgICAg
+ICAgICByZXF1ZXN0OiB7CiAgICAgICAgICAgICAgaGVhZGVyczogcmVxLmhl
+YWRlcnMsCiAgICAgICAgICAgIH0sCiAgICAgICAgICB9KQogICAgICAgICAg
+cmVzcG9uc2UuY29va2llcy5zZXQoewogICAgICAgICAgICBuYW1lLAogICAg
+ICAgICAgICB2YWx1ZTogIiIsCiAgICAgICAgICAgIC4uLm9wdGlvbnMsCiAg
+ICAgICAgICB9KQogICAgICAgIH0sCiAgICAgIH0sCiAgICB9CiAgKQoKICBj
+b25zdCBwYXRobmFtZSA9IHJlcS5uZXh0VXJsLnBhdGhuYW1lCgogIGlmICgK
+ICAgIHBhdGhuYW1lLnN0YXJ0c1dpdGgoIi9fbmV4dCIpIHx8CiAgICBwYXRo
+bmFtZS5zdGFydHNXaXRoKCIvYXBpIikgfHwKICAgIHBhdGhuYW1lLmluY2x1
+ZGVzKCIuIikgfHwKICAgIHBhdGhuYW1lID09PSAiL2Zhdmljb24uaWNvIgog
+ICkgewogICAgcmV0dXJuIHJlc3BvbnNlCiAgfQoKICBjb25zdCBpc1B1Ymxp
+Y1JvdXRlID0gcGF0aG5hbWUgPT09ICIvbG9naW4iIHx8IHBhdGhuYW1lID09
+PSAiLyIgfHwgcGF0aG5hbWUgPT09ICIvc2V0dXAiIHx8IHBhdGhuYW1lID09
+PSAiL2NsZWFyLXNlc3Npb24iCgogIGlmICghaXNQdWJsaWNSb3V0ZSkgewog
+ICAgY29uc3QgewogICAgICBkYXRhOiB7IHVzZXIgfSwKICAgIH0gPSBhd2Fp
+dCBzdXBhYmFzZS5hdXRoLmdldFVzZXIoKQoKICAgIGlmICghdXNlcikgewog
+ICAgICByZXR1cm4gTmV4dFJlc3BvbnNlLnJlZGlyZWN0KG5ldyBVUkwoIi9s
+b2dpbiIsIHJlcS51cmwpKQogICAgfQogIH0KCiAgaWYgKHBhdGhuYW1lID09
+PSAiL2xvZ2luIikgewogICAgY29uc3QgewogICAgICBkYXRhOiB7IHVzZXIg
+fSwKICAgIH0gPSBhd2FpdCBzdXBhYmFzZS5hdXRoLmdldFVzZXIoKQoKICAg
+IGlmICh1c2VyKSB7CiAgICAgIHJldHVybiBOZXh0UmVzcG9uc2UucmVkaXJl
+Y3QobmV3IFVSTCgiL2Rhc2hib2FyZCIsIHJlcS51cmwpKQogICAgfQogIH0K
+CiAgcmV0dXJuIHJlc3BvbnNlCn0KCmV4cG9ydCBjb25zdCBjb25maWcgPSB7
+CiAgbWF0Y2hlcjogWwogICAgIi8oKD8hX25leHQvc3RhdGljfF9uZXh0L2lt
+YWdlfGZhdmljb24uaWNvfHB1YmxpYy8pLiopIiwKICBdLAp9Cg==
