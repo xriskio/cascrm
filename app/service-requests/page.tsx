@@ -155,7 +155,7 @@ export default function ServiceRequestsPage() {
   const recentRequests = requests.slice(0, 10)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen">
       <PageHeader title="Service Requests" subtitle="AI-powered service request management">
         <Link
           href="/service-requests/list"
