@@ -97,6 +97,9 @@
 }
 
 /* Cards and panels */
+/* text-transparent fix - gradient numbers become blue in dark mode */
+.dark .text-transparent { -webkit-text-fill-color: #60A5FA !important; color: #60A5FA !important; }
+
 .dark .rounded-lg,
 .dark .rounded-xl,
 .dark .rounded-2xl {
