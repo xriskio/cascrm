@@ -1,0 +1,5 @@
+import{type NextRequest,NextResponse}from"next/server"
+import{supabaseAdmin}from"@/lib/supabase/admin"
+export const dynamic="force-dynamic"
+export const runtime="nodejs"
+export async function POST(req:NextRequest){try{const b=await req.json();const{submissionId,carrier,carrierEmail,coverageTypes,requestedLimits,specialRequirements,assignedAgent}=b;const num="PLACE-"+new Date().getFullYear()+"-"+String(Math.floor(Math.random()*9999)).padStart(4,"0");const{data,error}=await supabaseAdmin.from("market_placements").insert({submission_id:submissionId,placement_number:num,carrier,carrier_email:carrierEmail,coverage_types:coverageTypes,requested_limits:requestedLimits,special_requirements:specialRequirements,assigned_agent:assignedAgent,status:"submitted",carrier_appetite:"moderate"}).select().single();if(error)throw error;await supabaseAdmin.from("placement_timeline").insert({placement_id:data.id,status_change_to:"submitted",event_description:"Placement submitted to "+carrier,event_type:"status_change",changed_by:assignedAgent||"system"});return NextResponse.json(data,{status:201})}catch(e:any){return NextResponse.json({error:e.message},{status:500})}}
