@@ -1,0 +1,63 @@
+-- ============================================================
+-- CASURANCE 4-WORKFLOW COMPLETE DATABASE SETUP
+-- Run all files in this order in Supabase SQL Editor:
+--
+--   1. COMPLETE_PIPELINE_SCHEMA.sql  (base tables)
+--   2. LEAD_WORKFLOW_SCHEMA.sql      (lead_progress_steps, lead_communications, lead_notes)
+--   3. SUBMISSION_WORKFLOW_SCHEMA.sql (submission_documents, underwriting_checklist, etc.)
+--   4. MARKET_PLACEMENT_SCHEMA.sql   (market_placements, placement_timeline, etc.)
+--   5. QUOTE_WORKFLOW_SCHEMA.sql     (quote_versions, quote_comparisons, etc.)
+--   6. RENEWAL_WORKFLOW_SCHEMA.sql   (renewal_workflows, renewal_phases, etc.)
+--
+-- TOTAL: 21 workflow tables + core tables
+-- ============================================================
+--
+-- TABLES BY WORKFLOW:
+--
+-- Lead Workflow (4 tables):
+--   leads, lead_progress_steps, lead_communications, lead_notes
+--
+-- Submission Workflow (5 tables):
+--   submissions, submission_documents, underwriting_checklist,
+--   submission_versions, submission_notes
+--
+-- Market Placement Workflow (6 tables):
+--   market_submissions (placements), placement_communications,
+--   placement_timeline, placement_requirements,
+--   carrier_underwriting_notes, carrier_counter_offers
+--
+-- Quote Workflow (6 tables):
+--   quotes, quote_versions, quote_comparisons,
+--   quote_presentations, quote_acceptances, quote_rejections
+--
+-- Renewal Workflow (6 tables):
+--   renewal_workflows, renewal_phases, renewal_tasks,
+--   renewal_quotes, renewal_activity_log, renewal_notifications
+--
+-- API ROUTES (all at /api/workflow/*):
+--   POST   /api/workflow/leads
+--   GET    /api/workflow/leads/[leadId]
+--   PATCH  /api/workflow/leads/[leadId]
+--   PATCH  /api/workflow/leads/[leadId]/form-step
+--   POST   /api/workflow/leads/[leadId]/qualify
+--   POST   /api/workflow/submissions
+--   POST   /api/workflow/submissions/[id]/documents
+--   POST   /api/workflow/submissions/[id]/complete
+--   POST   /api/workflow/placements
+--   PATCH  /api/workflow/placements/[id]/status
+--   POST   /api/workflow/quotes
+--   POST   /api/workflow/quote-presentations
+--   POST   /api/workflow/quotes/[id]/accept
+--   POST   /api/workflow/quotes/[id]/bind
+--
+-- METRICS: GET /api/workflow/metrics?days=30
+--
+-- EMAIL TRIGGERS (lib/workflow-emails.ts):
+--   sendLeadWelcome         - on lead creation
+--   sendLeadQualified       - on lead qualification
+--   sendSubmissionReady     - on checklist completion
+--   sendQuoteReceived       - on quote creation
+--   sendQuotePresentation   - on quote presentation
+--   sendBindingConfirmation - on policy binding
+-- ============================================================
+SELECT 'Casurance 4-Workflow Setup Guide loaded' as message;
