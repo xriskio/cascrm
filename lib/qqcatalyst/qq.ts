@@ -84,7 +84,7 @@ export async function fetchAllContacts() {
       `/Contacts/LastModifiedCreated?startDate=2000-01-01&endDate=${today}&pageNumber=${page}&pageSize=100`,
     )
 
-    const contacts = data.Contacts || []
+    const contacts = data.Data || data.Contacts || []
     if (!contacts.length) break
 
     all.push(...contacts)
