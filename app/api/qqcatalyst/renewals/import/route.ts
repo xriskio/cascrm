@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
     // Calculate date range: TODAY to 4 MONTHS from now (upcoming renewals only)
     const today = new Date()
     const fourMonthsFromNow = new Date(today)
-    fourMonthsFromNow.setMonth(fourMonthsFromNow.getMonth() + 4)
+    fourMonthsFromNow.setMonth(fourMonthsFromNow.getMonth() + 12)
 
     console.log(`📅 Fetching policies expiring from ${today.toISOString().split('T')[0]} to ${fourMonthsFromNow.toISOString().split('T')[0]}`)
 
@@ -40,14 +40,14 @@ export async function GET(request: NextRequest) {
     const allPolicies = response.data || []
     console.log(`📝 Found ${allPolicies.length} total policies from QQCatalyst`)
 
-    // Filter to only policies expiring in the next 4 months
+    // Filter to only policies expiring in the next 12 months
     const policies = allPolicies.filter((policy: any) => {
       if (!policy.ExpirationDate) return false
       const expDate = new Date(policy.ExpirationDate)
       return expDate >= today && expDate <= fourMonthsFromNow
     })
 
-    console.log(`📌 Filtered to ${policies.length} policies expiring in next 4 months`)
+    console.log(`📌 Filtered to ${policies.length} policies expiring in next 12 months`)
 
     if (policies.length === 0) {
       return NextResponse.json({
@@ -55,7 +55,7 @@ export async function GET(request: NextRequest) {
         imported: 0,
         total: 0,
         totalAvailable: allPolicies.length,
-        message: `No upcoming renewals found (policies expiring in the next 4 months). Found ${allPolicies.length} total policies in QQCatalyst.`,
+        message: `No upcoming renewals found (policies expiring in the next 12 months). Found ${allPolicies.length} total policies in QQCatalyst.`,
       })
     }
 
@@ -141,8 +141,8 @@ export async function GET(request: NextRequest) {
       totalAvailable: totalAvailable,
       moreAvailable: moreAvailable,
       message: moreAvailable
-        ? `Successfully imported ${data?.length || 0} upcoming renewals (500 limit reached, ${totalAvailable - 500} more available in next 4 months)`
-        : `Successfully imported ${data?.length || 0} upcoming renewals (expiring in next 4 months)`,
+        ? `Successfully imported ${data?.length || 0} upcoming renewals (500 limit reached, ${totalAvailable - 500} more available in next 12 months)`
+        : `Successfully imported ${data?.length || 0} upcoming renewals (expiring in next 12 months)`,
     })
   } catch (error) {
     console.error("❌ Renewals import failed:", error)
