@@ -23,7 +23,8 @@ const NAV = [
   {
     section: 'Insurance',
     items: [
-      { label: 'Renewals',           icon: '↻', href: '/renewals'           },
+      { label: "Renewals",           icon: "↻", href: "/renewals"           },
+      { label: "Pipeline",           icon: "⬡", href: "/pipeline"           },
       { label: 'Submissions',        icon: '◻', href: '/submissions'        },
       { label: 'Quotes',             icon: '$', href: '/quotes'              },
       { label: 'Market Submissions', icon: '⊜', href: '/market-submissions' },
@@ -33,7 +34,8 @@ const NAV = [
     section: 'Clients',
     items: [
       { label: 'Clients',  icon: '◉', href: '/clients'  },
-      { label: 'Leads',    icon: '⊹', href: '/leads'    },
+      { label: "Leads",    icon: "⊹", href: "/leads"    },
+      { label: "Lead Import",icon: "📥", href: "/leads/import" },
       { label: 'Call Log', icon: '☎', href: '/call-log' },
     ],
   },
