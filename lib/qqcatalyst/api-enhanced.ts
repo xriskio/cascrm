@@ -293,3 +293,25 @@ export async function testQQCatalystConnection() {
     return { success: false, error: error instanceof Error ? error.message : "Unknown error" }
   }
 }
+
+// ─── Additional endpoints from QQCatalyst API docs ───────────────────────────
+export const getContactSummary=(id:string|number)=>makeQQCatalystRequest("Contacts/"+id+"/ContactSummaryDTO")
+export const getContactAccountInfo=(id:string|number)=>makeQQCatalystRequest("Contacts/"+id+"/AccountInfo")
+export const getContactAddresses=(id:string|number)=>makeQQCatalystRequest("Contacts/"+id+"/Addresses")
+export const getContactPhoneNumbers=(id:string|number)=>makeQQCatalystRequest("Contacts/"+id+"/PhoneNumbers")
+export const getContactEmails=(id:string|number)=>makeQQCatalystRequest("Contacts/"+id+"/Emails")
+export const getContactNotes=(id:string|number,page=1,size=50)=>makeQQCatalystRequest("Contacts/"+id+"/Notes?pageNumber="+page+"&pageSize="+size)
+export const getContactTasks=(id:string|number,page=1,size=50)=>makeQQCatalystRequest("Contacts/"+id+"/Tasks?pageNumber="+page+"&pageSize="+size)
+export const getPoliciesByCustomer=(cid:string|number,page=1,rows=100)=>makeQQCatalystRequest("Policies/ByCustomer/"+cid+"?page="+page+"&rowCount="+rows)
+export const getPolicyInfo=(id:string|number)=>makeQQCatalystRequest("Policies/"+id+"/PolicyInfo")
+export const getPolicyLines=(id:string|number)=>makeQQCatalystRequest("Policies/"+id+"/PolicyLines")
+export const getPolicyNotes=(id:string|number,p=1,s=50)=>makeQQCatalystRequest("Policies/"+id+"/Notes?pageNumber="+p+"&pageSize="+s)
+export const getPolicyQuotes=(id:string|number)=>makeQQCatalystRequest("Policies/"+id+"/Quotes")
+export const getPolicySummary=(id:string|number)=>makeQQCatalystRequest("PolicySummaryForApi?policyID="+id)
+export const getPolicyPremium=(id:string|number)=>makeQQCatalystRequest("Policies/"+id+"/Premium")
+export const getCarriers=()=>makeQQCatalystRequest("Carriers")
+export const getUserLocations=()=>makeQQCatalystRequest("Locations/UserLocationsV2")
+export const getFilesByContact=(cid:string|number,p=1,s=50)=>makeQQCatalystRequest("Files/FilesByContact?contactid="+cid+"&pageNumber="+p+"&pageSize="+s)
+export const getFilesByPolicy=(cid:string|number,pid:string|number)=>makeQQCatalystRequest("Files/FilesByPolicy?contactid="+cid+"&policyid="+pid)
+export const quickSearch=(s:string)=>makeQQCatalystRequest("Search?searchString="+encodeURIComponent(s))
+export async function ping(){try{const r=await makeQQCatalystRequest("BusinessLogic/Ping");return{ok:true,response:r}}catch(e:any){return{ok:false,error:e.message}}}
