@@ -263,7 +263,7 @@ export default function IncomingCallLogPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen">
       <PageHeader title="AI Call Management" subtitle="Intelligent call tracking and customer interaction analytics">
         <div className="flex gap-2">
           <Button variant="outline" size="sm" onClick={() => setRefreshFlag((f) => f + 1)} disabled={loading}>
