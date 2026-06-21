@@ -9,7 +9,6 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Plus, Search, Filter, Download, Upload, FileText, Users, TrendingUp, Clock, Eye } from "lucide-react"
-import Link from "next/link"
 import { LeadDetailsModal } from "@/components/leads/lead-details-modal"
 
 interface Lead {
