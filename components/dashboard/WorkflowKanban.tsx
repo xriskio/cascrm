@@ -132,7 +132,7 @@ function KanbanColumn({
 
       <div style={{
         flex: 1,
-        overflowY: 'auto',
+        overflowY: 'auto', maxHeight: 520, height: 520,
         padding: 10,
         display: 'flex',
         flexDirection: 'column',
