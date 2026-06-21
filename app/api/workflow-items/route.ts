@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
     let rq = supabaseAdmin
       .from('renewals')
       .select('*')
-      .neq('status', 'archived')
+      .neq("status","archived").gte("expiration_date",new Date(Date.now()-30*86400000).toISOString().slice(0,10)).lte("expiration_date",new Date(Date.now()+120*86400000).toISOString().slice(0,10)).order("expiration_date",{ascending:true}).limit(60)
     if (status) rq = rq.eq('status', status)
     if (type === 'submission') rq = rq.limit(0)
 
