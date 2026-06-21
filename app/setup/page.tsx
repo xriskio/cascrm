@@ -1,129 +1,85 @@
-import { promises as fs } from "fs"
-import path from "path"
-import { CopyButton } from "@/components/setup/copy-button"
-
-export default async function SetupPage() {
-  const migrationsDir = path.join(process.cwd(), "supabase/migrations")
-  let sqlFiles: string[] = []
-  try {
-    const files = await fs.readdir(migrationsDir)
-    sqlFiles = files.filter((f) => f.endsWith(".sql")).sort()
-  } catch {
-    // The migrations directory may not exist in all environments; degrade gracefully.
-    sqlFiles = []
+'use client'
+import { useState, useEffect } from 'react'
+const BG='#0A0A0B',BG1='#0C0C0E',BG2='#141416',BD='rgba(192,192,200,0.10)',TEXT='#E2E2E8',T2='#9A9AAA',T3='#62626E',FONT="Inter,DM Sans,system-ui,sans-serif"
+export default function SetupPage() {
+  const [result, setResult] = useState<any>(null)
+  const [loading, setLoading] = useState(false)
+  const [copied, setCopied] = useState(false)
+  useEffect(() => { checkStatus() }, [])
+  async function checkStatus() {
+    setLoading(true)
+    try {
+      const r = await fetch('/api/admin/setup-db')
+      setResult(await r.json())
+    } catch(e: any) { setResult({ error: e.message }) } finally { setLoading(false) }
   }
-
-  const migrations = await Promise.all(
-    sqlFiles.map(async (file) => {
-      const content = await fs.readFile(path.join(migrationsDir, file), "utf-8")
-      return { file, content }
-    })
-  )
-
-  const combinedSQL = migrations.map((m) => `-- Migration: ${m.file}\n${m.content}`).join("\n\n")
-
+  function copySQL() {
+    if (result?.sqlToRun) {
+      navigator.clipboard.writeText(result.sqlToRun)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    }
+  }
   return (
-    <div className="container mx-auto p-8 max-w-6xl">
-      <h1 className="text-3xl font-bold mb-6">Database Setup Instructions</h1>
-
-      <div className="bg-yellow-500/10 border-l-4 border-yellow-400 p-4 mb-8">
-        <h2 className="text-lg font-semibold text-yellow-300 mb-2">⚠️ Important: Your database is empty</h2>
-        <p className="text-yellow-400">
-          The Supabase database has no tables. Follow these steps to set up your database and users.
-        </p>
-      </div>
-
-      <div className="space-y-8">
-        <section className="bg-card rounded-lg shadow p-6">
-          <h2 className="text-2xl font-bold mb-4">Step 1: Apply Database Migrations</h2>
-          <ol className="list-decimal list-inside space-y-3 mb-4">
-            <li>
-              Go to your{" "}
-              <a
-                href="https://bkdgdfwotlyvojnrenet.supabase.co/project/default/sql/new"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline font-medium"
-              >
-                Supabase Dashboard → SQL Editor
-              </a>
-            </li>
-            <li>Copy ALL the SQL below</li>
-            <li>Paste it into the SQL Editor</li>
-            <li>Click "Run" to execute</li>
-          </ol>
-
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
-            <div className="flex justify-between items-center mb-2">
-              <p className="text-sm text-muted-foreground">
-                {migrations.length} migration files combined ({combinedSQL.split("\n").length} lines)
-              </p>
-              <CopyButton text={combinedSQL} />
+    <div style={{ minHeight:'100vh', background:BG, fontFamily:FONT, padding:32, color:TEXT }}>
+      <div style={{ maxWidth:820, margin:'0 auto' }}>
+        <h1 style={{ fontSize:24, fontWeight:700, margin:'0 0 6px', letterSpacing:'-0.4px' }}>Database Setup</h1>
+        <p style={{ color:T3, margin:'0 0 28px', fontSize:13 }}>Run migrations to create pipeline & aggregation tables in Supabase</p>
+        {loading && <div style={{ background:BG1, border:'1px solid '+BD, borderRadius:12, padding:24, textAlign:'center', color:T3 }}>Checking database status...</div>}
+        {result?.error && <div style={{ background:'rgba(239,68,68,0.1)', border:'1px solid rgba(239,68,68,0.3)', borderRadius:12, padding:20, color:'#EF4444' }}>Error: {result.error}</div>}
+        {result && !result.error && (
+          <div>
+            <div style={{ background: result.status === 'ready' ? 'rgba(16,185,129,0.1)' : 'rgba(245,158,11,0.1)', border:'1px solid '+(result.status === 'ready' ? 'rgba(16,185,129,0.3)' : 'rgba(245,158,11,0.3)'), borderRadius:12, padding:20, marginBottom:20 }}>
+              <div style={{ fontSize:16, fontWeight:600, color: result.status === 'ready' ? '#10B981' : '#F59E0B', marginBottom:6 }}>
+                {result.status === 'ready' ? '✅ Database Ready' : '⚠️ Setup Required'}
+              </div>
+              <div style={{ fontSize:13, color:T2 }}>{result.message}</div>
+              <div style={{ display:'flex', gap:20, marginTop:12, fontSize:12, color:T3 }}>
+                <span style={{ color:'#10B981' }}>✓ {result.tablesExisting} tables already exist</span>
+                {result.tablesNeedingCreation > 0 && <span style={{ color:'#F59E0B' }}>⚠ {result.tablesNeedingCreation} tables need creation</span>}
+              </div>
             </div>
-            <pre className="text-xs overflow-x-auto max-h-96">{combinedSQL}</pre>
+            {result.sqlToRun && (
+              <div style={{ marginBottom:20 }}>
+                <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:12 }}>
+                  <div style={{ fontSize:14, fontWeight:600, color:TEXT }}>SQL to Run in Supabase</div>
+                  <div style={{ display:'flex', gap:8 }}>
+                    <button onClick={copySQL} style={{ padding:'7px 16px', background: copied ? 'rgba(16,185,129,0.2)' : 'rgba(59,130,246,0.2)', color: copied ? '#10B981' : '#3B82F6', border:'1px solid '+(copied ? 'rgba(16,185,129,0.4)' : 'rgba(59,130,246,0.4)'), borderRadius:6, cursor:'pointer', fontSize:12, fontWeight:500 }}>
+                      {copied ? '✓ Copied!' : '📋 Copy All SQL'}
+                    </button>
+                    <a href={result.supabaseSQLEditorURL} target="_blank" rel="noreferrer" style={{ padding:'7px 16px', background:'rgba(139,92,246,0.2)', color:'#8B5CF6', border:'1px solid rgba(139,92,246,0.4)', borderRadius:6, textDecoration:'none', fontSize:12, fontWeight:500 }}>
+                      Open Supabase Editor ↗
+                    </a>
+                  </div>
+                </div>
+                <div style={{ background:BG2, border:'1px solid '+BD, borderRadius:8, padding:16, maxHeight:300, overflowY:'auto' }}>
+                  <pre style={{ margin:0, fontSize:11, color:T2, fontFamily:'JetBrains Mono,monospace', whiteSpace:'pre-wrap', wordBreak:'break-word' }}>{result.sqlToRun}</pre>
+                </div>
+                <div style={{ marginTop:16, padding:16, background:'rgba(59,130,246,0.08)', border:'1px solid rgba(59,130,246,0.2)', borderRadius:8 }}>
+                  <div style={{ fontSize:13, fontWeight:600, color:'#3B82F6', marginBottom:8 }}>How to run:</div>
+                  <ol style={{ margin:0, paddingLeft:16, fontSize:12, color:T2, lineHeight:1.8 }}>
+                    <li>Click <strong style={{ color:TEXT }}>"Copy All SQL"</strong> above</li>
+                    <li>Click <strong style={{ color:TEXT }}>"Open Supabase Editor"</strong> — it opens the SQL Editor</li>
+                    <li>Paste the SQL and click <strong style={{ color:TEXT }}>"Run"</strong></li>
+                    <li>Come back here and click <strong style={{ color:TEXT }}>"Re-check Status"</strong> to confirm</li>
+                  </ol>
+                </div>
+              </div>
+            )}
+            <div style={{ background:BG1, border:'1px solid '+BD, borderRadius:12, padding:16 }}>
+              <div style={{ fontSize:13, fontWeight:600, color:TEXT, marginBottom:12 }}>Table Status</div>
+              <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:8 }}>
+                {(result.tables || []).map((t: any) => (
+                  <div key={t.name} style={{ padding:'8px 10px', background:BG2, borderRadius:6, display:'flex', justifyContent:'space-between', alignItems:'center', border:'1px solid '+(t.status === 'exists' ? 'rgba(16,185,129,0.2)' : 'rgba(245,158,11,0.2)') }}>
+                    <span style={{ fontSize:11, color:TEXT }}>{t.name}</span>
+                    <span style={{ fontSize:10, color: t.status === 'exists' ? '#10B981' : '#F59E0B' }}>{t.status === 'exists' ? '✓' : '⚠'}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <button onClick={checkStatus} style={{ marginTop:16, padding:'8px 20px', background:'rgba(59,130,246,0.15)', color:'#3B82F6', border:'1px solid rgba(59,130,246,0.3)', borderRadius:8, cursor:'pointer', fontSize:13 }}>Re-check Status</button>
           </div>
-        </section>
-
-        <section className="bg-card rounded-lg shadow p-6">
-          <h2 className="text-2xl font-bold mb-4">Step 2: Create Users in Supabase Auth</h2>
-          <ol className="list-decimal list-inside space-y-3 mb-4">
-            <li>
-              Go to{" "}
-              <a
-                href="https://bkdgdfwotlyvojnrenet.supabase.co/project/default/auth/users"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline font-medium"
-              >
-                Supabase Dashboard → Authentication → Users
-              </a>
-            </li>
-            <li>Click "Add user" → "Create new user"</li>
-            <li>Create these users:</li>
-          </ol>
-
-          <div className="bg-muted p-4 rounded-lg space-y-2 text-sm">
-            <div className="flex items-center gap-4">
-              <span className="font-mono bg-card px-3 py-1 rounded">ops@casurance.net</span>
-              <span className="text-muted-foreground">(Set a password)</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="font-mono bg-card px-3 py-1 rounded">wade@casurance.net</span>
-              <span className="text-muted-foreground">(Set a password)</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="font-mono bg-card px-3 py-1 rounded">wade@casurance.com</span>
-              <span className="text-muted-foreground">(Set a password)</span>
-            </div>
-          </div>
-
-          <p className="mt-4 text-sm text-muted-foreground">
-            💡 <strong>Tip:</strong> Enable "Auto Confirm User" when creating each user so they can log in immediately.
-          </p>
-        </section>
-
-        <section className="bg-card rounded-lg shadow p-6">
-          <h2 className="text-2xl font-bold mb-4">Step 3: Test Login</h2>
-          <p className="mb-4">After completing Steps 1 and 2:</p>
-          <ol className="list-decimal list-inside space-y-2">
-            <li>
-              Go to the{" "}
-              <a href="/login" className="text-blue-600 hover:underline font-medium">
-                login page
-              </a>
-            </li>
-            <li>Sign in with one of the users you created</li>
-            <li>You should be redirected to the dashboard</li>
-          </ol>
-        </section>
-      </div>
-
-      <div className="mt-8 p-4 bg-blue-500/10 rounded-lg">
-        <h3 className="font-semibold text-blue-300 mb-2">Why is the database empty?</h3>
-        <p className="text-blue-300 text-sm">
-          If the database migrations haven't been applied yet, your Supabase database will have no tables. These
-          migrations create all the tables (renewals, clients, submissions, etc.) that your app needs to function.
-        </p>
+        )}
       </div>
     </div>
   )
