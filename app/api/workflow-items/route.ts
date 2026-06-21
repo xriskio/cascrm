@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
     if (type === 'submission') rq = rq.limit(0)
 
     const { data: renewals = [], error: re } = await rq
-    if (re) return NextResponse.json({ error: 'Failed to fetch renewals', details: re.message }, { status: 500 })
+    if (re) console.error("Renewals:", re.message)
 
     // ── Submissions ───────────────────────────────────────────────────────
     let sq = supabaseAdmin
@@ -41,7 +41,7 @@ export async function GET(request: NextRequest) {
     if (type === 'renewal') sq = sq.limit(0)
 
     const { data: submissions = [], error: se } = await sq
-    if (se) return NextResponse.json({ error: 'Failed to fetch submissions', details: se.message }, { status: 500 })
+    if (se) console.error("Submissions:", se.message)
 
     // ── Transform ─────────────────────────────────────────────────────────
     const renewalItems: WorkflowItem[] = (renewals as any[]).map(r => ({
