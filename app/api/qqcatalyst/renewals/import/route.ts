@@ -98,6 +98,7 @@ export async function GET(request: NextRequest) {
         business_name: policy.CustomerName || null,
         policy_type: policy.LOB || policy.PolicyType || "Unknown",
         carrier: policy.WritingCarrier || null,
+        insurance_carrier: policy.WritingCarrier || null,
         effective_date: effectiveDate,
         expiration_date: expirationDate,
         premium: policy.TotalPremium || null,
