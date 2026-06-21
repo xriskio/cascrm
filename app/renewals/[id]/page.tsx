@@ -149,7 +149,7 @@ export default function RenewalDetailPage() {
     }
   }
 
-  const handleBeginRenewalProcess = async () => {
+  const handleBeginRenewalProcess = async () => { // async: uses fetch + updateRenewalStatus
     try {
       setProcessing(true)
       // Call the API to send initial renewal notification
