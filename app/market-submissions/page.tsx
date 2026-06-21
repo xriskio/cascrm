@@ -187,7 +187,10 @@ export default async function MarketSubmissionsPage() {
                       </p>
                     </div>
                     <Button asChild variant="outline" size="sm">
-                      <Link href={`/market-submissions/view/${submission.id}`}>View Details</Link>
+                      <Link href={`/market-submissions/view/${submission.id}`}>View</Link>
+                    </Button>
+                    <Button asChild variant="outline" size="sm" className="text-purple-400 border-purple-500 hover:bg-purple-500/10">
+                      <Link href={`/submissions/${submission.submission_id}/placements`}>Tracker</Link>
                     </Button>
                   </div>
                 </CardHeader>
