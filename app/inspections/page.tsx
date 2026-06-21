@@ -137,7 +137,7 @@ export default function InspectionsPage() {
   )
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen">
       <PageHeader title="Inspections" subtitle="AI-powered inspection management and compliance tracking">
         <button
           onClick={handleScheduleInspection}
