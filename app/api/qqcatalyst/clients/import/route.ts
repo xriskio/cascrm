@@ -26,10 +26,7 @@ export async function GET(request: NextRequest) {
 
     if (!contacts || contacts.length === 0) {
       return NextResponse.json({
-        success: true,
-        imported: 0,
-        total: 0,
-        message: "No contacts found to import",
+        success: false, imported: 0, total: 0, error: "QQCatalyst returned 0 contacts. Check QQ_BEARER_TOKEN or QQ_USERNAME/QQ_PASSWORD environment variables.",
       })
     }
 
