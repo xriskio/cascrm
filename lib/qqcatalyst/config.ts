@@ -1,1 +1,1 @@
-// fixed
+export const X = "test";
