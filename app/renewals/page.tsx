@@ -1004,6 +1004,14 @@ export default function RenewalsPage() {
                             >
                               Edit
                             </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="text-purple-600 border-purple-300 hover:bg-purple-50"
+                              onClick={() => router.push(`/renewals/${renewal.id}/workflow`)}
+                            >
+                              120d Workflow
+                            </Button>
                             {renewal.status?.toLowerCase() === "bound" && (
                               <Button
                                 size="sm"
