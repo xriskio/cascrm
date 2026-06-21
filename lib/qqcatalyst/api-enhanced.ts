@@ -21,7 +21,7 @@ async function makeQQCatalystRequest(endpoint: string, options: RequestInit = {}
     })
 
   // 1. Try the static bearer token if set
-  const bearerToken = process.env.QQCATALYST_BEARER_TOKEN
+  const bearerToken = process.env.QQ_BEARER_TOKEN || process.env.QQCATALYST_BEARER_TOKEN
   if (bearerToken) {
     const response = await doRequest(bearerToken)
     if (response.ok) return response.json()
