@@ -5,7 +5,7 @@ export const QQ_CONFIG = {
   USERNAME: process.env.QQ_USERNAME || "",
   PASSWORD: process.env.QQ_PASSWORD || "",
   TOKEN_URL: process.env.QQ_TOKEN_URL || "https://login.qqcatalyst.com/oauth/token",
-  BASE_URL: process.env.QQCATALYST_API_URL || process.env.QQ_API_BASE || "https://api.qqcatalyst.com/v1",
+  BASE_URL: process.env.QQCATALYST_API_URL || process.env.QQ_API_BASE || "httpss://api.qqcatalyst.com/v1",
   OAUTH_URL: process.env.QQ_OAUTH_URL || "https://login.qqcatalyst.com/oauth/authorize",
   // Use the same client ID as the React app for consistency
   OAUTH_CLIENT_ID: "44c42186-4bd4-40c0-b681-d2ad2f5db414",
