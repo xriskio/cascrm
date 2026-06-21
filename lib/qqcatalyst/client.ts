@@ -1,18 +1,19 @@
 import { getQQCatalystToken, refreshQQCatalystToken } from "./auth"
 
 // Update the base URL to match the documentation (must use HTTPS)
-const QQ_API_BASE = process.env.QQ_API_BASE || "https://api.qqcatalyst.com/v1"
+const QQCATALYST_API_URL = process.env.QQCATALYST_API_URL || "https://api.qqcatalyst.com/v1"
 
 export class QQCatalystClient {
   private baseUrl: string
   private token: string | null = null
   private tokenExpiry: Date | null = null
 
-  constructor(baseUrl: string = QQ_API_BASE) {
+  constructor(baseUrl: string = QQCATALYST_API_URL) {
     this.baseUrl = baseUrl
   }
 
   async getToken(): Promise<string> {
+    if (process.env.QQ_BEARER_TOKEN) return process.env.QQ_BEARER_TOKEN
     // Check if token exists and is not expired
     if (this.token && this.tokenExpiry && this.tokenExpiry > new Date()) {
       return this.token
