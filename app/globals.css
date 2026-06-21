@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Silver + Black dark mode overrides ── */
+/* Forces dark theme on pages using white/gray Tailwind classes */
+.dark .bg-white { background-color: #0C0C0E !important; }
+.dark .bg-gray-50 { background-color: #0A0A0B !important; }
+.dark .bg-gray-100 { background-color: #141416 !important; }
+.dark .bg-gray-200 { background-color: #1A1A1E !important; }
+.dark .text-gray-900, .dark .text-gray-800 { color: #E2E2E8 !important; }
+.dark .text-gray-700, .dark .text-gray-600 { color: #9A9AAA !important; }
+.dark .text-gray-500, .dark .text-gray-400 { color: #6A6A76 !important; }
+.dark .border-gray-200 { border-color: rgba(192,192,200,0.12) !important; }
+.dark .border-gray-100 { border-color: rgba(192,192,200,0.08) !important; }
+.dark .shadow-sm, .dark .shadow { box-shadow: 0 1px 3px rgba(0,0,0,0.6) !important; }
+.dark .divide-gray-200 > * + * { border-color: rgba(192,192,200,0.12) !important; }
+.dark input, .dark textarea, .dark select { background-color: #141416 !important; color: #E2E2E8 !important; border-color: rgba(192,192,200,0.15) !important; }
+.dark .card { background-color: #0C0C0E !important; border-color: rgba(192,192,200,0.10) !important; }
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
