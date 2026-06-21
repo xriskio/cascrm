@@ -117,7 +117,7 @@ export default function CarrierContactsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen">
       <PageHeader title="AI Carrier Intelligence" subtitle="Smart carrier management and relationship analytics">
         <Link href="/carrier-contacts/add">
           <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
