@@ -1,190 +1,113 @@
-"use server"
-
-import { createClient } from "@/lib/supabase/server"
-import { type Permission, hasPermission, type UserRole } from "@/lib/permissions"
-import { redirect } from "next/navigation"
-import { createAuditLog, addAuditFields } from "@/lib/audit"
-
-// Base class for all server actions that need permission checks
-export class BaseAction {
-  protected async checkPermission(permission: Permission): Promise<UserRole> {
-    const supabase = await createClient()
-
-    // Get the current user
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
-
-    if (!user) {
-      redirect("/login")
-    }
-
-    // Get user role from the users table
-    const { data: userData, error } = await supabase.from("users").select("role").eq("id", user.id).single()
-
-    if (error) {
-      console.error("Error fetching user role:", error)
-      throw new Error("Unauthorized")
-    }
-
-    const userRole = userData.role as UserRole
-
-    // Check if the user has the required permission
-    if (!hasPermission(userRole, permission)) {
-      throw new Error("Insufficient permissions")
-    }
-
-    return userRole
-  }
-
-  protected async createRecord<T extends Record<string, any>>(
-    tableName: string,
-    data: T,
-    options: {
-      userId?: string
-      skipAudit?: boolean
-    } = {},
-  ) {
-    const supabase = createClient({ useServiceRole: true })
-    const { userId, skipAudit = false } = options
-
-    try {
-      // Add audit fields
-      const recordWithAudit = await addAuditFields(data, userId, true)
-
-      // Insert the record
-      const { data: newRecord, error } = await supabase.from(tableName).insert(recordWithAudit).select().single()
-
-      if (error) {
-        console.error(`Error creating ${tableName}:`, error)
-        return { success: false, error }
-      }
-
-      // Create audit log
-      if (!skipAudit) {
-        await createAuditLog({
-          action: "create",
-          tableName,
-          recordId: newRecord.id,
-          newData: newRecord,
-          userId,
-        })
-      }
-
-      return { success: true, data: newRecord }
-    } catch (error) {
-      console.error(`Error in createRecord for ${tableName}:`, error)
-      return { success: false, error }
-    }
-  }
-
-  protected async updateRecord<T extends Record<string, any>>(
-    tableName: string,
-    id: string,
-    data: Partial<T>,
-    options: {
-      userId?: string
-      skipAudit?: boolean
-    } = {},
-  ) {
-    const supabase = createClient({ useServiceRole: true })
-    const { userId, skipAudit = false } = options
-
-    try {
-      // Get the current record for audit
-      const { data: currentRecord, error: fetchError } = await supabase
-        .from(tableName)
-        .select("*")
-        .eq("id", id)
-        .single()
-
-      if (fetchError) {
-        console.error(`Error fetching ${tableName} for update:`, fetchError)
-        return { success: false, error: fetchError }
-      }
-
-      // Add audit fields
-      const recordWithAudit = await addAuditFields(data, userId)
-
-      // Update the record
-      const { data: updatedRecord, error } = await supabase
-        .from(tableName)
-        .update(recordWithAudit)
-        .eq("id", id)
-        .select()
-        .single()
-
-      if (error) {
-        console.error(`Error updating ${tableName}:`, error)
-        return { success: false, error }
-      }
-
-      // Create audit log
-      if (!skipAudit) {
-        await createAuditLog({
-          action: "update",
-          tableName,
-          recordId: id,
-          oldData: currentRecord,
-          newData: updatedRecord,
-          userId,
-        })
-      }
-
-      return { success: true, data: updatedRecord }
-    } catch (error) {
-      console.error(`Error in updateRecord for ${tableName}:`, error)
-      return { success: false, error }
-    }
-  }
-
-  protected async deleteRecord(
-    tableName: string,
-    id: string,
-    options: {
-      userId?: string
-      skipAudit?: boolean
-    } = {},
-  ) {
-    const supabase = createClient({ useServiceRole: true })
-    const { userId, skipAudit = false } = options
-
-    try {
-      // Get the current record for audit
-      const { data: currentRecord, error: fetchError } = await supabase
-        .from(tableName)
-        .select("*")
-        .eq("id", id)
-        .single()
-
-      if (fetchError) {
-        console.error(`Error fetching ${tableName} for delete:`, fetchError)
-        return { success: false, error: fetchError }
-      }
-
-      // Delete the record
-      const { error } = await supabase.from(tableName).delete().eq("id", id)
-
-      if (error) {
-        console.error(`Error deleting ${tableName}:`, error)
-        return { success: false, error }
-      }
-
-      // Create audit log
-      if (!skipAudit) {
-        await createAuditLog({
-          action: "delete",
-          tableName,
-          recordId: id,
-          oldData: currentRecord,
-          userId,
-        })
-      }
-
-      return { success: true }
-    } catch (error) {
-      console.error(`Error in deleteRecord for ${tableName}:`, error)
-      return { success: false, error }
-    }
-  }
-}
+InVzZSBzZXJ2ZXIiCgppbXBvcnQgeyBjcmVhdGVDbGllbnQgfSBmcm9tICJA
+L2xpYi9zdXBhYmFzZS9zZXJ2ZXIiCmltcG9ydCB7IHR5cGUgUGVybWlzc2lv
+biwgaGFzUGVybWlzc2lvbiwgdHlwZSBVc2VyUm9sZSB9IGZyb20gIkAvbGli
+L3Blcm1pc3Npb25zIgppbXBvcnQgeyByZWRpcmVjdCB9IGZyb20gIm5leHQv
+bmF2aWdhdGlvbiIKaW1wb3J0IHsgY3JlYXRlQXVkaXRMb2csIGFkZEF1ZGl0
+RmllbGRzIH0gZnJvbSAiQC9saWIvYXVkaXQiCgovLyBCYXNlIGNsYXNzIGZv
+ciBhbGwgc2VydmVyIGFjdGlvbnMgdGhhdCBuZWVkIHBlcm1pc3Npb24gY2hl
+Y2tzCmV4cG9ydCBjbGFzcyBCYXNlQWN0aW9uIHsKICBwcm90ZWN0ZWQgYXN5
+bmMgY2hlY2tQZXJtaXNzaW9uKHBlcm1pc3Npb246IFBlcm1pc3Npb24pOiBQ
+cm9taXNlPFVzZXJSb2xlPiB7CiAgICBjb25zdCBzdXBhYmFzZSA9IGF3YWl0
+IGNyZWF0ZUNsaWVudCgpCgogICAgLy8gR2V0IHRoZSBjdXJyZW50IHVzZXIK
+ICAgIGNvbnN0IHsKICAgICAgZGF0YTogeyB1c2VyIH0sCiAgICB9ID0gYXdh
+aXQgc3VwYWJhc2UuYXV0aC5nZXRVc2VyKCkKCiAgICBpZiAoIXVzZXIpIHsK
+ICAgICAgcmVkaXJlY3QoIi9sb2dpbiIpCiAgICB9CgogICAgLy8gR2V0IHVz
+ZXIgcm9sZSBmcm9tIHRoZSB1c2VycyB0YWJsZQogICAgY29uc3QgeyBkYXRh
+OiB1c2VyRGF0YSwgZXJyb3IgfSA9IGF3YWl0IHN1cGFiYXNlLmZyb20oInVz
+ZXJzIikuc2VsZWN0KCJyb2xlIikuZXEoImlkIiwgdXNlci5pZCkuc2luZ2xl
+KCkKCiAgICBpZiAoZXJyb3IpIHsKICAgICAgY29uc29sZS5lcnJvcigiRXJy
+b3IgZmV0Y2hpbmcgdXNlciByb2xlOiIsIGVycm9yKQogICAgICB0aHJvdyBu
+ZXcgRXJyb3IoIlVuYXV0aG9yaXplZCIpCiAgICB9CgogICAgY29uc3QgdXNl
+clJvbGUgPSB1c2VyRGF0YS5yb2xlIGFzIFVzZXJSb2xlCgogICAgLy8gQ2hl
+Y2sgaWYgdGhlIHVzZXIgaGFzIHRoZSByZXF1aXJlZCBwZXJtaXNzaW9uCiAg
+ICBpZiAoIWhhc1Blcm1pc3Npb24odXNlclJvbGUsIHBlcm1pc3Npb24pKSB7
+CiAgICAgIHRocm93IG5ldyBFcnJvcigiSW5zdWZmaWNpZW50IHBlcm1pc3Np
+b25zIikKICAgIH0KCiAgICByZXR1cm4gdXNlclJvbGUKICB9CgogIHByb3Rl
+Y3RlZCBhc3luYyBjcmVhdGVSZWNvcmQ8VCBleHRlbmRzIFJlY29yZDxzdHJp
+bmcsIGFueT4+KAogICAgdGFibGVOYW1lOiBzdHJpbmcsCiAgICBkYXRhOiBU
+LAogICAgb3B0aW9uczogewogICAgICB1c2VySWQ/OiBzdHJpbmcKICAgICAg
+c2tpcEF1ZGl0PzogYm9vbGVhbgogICAgfSA9IHt9LAogICkgewogICAgY29u
+c3Qgc3VwYWJhc2UgPSBjcmVhdGVDbGllbnQoeyB1c2VTZXJ2aWNlUm9sZTog
+dHJ1ZSB9KQogICAgY29uc3QgeyB1c2VySWQsIHNraXBBdWRpdCA9IGZhbHNl
+IH0gPSBvcHRpb25zCgogICAgdHJ5IHsKICAgICAgLy8gQWRkIGF1ZGl0IGZp
+ZWxkcwogICAgICBjb25zdCByZWNvcmRXaXRoQXVkaXQgPSBhd2FpdCBhZGRB
+dWRpdEZpZWxkcyhkYXRhLCB1c2VySWQsIHRydWUpCgogICAgICAvLyBJbnNl
+cnQgdGhlIHJlY29yZAogICAgICBjb25zdCB7IGRhdGE6IG5ld1JlY29yZCwg
+ZXJyb3IgfSA9IGF3YWl0IHN1cGFiYXNlLmZyb20odGFibGVOYW1lKS5pbnNl
+cnQocmVjb3JkV2l0aEF1ZGl0KS5zZWxlY3QoKS5zaW5nbGUoKQoKICAgICAg
+aWYgKGVycm9yKSB7CiAgICAgICAgY29uc29sZS5lcnJvcihgRXJyb3IgY3Jl
+YXRpbmcgJHt0YWJsZU5hbWV9OmAsIGVycm9yKQogICAgICAgIHJldHVybiB7
+IHN1Y2Nlc3M6IGZhbHNlLCBlcnJvciB9CiAgICAgIH0KCiAgICAgIC8vIENy
+ZWF0ZSBhdWRpdCBsb2cKICAgICAgaWYgKCFza2lwQXVkaXQpIHsKICAgICAg
+ICBhd2FpdCBjcmVhdGVBdWRpdExvZyh7CiAgICAgICAgICBhY3Rpb246ICJj
+cmVhdGUiLAogICAgICAgICAgdGFibGVOYW1lLAogICAgICAgICAgcmVjb3Jk
+SWQ6IG5ld1JlY29yZC5pZCwKICAgICAgICAgIG5ld0RhdGE6IG5ld1JlY29y
+ZCwKICAgICAgICAgIHVzZXJJZCwKICAgICAgICB9KQogICAgICB9CgogICAg
+ICByZXR1cm4geyBzdWNjZXNzOiB0cnVlLCBkYXRhOiBuZXdSZWNvcmQgfQog
+ICAgfSBjYXRjaCAoZXJyb3IpIHsKICAgICAgY29uc29sZS5lcnJvcihgRXJy
+b3IgaW4gY3JlYXRlUmVjb3JkIGZvciAke3RhYmxlTmFtZX06YCwgZXJyb3Ip
+CiAgICAgIHJldHVybiB7IHN1Y2Nlc3M6IGZhbHNlLCBlcnJvciB9CiAgICB9
+CiAgfQoKICBwcm90ZWN0ZWQgYXN5bmMgdXBkYXRlUmVjb3JkPFQgZXh0ZW5k
+cyBSZWNvcmQ8c3RyaW5nLCBhbnk+PigKICAgIHRhYmxlTmFtZTogc3RyaW5n
+LAogICAgaWQ6IHN0cmluZywKICAgIGRhdGE6IFBhcnRpYWw8VD4sCiAgICBv
+cHRpb25zOiB7CiAgICAgIHVzZXJJZD86IHN0cmluZwogICAgICBza2lwQXVk
+aXQ/OiBib29sZWFuCiAgICB9ID0ge30sCiAgKSB7CiAgICBjb25zdCBzdXBh
+YmFzZSA9IGNyZWF0ZUNsaWVudCh7IHVzZVNlcnZpY2VSb2xlOiB0cnVlIH0p
+CiAgICBjb25zdCB7IHVzZXJJZCwgc2tpcEF1ZGl0ID0gZmFsc2UgfSA9IG9w
+dGlvbnMKCiAgICB0cnkgewogICAgICAvLyBHZXQgdGhlIGN1cnJlbnQgcmVj
+b3JkIGZvciBhdWRpdAogICAgICBjb25zdCB7IGRhdGE6IGN1cnJlbnRSZWNv
+cmQsIGVycm9yOiBmZXRjaEVycm9yIH0gPSBhd2FpdCBzdXBhYmFzZQogICAg
+ICAgIC5mcm9tKHRhYmxlTmFtZSkKICAgICAgICAuc2VsZWN0KCIqIikKICAg
+ICAgICAuZXEoImlkIiwgaWQpCiAgICAgICAgLnNpbmdsZSgpCgogICAgICBp
+ZiAoZmV0Y2hFcnJvcikgewogICAgICAgIGNvbnNvbGUuZXJyb3IoYEVycm9y
+IGZldGNoaW5nICR7dGFibGVOYW1lfSBmb3IgdXBkYXRlOmAsIGZldGNoRXJy
+b3IpCiAgICAgICAgcmV0dXJuIHsgc3VjY2VzczogZmFsc2UsIGVycm9yOiBm
+ZXRjaEVycm9yIH0KICAgICAgfQoKICAgICAgLy8gQWRkIGF1ZGl0IGZpZWxk
+cwogICAgICBjb25zdCByZWNvcmRXaXRoQXVkaXQgPSBhd2FpdCBhZGRBdWRp
+dEZpZWxkcyhkYXRhLCB1c2VySWQpCgogICAgICAvLyBVcGRhdGUgdGhlIHJl
+Y29yZAogICAgICBjb25zdCB7IGRhdGE6IHVwZGF0ZWRSZWNvcmQsIGVycm9y
+IH0gPSBhd2FpdCBzdXBhYmFzZQogICAgICAgIC5mcm9tKHRhYmxlTmFtZSkK
+ICAgICAgICAudXBkYXRlKHJlY29yZFdpdGhBdWRpdCkKICAgICAgICAuZXEo
+ImlkIiwgaWQpCiAgICAgICAgLnNlbGVjdCgpCiAgICAgICAgLnNpbmdsZSgp
+CgogICAgICBpZiAoZXJyb3IpIHsKICAgICAgICBjb25zb2xlLmVycm9yKGBF
+cnJvciB1cGRhdGluZyAke3RhYmxlTmFtZX06YCwgZXJyb3IpCiAgICAgICAg
+cmV0dXJuIHsgc3VjY2VzczogZmFsc2UsIGVycm9yIH0KICAgICAgfQoKICAg
+ICAgLy8gQ3JlYXRlIGF1ZGl0IGxvZwogICAgICBpZiAoIXNraXBBdWRpdCkg
+ewogICAgICAgIGF3YWl0IGNyZWF0ZUF1ZGl0TG9nKHsKICAgICAgICAgIGFj
+dGlvbjogInVwZGF0ZSIsCiAgICAgICAgICB0YWJsZU5hbWUsCiAgICAgICAg
+ICByZWNvcmRJZDogaWQsCiAgICAgICAgICBvbGREYXRhOiBjdXJyZW50UmVj
+b3JkLAogICAgICAgICAgbmV3RGF0YTogdXBkYXRlZFJlY29yZCwKICAgICAg
+ICAgIHVzZXJJZCwKICAgICAgICB9KQogICAgICB9CgogICAgICByZXR1cm4g
+eyBzdWNjZXNzOiB0cnVlLCBkYXRhOiB1cGRhdGVkUmVjb3JkIH0KICAgIH0g
+Y2F0Y2ggKGVycm9yKSB7CiAgICAgIGNvbnNvbGUuZXJyb3IoYEVycm9yIGlu
+IHVwZGF0ZVJlY29yZCBmb3IgJHt0YWJsZU5hbWV9OmAsIGVycm9yKQogICAg
+ICByZXR1cm4geyBzdWNjZXNzOiBmYWxzZSwgZXJyb3IgfQogICAgfQogIH0K
+CiAgcHJvdGVjdGVkIGFzeW5jIGRlbGV0ZVJlY29yZCgKICAgIHRhYmxlTmFt
+ZTogc3RyaW5nLAogICAgaWQ6IHN0cmluZywKICAgIG9wdGlvbnM6IHsKICAg
+ICAgdXNlcklkPzogc3RyaW5nCiAgICAgIHNraXBBdWRpdD86IGJvb2xlYW4K
+ICAgIH0gPSB7fSwKICApIHsKICAgIGNvbnN0IHN1cGFiYXNlID0gY3JlYXRl
+Q2xpZW50KHsgdXNlU2VydmljZVJvbGU6IHRydWUgfSkKICAgIGNvbnN0IHsg
+dXNlcklkLCBza2lwQXVkaXQgPSBmYWxzZSB9ID0gb3B0aW9ucwoKICAgIHRy
+eSB7CiAgICAgIC8vIEdldCB0aGUgY3VycmVudCByZWNvcmQgZm9yIGF1ZGl0
+CiAgICAgIGNvbnN0IHsgZGF0YTogY3VycmVudFJlY29yZCwgZXJyb3I6IGZl
+dGNoRXJyb3IgfSA9IGF3YWl0IHN1cGFiYXNlCiAgICAgICAgLmZyb20odGFi
+bGVOYW1lKQogICAgICAgIC5zZWxlY3QoIioiKQogICAgICAgIC5lcSgiaWQi
+LCBpZCkKICAgICAgICAuc2luZ2xlKCkKCiAgICAgIGlmIChmZXRjaEVycm9y
+KSB7CiAgICAgICAgY29uc29sZS5lcnJvcihgRXJyb3IgZmV0Y2hpbmcgJHt0
+YWJsZU5hbWV9IGZvciBkZWxldGU6YCwgZmV0Y2hFcnJvcikKICAgICAgICBy
+ZXR1cm4geyBzdWNjZXNzOiBmYWxzZSwgZXJyb3I6IGZldGNoRXJyb3IgfQog
+ICAgICB9CgogICAgICAvLyBEZWxldGUgdGhlIHJlY29yZAogICAgICBjb25z
+dCB7IGVycm9yIH0gPSBhd2FpdCBzdXBhYmFzZS5mcm9tKHRhYmxlTmFtZSku
+ZGVsZXRlKCkuZXEoImlkIiwgaWQpCgogICAgICBpZiAoZXJyb3IpIHsKICAg
+ICAgICBjb25zb2xlLmVycm9yKGBFcnJvciBkZWxldGluZyAke3RhYmxlTmFt
+ZX06YCwgZXJyb3IpCiAgICAgICAgcmV0dXJuIHsgc3VjY2VzczogZmFsc2Us
+IGVycm9yIH0KICAgICAgfQoKICAgICAgLy8gQ3JlYXRlIGF1ZGl0IGxvZwog
+ICAgICBpZiAoIXNraXBBdWRpdCkgewogICAgICAgIGF3YWl0IGNyZWF0ZUF1
+ZGl0TG9nKHsKICAgICAgICAgIGFjdGlvbjogImRlbGV0ZSIsCiAgICAgICAg
+ICB0YWJsZU5hbWUsCiAgICAgICAgICByZWNvcmRJZDogaWQsCiAgICAgICAg
+ICBvbGREYXRhOiBjdXJyZW50UmVjb3JkLAogICAgICAgICAgdXNlcklkLAog
+ICAgICAgIH0pCiAgICAgIH0KCiAgICAgIHJldHVybiB7IHN1Y2Nlc3M6IHRy
+dWUgfQogICAgfSBjYXRjaCAoZXJyb3IpIHsKICAgICAgY29uc29sZS5lcnJv
+cihgRXJyb3IgaW4gZGVsZXRlUmVjb3JkIGZvciAke3RhYmxlTmFtZX06YCwg
+ZXJyb3IpCiAgICAgIHJldHVybiB7IHN1Y2Nlc3M6IGZhbHNlLCBlcnJvciB9
+CiAgICB9CiAgfQp9Cg==
