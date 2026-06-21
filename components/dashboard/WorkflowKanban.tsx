@@ -136,12 +136,12 @@ function KanbanColumn({
 
       <div style={{
         flex: 1,
-        overflowY: 'auto', maxHeight: 520, height: 520,
+        overflowY: "auto", maxHeight: 480,
         padding: 10,
         display: 'flex',
         flexDirection: 'column',
         gap: 8,
-        minHeight: 420,
+        minHeight: 80,
       }}>
         {items.length === 0 ? (
           <div style={{
