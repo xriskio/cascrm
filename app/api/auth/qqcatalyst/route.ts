@@ -1,68 +1,47 @@
-import { type NextRequest, NextResponse } from "next/server"
-
-export async function GET(request: NextRequest) {
-  try {
-    console.log("Starting QQCatalyst OAuth flow...")
-
-    // Get credentials from environment variables
-    const clientId = process.env.QQC_CLIENT_ID
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
-
-    console.log("Client ID:", clientId ? "Present" : "Missing")
-    console.log("Base URL:", baseUrl)
-
-    if (!clientId) {
-      console.error("QQC_CLIENT_ID not found in environment variables")
-      return NextResponse.json(
-        {
-          error: "QQCatalyst Client ID not configured",
-          details: "Missing QQC_CLIENT_ID environment variable",
-        },
-        { status: 500 },
-      )
-    }
-
-    // Build redirect URI
-    const redirectUri = `${baseUrl}/api/auth/qqcatalyst/callback`
-    console.log("Redirect URI:", redirectUri)
-
-    // Generate state for security
-    const state = Math.random().toString(36).substring(7)
-    console.log("Generated state:", state)
-
-    // Build authorization URL
-    const authParams = new URLSearchParams({
-      response_type: "code",
-      client_id: clientId,
-      redirect_uri: redirectUri,
-      scope: "read write", // Adjust scope as needed
-      state: state,
-    })
-
-    const authUrl = `https://login.qqcatalyst.com/oauth/authorize?${authParams.toString()}`
-    console.log("Authorization URL:", authUrl)
-
-    // Store state in a cookie for verification
-    const response = NextResponse.redirect(authUrl)
-    response.cookies.set("oauth_state", state, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      maxAge: 600, // 10 minutes
-    })
-
-    return response
-  } catch (error) {
-    console.error("QQCatalyst auth error:", error)
-
-    // Return detailed error information
-    return NextResponse.json(
-      {
-        error: "Failed to initiate authentication",
-        details: error.message,
-        stack: process.env.NODE_ENV === "development" ? error.stack : undefined,
-      },
-      { status: 500 },
-    )
-  }
-}
+aW1wb3J0IHsgdHlwZSBOZXh0UmVxdWVzdCwgTmV4dFJlc3BvbnNlIH0gZnJv
+bSAibmV4dC9zZXJ2ZXIiCgpleHBvcnQgYXN5bmMgZnVuY3Rpb24gR0VUKHJl
+cXVlc3Q6IE5leHRSZXF1ZXN0KSB7CiAgdHJ5IHsKICAgIGNvbnNvbGUubG9n
+KCJTdGFydGluZyBRUUNhdGFseXN0IE9BdXRoIGZsb3cuLi4iKQoKICAgIC8v
+IEdldCBjcmVkZW50aWFscyBmcm9tIGVudmlyb25tZW50IHZhcmlhYmxlcwog
+ICAgY29uc3QgY2xpZW50SWQgPSBwcm9jZXNzLmVudi5RUUNfQ0xJRU5UX0lE
+CiAgICBjb25zdCBiYXNlVXJsID0gcHJvY2Vzcy5lbnYuTkVYVF9QVUJMSUNf
+QVBQX1VSTCB8fCAiaHR0cDovL2xvY2FsaG9zdDozMDAwIgoKICAgIGNvbnNv
+bGUubG9nKCJDbGllbnQgSUQ6IiwgY2xpZW50SWQgPyAiUHJlc2VudCIgOiAi
+TWlzc2luZyIpCiAgICBjb25zb2xlLmxvZygiQmFzZSBVUkw6IiwgYmFzZVVy
+bCkKCiAgICBpZiAoIWNsaWVudElkKSB7CiAgICAgIGNvbnNvbGUuZXJyb3Io
+IlFRQ19DTElFTlRfSUQgbm90IGZvdW5kIGluIGVudmlyb25tZW50IHZhcmlh
+YmxlcyIpCiAgICAgIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbigKICAgICAg
+ICB7CiAgICAgICAgICBlcnJvcjogIlFRQ2F0YWx5c3QgQ2xpZW50IElEIG5v
+dCBjb25maWd1cmVkIiwKICAgICAgICAgIGRldGFpbHM6ICJNaXNzaW5nIFFR
+Q19DTElFTlRfSUQgZW52aXJvbm1lbnQgdmFyaWFibGUiLAogICAgICAgIH0s
+CiAgICAgICAgeyBzdGF0dXM6IDUwMCB9LAogICAgICApCiAgICB9CgogICAg
+Ly8gQnVpbGQgcmVkaXJlY3QgVVJJCiAgICBjb25zdCByZWRpcmVjdFVyaSA9
+IGAke2Jhc2VVcmx9L2FwaS9hdXRoL3FxY2F0YWx5c3QvY2FsbGJhY2tgCiAg
+ICBjb25zb2xlLmxvZygiUmVkaXJlY3QgVVJJOiIsIHJlZGlyZWN0VXJpKQoK
+ICAgIC8vIEdlbmVyYXRlIHN0YXRlIGZvciBzZWN1cml0eQogICAgY29uc3Qg
+c3RhdGUgPSBNYXRoLnJhbmRvbSgpLnRvU3RyaW5nKDM2KS5zdWJzdHJpbmco
+NykKICAgIGNvbnNvbGUubG9nKCJHZW5lcmF0ZWQgc3RhdGU6Iiwgc3RhdGUp
+CgogICAgLy8gQnVpbGQgYXV0aG9yaXphdGlvbiBVUkwKICAgIGNvbnN0IGF1
+dGhQYXJhbXMgPSBuZXcgVVJMU2VhcmNoUGFyYW1zKHsKICAgICAgcmVzcG9u
+c2VfdHlwZTogImNvZGUiLAogICAgICBjbGllbnRfaWQ6IGNsaWVudElkLAog
+ICAgICByZWRpcmVjdF91cmk6IHJlZGlyZWN0VXJpLAogICAgICBzY29wZTog
+InJlYWQgd3JpdGUiLCAvLyBBZGp1c3Qgc2NvcGUgYXMgbmVlZGVkCiAgICAg
+IHN0YXRlOiBzdGF0ZSwKICAgIH0pCgogICAgY29uc3QgYXV0aFVybCA9IGBo
+dHRwczovL2xvZ2luLnFxY2F0YWx5c3QuY29tL29hdXRoL2F1dGhvcml6ZT8k
+e2F1dGhQYXJhbXMudG9TdHJpbmcoKX1gCiAgICBjb25zb2xlLmxvZygiQXV0
+aG9yaXphdGlvbiBVUkw6IiwgYXV0aFVybCkKCiAgICAvLyBTdG9yZSBzdGF0
+ZSBpbiBhIGNvb2tpZSBmb3IgdmVyaWZpY2F0aW9uCiAgICBjb25zdCByZXNw
+b25zZSA9IE5leHRSZXNwb25zZS5yZWRpcmVjdChhdXRoVXJsKQogICAgcmVz
+cG9uc2UuY29va2llcy5zZXQoIm9hdXRoX3N0YXRlIiwgc3RhdGUsIHsKICAg
+ICAgaHR0cE9ubHk6IHRydWUsCiAgICAgIHNlY3VyZTogcHJvY2Vzcy5lbnYu
+Tk9ERV9FTlYgPT09ICJwcm9kdWN0aW9uIiwKICAgICAgc2FtZVNpdGU6ICJs
+YXgiLAogICAgICBtYXhBZ2U6IDYwMCwgLy8gMTAgbWludXRlcwogICAgfSkK
+CiAgICByZXR1cm4gcmVzcG9uc2UKICB9IGNhdGNoIChlcnJvcikgewogICAg
+Y29uc29sZS5lcnJvcigiUVFDYXRhbHlzdCBhdXRoIGVycm9yOiIsIGVycm9y
+KQoKICAgIC8vIFJldHVybiBkZXRhaWxlZCBlcnJvciBpbmZvcm1hdGlvbgog
+ICAgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKAogICAgICB7CiAgICAgICAg
+ZXJyb3I6ICJGYWlsZWQgdG8gaW5pdGlhdGUgYXV0aGVudGljYXRpb24iLAog
+ICAgICAgIGRldGFpbHM6IGVycm9yLm1lc3NhZ2UsCiAgICAgICAgc3RhY2s6
+IHByb2Nlc3MuZW52Lk5PREVfRU5WID09PSAiZGV2ZWxvcG1lbnQiID8gZXJy
+b3Iuc3RhY2sgOiB1bmRlZmluZWQsCiAgICAgIH0sCiAgICAgIHsgc3RhdHVz
+OiA1MDAgfSwKICAgICkKICB9Cn0K
