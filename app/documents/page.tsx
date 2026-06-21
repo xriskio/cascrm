@@ -3,7 +3,7 @@ import { Upload, Search, FileText, Folder, Filter, Grid, List } from "lucide-rea
 
 export default function DocumentsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen">
       <PageHeader title="Documents" subtitle="AI-powered document management and intelligent search">
         <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all duration-200 flex items-center gap-2">
           <Upload className="h-4 w-4" />
