@@ -5,18 +5,18 @@ export async function GET(request: NextRequest) {
     console.log("Starting QQCatalyst OAuth flow...")
 
     // Get credentials from environment variables
-    const clientId = process.env.QQC_CLIENT_ID
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
+    const clientId = process.env.QQ_CLIENT_ID
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:5000"
 
     console.log("Client ID:", clientId ? "Present" : "Missing")
     console.log("Base URL:", baseUrl)
 
     if (!clientId) {
-      console.error("QQC_CLIENT_ID not found in environment variables")
+      console.error("QQ_CLIENT_ID not found in environment variables")
       return NextResponse.json(
         {
           error: "QQCatalyst Client ID not configured",
-          details: "Missing QQC_CLIENT_ID environment variable",
+          details: "Missing QQ_CLIENT_ID environment variable",
         },
         { status: 500 },
       )
