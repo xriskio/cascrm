@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
     // ── Renewals ─────────────────────────────────────────────────────────
     let rq = supabaseAdmin
       .from('renewals')
-      .select('id, named_insured, client_name, policy_number, lob, carrier, status, premium, expiration_date, created_at, updated_at, agent_name')
+      .select('*')
       .neq('status', 'archived')
     if (status) rq = rq.eq('status', status)
     if (type === 'submission') rq = rq.limit(0)
@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
     // ── Submissions ───────────────────────────────────────────────────────
     let sq = supabaseAdmin
       .from('submissions')
-      .select('id, tracking_number, client_name, policy_type, carrier, status, quoted_premium, expiration_date, created_at, updated_at, assigned_agent')
+      .select('*')
       .neq('status', 'declined')
     if (status) sq = sq.eq('status', status)
     if (type === 'renewal') sq = sq.limit(0)
