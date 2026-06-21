@@ -28,12 +28,15 @@ function urgencyInfo(daysLeft?: number) {
 }
 
 function WorkflowCard({ item, onClick }: { item: WorkflowItem; onClick?: () => void }) {
+  const href = item.type === "renewal" ? "/renewals" : "/submissions"
   const urgency = urgencyInfo(item.daysUntilExpiry)
   const [hovered, setHovered] = useState(false)
 
   return (
-    <div
+    <Link
+      href={href}
       onClick={onClick}
+      style={{ textDecoration: "none", display: "block" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
@@ -86,7 +89,7 @@ function WorkflowCard({ item, onClick }: { item: WorkflowItem; onClick?: () => v
           {urgency.label}
         </span>
       </div>
-    </div>
+    </Link>
   )
 }
 
