@@ -28,6 +28,10 @@ CREATE TABLE IF NOT EXISTS lead_sources(id uuid PRIMARY KEY DEFAULT gen_random_u
 CREATE TABLE IF NOT EXISTS lead_assignment_queue(id uuid PRIMARY KEY DEFAULT gen_random_uuid(),lead_id text NOT NULL UNIQUE,queue_status varchar(20) NOT NULL DEFAULT 'pending',priority varchar(20) NOT NULL DEFAULT 'medium',source_brand varchar(50),source_type varchar(50),entered_queue_at timestamptz NOT NULL DEFAULT now(),assigned_at timestamptz,assignment_method varchar(50),assigned_to varchar(100),assigned_by varchar(100),follow_up_required boolean DEFAULT false,queue_notes text,created_at timestamptz NOT NULL DEFAULT now(),updated_at timestamptz NOT NULL DEFAULT now());
 CREATE TABLE IF NOT EXISTS agent_workload(id uuid PRIMARY KEY DEFAULT gen_random_uuid(),agent_email varchar(100) NOT NULL UNIQUE,agent_name varchar(100),is_active boolean DEFAULT true,max_daily_leads int DEFAULT 20,pending_leads int DEFAULT 0,total_active_leads int DEFAULT 0,leads_assigned_today int DEFAULT 0,utilization_percent int DEFAULT 0,can_accept_more_leads boolean DEFAULT true,preferred_industries jsonb,preferred_policy_types jsonb,last_updated timestamptz NOT NULL DEFAULT now(),created_at timestamptz NOT NULL DEFAULT now());
 
+-- SUBMISSION ADDITIONAL TABLES
+CREATE TABLE IF NOT EXISTS submission_versions(id uuid PRIMARY KEY DEFAULT gen_random_uuid(),submission_id text NOT NULL,version_number int NOT NULL,change_description text NOT NULL,changed_fields jsonb,previous_values jsonb,new_values jsonb,changed_by varchar(100) NOT NULL,changed_at timestamptz NOT NULL DEFAULT now());
+CREATE TABLE IF NOT EXISTS submission_notes(id uuid PRIMARY KEY DEFAULT gen_random_uuid(),submission_id text NOT NULL,content text NOT NULL,note_type varchar(20),created_by varchar(100) NOT NULL,created_at timestamptz NOT NULL DEFAULT now(),is_internal boolean DEFAULT true,visible_to_carrier boolean DEFAULT false);
+
 -- COLUMN ADDITIONS to existing tables
 ALTER TABLE leads ADD COLUMN IF NOT EXISTS form_step int DEFAULT 1;
 ALTER TABLE leads ADD COLUMN IF NOT EXISTS form_completion int DEFAULT 0;
@@ -39,6 +43,28 @@ ALTER TABLE leads ADD COLUMN IF NOT EXISTS estimated_annual_premium decimal(12,2
 ALTER TABLE leads ADD COLUMN IF NOT EXISTS assigned_agent varchar(100);
 ALTER TABLE leads ADD COLUMN IF NOT EXISTS assigned_date timestamptz;
 ALTER TABLE submissions ADD COLUMN IF NOT EXISTS submission_number varchar(100);
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS lead_id text;
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS insured_name varchar(255);
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS insured_type varchar(50);
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS insured_address text;
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS coverage_types jsonb;
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS requested_limits jsonb;
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS deductible_preferences jsonb;
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS risk_profile varchar(20);
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS risk_factors jsonb;
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS claims_history jsonb;
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS year_established int;
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS annual_revenue decimal(15,2);
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS employee_count int;
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS business_description text;
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS financial_documents jsonb;
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS risk_documents jsonb;
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS submitted_date timestamptz;
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS assigned_underwriter varchar(100);
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS qq_catalyst_quote_id varchar(100);
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS qq_catalyst_synced_at timestamptz;
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS underwriting_notes text;
+ALTER TABLE submissions ADD COLUMN IF NOT EXISTS decline_reason text;
 ALTER TABLE submissions ADD COLUMN IF NOT EXISTS risk_rating int DEFAULT 50;
 ALTER TABLE submissions ADD COLUMN IF NOT EXISTS ready_to_submit_date timestamptz;
 ALTER TABLE quotes ADD COLUMN IF NOT EXISTS placement_id uuid;
