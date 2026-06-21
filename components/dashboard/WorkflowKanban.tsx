@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from "next/link"
 import type { WorkflowItem } from '@/types/workflow'
 
 const BG2 = '#141416'
@@ -147,7 +148,7 @@ function KanbanColumn({
             No items
           </div>
         ) : (
-          items.map(item => (
+          items.slice(0,6).map(item => (
             <WorkflowCard key={item.id} item={item} onClick={() => onCardClick?.(item)} />
           ))
         )}
