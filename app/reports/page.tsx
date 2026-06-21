@@ -13,7 +13,7 @@ export default async function ReportsPage({
   const stats = await getReportStats(dateRange)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen">
       <div className="p-6">
         <ReportsDashboard initialStats={stats} selectedRange={dateRange} />
       </div>
