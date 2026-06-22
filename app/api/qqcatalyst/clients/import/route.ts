@@ -24,14 +24,8 @@ export async function GET(request: NextRequest) {
     // Fetch contacts and policies in parallel (smaller batch size for stability)
     // Using 2 pages = ~1000 records max to avoid timeouts
     const [contacts, policies] = await Promise.all([
-      fetchAllContacts(2).catch((err) => {
-        console.error("Error fetching contacts:", err)
-        return []
-      }),
-      fetchAllPolicies(2).catch((err) => {
-        console.error("Error fetching policies:", err)
-        return []
-      }),
+      fetchAllContacts(2),
+      fetchAllPolicies(2),
     ])
 
     if (!contacts || contacts.length === 0) {
