@@ -18,5 +18,5 @@ export async function POST(req:NextRequest){
   if(lr.length)await sb.from('leads').upsert(lr,{onConflict:'email',ignoreDuplicates:true})
   const cr=all.map((c:any)=>({qq_catalyst_id:String(c.EntityID||c.ContactID||c.ID||''),contact_name:c.FullName||c.Name||null,first_name:c.FirstName||null,last_name:c.LastName||null,email:c.Email||c.PrimaryEmail||null,phone:c.Phone||c.PrimaryPhone||null,business_name:c.BusinessName||null,source:'qqcatalyst'})).filter((c:any)=>c.qq_catalyst_id)
   if(cr.length)await sb.from('clients').upsert(cr,{onConflict:'qq_catalyst_id'})
-  return NextResponse.json({success:true,contacts:all.length,leads:lr.length,clients:cr.length,message:'Synced '+all.length+' contacts %27})
+  return NextResponse.json({success:true,contacts:all.length,leads:lr.length,clients:cr.length,message:'Synced '+all.length+' contacts'})
 }
