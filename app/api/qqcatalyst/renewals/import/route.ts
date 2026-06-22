@@ -6,13 +6,6 @@ import { type NextRequest, NextResponse } from "next/server"
 import { supabaseAdmin } from "@/lib/supabase/admin"
 import { fetchPoliciesLastModified } from "@/lib/qqcatalyst/api-enhanced"
 
-export async function POST(request: NextRequest) {
-  const b = await request.clone().json().catch(() => ({}))
-  if (b?.token || request.headers.get("x-qq-token")) {
-    process.env.QQCATALYST_BEARER_TOKEN = b?.token || request.headers.get("x-qq-token") || ""
-  }
-  return GET(request)
-}
 export async function GET(request: NextRequest) {
   const headerToken = request.headers.get("x-qq-token")
   if (headerToken) process.env.QQCATALYST_BEARER_TOKEN = headerToken
