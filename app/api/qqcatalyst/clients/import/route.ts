@@ -7,9 +7,6 @@ import { type NextRequest, NextResponse } from "next/server"
 import { supabaseAdmin } from "@/lib/supabase/admin"
 import { fetchAllContacts, fetchAllPolicies } from "@/lib/qqcatalyst/api-enhanced"
 
-export async function POST(request: NextRequest) {
-  return GET(request)
-}
 export async function GET(request: NextRequest) {
   // Accept token from body or header (allows UI to pass fresh token)
   let bodyToken = null
