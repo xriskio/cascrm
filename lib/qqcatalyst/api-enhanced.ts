@@ -1,5 +1,9 @@
 import { qqAuth } from "./auth"
 
+function todayDateString() {
+  return new Date().toISOString().split("T")[0]
+}
+
 /**
  * Direct API call to QQCatalyst using fetch with dynamic token.
  * Tries the stored bearer token first; if it returns 401 (expired),
@@ -44,7 +48,7 @@ async function makeQQCatalystRequest(endpoint: string, options: RequestInit = {}
 }
 
 /**
- * Fetch contacts using the LastModifiedCreated endpoint (2014-2025)
+ * Fetch contacts using the LastModifiedCreated endpoint.
  */
 export async function fetchContactsLastModified(
   params: {
@@ -57,7 +61,7 @@ export async function fetchContactsLastModified(
   try {
     const queryParams = new URLSearchParams()
     queryParams.append("startDate", params.startDate || "2014-06-01")
-    queryParams.append("endDate", params.endDate || "2025-06-07")
+    queryParams.append("endDate", params.endDate || todayDateString())
     queryParams.append("pageNumber", (params.pageNumber || 1).toString())
     queryParams.append("pageSize", (params.pageSize || 500).toString())
 
@@ -88,7 +92,7 @@ export async function fetchContactsLastModified(
 }
 
 /**
- * Fetch policies using the LastModifiedCreated endpoint (2017-2025)
+ * Fetch policies using the LastModifiedCreated endpoint.
  */
 export async function fetchPoliciesLastModified(
   params: {
@@ -101,7 +105,7 @@ export async function fetchPoliciesLastModified(
   try {
     const queryParams = new URLSearchParams()
     queryParams.append("startDate", params.startDate || "2017-01-01")
-    queryParams.append("endDate", params.endDate || "2025-06-10")
+    queryParams.append("endDate", params.endDate || todayDateString())
     queryParams.append("pageNumber", (params.pageNumber || 1).toString())
     queryParams.append("pageSize", (params.pageSize || 500).toString())
 
