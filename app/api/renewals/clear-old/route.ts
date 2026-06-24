@@ -2,10 +2,14 @@ export const dynamic = "force-dynamic"
 export const runtime = 'nodejs'
 
 import { NextResponse } from "next/server"
+import { requireApiPermission } from "@/lib/api-auth"
 import { supabaseAdmin } from "@/lib/supabase/admin"
 
 export async function POST() {
   try {
+    const auth = await requireApiPermission("delete")
+    if (!auth.authorized) return auth.response
+
     console.log("🗑️ Clearing old renewals (expired before today)...")
 
     const today = new Date().toISOString()

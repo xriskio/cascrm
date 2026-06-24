@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { requireApiPermission } from "@/lib/api-auth"
 import { qqAuth } from "@/lib/qqcatalyst/auth"
 
 export const dynamic = "force-dynamic"
@@ -6,6 +7,9 @@ export const runtime = "nodejs"
 
 export async function POST() {
   try {
+    const auth = await requireApiPermission("delete")
+    if (!auth.authorized) return auth.response
+
     const token = await qqAuth.getAccessToken()
     
     return NextResponse.json({

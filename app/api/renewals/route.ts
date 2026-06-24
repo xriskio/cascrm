@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
+import { requireApiPermission } from "@/lib/api-auth"
 import { supabaseAdmin } from "@/lib/supabase/admin"
 
 export const runtime = 'nodejs'
@@ -6,6 +7,9 @@ export const dynamic = 'force-dynamic'
 
 export async function GET(request: NextRequest) {
   try {
+    const auth = await requireApiPermission("read")
+    if (!auth.authorized) return auth.response
+
     const supabase = supabaseAdmin
     const { searchParams } = new URL(request.url)
     const page = Number.parseInt(searchParams.get("page") || "1")
@@ -60,6 +64,9 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    const auth = await requireApiPermission("write")
+    if (!auth.authorized) return auth.response
+
     const supabase = supabaseAdmin
     const body = await request.json()
 
