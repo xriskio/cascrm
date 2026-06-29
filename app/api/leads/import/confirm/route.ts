@@ -20,8 +20,8 @@ function calcLeadScore(lead: Record<string,string>): number {
 
 function normalizePhone(p: string): string {
   const digits = p.replace(/\D/g,'')
-  if (digits.length === 10) return digits.replace(/(\d{3})(\d{3})(\d{4})/,'() -')
-  if (digits.length === 11 && digits[0] === '1') return digits.slice(1).replace(/(\d{3})(\d{3})(\d{4})/,'() -')
+  if (digits.length === 10) return digits.replace(/(\d{3})(\d{3})(\d{4})/,'($1) $2-$3')
+  if (digits.length === 11 && digits[0] === '1') return digits.slice(1).replace(/(\d{3})(\d{3})(\d{4})/,'($1) $2-$3')
   return p
 }
 
