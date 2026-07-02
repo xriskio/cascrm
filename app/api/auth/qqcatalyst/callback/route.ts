@@ -12,32 +12,46 @@ export async function GET(request: NextRequest) {
     const state = searchParams.get("state")
     const error = searchParams.get("error")
     const errorDescription = searchParams.get("error_description")
+    const storedState = request.cookies.get("oauth_state")?.value
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:5000"
 
-    console.log("Callback params:", { code: code ? "Present" : "Missing", state, error, errorDescription })
+    console.log("Callback params:", { code: code ? "Present" : "Missing", state: state ? "Present" : "Missing", error, errorDescription })
 
     // Check for OAuth errors
     if (error) {
       console.error("OAuth error from QQCatalyst:", error, errorDescription)
       const errorMessage = errorDescription || error
-      return NextResponse.redirect(
-        `${process.env.NEXT_PUBLIC_APP_URL}/qqcatalyst/oauth?error=${encodeURIComponent(errorMessage)}`,
-      )
+      const response = NextResponse.redirect(`${appUrl}/qqcatalyst/oauth?error=${encodeURIComponent(errorMessage)}`)
+      response.cookies.delete("oauth_state")
+      return response
+    }
+
+    if (!state || !storedState || state !== storedState) {
+      console.error("OAuth state validation failed")
+      const response = NextResponse.redirect(`${appUrl}/qqcatalyst/oauth?error=invalid_oauth_state`)
+      response.cookies.delete("oauth_state")
+      return response
     }
 
     // Verify we have an authorization code
     if (!code) {
       console.error("No authorization code received")
-      return NextResponse.redirect(`${process.env.NEXT_PUBLIC_APP_URL}/qqcatalyst/oauth?error=no_authorization_code`)
+      const response = NextResponse.redirect(`${appUrl}/qqcatalyst/oauth?error=no_authorization_code`)
+      response.cookies.delete("oauth_state")
+      return response
     }
 
     // Exchange authorization code for access token
     const tokenData = await exchangeCodeForToken(code)
     console.log("Token exchange successful")
 
-    // Redirect to OAuth page with access token (similar to React app pattern)
-    const response = NextResponse.redirect(
-      `${process.env.NEXT_PUBLIC_APP_URL}/qqcatalyst/oauth?access_token=${tokenData.access_token}&success=oauth_completed`,
-    )
+    if (!tokenData.access_token) {
+      throw new Error("QQCatalyst token response did not include an access token")
+    }
+
+    // Keep tokens in httpOnly cookies; never place them in URLs where logs/referrers can expose them.
+    const response = NextResponse.redirect(`${appUrl}/qqcatalyst/oauth?success=oauth_completed`)
+    response.cookies.delete("oauth_state")
 
     // Also set secure cookies with tokens for server-side use
     response.cookies.set("qqc_access_token", tokenData.access_token, {
@@ -60,9 +74,12 @@ export async function GET(request: NextRequest) {
     return response
   } catch (error) {
     console.error("QQCatalyst callback error:", error)
-    return NextResponse.redirect(
-      `${process.env.NEXT_PUBLIC_APP_URL}/qqcatalyst/oauth?error=${encodeURIComponent(error.message)}`,
+    const message = error instanceof Error ? error.message : "Unknown QQCatalyst callback error"
+    const response = NextResponse.redirect(
+      `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:5000"}/qqcatalyst/oauth?error=${encodeURIComponent(message)}`,
     )
+    response.cookies.delete("oauth_state")
+    return response
   }
 }
 

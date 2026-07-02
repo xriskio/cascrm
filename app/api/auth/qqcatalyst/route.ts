@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto"
 import { type NextRequest, NextResponse } from "next/server"
 
 export async function GET(request: NextRequest) {
@@ -27,8 +28,7 @@ export async function GET(request: NextRequest) {
     console.log("Redirect URI:", redirectUri)
 
     // Generate state for security
-    const state = Math.random().toString(36).substring(7)
-    console.log("Generated state:", state)
+    const state = randomUUID()
 
     // Build authorization URL
     const authParams = new URLSearchParams({
@@ -54,13 +54,15 @@ export async function GET(request: NextRequest) {
     return response
   } catch (error) {
     console.error("QQCatalyst auth error:", error)
+    const message = error instanceof Error ? error.message : "Unknown QQCatalyst auth error"
+    const stack = error instanceof Error ? error.stack : undefined
 
     // Return detailed error information
     return NextResponse.json(
       {
         error: "Failed to initiate authentication",
-        details: error.message,
-        stack: process.env.NODE_ENV === "development" ? error.stack : undefined,
+        details: message,
+        stack: process.env.NODE_ENV === "development" ? stack : undefined,
       },
       { status: 500 },
     )
