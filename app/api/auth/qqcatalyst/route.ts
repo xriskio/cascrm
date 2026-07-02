@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto"
 import { type NextRequest, NextResponse } from "next/server"
 
 export async function GET(request: NextRequest) {
@@ -27,8 +28,7 @@ export async function GET(request: NextRequest) {
     console.log("Redirect URI:", redirectUri)
 
     // Generate state for security
-    const state = Math.random().toString(36).substring(7)
-    console.log("Generated state:", state)
+    const state = randomUUID()
 
     // Build authorization URL
     const authParams = new URLSearchParams({

@@ -27,21 +27,20 @@ export default function QQCatalystOAuthPage() {
     // Set redirect URI from window (only runs on client)
     setRedirectUri(`${window.location.origin}/api/auth/qqcatalyst/callback`)
     
-    // Check for access token in URL params (similar to React app)
+    // OAuth callback stores tokens in httpOnly cookies and only returns a success marker.
     const urlParams = new URLSearchParams(window.location.search)
-    const accessToken = urlParams.get("access_token")
+    const oauthSuccess = urlParams.get("success") === "oauth_completed"
 
-    if (accessToken && accessToken.length > 0) {
-      setToken(accessToken)
+    if (oauthSuccess) {
       setLoggedIn(true)
-      fetchApiData(accessToken)
+      fetchApiData()
     }
   }, [])
 
-  const fetchApiData = async (accessToken: string) => {
+  const fetchApiData = async () => {
     setLoading(true)
     try {
-      const response = await fetch(`/api/qqcatalyst/test?access_token=${accessToken}`)
+      const response = await fetch("/api/qqcatalyst/test")
       const result = await response.json()
       setData(result)
     } catch (error) {
@@ -67,10 +66,10 @@ export default function QQCatalystOAuthPage() {
       })
       const result = await response.json()
 
-      if (result.success && result.access_token) {
-        setToken(result.access_token)
+      if (result.success) {
+        setToken(result.tokenPreview || null)
         setLoggedIn(true)
-        fetchApiData(result.access_token)
+        fetchApiData()
       }
     } catch (error) {
       console.error("Direct auth error:", error)
@@ -179,7 +178,9 @@ export default function QQCatalystOAuthPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <code className="text-xs bg-muted p-2 rounded block break-all">{token}</code>
+                  <code className="text-xs bg-muted p-2 rounded block break-all">
+                    {token || "Stored in a secure httpOnly cookie"}
+                  </code>
                 </CardContent>
               </Card>
 
