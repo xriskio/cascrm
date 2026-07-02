@@ -54,13 +54,15 @@ export async function GET(request: NextRequest) {
     return response
   } catch (error) {
     console.error("QQCatalyst auth error:", error)
+    const message = error instanceof Error ? error.message : "Unknown QQCatalyst auth error"
+    const stack = error instanceof Error ? error.stack : undefined
 
     // Return detailed error information
     return NextResponse.json(
       {
         error: "Failed to initiate authentication",
-        details: error.message,
-        stack: process.env.NODE_ENV === "development" ? error.stack : undefined,
+        details: message,
+        stack: process.env.NODE_ENV === "development" ? stack : undefined,
       },
       { status: 500 },
     )
